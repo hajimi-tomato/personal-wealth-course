@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十八章｜为什么资产配置比寻找“神基”更重要？—个人财富系统</title>
+<style>
+:root{
+  --bg:#efe1c3;--paper:#fbf3df;--ink:#332a22;--muted:#766858;--line:#d6c199;
+  --red:#8f342a;--redbg:#f1ddd5;--green:#455f4c;--greenbg:#dfe7dc;
+  --gold:#a77a2b;--goldbg:#f2e4bd;--blue:#445d70;--bluebg:#dce5e9;--deep:#2e2924;
+  --shadow:0 18px 50px rgba(74,52,28,.14)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);line-height:1.9;font-family:ui-serif,"Noto Serif SC","Source Han Serif SC","Songti SC",STSong,serif;background:radial-gradient(circle at 12% 7%,rgba(255,255,255,.45),transparent 25%),radial-gradient(circle at 88% 15%,rgba(100,74,40,.07),transparent 22%),repeating-linear-gradient(0deg,rgba(90,63,34,.022) 0 1px,transparent 1px 5px),var(--bg)}
+a{color:var(--green);text-underline-offset:3px}.wrap{max-width:1340px;margin:auto;padding:24px}.layout{display:grid;grid-template-columns:275px minmax(0,930px);gap:30px;justify-content:center;align-items:start}
+.sidebar{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto}.sidebox{background:rgba(251,243,223,.84);border:1px solid var(--line);border-radius:13px;padding:15px;margin-bottom:12px}.sidebox b{display:block}.sidebox small{color:var(--muted)}
+nav a{display:block;text-decoration:none;color:var(--muted);font-size:12px;padding:5px 7px;border-radius:7px}nav a:hover{background:#efdfbd;color:var(--ink)}
+.progress{height:7px;background:#e3d1aa;border-radius:999px;overflow:hidden;margin-top:8px}.progress i{display:block;height:100%;width:0;background:var(--red);transition:.2s}
+.paper{background:rgba(251,243,223,.97);border:1px solid rgba(170,143,96,.48);box-shadow:var(--shadow);border-radius:7px;overflow:hidden}
+.hero{padding:68px 74px 50px;border-bottom:1px solid var(--line);position:relative}.hero:before{content:"";position:absolute;left:28px;top:30px;bottom:30px;width:1px;background:rgba(143,52,42,.28)}
+.kicker{font-size:12px;letter-spacing:.18em;color:var(--red);font-weight:800}h1{font-size:49px;line-height:1.2;margin:13px 0 17px;letter-spacing:-.035em}.subtitle{font-size:20px;color:var(--muted);max-width:820px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 9px;background:#f7edd4;color:var(--muted)}
+.content{padding:54px 74px 76px}section{margin-bottom:62px}h2{font-size:30px;line-height:1.35;margin:0 0 18px}h3{font-size:21px;margin:30px 0 10px}p{margin:9px 0 16px}.lead{font-size:18px}
+.callout{padding:19px 21px;border-left:5px solid;margin:23px 0;border-radius:4px}.red{background:var(--redbg);border-color:var(--red)}.green{background:var(--greenbg);border-color:var(--green)}.gold{background:var(--goldbg);border-color:var(--gold)}.blue{background:var(--bluebg);border-color:var(--blue)}
+.label{font-size:11px;font-weight:800;letter-spacing:.14em;margin-bottom:4px}.card{padding:20px;border:1px solid var(--line);border-radius:10px;background:#fff9ea;margin:15px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.table th{font-size:11px;color:var(--muted)}
+.formula{background:var(--deep);color:#f8edd6;font:16px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:17px 19px;border-radius:8px;margin:18px 0}
+.case{padding:22px;border:1px solid var(--line);border-radius:10px;background:#faf0db;margin:14px 0}.casehead{display:flex;justify-content:space-between;gap:12px;align-items:baseline}.casehead b{font-size:18px}.casehead span{font-size:12px;color:var(--muted)}
+.quote{padding:23px 27px;background:#eee0c4;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:19px;margin:24px 0}
+.small{font-size:12px;color:var(--muted)}.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 7px;font-size:11px;background:#f6ead0;margin:2px}
+.metric{padding:15px;background:#f8edd4;border:1px solid var(--line);border-radius:9px}.metric b{display:block;font-size:20px;color:var(--green)}.metric span{font-size:12px;color:var(--muted)}
+input[type=text],input[type=number],select,textarea{width:100%;border:1px solid #c7ad80;background:#fffaf0;border-radius:7px;padding:10px 11px;color:var(--ink);font:inherit}textarea{min-height:78px;resize:vertical}
+input[type=range]{width:100%;accent-color:var(--red)}
+button{border:0;border-radius:8px;padding:10px 15px;background:var(--red);color:#fff;font-weight:800;cursor:pointer}button.secondary{background:var(--green)}button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.feedback{margin-top:14px;padding:15px 17px;border:1px dashed #b69d70;border-radius:8px;background:#f5e9cf}.tool-title{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.flow{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap}.flowstep{flex:1 1 125px;padding:13px;border:1px solid var(--line);border-radius:9px;background:#fff9ea}.flowstep b{display:block}.arrow{align-self:center;color:var(--red);font-size:21px}
+.bar{height:18px;background:#e5d5b3;border-radius:6px;overflow:hidden;margin:6px 0 10px}.bar i{display:block;height:100%;background:var(--green)}
+.goalrow{padding:14px;border:1px solid var(--line);border-radius:9px;background:#fffaf0;margin:10px 0}.goalrow .remove{float:right;background:transparent;border:1px solid var(--line);color:var(--red);padding:4px 8px}
+canvas{width:100%;height:320px;border:1px solid var(--line);border-radius:9px;background:#fffaf0;margin-top:14px}
+.end{background:var(--deep);color:#f5ebd7;padding:28px;border-radius:9px}.end h2{color:#fff5df}.refs{font-size:13px;color:var(--muted)}.refs li{margin-bottom:10px}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{display:none}.hero,.content{padding-left:36px;padding-right:36px}}
+@media(max-width:780px){.wrap{padding:0}.paper{border-radius:0}.hero,.content{padding:30px 20px}h1{font-size:34px}.grid2,.grid3,.grid4{grid-template-columns:1fr}.arrow{transform:rotate(90deg);text-align:center}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="layout">
+<aside class="sidebar">
+<div class="sidebox"><b>个人财富系统</b><small>第十八章 · 资产配置</small></div>
+<div class="sidebox"><small>阅读进度 <span id="readPct">0%</span></small><div class="progress"><i id="readProg"></i></div></div>
+<div class="sidebox"><small>互动完成度 <span id="taskPct">0%</span></small><div class="progress"><i id="taskProg"></i></div></div>
+<div class="sidebox"><nav>
+<a href="#goal">00 好产品为什么不等于好组合</a><a href="#portfolio">01 Portfolio</a><a href="#allocation">02 Asset Allocation</a><a href="#myth90">03 “90%收益”迷思</a><a href="#layers">04 三层决策</a><a href="#return">05 Portfolio Return</a><a href="#risk">06 Portfolio Risk</a><a href="#corr">07 Correlation</a><a href="#diversification">08 Diversification</a><a href="#riskcontrib">09 资金权重 ≠ 风险贡献</a><a href="#6040">10 60/40 只是例子</a><a href="#age">11 年龄公式的边界</a><a href="#strategic">12 Strategic Allocation</a><a href="#tactical">13 Tactical Allocation</a><a href="#security">14 Security Selection</a><a href="#approaches">15 三种配置方法</a><a href="#goals">16 Goals-Based</a><a href="#multiple">17 Multiple Portfolios</a><a href="#horizon">18 Time Horizon</a><a href="#liquidity">19 Liquidity</a><a href="#riskbudget">20 Ability / Willingness / Need</a><a href="#maxreturn">21 目标不是最大化收益</a><a href="#expectations">22 Capital Market Expectations</a><a href="#modelrisk">23 Model Risk</a><a href="#mvo">24 MVO</a><a href="#frontier">25 Efficient Frontier</a><a href="#hidden">26 Hidden Concentration</a><a href="#homebias">27 Home Bias</a><a href="#currency">28 Currency Exposure</a><a href="#drift">29 Portfolio Drift</a><a href="#rebalance">30 Rebalancing</a><a href="#methods">31 Calendar / Threshold</a><a href="#cashflowrebalance">32 Cash-Flow Rebalancing</a><a href="#costs">33 Rebalancing Costs</a><a href="#reallocation">34 Rebalancing ≠ Reallocation</a><a href="#glide">35 Glide Path</a><a href="#ips">36 IPS</a><a href="#cases">37 四个案例</a><a href="#mistakes">38 十个误区</a><a href="#tool1">39 Portfolio Mixer</a><a href="#tool2">40 Correlation Lab</a><a href="#tool3">41 Drift & Rebalance</a><a href="#tool4">42 Goal Allocation Builder</a><a href="#summary">43 总结</a><a href="#refs">44 资料与注释</a>
+</nav></div></aside>
+
+<main class="paper">
+<header class="hero"><div class="kicker">CHAPTER 18 · ASSET ALLOCATION</div><h1>为什么资产配置比寻找“神基”更重要？</h1><div class="subtitle">从单个资产走向投资组合：目标、时间期限、风险预算、相关性、战略配置、再平衡与投资政策书。</div><div class="meta"><span class="pill">预计阅读 100–120 分钟</span><span class="pill">Stage VI 核心章</span><span class="pill">4 个组合实验</span><span class="pill">最终产物：资产配置框架 v1</span></div></header>
+
+<article class="content">
+<section id="goal"><h2>00｜为什么一堆“好产品”仍然可能组成一个坏组合？</h2><p class="lead">假设你分别找到了一个不错的股票 ETF、债券基金、黄金 ETF 和现金管理工具。每一个单独看都没有明显问题，但如果最后 80% 资金都压在黄金上，组合依然高度集中。</p><p>反过来，五只名字不同的科技 ETF 也可能持仓高度重叠。单个产品的质量，并不能自动推出整个投资系统的合理性。</p><div class="callout red"><div class="label">本章第一原则</div><b>Portfolio Suitability ≠ Product Quality。组合首先是风险结构，其次才是产品清单。</b></div></section>
+
+<section id="portfolio"><h2>01｜Portfolio：不是“我买过什么”，而是“这些资产怎样一起行动”</h2><p>真正的组合分析不再只问 A 会涨多少、B 会涨多少，而要问：A 下跌时 B 通常发生什么？它们为什么一起涨跌？组合总风险最终来自哪些共同因素？</p><p>CFA 2026 仍把 expected return、volatility、covariance 与 correlation 作为从单个资产走向组合风险的核心语言。</p></section>
+
+<section id="allocation"><h2>02｜Asset Allocation：把长期目标翻译成资产类别比例</h2><p>资产配置最基础的定义，是把投资资金分配到股票、债券、现金以及其他资产类别中。Investor.gov 当前仍强调，具体配置必须结合目标的 time horizon 与投资者的 risk tolerance。</p><p>CFA 2026 更进一步指出，战略资产配置是把客户情况、目标和约束翻译成长期组合的重要第一步，而具体证券或基金的选择属于之后的 implementation。</p></section>
+
+<section id="myth90"><h2>03｜“资产配置决定 90% 的收益”为什么是经典误传？</h2><p>Brinson、Hood、Beebower 对 91 个大型美国养老金计划的经典研究发现，政策资产配置平均解释了约 95.6% 的<strong>组合收益时间序列变动</strong>。这个统计结果经常被简化成“95% 的最终收益来自资产配置”，但两者不是一回事。</p><div class="grid2"><div class="card"><b>研究真正问的问题</b><p>组合季度收益为什么随时间上下波动？战略资产配置基准解释了其中多少 variation？</p></div><div class="card"><b>常见误读</b><p>最终赚到的钱有 90% 多来自资产配置，选股和时机只占不到 10%。这不是原统计含义。</p></div></div><p>Ibbotson 与 Kaplan 后来的研究进一步区分了“收益随时间变化”“不同基金之间差异”“长期收益水平”三个不同问题。</p><div class="callout gold"><div class="label">本章正确表述</div><b>资产配置非常重要，是因为它决定组合长期主要承担哪些系统性风险；不是因为一个被误读的“90%”营销数字。</b></div></section>
+
+<section id="layers"><h2>04｜投资决策可以拆成三层</h2><div class="grid3"><div class="card"><b>Asset Allocation</b><p>股票、债券、现金等长期多少。</p></div><div class="card"><b>Security / Fund Selection</b><p>每类资产里面具体用什么股票、债券、基金或 ETF。</p></div><div class="card"><b>Tactical / Timing</b><p>是否基于市场判断临时偏离长期比例。</p></div></div><p>经典绩效归因研究本来就沿着 policy allocation、timing 与 security selection 分解结果。三层都可能影响最终回报，但解决的是不同问题。</p></section>
+
+<section id="return"><h2>05｜Portfolio Expected Return：这一部分反而很简单</h2><div class="formula">E(Rp) = Σ wi × E(Ri)</div><p>如果股票 60%、预期收益 8%，债券 40%、预期收益 4%，则组合预期收益约为：</p><div class="formula">0.60 × 8% + 0.40 × 4% = 6.4%</div><p>但这只是教学上的预期值，不是未来保证收益。</p></section>
+
+<section id="risk"><h2>06｜Portfolio Risk 为什么不能直接把波动率加权平均？</h2><p>股票波动率 20%、债券 6%，60/40 组合的波动率并不是简单的 0.6×20% + 0.4×6%。还缺少资产之间如何共同变化的信息。</p><div class="formula">σ²p = w₁²σ₁² + w₂²σ₂² + 2w₁w₂σ₁σ₂ρ₁₂</div><p>这个公式不要求背诵。真正要看到的是最后一个变量：<b>ρ，Correlation。</b></p></section>
+
+<section id="corr"><h2>07｜Correlation：第十三章的相关性在这里真正变成资产配置工具</h2><div class="grid3"><div class="card"><b>ρ = +1</b><p>完全同步，分散收益非常有限。</p></div><div class="card"><b>ρ = 0</b><p>没有稳定线性同步关系，可以产生明显分散作用。</p></div><div class="card"><b>ρ = −1</b><p>理论上的完全反向边界，现实资产很少长期保持。</p></div></div></section>
+
+<section id="diversification"><h2>08｜Diversification 的价值不是“多买几个东西”</h2><p>真正的分散来自不同风险来源之间的不完全同步。Investor.gov 当前仍然提醒，分散化可以降低风险，却不能保证市场下跌时不会亏钱。</p><div class="quote"><b>Diversification changes the path of risk; it does not abolish risk.</b></div><p>它主要帮助降低可以分散的个体风险，无法消除宏观、市场整体、利率和流动性等系统性风险。</p></section>
+
+<section id="riskcontrib"><h2>09｜Capital Weight ≠ Risk Contribution：50%资金不等于50%风险</h2><p>股票 50%、债券 50% 时，如果股票波动率远高于债券，组合的大部分风险仍可能来自股票。</p><p>CFA 2026 在资产配置中专门讨论 risk budgeting：真正的问题不是只分配资本，而是明确准备承担哪些风险、每一种风险承担多少。</p><div class="callout blue"><div class="label">重要升级</div><b>资产配置表看的是“钱放在哪里”；风险预算表看的是“真正被什么东西伤到”。</b></div></section>
+
+<section id="6040"><h2>10｜60/40 为什么只能是例子，不是标准答案？</h2><p>60% 股票、40% 债券是著名的启发式组合，但 CFA 2026 也只是把 60/40、120-minus-age、1/N、risk parity 等列为不同配置方法或 heuristics。</p><p>如果目标、流动性、期限和承受能力不同，同一个 60/40 对不同人可能承担完全不同的 Shortfall Risk。</p></section>
+
+<section id="age"><h2>11｜“120 − 年龄 = 股票比例”为什么过度简化？</h2><p>两个 30 岁的人，一个有稳定收入、充足安全垫且长期目标明确；另一个两年内有大额支出、收入波动、固定负担很高。只用年龄无法描述风险承受能力。</p><div class="formula">Age is one input. It is not a portfolio.</div></section>
+
+<section id="strategic"><h2>12｜Strategic Asset Allocation：长期组合的政策锚</h2><p>CFA 2026 将战略资产配置描述为把目标、约束和投资机会转化成长期资产类别暴露的核心过程。</p><p>战略配置不是“我觉得下个月股票会涨”，而更接近：</p><div class="quote"><b>在不依赖短期市场预测的情况下，我希望长期承担怎样的资产与风险结构？</b></div></section>
+
+<section id="tactical"><h2>13｜Tactical Asset Allocation：主动偏离长期目标</h2><p>如果战略目标是股票 60%、债券 40%，但因为某种市场判断临时调整成 65/35，这属于 Tactical Allocation。</p><div class="formula">Tactical = forecast-driven deviation from policy target</div><p>它是一种主动判断，不应和再平衡混为一谈。</p></section>
+
+<section id="security"><h2>14｜Security Selection：第十七章“选基金”其实发生在更下层</h2><p>战略配置先决定股票多少、债券多少；之后才决定股票部分使用宽基指数、主动基金还是个股，债券部分使用怎样的期限、信用和基金结构。</p><div class="callout green"><div class="label">决策顺序</div><b>Asset Allocation → Implementation → Product Selection，而不是先选最近表现最好的产品，再反推组合。</b></div></section>
+
+<section id="approaches"><h2>15｜三种配置思路：Asset-Only、Liability-Relative、Goals-Based</h2><div class="grid3"><div class="card"><b>Asset-Only</b><p>主要从资产组合自身风险收益关系出发。</p></div><div class="card"><b>Liability-Relative</b><p>同时看资产与未来负债 / 支出如何相互作用。</p></div><div class="card"><b>Goals-Based</b><p>把不同目标拆成不同子组合和风险预算。</p></div></div><p>CFA 2026 Principles of Asset Allocation 当前仍将这三类作为重要配置框架。</p></section>
+
+<section id="goals"><h2>16｜Goals-Based：第三章的财务目标地图终于进入投资组合</h2><p>一年后的旅行、五年后的教育支出、二十年以上的长期财富积累，拥有完全不同的期限、重要性和 Shortfall Risk。</p><p>所以更自然的做法不是先问：</p><div class="quote">“我的股票比例应该是多少？”</div><p>而是先问：</p><div class="quote"><b>“这笔钱要完成什么任务？什么时候必须完成？失败后果有多大？”</b></div></section>
+
+<section id="multiple"><h2>17｜一个人完全可以在逻辑上拥有多个 Portfolio</h2><div class="grid3"><div class="card"><b>Safety / Liquidity</b><p>应急、短期刚性目标。</p></div><div class="card"><b>Medium-Term Goals</b><p>中期目标，需要平衡增长与提款风险。</p></div><div class="card"><b>Long-Term Growth</b><p>长期资本增长，能够承担更多短期价格波动。</p></div></div><p>这不代表必须开很多账户，而是在规划上让不同任务拥有不同风险预算。</p></section>
+
+<section id="horizon"><h2>18｜Time Horizon：同一个人也可能拥有完全不同的时间尺度</h2><p>Investor.gov 当前仍然把 time horizon 和 risk tolerance 作为资产配置的重要基础。目标越近，临近提款时的大幅回撤越难承受；目标越远，一般拥有更多时间应对市场周期。</p><p>但“长期”仍然不会把股票风险变成零。</p></section>
+
+<section id="liquidity"><h2>19｜Liquidity 是配置里的硬约束，而不是事后补丁</h2><p>一个理论上长期预期收益很高的组合，如果三个月后必须支付 10 万元而没有足够流动性，依然是一个糟糕的目标匹配。</p><div class="formula">High Expected Return cannot pay a bill if the money is unavailable when needed.</div></section>
+
+<section id="riskbudget"><h2>20｜Ability / Willingness / Need：第十三章的三个维度正式进入 Portfolio</h2><div class="grid3"><div class="card"><b>Ability</b><p>客观财务上能承受多大损失。</p></div><div class="card"><b>Willingness</b><p>心理和行为上是否能坚持。</p></div><div class="card"><b>Need</b><p>为了目标到底需要承担多少风险。</p></div></div><p>Risk Budget 不应该只由“我胆子大”或“我还年轻”决定。</p></section>
+
+<section id="maxreturn"><h2>21｜为什么“最大化收益”通常不是个人资产配置的目标函数？</h2><p>对现实个人而言，更有意义的目标通常是：在可以承受的风险和约束下，提高目标被资金化的概率。</p><div class="formula">Objective ≠ Max Expected Return<br>Objective ≈ Goal Achievement within Constraints</div><p>如果目标已经可以用较低风险实现，能够承担更高风险并不代表必须把风险预算用满。</p></section>
+
+<section id="expectations"><h2>22｜Capital Market Expectations：任何配置都离不开未来假设</h2><p>股票、债券、现金的预期收益，通胀，波动率，相关性，都属于资产配置的输入。没有这些输入，就无法比较组合。</p><p>但它们是：</p><div class="quote"><b>Assumptions，不是 Facts。</b></div></section>
+
+<section id="modelrisk"><h2>23｜为什么历史平均收益不能直接当未来？</h2><p>历史时期的估值、利率、通胀、经济结构和相关性可能与未来不同。即使历史估计没有计算错误，也不代表未来分布会重复。</p><p>因此配置模型本身还存在：</p><div class="formula">Model Risk + Estimation Error</div></section>
+
+<section id="mvo"><h2>24｜Mean–Variance Optimization：理论很漂亮，但输入稍错就可能输出很极端</h2><p>MVO 使用预期收益、波动率与相关性寻找风险收益组合。CFA 2026 同时明确列出它的局限：结果对输入变化非常敏感，可能产生高度集中的配置，并可能忽略税、交易成本、非正态风险和真实负债。</p><div class="callout red"><div class="label">所以本课程不会做</div><b>输入几组历史平均数，然后宣称“你的数学最优股票比例是 73.2%”。</b></div></section>
+
+<section id="frontier"><h2>25｜Efficient Frontier：只需要理解这一个直觉</h2><p>在所有可行组合中，有些组合在同样风险下收益更低，或同样收益下风险更高，它们被其他组合支配。剩下那条无法进一步同时提高收益、降低风险的边界，就是 Efficient Frontier。</p><p>但：</p><div class="quote"><b>数学上有效率的组合，仍然不等于具体人生目标下最合适的组合。</b></div></section>
+
+<section id="hidden"><h2>26｜Hidden Concentration：表面分散，风险来源仍可能高度集中</h2><p>一个虚构投资者可能持有宽基科技权重较高的股票基金、AI 主题 ETF、半导体 ETF，同时自己的收入也高度依赖同一行业。金融资本与 Human Capital 可能共同暴露于一个风险源。</p><p>所以组合不仅要看产品数量，也要看真正的经济暴露。</p></section>
+
+<section id="homebias"><h2>27｜Home Bias：熟悉不等于分散</h2><p>投资者经常更偏好本国资产，因为熟悉、信息方便或心理上更有安全感。这可能形成地域集中风险。</p><p>本章只要求识别这种暴露，不给出“必须配置多少海外资产”的统一答案。</p></section>
+
+<section id="currency"><h2>28｜Currency Exposure：海外资产多了一层本币结果</h2><p>海外股票上涨，并不意味着人民币计价结果完全等于海外资产本币回报；汇率变化也会进入最终结果。</p><p>所以跨地域分散还需要理解：</p><div class="formula">Underlying Asset Exposure + Currency Exposure</div></section>
+
+<section id="drift"><h2>29｜Portfolio Drift：你什么都不做，组合也会改变</h2><p>假设初始股票 60%、债券 40%。股票大幅上涨后，股票权重可能变成 70% 甚至更多。虽然没有任何交易，但组合承担的风险已经发生变化。</p><div class="quote"><b>No Trade ≠ No Change。</b></div></section>
+
+<section id="rebalance"><h2>30｜Rebalancing：把组合拉回政策目标</h2><p>Investor.gov 当前把 rebalancing 定义为：当不同资产涨跌速度不同导致组合偏离原目标时，通过调整使资产比例重新靠近原配置。</p><div class="formula">Rebalancing = policy-driven correction<br>Tactical Allocation = forecast-driven deviation</div></section>
+
+<section id="methods"><h2>31｜Calendar-Based 与 Threshold / Range-Based</h2><div class="grid2"><div class="card"><b>Calendar-Based</b><p>按固定周期检查，例如每半年或每年。</p></div><div class="card"><b>Threshold / Range-Based</b><p>给目标配置设容忍区间，超出触发线再调整。</p></div></div><p>CFA 2026 Overview of Asset Allocation 当前也明确区分这两类再平衡政策。</p></section>
+
+<section id="cashflowrebalance"><h2>32｜再平衡不一定需要“卖赢家买输家”</h2><p>新增现金可以优先投入低配资产；需要提款时，也可以优先从超配资产提款。Investor.gov 同样列出通过新增资金和调整持续贡献来帮助恢复资产配置的方式。</p><div class="callout green"><div class="label">现实意义</div><b>Cash-Flow Rebalancing 可以在不增加不必要交易的情况下，把组合慢慢拉回目标。</b></div></section>
+
+<section id="costs"><h2>33｜Rebalancing 也有成本，所以不应该每偏 0.1% 就交易</h2><p>交易可能产生佣金、买卖价差、税务影响和时间成本。CFA 2026 也强调，再平衡容忍区间应同时考虑交易成本、风险厌恶、相关性、波动率、税和流动性。</p><p>这就是 Tolerance Band 存在的真正理由。</p></section>
+
+<section id="reallocation"><h2>34｜Rebalancing ≠ Reallocation：目标比例本身什么时候才应该变？</h2><div class="grid2"><div class="card"><b>Rebalancing</b><p>长期目标没变，只是市场让实际比例漂移。</p></div><div class="card"><b>Reallocation</b><p>目标、期限、收入、负债、流动性或风险承受发生实质变化，因此长期目标结构本身需要重新评估。</p></div></div><p>Investor.gov 当前特别提醒，不应仅因为某一资产最近表现好，就把战略配置追着市场热点改变。</p></section>
+
+<section id="glide"><h2>35｜Glide Path：随着目标临近，战略配置本身也可以逐步变化</h2><p>长期目标在很远时，可以拥有一种风险预算；目标越来越近以后，Shortfall Risk 和提款风险变得更重要，因此配置可以按照预先规则逐渐改变。</p><p>生命周期 / Target-Date Funds 就会自动随目标日期接近，逐渐调整资产结构。</p></section>
+
+<section id="ips"><h2>36｜IPS：把“我大概想这样投资”变成可执行制度</h2><p>CFA 2026 Portfolio Planning 仍把 Investment Policy Statement 放在投资组合构建的前部：先写清目标和约束，再建立战略配置、实施与监督规则。</p><div class="grid2">
+<div class="card"><b>Purpose / Goal</b><p>这笔钱到底要完成什么？</p></div>
+<div class="card"><b>Time / Liquidity</b><p>什么时候需要、能否延期？</p></div>
+<div class="card"><b>Risk Budget</b><p>Ability / Willingness / Need。</p></div>
+<div class="card"><b>Strategic Allocation</b><p>长期目标资产结构。</p></div>
+<div class="card"><b>Rebalancing Rule</b><p>按时间还是容忍区间？</p></div>
+<div class="card"><b>Review Triggers</b><p>哪些人生变化才允许重新评估政策？</p></div>
+</div><div class="quote"><b>IPS 的作用不是提高预测能力，而是降低 Decision Noise。</b></div></section>
+
+<section id="cases"><h2>37｜四个现实案例</h2>
+<div class="case"><div class="casehead"><b>A｜找到一只“神基”后把 90% 资金投入</b><span>Product Quality ≠ Portfolio Suitability</span></div><p>即使管理人确实优秀，组合仍然暴露于单一经理、单一风格和单一资产类别。</p></div>
+<div class="case"><div class="casehead"><b>B｜60/40 涨成 80/20，但“我什么都没做”</b><span>Portfolio Drift</span></div><p>没有交易，不代表风险没有变化。股票权重上升已经把组合变成一个不同的 Portfolio。</p></div>
+<div class="case"><div class="casehead"><b>C｜两年买车和二十年长期积累使用同一配置</b><span>One Person ≠ One Horizon</span></div><p>两个目标的提款时间和 Shortfall Risk 完全不同，不能只因为属于同一个人就自然使用同一风险预算。</p></div>
+<div class="case"><div class="casehead"><b>D｜五只基金实际全是成长科技暴露</b><span>Exposure ≠ Product Count</span></div><p>真正的分散必须通过底层持仓、风险因子和经济暴露判断。</p></div>
+</section>
+
+<section id="mistakes"><h2>38｜十个最容易学错的地方</h2>
+<div class="callout red"><div class="label">误区 1</div><b>资产配置决定 90% 的最终投资收益。</b></div>
+<div class="callout red"><div class="label">误区 2</div><b>只要选到优秀基金，组合结构就不重要。</b></div>
+<div class="callout red"><div class="label">误区 3</div><b>60/40 是普通投资者的标准答案。</b></div>
+<div class="callout red"><div class="label">误区 4</div><b>年轻就应该尽可能提高股票比例。</b></div>
+<div class="callout red"><div class="label">误区 5</div><b>资金占比就是风险贡献占比。</b></div>
+<div class="callout red"><div class="label">误区 6</div><b>分散化意味着组合不会亏钱。</b></div>
+<div class="callout red"><div class="label">误区 7</div><b>基金数量多就代表分散。</b></div>
+<div class="callout red"><div class="label">误区 8</div><b>再平衡是一种保证赚钱的低买高卖策略。</b></div>
+<div class="callout red"><div class="label">误区 9</div><b>市场涨跌后追着赢家改变战略配置，也叫再平衡。</b></div>
+<div class="callout red"><div class="label">误区 10</div><b>战略配置一旦确定就永远不能改变。</b></div>
+</section>
+
+<section id="tool1"><div class="tool-title"><h2>39｜互动一：Portfolio Mixer</h2><span class="badge">资本权重 → 组合收益与风险</span></div><div class="card">
+<p>以下收益、波动和相关性全部是<strong>教学假设</strong>，不是未来预测。你可以改变权重观察结构。</p>
+<table class="table"><thead><tr><th>资产</th><th>权重%</th><th>教学预期收益%</th><th>教学波动率%</th></tr></thead><tbody>
+<tr><td>Cash</td><td><input id="mCashW" type="number" value="10"></td><td><input id="mCashR" type="number" value="2"></td><td><input id="mCashV" type="number" value="1"></td></tr>
+<tr><td>Bonds</td><td><input id="mBondW" type="number" value="30"></td><td><input id="mBondR" type="number" value="4"></td><td><input id="mBondV" type="number" value="6"></td></tr>
+<tr><td>Stocks</td><td><input id="mStockW" type="number" value="50"></td><td><input id="mStockR" type="number" value="8"></td><td><input id="mStockV" type="number" value="20"></td></tr>
+<tr><td>Real / Gold</td><td><input id="mRealW" type="number" value="10"></td><td><input id="mRealR" type="number" value="5"></td><td><input id="mRealV" type="number" value="15"></td></tr>
+</tbody></table>
+<button class="secondary" onclick="mixerLab()">计算组合</button>
+<div id="mixerOut" class="feedback">合计权重必须为 100%。风险使用固定教学相关性矩阵估算。</div>
+</div></section>
+
+<section id="tool2"><div class="tool-title"><h2>40｜互动二：Correlation Lab</h2><span class="badge">同样资产，不同相关性</span></div><div class="card">
+<div class="grid2"><label>Asset A 波动率（%）<input id="cVolA" type="number" value="20"></label><label>Asset B 波动率（%）<input id="cVolB" type="number" value="10"></label></div>
+<label>Correlation：<b id="corrLabel">0.20</b><input id="cCorr" type="range" min="-100" max="100" value="20" oninput="corrLab()"></label>
+<div id="corrOut" class="feedback"></div>
+<canvas id="corrChart" width="800" height="320"></canvas>
+</div></section>
+
+<section id="tool3"><div class="tool-title"><h2>41｜互动三：Drift & Rebalance Lab</h2><span class="badge">No Trade ≠ No Change</span></div><div class="card">
+<div class="grid2"><label>初始股票权重（%）<input id="dStockW" type="number" value="60"></label><label>初始债券权重（%）<input id="dBondW" type="number" value="40"></label><label>股票本年回报（%）<input id="dStockR" type="number" value="30"></label><label>债券本年回报（%）<input id="dBondR" type="number" value="0"></label><label>新增资金（占期初组合%，可填0）<input id="dNew" type="number" value="5"></label><label>容忍带（±百分点）<input id="dBand" type="number" value="5"></label></div>
+<button class="secondary" onclick="driftLab()">观察漂移与再平衡</button>
+<div id="driftOut" class="feedback"></div>
+</div></section>
+
+<section id="tool4"><div class="tool-title"><h2>42｜互动四：Goal Allocation Builder</h2><span class="badge">目标先于比例</span></div><div class="card">
+<p>添加目标。系统只识别时间、刚性和流动性矛盾，不会自动给出股票比例。</p>
+<button class="secondary" onclick="addGoal()">+ 添加目标</button>
+<div id="goalList"></div>
+<label>你希望采用的再平衡规则<select id="gRebalance"><option>每年检查一次</option><option>按容忍区间触发</option><option>主要使用新增资金再平衡</option><option>尚未决定</option></select></label>
+<label>IPS：明确不做的事情<textarea id="gProhibit" placeholder="例如：不因为某资产过去一年上涨就提高长期目标比例；不使用不理解的杠杆产品……"></textarea></label>
+<button class="secondary" onclick="analyzeGoals()">生成 Goal Risk Map</button>
+<div id="goalOut" class="feedback">会显示每个目标的规划角色和明显冲突提醒。</div>
+<button class="ghost" onclick="exportFramework()">导出《我的资产配置框架 v1》</button>
+</div></section>
+
+<section id="summary"><div class="end"><h2>43｜如果这一章真正学会了，你应该多出这十句话</h2>
+<p><b>1. 好产品不会自动组成好组合。</b></p>
+<p><b>2. 资产配置的价值不是“决定90%最终收益”，而是决定长期主要承担哪些系统性风险。</b></p>
+<p><b>3. 组合收益可以加权，组合风险却必须考虑相关性。</b></p>
+<p><b>4. 资金占比不等于风险贡献占比。</b></p>
+<p><b>5. 60/40、年龄公式等都只是启发式，不是个人标准答案。</b></p>
+<p><b>6. Strategic Allocation、Tactical Allocation 和 Rebalancing 是三件不同的事。</b></p>
+<p><b>7. 同一个人可以因为不同目标和期限，逻辑上拥有多个子组合。</b></p>
+<p><b>8. 再平衡首先是风险控制纪律，不是保证创造 Alpha 的技巧。</b></p>
+<p><b>9. 只有目标、期限、财务情况或风险承受真正改变时，长期战略配置才需要重新评估。</b></p>
+<p><b>10. 一份好的 IPS 不是预测市场，而是在市场变化时约束自己的决策。</b></p>
+<p><b>下一章：</b>第 19 章将进入 <b>最大的投资风险可能是你自己</b>：一个设计合理的组合，怎样被追涨杀跌、损失厌恶、近期偏误和过度交易破坏。</p>
+</div></section>
+
+<section id="refs"><h2>44｜本章资料来源与使用边界</h2><ol class="refs">
+<li><b>CFA Institute — Principles of Asset Allocation, 2026 Curriculum.</b> 用于 strategic asset allocation、asset-only / liability-relative / goals-based、risk budgeting、MVO 局限与再平衡框架。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/principles-asset-allocation">CFA Institute</a></li>
+<li><b>CFA Institute — Overview of Asset Allocation, 2026 Curriculum.</b> 用于战略配置与实施分层、risk budgeting、calendar / range-based rebalancing 以及组合治理。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/overview-asset-allocation">CFA Institute</a></li>
+<li><b>Investor.gov — Asset Allocation and Diversification.</b> 用于 time horizon、risk tolerance、diversification 与 rebalancing 的消费者教育框架。<br><a href="https://www.investor.gov/introduction-investing/getting-started/asset-allocation">Investor.gov</a></li>
+<li><b>Brinson, Hood & Beebower — Determinants of Portfolio Performance.</b> 经典研究中政策资产配置平均解释样本养老金计划约 95.6% 的<strong>收益时间序列 variation</strong>；本章明确区分这一结果与“95.6%最终收益来自资产配置”的常见误读。<br><a href="https://rpc.cfainstitute.org/research/financial-analysts-journal/1995/determinants-of-portfolio-performance">CFA Research & Policy Center</a></li>
+<li><b>Ibbotson & Kaplan — Does Asset Allocation Policy Explain 40, 90, or 100 Percent of Performance?</b> 用于区分收益随时间变化、不同基金之间差异与长期收益水平三个不同统计问题。</li>
+<li><b>课程边界说明.</b> 所有预期收益、波动率、相关性和组合结果均为教学模拟，不是资本市场预测，也不构成个性化资产配置建议。真实配置应结合具体目标、期限、流动性、税务、产品条款和风险承受能力。</li>
+</ol></section>
+</article></main></div></div>
+
+<script>
+const done=new Set();let allocFramework={goals:[]};
+function mark(k){done.add(k);const p=Math.round(done.size/4*100);taskPct.textContent=p+"%";taskProg.style.width=p+"%";saveLocal()}
+function readProgress(){const d=document.documentElement,h=d.scrollHeight-d.clientHeight,p=h>0?Math.round((d.scrollTop||0)/h*100):0;readPct.textContent=p+"%";readProg.style.width=p+"%"}window.addEventListener("scroll",readProgress)
+function saveLocal(){try{localStorage.setItem("finance_ch18_allocation",JSON.stringify(allocFramework))}catch(e){}}
+function n(x,d=2){return Number(x||0).toLocaleString("zh-CN",{maximumFractionDigits:d})}
+function pct(x){return (Number(x)>=0?"+":"")+Number(x).toFixed(2)+"%"}
+function portVol(weights,vols,corr){
+ let v=0;for(let i=0;i<weights.length;i++){for(let j=0;j<weights.length;j++){v+=weights[i]*weights[j]*vols[i]*vols[j]*corr[i][j]}}return Math.sqrt(Math.max(v,0))
+}
+function mixerLab(){
+ const W=[+mCashW.value,+mBondW.value,+mStockW.value,+mRealW.value],sum=W.reduce((a,b)=>a+b,0);
+ if(Math.abs(sum-100)>.01){mixerOut.innerHTML=`<b>当前权重合计 ${sum.toFixed(1)}%，请调整为100%。</b>`;return}
+ const w=W.map(x=>x/100),r=[+mCashR.value,+mBondR.value,+mStockR.value,+mRealR.value],v=[+mCashV.value,+mBondV.value,+mStockV.value,+mRealV.value].map(x=>x/100);
+ const corr=[[1,.15,.05,.10],[.15,1,.20,.15],[.05,.20,1,.25],[.10,.15,.25,1]];
+ const er=w.reduce((s,x,i)=>s+x*r[i],0),vol=portVol(w,v,corr)*100;
+ const rough=w.map((x,i)=>x*v[i]),roughSum=rough.reduce((a,b)=>a+b,0),names=["Cash","Bonds","Stocks","Real / Gold"];
+ mixerOut.innerHTML=`<div class="grid3"><div class="metric"><span>教学预期组合收益</span><b>${er.toFixed(2)}%</b></div><div class="metric"><span>教学估算组合波动</span><b>${vol.toFixed(2)}%</b></div><div class="metric"><span>最高资本权重</span><b>${names[W.indexOf(Math.max(...W))]} ${Math.max(...W).toFixed(0)}%</b></div></div><hr><p><b>粗略风险权重直觉：</b></p>${names.map((x,i)=>`<div>${x}：资本 ${W[i].toFixed(0)}% <span class="small">/ 单纯按 weight×vol 观察的风险权重约 ${roughSum?rough[i]/roughSum*100:0|0}%</span><div class="bar"><i style="width:${roughSum?rough[i]/roughSum*100:0}%"></i></div></div>`).join("")}<p class="small">真正风险贡献需要使用完整协方差和边际贡献计算。这里故意用简化视图说明：资本权重和风险权重不是一回事。</p>`;
+ allocFramework.mixer={weights:{cash:W[0],bonds:W[1],stocks:W[2],real:W[3]},assumptions:{returns:r,volatility:v.map(x=>x*100),correlation:corr},expectedReturn:er,estimatedVolatility:vol};mark("mixer")
+}
+function corrVol(a,b,rho){return Math.sqrt(.25*a*a+.25*b*b+.5*a*b*rho)}
+function corrLab(){
+ const a=+cVolA.value/100,b=+cVolB.value/100,rho=+cCorr.value/100;corrLabel.textContent=rho.toFixed(2);
+ const vol=corrVol(a,b,rho)*100;
+ corrOut.innerHTML=`<div class="grid3"><div class="metric"><span>Correlation</span><b>${rho.toFixed(2)}</b></div><div class="metric"><span>50/50组合波动</span><b>${vol.toFixed(2)}%</b></div><div class="metric"><span>简单权重平均波动</span><b>${((a+b)/2*100).toFixed(2)}%</b></div></div><p>${rho<0?"两资产存在反向协同，分散效果更明显。":rho<.7?"两资产并不完全同步，组合波动低于简单加权波动。":"相关性较高，两者越来越像同一个风险源，分散效果减弱。"}</p>`;
+ const ctx=corrChart.getContext("2d"),W=corrChart.width,H=corrChart.height,p=45;ctx.clearRect(0,0,W,H);ctx.strokeStyle="#cdb78b";ctx.beginPath();ctx.moveTo(p,15);ctx.lineTo(p,H-p);ctx.lineTo(W-15,H-p);ctx.stroke();ctx.strokeStyle="#8f342a";ctx.lineWidth=3;ctx.beginPath();
+ for(let i=0;i<=100;i++){const rr=-1+2*i/100,yv=corrVol(a,b,rr)*100,x=p+(W-p-20)*i/100,y=(H-p-10)-(H-p-30)*yv/Math.max(a,b)*100/100;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)}ctx.stroke();
+ const x=p+(W-p-20)*(rho+1)/2,yv=vol,y=(H-p-10)-(H-p-30)*yv/Math.max(a,b)*100/100;ctx.fillStyle="#455f4c";ctx.beginPath();ctx.arc(x,y,6,0,Math.PI*2);ctx.fill();ctx.fillStyle="#766858";ctx.font="12px serif";ctx.fillText("Correlation →",W-95,H-12);ctx.fillText("Portfolio volatility",4,24);
+ allocFramework.correlation={volA:a*100,volB:b*100,correlation:rho,portfolioVolatility:vol};mark("corr")
+}
+function driftLab(){
+ const sw=+dStockW.value,bw=+dBondW.value;if(Math.abs(sw+bw-100)>.01){driftOut.innerHTML="<b>初始股票和债券权重需要合计100%。</b>";return}
+ const sr=+dStockR.value/100,br=+dBondR.value/100,newPct=Math.max(0,+dNew.value/100),band=Math.max(0,+dBand.value);
+ let s=sw/100*(1+sr),b=bw/100*(1+br),total=s+b,driftS=s/total*100,driftB=b/total*100;
+ const trigger=Math.abs(driftS-sw)>band;
+ let addS=0,addB=0;
+ if(newPct>0){const afterBase=total,totalAdd=newPct;const desiredS=(afterBase+totalAdd)*sw/100,desiredB=(afterBase+totalAdd)*bw/100;addS=Math.max(0,Math.min(totalAdd,desiredS-s));addB=totalAdd-addS}
+ const cfS=(s+addS)/(total+newPct)*100,cfB=100-cfS;
+ driftOut.innerHTML=`<div class="grid4"><div class="metric"><span>市场变化后股票权重</span><b>${driftS.toFixed(2)}%</b></div><div class="metric"><span>市场变化后债券权重</span><b>${driftB.toFixed(2)}%</b></div><div class="metric"><span>容忍带是否触发</span><b>${trigger?"是":"否"}</b></div><div class="metric"><span>新增资金后股票权重</span><b>${cfS.toFixed(2)}%</b></div></div><p>目标 ${sw.toFixed(1)}/${bw.toFixed(1)}，实际漂移到 ${driftS.toFixed(1)}/${driftB.toFixed(1)}。${trigger?"已超出你设置的 ±"+band+" 个百分点容忍区间。":"仍在你设置的容忍区间内。"}${newPct>0?" 新增资金优先投入低配一侧后，组合变为 "+cfS.toFixed(1)+"/"+cfB.toFixed(1)+"。":""}</p><p class="small">这里不比较哪种方法“赚更多”，因为再平衡的第一任务是控制风险结构，而不是保证创造超额收益。</p>`;
+ allocFramework.rebalancing={target:{stocks:sw,bonds:bw},returns:{stocks:sr*100,bonds:br*100},drift:{stocks:driftS,bonds:driftB},band,newContributionPct:newPct*100,afterCashFlow:{stocks:cfS,bonds:cfB},triggered:trigger};mark("drift")
+}
+let goalId=0;
+function addGoal(prefill){
+ const id=++goalId,div=document.createElement("div");div.className="goalrow";div.dataset.id=id;
+ div.innerHTML=`<button class="remove" onclick="this.parentNode.remove()">删除</button><div class="grid2"><label>Goal Name<input class="gName" type="text" value="${prefill?.name||"新目标"}"></label><label>目标金额<input class="gAmount" type="number" value="${prefill?.amount||100000}"></label><label>距离使用（年）<input class="gYears" type="number" value="${prefill?.years??5}" step="0.5"></label><label>重要性<select class="gImportance"><option>刚性 / 很重要</option><option>重要但可调整</option><option>可延期 / 可放弃</option></select></label><label>流动性需求<select class="gLiquidity"><option>到期必须可立即使用</option><option>可接受数月调整</option><option>长期无需提款</option></select></label><label>你自行填写的高波动资产比例（%）<input class="gRisky" type="number" value="${prefill?.risky??50}"></label></div>`;
+ goalList.appendChild(div)
+}
+function analyzeGoals(){
+ const rows=[...document.querySelectorAll(".goalrow")];if(!rows.length){goalOut.innerHTML="<b>请至少添加一个目标。</b>";return}
+ const goals=rows.map(r=>({name:r.querySelector(".gName").value,amount:+r.querySelector(".gAmount").value,years:+r.querySelector(".gYears").value,importance:r.querySelector(".gImportance").value,liquidity:r.querySelector(".gLiquidity").value,risky:+r.querySelector(".gRisky").value}));
+ let html="";
+ goals.forEach(g=>{
+   let role=g.years<=2?"Capital Preservation / Liquidity":g.years<=7?"Balanced Goal Funding":"Long-Term Growth Capacity";
+   let warnings=[];
+   if(g.years<=2&&g.risky>40)warnings.push("短期限目标却填写了较高高波动资产比例，请重新检查 Shortfall Risk。");
+   if(g.importance.includes("刚性")&&g.years<=5&&g.risky>60)warnings.push("目标刚性较高，且期限不长；高波动比例可能与目标可靠性要求冲突。");
+   if(g.liquidity.includes("立即")&&g.risky>70)warnings.push("到期必须立即使用资金，但配置高度依赖市场价格，可能存在提款时点风险。");
+   html+=`<div class="case"><div class="casehead"><b>${g.name}</b><span>${g.years} 年 · ${g.amount.toLocaleString("zh-CN")}</span></div><p><b>规划角色：</b>${role}</p><p><span class="badge">${g.importance}</span> <span class="badge">${g.liquidity}</span> <span class="badge">高波动资产 ${g.risky}%</span></p>${warnings.length?`<div class="callout red">${warnings.join("<br>")}</div>`:`<div class="callout green">当前没有检测到非常明显的“期限 / 刚性 / 流动性”结构冲突；这并不代表该比例就是合适配置。</div>`}</div>`;
+ });
+ goalOut.innerHTML=html;
+ allocFramework.goals=goals;allocFramework.ips={rebalancing:gRebalance.value,prohibitedActions:gProhibit.value};mark("goals")
+}
+function exportFramework(){
+ const data={chapter:"18 为什么资产配置比寻找神基更重要？",exported_at:new Date().toISOString(),framework:allocFramework,principles:["先确定目标和约束，再决定资产配置","把资产配置理解为系统性风险选择，而不是90%收益神话","资金权重不等于风险贡献","利用不完全相关的风险来源进行分散，但不把分散理解成不会亏","区分Strategic Allocation、Tactical Allocation和Rebalancing","再平衡主要用于控制风险结构","只有目标、期限、财务情况或风险承受发生实质变化时重新评估长期战略配置","基金和ETF选择属于资产配置之后的实施层"]};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="我的资产配置框架_v1.json";a.click();URL.revokeObjectURL(u)
+}
+try{const saved=JSON.parse(localStorage.getItem("finance_ch18_allocation")||"null");if(saved)allocFramework=saved}catch(e){}
+addGoal({name:"两年内刚性目标",amount:80000,years:2,risky:30});addGoal({name:"长期财富目标",amount:500000,years:20,risky:70});
+mixerLab();corrLab();driftLab();readProgress();
+</script>
+</body></html>

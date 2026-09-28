@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第九章｜保险究竟在买什么？｜扩展版</title>
+<style>
+:root{
+ --bg:#efe1c3;--paper:#fbf3df;--ink:#332a22;--muted:#766858;--line:#d6c199;
+ --red:#8f342a;--redbg:#f1ddd5;--green:#455f4c;--greenbg:#dfe7dc;
+ --gold:#a77a2b;--goldbg:#f2e4bd;--blue:#445d70;--bluebg:#dce5e9;--deep:#2e2924;
+ --shadow:0 18px 50px rgba(74,52,28,.14)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);line-height:1.9;font-family:ui-serif,"Noto Serif SC","Source Han Serif SC","Songti SC",STSong,serif;background:radial-gradient(circle at 12% 7%,rgba(255,255,255,.45),transparent 25%),radial-gradient(circle at 88% 15%,rgba(100,74,40,.07),transparent 22%),repeating-linear-gradient(0deg,rgba(90,63,34,.022) 0 1px,transparent 1px 5px),var(--bg)}
+a{color:var(--green);text-underline-offset:3px}.wrap{max-width:1340px;margin:auto;padding:24px}.layout{display:grid;grid-template-columns:275px minmax(0,930px);gap:30px;justify-content:center;align-items:start}
+.sidebar{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto}.sidebox{background:rgba(251,243,223,.84);border:1px solid var(--line);border-radius:13px;padding:15px;margin-bottom:12px}.sidebox b{display:block}.sidebox small{color:var(--muted)}
+nav a{display:block;text-decoration:none;color:var(--muted);font-size:12px;padding:5px 7px;border-radius:7px}nav a:hover{background:#efdfbd;color:var(--ink)}
+.progress{height:7px;background:#e3d1aa;border-radius:999px;overflow:hidden;margin-top:8px}.progress i{display:block;height:100%;width:0;background:var(--red);transition:.2s}
+.paper{background:rgba(251,243,223,.97);border:1px solid rgba(170,143,96,.48);box-shadow:var(--shadow);border-radius:7px;overflow:hidden}
+.hero{padding:68px 74px 50px;border-bottom:1px solid var(--line);position:relative}.hero:before{content:"";position:absolute;left:28px;top:30px;bottom:30px;width:1px;background:rgba(143,52,42,.28)}
+.kicker{font-size:12px;letter-spacing:.18em;color:var(--red);font-weight:800}h1{font-size:49px;line-height:1.2;margin:13px 0 17px;letter-spacing:-.035em}.subtitle{font-size:20px;color:var(--muted);max-width:820px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 9px;background:#f7edd4;color:var(--muted)}
+.content{padding:54px 74px 76px}section{margin-bottom:62px}h2{font-size:30px;line-height:1.35;margin:0 0 18px}h3{font-size:21px;margin:30px 0 10px}p{margin:9px 0 16px}.lead{font-size:18px}
+.callout{padding:19px 21px;border-left:5px solid;margin:23px 0;border-radius:4px}.red{background:var(--redbg);border-color:var(--red)}.green{background:var(--greenbg);border-color:var(--green)}.gold{background:var(--goldbg);border-color:var(--gold)}.blue{background:var(--bluebg);border-color:var(--blue)}
+.label{font-size:11px;font-weight:800;letter-spacing:.14em;margin-bottom:4px}.card{padding:20px;border:1px solid var(--line);border-radius:10px;background:#fff9ea;margin:15px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.table th{font-size:11px;color:var(--muted)}
+.formula{background:var(--deep);color:#f8edd6;font:16px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:17px 19px;border-radius:8px;margin:18px 0}
+.case{padding:22px;border:1px solid var(--line);border-radius:10px;background:#faf0db;margin:14px 0}.casehead{display:flex;justify-content:space-between;gap:12px;align-items:baseline}.casehead b{font-size:18px}.casehead span{font-size:12px;color:var(--muted)}
+.quote{padding:23px 27px;background:#eee0c4;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:19px;margin:24px 0}
+.small{font-size:12px;color:var(--muted)}.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 7px;font-size:11px;background:#f6ead0;margin:2px}
+.metric{padding:15px;background:#f8edd4;border:1px solid var(--line);border-radius:9px}.metric b{display:block;font-size:20px;color:var(--green)}.metric span{font-size:12px;color:var(--muted)}
+input[type=text],input[type=number],select,textarea{width:100%;border:1px solid #c7ad80;background:#fffaf0;border-radius:7px;padding:10px 11px;color:var(--ink);font:inherit}textarea{min-height:80px;resize:vertical}
+input[type=range]{width:100%;accent-color:var(--red)}
+button{border:0;border-radius:8px;padding:10px 15px;background:var(--red);color:#fff;font-weight:800;cursor:pointer}button.secondary{background:var(--green)}button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.feedback{margin-top:14px;padding:15px 17px;border:1px dashed #b69d70;border-radius:8px;background:#f5e9cf}.tool-title{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.bar{height:18px;background:#e5d5b3;border-radius:6px;overflow:hidden;margin:6px 0 10px}.bar i{display:block;height:100%;background:var(--green)}
+.matrix{display:grid;grid-template-columns:110px 1fr 1fr;border:1px solid var(--line);border-radius:9px;overflow:hidden}.matrix>div{padding:13px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff9ea}.matrix .head{font-weight:800;background:#ead9b7}
+.checkrow{display:flex;gap:9px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--line)}
+.end{background:var(--deep);color:#f5ebd7;padding:28px;border-radius:9px}.end h2{color:#fff5df}.refs{font-size:13px;color:var(--muted)}.refs li{margin-bottom:10px}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{display:none}.hero,.content{padding-left:36px;padding-right:36px}}
+@media(max-width:780px){.wrap{padding:0}.paper{border-radius:0}.hero,.content{padding:30px 20px}h1{font-size:34px}.grid2,.grid3,.grid4{grid-template-columns:1fr}.matrix{grid-template-columns:80px 1fr 1fr;font-size:12px}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="layout">
+<aside class="sidebar">
+<div class="sidebox"><b>个人财富系统</b><small>第九章 · 风险转移</small></div>
+<div class="sidebox"><small>阅读进度 <span id="readPct">0%</span></small><div class="progress"><i id="readProg"></i></div></div>
+<div class="sidebox"><small>互动完成度 <span id="taskPct">0%</span></small><div class="progress"><i id="taskProg"></i></div></div>
+<div class="sidebox"><nav>
+<a href="#goal">00 本章核心问题</a><a href="#insurance">01 保险不是投资</a><a href="#four">02 四种风险处理</a><a href="#insurable">03 什么风险适合保险</a><a href="#pool">04 Risk Pooling</a><a href="#premium">05 保费到底买了什么</a><a href="#contract">06 保险合同怎么读</a><a href="#disclosure">07 如实告知与免责说明</a><a href="#claim">08 保额不等于赔款</a><a href="#healthsystem">09 中国医疗保障层次</a><a href="#healthtypes">10 医疗 / 疾病 / 失能</a><a href="#accident">11 意外险的边界</a><a href="#human">12 Human Capital</a><a href="#life">13 寿险保护什么</a><a href="#need">14 保障缺口</a><a href="#term">15 定期 / 长期形态</a><a href="#property">16 财产 / 责任 / 护理</a><a href="#priority">17 谁应该优先保障</a><a href="#budget">18 保险预算</a><a href="#review">19 什么时候复核</a><a href="#cases">20 四个案例</a><a href="#mistakes">21 十个误区</a><a href="#tool1">22 Risk Matrix</a><a href="#tool2">23 Contract Reader</a><a href="#tool3">24 Protection Gap</a><a href="#tool4">25 Coverage Map</a><a href="#summary">26 总结</a><a href="#refs">27 资料来源</a>
+</nav></div></aside>
+
+<main class="paper">
+<header class="hero"><div class="kicker">CHAPTER 09 · RISK TRANSFER</div><h1>保险究竟在买什么？</h1><div class="subtitle">从风险自留到风险转移：保费、保额、免赔额、责任范围、家庭现金流与保障缺口。保险真正购买的不是“赔钱机会”，而是一种在极端事件发生时保护财富系统连续性的合同。</div><div class="meta"><span class="pill">预计阅读 80–100 分钟</span><span class="pill">Stage III · 安全边界</span><span class="pill">4 个互动实验</span><span class="pill">最终产物：风险与保险地图 v1</span></div></header>
+
+<article class="content">
+<section id="goal"><h2>00｜本章真正的问题不是“该买什么保险”，而是“哪些风险不应该自己扛？”</h2>
+<p class="lead">第八章已经建立了一条重要边界：有一部分钱不拿去投资，因为它承担的是流动性和应急任务。但现金缓冲只能解决“自己有能力承担”的风险。某些事件一旦发生，损失可能远大于家庭能够舒服吸收的现金规模：重大疾病带来的长期医疗支出和收入中断、主要收入者死亡后的家庭现金流缺口、重大责任赔偿、房屋或核心财产损失。</p>
+<div class="callout red"><div class="label">本章核心问题</div><b>哪些风险可以靠现金自留，哪些风险一旦发生会破坏整个财富系统，因此值得考虑通过合同转移？</b></div>
+<p>这也是为什么保险应当放在“安全边界”阶段，而不是放在投资产品阶段讨论。保险的主要任务不是让财富增长，而是防止某些尾部风险一次性把已经建立的财富系统打断。</p>
+</section>
+
+<section id="insurance"><h2>01｜保险不是投资，而是一种风险管理工具</h2>
+<p>《中华人民共和国保险法》把保险定义为：投保人按照合同支付保险费，保险人在约定事故造成财产损失时承担赔偿责任，或者在人身保险约定的死亡、伤残、疾病、年龄或期限等条件出现时承担给付保险金责任。这个定义的核心是<strong>合同约定的风险与给付</strong>，而不是投资回报。</p>
+<div class="grid2"><div class="card"><b>Emergency Fund</b><p>Risk Retention：我自己保留一部分风险，用确定存在的现金承担。</p></div><div class="card"><b>Insurance</b><p>Risk Transfer：我支付确定的保费，把合同范围内的一部分不确定大损失转移给保险人。</p></div></div>
+<div class="quote"><b>Insurance converts an uncertain large loss into a more predictable smaller cost.</b></div>
+<p>保险当然也可能存在带储蓄、分红、账户价值等结构的产品，但在个人财富系统的基础课里，首先必须把最核心的保障功能看清：保险解决的是风险承担方式，而不是“用保费获得更高收益”。</p>
+</section>
+
+<section id="four"><h2>02｜风险管理不只有买保险：Avoid、Reduce、Retain、Transfer</h2>
+<div class="grid4">
+<div class="card"><b>Avoid｜避免</b><p>不参加某项活动，从源头不承担该风险。例如不进行自己无法理解的高杠杆操作。</p></div>
+<div class="card"><b>Reduce｜降低</b><p>通过安全措施降低事故概率或损失规模，例如体检、防火、备份和风险控制。</p></div>
+<div class="card"><b>Retain｜自留</b><p>接受风险，并用现金或收入自行承担后果，例如普通小额维修。</p></div>
+<div class="card"><b>Transfer｜转移</b><p>通过保险等合同，把符合约定的损失转移给第三方。</p></div>
+</div>
+<p>现实中同一个风险往往会同时使用几种方法。比如家庭健康风险可以通过规律体检降低发生或延误风险，通过基本医保承担一部分医疗费用，通过应急金承担免赔额和自付费用，再用商业保险转移某些更大的合同内损失。</p>
+<div class="callout blue"><div class="label">所以</div><b>“有保险”并不等于“不需要应急金”；“有应急金”也不等于所有大风险都适合自己承担。</b></div>
+</section>
+
+<section id="insurable"><h2>03｜什么风险最值得考虑转移？看 Probability × Severity，但不能只看概率</h2>
+<p>最典型的可保险风险直觉是：<b>发生概率未必很高，但一旦发生，经济损失可能很大，而且损失相对可识别、可估计、可由合同界定。</b></p>
+<div class="matrix">
+<div class="head"></div><div class="head">低损失</div><div class="head">高损失</div>
+<div class="head">低概率</div><div>通常可自留，例如普通小额维修</div><div><b>保险最有意义的区域之一</b>：重大疾病、重大责任等</div>
+<div class="head">高概率</div><div>更像日常预算或降低风险问题</div><div>往往保费很高、承保受限，首先应降低 / 避免风险</div>
+</div>
+<p>这里最重要的不是给每个风险贴唯一答案，而是问：如果这件事明天发生，它会不会让我的应急现金迅速耗尽、迫使我高成本借债、卖掉长期投资或让重要目标直接失效？如果答案是“会”，就应该认真评估风险转移。</p>
+</section>
+
+<section id="pool"><h2>04｜Risk Pooling：为什么一群人共同付钱，可以处理少数人的大损失？</h2>
+<p>保险的经济基础之一是风险集合。大量面临相似风险的人支付保费，保险人根据风险发生概率、损失分布、费用和资本要求形成风险池，少数真正发生合同内事故的人获得赔偿或给付。</p>
+<div class="formula">Expected Loss ≈ Probability of Loss × Expected Severity</div>
+<p>但保费不会简单等于“概率 × 平均赔款”。保险公司还需要承担运营、销售、理赔、资本占用、风险波动以及再保险等成本。因此：</p>
+<div class="formula">Premium ≈ Expected Claims + Expenses + Risk / Capital Load + Other Pricing Factors</div>
+<p>这解释了为什么从纯平均值看，购买保险的人不应期待“长期平均赔回的金额一定高于保费”。如果人人都能稳定拿回更多钱，风险池本身无法持续。保险的价值来自<strong>把自己承担不起的尾部损失变成可预算成本</strong>。</p>
+</section>
+
+<section id="premium"><h2>05｜所以保费到底买了什么？买的是“确定性”和“资产负债表保护”</h2>
+<p>假设一个家庭可以舒服承担 5000 元损失，却无法承担 50 万元损失。保险价值并不在于平均意义上“赚回来”，而在于：当极端事件发生时，家庭不必为了支付损失而出售房产、耗尽教育资金或永久破坏长期投资。</p>
+<div class="grid3"><div class="card"><b>Loss Transfer</b><p>合同内损失由保险人承担一部分。</p></div><div class="card"><b>Cash-Flow Stability</b><p>把难预测大损失变成可计划保费。</p></div><div class="card"><b>Goal Protection</b><p>减少重大事件对教育、住房、退休等目标的破坏。</p></div></div>
+<p>所以判断保险是否“值得”，不能只看“几年没出险，所以保费白交了”。如果保障期间没有发生事故，说明风险没有实现，并不说明风险管理工具没有完成任务。</p>
+</section>
+
+<section id="contract"><h2>06｜保险真正买的是合同：读懂八个词只是第一步</h2>
+<p>现行《保险法》要求保险合同列明保险责任、责任免除、保险期间、保险金额、保险费和保险金赔偿或给付办法等关键事项。真正理赔时，决定结果的是合同条款，而不是广告标题。</p>
+<div class="grid4">
+<div class="card"><b>保险责任</b><p>什么事件、疾病、事故或损失进入保障范围。</p></div>
+<div class="card"><b>责任免除</b><p>哪些情形明确不承担责任。</p></div>
+<div class="card"><b>保险金额 / 限额</b><p>合同承诺承担的最高金额或各项分限额。</p></div>
+<div class="card"><b>保险费</b><p>为了维持保障支付的成本、期限与方式。</p></div>
+<div class="card"><b>免赔额</b><p>达到赔付前由被保险人先自行承担的金额。</p></div>
+<div class="card"><b>赔付比例</b><p>符合责任范围后的费用按什么比例赔。</p></div>
+<div class="card"><b>等待期</b><p>合同开始后某段时间内特定责任尚未进入完整保障。</p></div>
+<div class="card"><b>续保 / 保证续保</b><p>保障期结束后是否、在什么条件下可以继续。</p></div>
+</div>
+<h3>合同阅读应该按“责任路径”而不是只看保额</h3>
+<p>当看到“最高 200 万”“100 万医疗保障”时，先不要停在保额。应该依次问：发生的事件是否属于保险责任？有没有触发免责？费用是否属于约定范围？是否超过免赔额？赔付比例是多少？是否存在单项或年度限额？是否还涉及基本医保结算、指定机构等条件？</p>
+<div class="formula">Potential Payment = Covered Loss<br>→ Apply Exclusions<br>→ Apply Deductible / Copay / Coinsurance<br>→ Apply Sub-limits / Maximum Limit</div>
+</section>
+
+<section id="disclosure"><h2>07｜两边都有重要义务：投保人如实告知，保险人说明合同与免责</h2>
+<p>《保险法》第十六条规定，保险人就有关情况提出询问时，投保人应当如实告知；未履行告知义务并达到法律规定条件时，可能影响合同解除和赔付责任。同时，保险法第十七条要求保险人对格式条款说明合同内容，对免除保险人责任的条款作出足以引起注意的提示并明确说明。</p>
+<div class="grid2"><div class="card"><b>投保人要做什么？</b><p>认真阅读健康告知、职业、既往情况等询问；按照询问真实回答，不自行猜测“这应该不重要”。</p></div><div class="card"><b>保险人要做什么？</b><p>提供并说明合同；对免责、免赔、比例等减轻责任的关键条款依法履行提示说明义务。</p></div></div>
+<p>这也是为什么“销售人员口头说能赔”不能替代合同。购买保险时真正应该保存的是投保文件、条款、健康告知记录、说明材料和支付凭证。</p>
+</section>
+
+<section id="claim"><h2>08｜保额不等于赔款：同样写“100万”，合同经济含义可能完全不同</h2>
+<p>医疗费用补偿型保险通常关注实际符合合同的医疗费用，在免赔额、赔付比例和限额内补偿；定额给付型疾病保险则可能在满足疾病定义后按合同金额给付，与实际医疗账单不是同一逻辑。</p>
+<div class="case"><div class="casehead"><b>例：5万元医疗费用</b><span>教学计算</span></div>
+<p>假设全部费用都属于合同认可范围，免赔额 1 万元，剩余部分赔付 80%，且没有触及其他限额，则简化理论赔付为：</p><div class="formula">(50,000 − 10,000) × 80% = 32,000</div>
+<p>真实理赔仍需要继续检查责任范围、费用类别、医保结算要求、医院范围和其他合同条件。</p></div>
+<h3>为什么“0免赔”也不等于“什么都赔”？</h3>
+<p>免赔额只是赔付计算中的一个环节。即使免赔额为零，责任免除、不在保障范围的费用、分项限额和比例赔付仍然存在。因此消费者应该把“免赔”“限额”“责任范围”分开看。</p>
+</section>
+
+<section id="healthsystem"><h2>09｜在中国语境下，商业健康险不是从真空开始：先看多层次医疗保障</h2>
+<p>国家医保政策长期强调以基本医疗保险为主体，并由大病保险、医疗救助、补充保障、商业健康保险、医疗互助等共同组成多层次保障。2026 年国家医保局仍在强调基本医保主体地位，并推动商业健康保险与基本医保衔接互补。</p>
+<div class="grid3">
+<div class="card"><b>基本医疗保障</b><p>提供广覆盖的制度基础，承担基础医疗费用保障。</p></div>
+<div class="card"><b>大病 / 救助等机制</b><p>针对高额费用和困难群体形成进一步减负或托底。</p></div>
+<div class="card"><b>商业健康保险</b><p>根据合同补充特定医疗、疾病、收入损失或照护风险。</p></div>
+</div>
+<div class="callout green"><div class="label">关键认识</div><b>商业保险的分析应该建立在“已有社会保障覆盖什么、仍剩什么风险缺口”的基础上，而不是假设所有医疗费用都完全依赖商业保险。</b></div>
+</section>
+
+<section id="healthtypes"><h2>10｜医疗险、疾病险、失能收入保险：三类产品解决的是三种不同现金流问题</h2>
+<p>现行《健康保险管理办法》把健康保险主要包括医疗保险、疾病保险、失能收入损失保险、护理保险以及医疗意外保险等。最容易混淆的是前三者。</p>
+<table class="table"><thead><tr><th>类型</th><th>核心风险</th><th>常见给付逻辑</th><th>它不等于什么</th></tr></thead><tbody>
+<tr><td><b>医疗保险</b></td><td>医疗支出</td><td>按合同对符合范围的医疗费用补偿</td><td>不等于收入补偿</td></tr>
+<tr><td><b>疾病保险</b></td><td>达到合同定义疾病后的资金压力</td><td>符合定义后按合同约定给付</td><td>不要求一定等于实际医疗账单</td></tr>
+<tr><td><b>失能收入保险</b></td><td>因疾病 / 伤残导致工作能力下降、收入中断</td><td>根据合同失能定义给付收入补偿</td><td>不等于医疗费用报销</td></tr>
+</tbody></table>
+<h3>为什么“医疗费用”和“收入中断”必须分开？</h3>
+<p>重大健康事件的经济损失至少可能有两部分：医院账单，以及因为不能工作而减少的收入。只解决其中一个，不代表整个家庭现金流风险被处理。保险规划必须先画风险，再看现有制度和产品覆盖哪一部分。</p>
+</section>
+
+<section id="accident"><h2>11｜意外险不能替代全部健康和寿险风险：关键在“事故原因”</h2>
+<p>意外伤害保险主要围绕符合合同定义的意外事故导致的伤残、死亡或相关费用。疾病导致的死亡、长期失能或医疗支出未必属于“意外”。因此“我有意外险，所以重大疾病和死亡风险都覆盖了”是常见误解。</p>
+<div class="case"><div class="casehead"><b>同样是“无法工作半年”</b><span>Cause Matters</span></div><p>如果原因是符合合同定义的交通意外，某些意外保障可能触发；如果原因是严重疾病，则要看医疗、疾病或失能收入保障。经济后果相似，但保险责任可能完全不同。</p></div>
+</section>
+
+<section id="human"><h2>12｜Human Capital：很多年轻家庭最大的“资产”，可能不是账户余额，而是未来收入能力</h2>
+<p>假设一个人目前金融资产只有 20 万，但未来二三十年的工作收入远高于这个数字。那么从家庭财富系统看，未来劳动收入本身是一项非常重要的经济资源。重大疾病、失能或死亡之所以可能造成巨大财务冲击，不只是因为医疗账单，还因为这项未来收入能力可能部分或全部消失。</p>
+<div class="formula">Household Economic Resources ≈ Financial Capital + Human Capital</div>
+<p>这也是为什么失能收入保障和寿险不能只看“现在账户有多少钱”。真正要保护的是家庭未来现金流和重要目标。</p>
+</section>
+
+<section id="life"><h2>13｜寿险真正保护的不是“死亡”，而是死亡之后仍然存在的经济责任</h2>
+<p>如果一个人死亡后，没有任何人依赖其收入、没有共同债务、没有需要继续资助的目标，那么寿险经济需求可能较低。反过来，如果有子女、共同贷款、赡养责任或其他依赖其未来收入的家庭成员，那么主要收入者死亡可能留下长期现金流缺口。</p>
+<div class="quote"><b>Life insurance protects dependents from the financial consequences of a person's death.</b></div>
+<p>因此寿险分析从来不应该只问“年龄多大”“工资多少”，而要问：谁依赖这份收入？依赖多久？有哪些债务和目标必须继续？已有多少资产和保障能够替代这部分收入？</p>
+</section>
+
+<section id="need"><h2>14｜保障缺口怎么估？先做 Needs Analysis，而不是先选保额</h2>
+<p>入门阶段可以使用一个非常透明的缺口框架：</p>
+<div class="formula">Protection Gap ≈ Debts<br>+ Future Essential Family Needs<br>+ Important Goal Funding<br>− Liquid Assets Available for These Needs<br>− Existing Relevant Coverage</div>
+<p>例如，家庭还有 50 万债务，希望保留 5 年每年 12 万的家庭基本生活支持，并预留 30 万重要教育目标；已有可用于这些需求的流动资产 40 万、既有寿险 50 万，则简化缺口：</p>
+<div class="formula">500,000 + 600,000 + 300,000 − 400,000 − 500,000 = 500,000</div>
+<p>这只是规划模型，不是保险公司核保规则，也没有折现、通胀和税等高级因素。但它比“工资乘10倍”更能让用户看清保额究竟在保护什么。</p>
+</section>
+
+<section id="term"><h2>15｜定期保障和长期 / 带现金价值形态：先理解任务，再比较结构</h2>
+<p>课程不把产品简单分成“好”和“坏”。不同结构解决的任务不同。纯保障型定期寿险通常把有限保费用于一定期限内较高死亡保障；长期或带储蓄 / 现金价值结构的产品则可能同时包含保障和长期价值积累、退保价值等机制。</p>
+<table class="table"><thead><tr><th>问题</th><th>应该问什么</th></tr></thead><tbody>
+<tr><td>保障期限</td><td>这个经济责任存在几年？子女独立、贷款还清以后需求会不会下降？</td></tr>
+<tr><td>现金流</td><td>长期保费是否会挤压应急储备、债务偿还和其他重要目标？</td></tr>
+<tr><td>产品复杂度</td><td>是否理解保证利益、非保证利益、现金价值、退保损失和费用？</td></tr>
+<tr><td>比较口径</td><td>是在比较保障任务，还是把保障与储蓄混在一起比较？</td></tr>
+</tbody></table>
+<div class="callout gold"><div class="label">原则</div><b>先明确风险任务，再选择产品结构；不要因为产品名字复杂，就假设它“更高级”，也不要因为结构简单，就假设它能解决所有需求。</b></div>
+</section>
+
+<section id="property"><h2>16｜风险不只有医疗和死亡：财产、责任与长期照护也属于保险地图</h2>
+<div class="grid3">
+<div class="card"><b>Property Risk</b><p>房屋、车辆、重要财产因事故受损或灭失。</p></div>
+<div class="card"><b>Liability Risk</b><p>因自己的行为对他人造成损害而产生赔偿责任。</p></div>
+<div class="card"><b>Long-Term Care Risk</b><p>长期失能、护理和照护服务带来的持续现金流压力。</p></div>
+</div>
+<p>责任风险尤其容易被低估，因为损失上限可能并不等于自己的财产价值。例如造成他人人身损害时，潜在赔偿责任可能远高于日常消费支出。</p>
+</section>
+
+<section id="priority"><h2>17｜家庭预算有限时，应该优先保障谁？看 Economic Dependency，而不是“谁最想买”</h2>
+<p>如果保险预算有限，排序逻辑应该围绕：谁一旦发生事故，会对家庭现金流造成最大的不可逆破坏？这通常与收入贡献、照护责任、债务责任和家庭依赖程度有关，而不是简单按照年龄或“最容易担心谁”。</p>
+<div class="grid2">
+<div class="card"><b>主要收入者</b><p>死亡或失能可能直接影响家庭收入，因此经济依赖度通常较高。</p></div>
+<div class="card"><b>无收入照护者</b><p>即使没有工资，其照护劳动如果中断，也可能迫使家庭产生替代照护成本。</p></div>
+</div>
+<p>儿童通常不存在需要替代的大量劳动收入，因此寿险需求和主要收入者并不相同。但儿童的医疗风险、家庭因照护造成的收入中断等仍需要另外分析。</p>
+</section>
+
+<section id="budget"><h2>18｜保险也有机会成本：保障不是越多越好</h2>
+<p>保费是真实现金流支出。如果为了追求极高保障，把应急金、债务偿还或长期目标投入全部挤压掉，那么整个财富系统可能反而变得脆弱。</p>
+<p>因此保险预算应该遵循一个简单顺序：</p>
+<div class="formula">Identify Catastrophic Risks<br>→ Check Existing Social / Employer / Existing Coverage<br>→ Estimate Gaps<br>→ Compare Contract Quality & Cost<br>→ Keep Premiums Sustainable</div>
+<p>真正目标不是“拥有最多保单”，而是在可持续预算内覆盖对家庭最具破坏性的风险。</p>
+</section>
+
+<section id="review"><h2>19｜保险不是买完就结束：哪些变化应该触发复核？</h2>
+<div class="grid3">
+<div class="card"><b>家庭变化</b><p>结婚、生育、赡养责任变化。</p></div>
+<div class="card"><b>收入变化</b><p>收入明显上升、下降或从固定转为高波动。</p></div>
+<div class="card"><b>债务变化</b><p>购房、贷款还清、重大负债新增。</p></div>
+<div class="card"><b>已有保障变化</b><p>单位保险变化、医保政策、续保条件或产品变化。</p></div>
+<div class="card"><b>资产变化</b><p>流动资产已经足以自留更多风险，或资产结构更复杂。</p></div>
+<div class="card"><b>健康 / 职业变化</b><p>可能影响核保、需求或保障结构。</p></div>
+</div>
+<p>年度复核时不需要每次都“换保险”。真正要检查的是：原来的风险暴露是否改变、保障缺口是否改变、合同是否仍然有效、受益人和联系方式是否需要更新。</p>
+</section>
+
+<section id="cases"><h2>20｜四个现实案例：不要从产品名开始，从风险开始</h2>
+<div class="case"><div class="casehead"><b>A｜有30万元存款，要不要给1000元手机买延保？</b><span>Small Loss</span></div><p>损失相对家庭资产很小，即使发生也不会破坏长期目标。更像风险自留问题，而不是必须转移的灾难风险。是否购买可以考虑便利性和个人偏好，但它的财富系统优先级较低。</p></div>
+<div class="case"><div class="casehead"><b>B｜家庭主要收入者没有寿险，但有很多医疗险</b><span>Risk Mismatch</span></div><p>医疗险主要解决医疗费用，并不能自动替代收入者死亡后多年家庭现金流。保险数量很多，也可能仍存在重大保障缺口。</p></div>
+<div class="case"><div class="casehead"><b>C｜“百万医疗”宣传看起来足够，于是不看条款</b><span>Limit ≠ Payment</span></div><p>真正赔付仍要经过保险责任、免责、免赔、比例、费用范围和医院要求等条件。最高限额只是合同结构中的一个数字。</p></div>
+<div class="case"><div class="casehead"><b>D｜为了“保障全面”长期保费占用大量现金流</b><span>Protection vs Affordability</span></div><p>保险系统如果导致应急储备不足、债务无法加速处理或核心目标停止投入，也需要重新评估。风险管理不是让所有风险都转移，而是把最无法承受的风险优先处理。</p></div>
+</section>
+
+<section id="mistakes"><h2>21｜十个最容易学错的地方</h2>
+<div class="callout red"><div class="label">误区 1</div><b>保险长期没有赔到钱，就说明保费浪费了。</b><p>保险购买的是风险转移和确定性，不是期望每个人都获得正收益。</p></div>
+<div class="callout red"><div class="label">误区 2</div><b>有应急金，就不需要保险。</b><p>应急金适合自留可承受损失，极端大损失可能需要转移。</p></div>
+<div class="callout red"><div class="label">误区 3</div><b>有保险，就不需要应急金。</b><p>免赔、自付、等待期、理赔时间以及不属于合同责任的支出仍需要现金。</p></div>
+<div class="callout red"><div class="label">误区 4</div><b>保额100万，就会赔100万。</b><p>补偿型产品和定额给付型产品的赔付机制不同。</p></div>
+<div class="callout red"><div class="label">误区 5</div><b>意外险可以替代医疗、疾病和寿险。</b><p>意外责任通常要求事故原因符合合同定义。</p></div>
+<div class="callout red"><div class="label">误区 6</div><b>医疗险和疾病险只是名字不同。</b><p>一个主要围绕费用补偿，一个可能围绕疾病条件给付。</p></div>
+<div class="callout red"><div class="label">误区 7</div><b>家庭里收入低的人就完全不需要保障。</b><p>照护劳动也可能具有很高替代成本。</p></div>
+<div class="callout red"><div class="label">误区 8</div><b>保险越多，财富系统越安全。</b><p>过高保费也会挤压现金流和其他安全层。</p></div>
+<div class="callout red"><div class="label">误区 9</div><b>销售人员说“能赔”就足够。</b><p>最终权利义务应回到正式合同、投保记录和法律规则。</p></div>
+<div class="callout red"><div class="label">误区 10</div><b>买完保险以后几十年都不用再看。</b><p>家庭责任、收入、债务、已有保障和产品条件都会变化。</p></div>
+</section>
+
+<section id="tool1"><div class="tool-title"><h2>22｜互动一：Risk Matrix</h2><span class="badge">Avoid / Reduce / Retain / Transfer</span></div>
+<div class="card"><label>风险名称<input id="rName" type="text" value="主要收入者长期失能"></label>
+<div class="grid2"><label>发生可能性<select id="rProb"><option value="low">较低</option><option value="high">较高</option></select></label><label>经济损失<select id="rSeverity"><option value="low">可轻松承担</option><option value="high" selected>会严重破坏财务系统</option></select></label></div>
+<label>如果发生，预计最大经济影响（可选）<input id="rAmount" type="number" value="500000"></label>
+<button class="secondary" onclick="riskMatrix()">分析风险处理方向</button><div id="riskOut" class="feedback"></div></div>
+</section>
+
+<section id="tool2"><div class="tool-title"><h2>23｜互动二：Contract Reader</h2><span class="badge">保额不等于赔款</span></div>
+<div class="card"><div class="grid2">
+<label>发生的医疗费用<input id="cCost" type="number" value="50000"></label>
+<label>其中符合合同责任范围的费用<input id="cEligible" type="number" value="50000"></label>
+<label>免赔额<input id="cDeduct" type="number" value="10000"></label>
+<label>赔付比例（%）<input id="cRate" type="number" value="80"></label>
+<label>本项最高限额<input id="cLimit" type="number" value="1000000"></label>
+<label>是否触发责任免除？<select id="cExcluded"><option value="no">否</option><option value="yes">是</option></select></label>
+</div><button class="secondary" onclick="contractReader()">计算教学理论赔付</button><div id="contractOut" class="feedback"></div></div>
+</section>
+
+<section id="tool3"><div class="tool-title"><h2>24｜互动三：Family Protection Gap</h2><span class="badge">先算缺口，再谈保额</span></div>
+<div class="card"><div class="grid2">
+<label>需要偿还的债务<input id="gDebt" type="number" value="500000"></label>
+<label>家庭每年必要生活支持<input id="gAnnual" type="number" value="120000"></label>
+<label>希望支持的年数<input id="gYears" type="number" value="5"></label>
+<label>需要继续完成的重要目标<input id="gGoals" type="number" value="300000"></label>
+<label>可用于这些需求的流动资产<input id="gAssets" type="number" value="400000"></label>
+<label>已有相关寿险保障<input id="gExisting" type="number" value="500000"></label>
+</div><button class="secondary" onclick="gapCalc()">计算简化保障缺口</button><div id="gapOut" class="feedback"></div></div>
+</section>
+
+<section id="tool4"><div class="tool-title"><h2>25｜互动四：Coverage Map Builder</h2><span class="badge">最终产物</span></div>
+<div class="card">
+<p>为不同风险选择你目前的处理方式。这里不判断“是否买够”，而是让风险与处理方式显性化。</p>
+<div id="coverageRows"></div>
+<label>补充说明<textarea id="coverNotes" placeholder="例如：单位已有团体医疗；家庭主要收入者保障仍需复核……"></textarea></label>
+<button class="secondary" onclick="buildCoverage()">生成《我的风险与保险地图 v1》</button>
+<div id="coverageOut" class="feedback"></div>
+<button class="ghost" onclick="exportCoverage()">导出 JSON</button>
+</div></section>
+
+<section id="summary"><div class="end"><h2>26｜如果这一章真正学会了，你应该多出这十句话</h2>
+<p><b>1. 保险首先是风险转移工具，而不是投资收益工具。</b></p>
+<p><b>2. 小额、可承受损失可以自留；真正会摧毁财务系统的大损失更值得研究风险转移。</b></p>
+<p><b>3. 应急金和保险不是替代关系，而是 Risk Retention 与 Risk Transfer 的组合。</b></p>
+<p><b>4. 我买的不是宣传页上的“百万保障”，而是一份有责任、免责、免赔、比例、限额和期限的合同。</b></p>
+<p><b>5. 医疗费用、疾病定额给付和收入中断是不同风险，需要分别理解。</b></p>
+<p><b>6. 意外险不能自动替代医疗、疾病、失能和寿险。</b></p>
+<p><b>7. 寿险真正保护的是死亡以后仍然存在的家庭经济责任。</b></p>
+<p><b>8. 保额应该从保障缺口反推，而不是从“别人一般买多少”开始。</b></p>
+<p><b>9. 保险越多不一定越安全，可持续保费本身也是现金流约束。</b></p>
+<p><b>10. 保险规划需要随着家庭、收入、债务、健康和已有保障变化持续复核。</b></p>
+<p><b>下一章：</b>第十章会继续研究另一个安全边界问题：当你进入金融市场以后，怎样识别销售、适当性、诈骗和消费者权益风险。</p>
+</div></section>
+
+<section id="refs"><h2>27｜资料来源与课程边界</h2><ol class="refs">
+<li><b>《中华人民共和国保险法》.</b> 用于商业保险定义、保险合同、投保人如实告知义务、保险责任 / 责任免除 / 保险金额 / 保费 / 赔付办法等合同事项，以及免责条款的提示和明确说明义务。</li>
+<li><b>《健康保险管理办法》.</b> 用于健康保险类别：医疗保险、疾病保险、失能收入损失保险、护理保险、医疗意外保险等。</li>
+<li><b>国家医疗保障局.</b> 用于中国多层次医疗保障框架以及基本医保与商业健康保险衔接互补的制度背景。</li>
+<li><b>CFP Board — Risk Management and Insurance Planning.</b> CFP Board 当前注册课程 / 考试知识领域继续包括风险与保险原则、风险暴露分析、健康保险、失能收入保险、长期护理、寿险、保险需求分析和财产责任保险等。</li>
+<li><b>NAIC Consumer Insurance Education.</b> 用于医疗保险中 premium、deductible、out-of-pocket cost 等消费者理解框架；具体美国制度条款不直接套用于中国市场。</li>
+<li><b>课程边界.</b> 本章解释风险管理和合同分析框架，不推荐具体保险公司、产品或保额。互动计算均为教学简化；真实投保、核保和理赔应以最新法律法规、正式合同、保险公司规则和个人具体情况为准。</li>
+</ol></section>
+</article></main></div></div>
+
+<script>
+const done=new Set();let coverageMap={};
+function mark(k){done.add(k);const p=Math.round(done.size/4*100);taskPct.textContent=p+"%";taskProg.style.width=p+"%";saveLocal()}
+function readProgress(){const d=document.documentElement,h=d.scrollHeight-d.clientHeight,p=h>0?Math.round((d.scrollTop||0)/h*100):0;readPct.textContent=p+"%";readProg.style.width=p+"%"}window.addEventListener("scroll",readProgress);
+function fmt(x){return Number(x||0).toLocaleString("zh-CN",{style:"currency",currency:"CNY",maximumFractionDigits:0})}
+function saveLocal(){try{localStorage.setItem("finance_ch9_coverage_map",JSON.stringify(coverageMap))}catch(e){}}
+
+function riskMatrix(){
+ const name=rName.value||"该风险",prob=rProb.value,sev=rSeverity.value,amt=+rAmount.value||0;
+ let dir="",why="";
+ if(prob==="low"&&sev==="high"){dir="重点评估 Transfer + Reduce";why="发生不一定频繁，但一旦发生会严重破坏系统，这是保险最典型的使用区域之一。"}
+ else if(prob==="high"&&sev==="low"){dir="Retain + Reduce";why="高频小损失更像预算和风险降低问题，全面转移可能成本较高。"}
+ else if(prob==="low"&&sev==="low"){dir="通常优先 Retain";why="低概率且损失可轻松承担，建立小额缓冲通常比复杂转移更直接。"}
+ else{dir="先 Reduce / Avoid，再评估 Transfer";why="高概率且高损失风险往往需要先降低暴露，保险是否可获得及成本也可能受到影响。"}
+ riskOut.innerHTML=`<div class="grid2"><div class="metric"><span>${name}</span><b style="font-size:16px">${dir}</b></div><div class="metric"><span>教学最大影响</span><b>${fmt(amt)}</b></div></div><p>${why}</p><p class="small">这里只分析风险处理方向，不代表具体保险购买建议。</p>`;
+ coverageMap.risk_matrix={name,probability:prob,severity:sev,estimated_loss:amt,direction:dir};mark("risk")
+}
+function contractReader(){
+ const cost=+cCost.value||0,eligible=Math.min(+cEligible.value||0,cost),ded=Math.max(0,+cDeduct.value||0),rate=Math.max(0,Math.min(100,+cRate.value||0))/100,limit=Math.max(0,+cLimit.value||0),excluded=cExcluded.value==="yes";
+ let pay=excluded?0:Math.min(limit,Math.max(0,eligible-ded)*rate);
+ contractOut.innerHTML=`<div class="grid3"><div class="metric"><span>实际费用</span><b>${fmt(cost)}</b></div><div class="metric"><span>符合责任范围</span><b>${fmt(eligible)}</b></div><div class="metric"><span>教学理论赔付</span><b>${fmt(pay)}</b></div></div><p>${excluded?"你选择了“触发责任免除”，因此本教学模型中赔付为0。":"先从符合责任范围的费用中扣除免赔额，再乘赔付比例，最后受到最高限额约束。"}</p><p class="small">真实合同还可能包含医保结算、医院范围、分项限额、既往情况等条件。</p>`;
+ coverageMap.contract_lab={cost,eligible,deductible:ded,rate:rate*100,limit,excluded,theoretical_payment:pay};mark("contract")
+}
+function gapCalc(){
+ const debt=+gDebt.value||0,annual=+gAnnual.value||0,years=+gYears.value||0,goals=+gGoals.value||0,assets=+gAssets.value||0,existing=+gExisting.value||0;
+ const needs=debt+annual*years+goals,gap=Math.max(0,needs-assets-existing);
+ gapOut.innerHTML=`<div class="grid3"><div class="metric"><span>总规划需求</span><b>${fmt(needs)}</b></div><div class="metric"><span>已有可用资源 + 保障</span><b>${fmt(assets+existing)}</b></div><div class="metric"><span>简化保障缺口</span><b>${fmt(gap)}</b></div></div><p>这个缺口只是 Needs Analysis 教学模型。真实规划还可加入通胀、折现、收入增长、社保 / 单位保障、家庭支出变化等。</p>`;
+ coverageMap.protection_gap={debt,annual_family_need:annual,support_years:years,important_goals:goals,liquid_assets:assets,existing_coverage:existing,simplified_gap:gap};mark("gap")
+}
+const coverRisks=[
+ ["医疗费用","Retain / Transfer"],["重大疾病后现金流","Retain / Transfer"],["长期失能 / 收入中断","Retain / Transfer"],["主要收入者死亡","Retain / Transfer"],["重大财产损失","Reduce / Retain / Transfer"],["第三方责任","Reduce / Transfer"],["长期护理","Retain / Transfer"]
+];
+function initCoverage(){
+ coverageRows.innerHTML=coverRisks.map((x,i)=>`<div class="checkrow"><div style="flex:1"><b>${x[0]}</b><br><span class="small">可选：${x[1]}</span></div><select class="coverChoice" data-risk="${x[0]}" style="max-width:230px"><option>尚未评估</option><option>Avoid</option><option>Reduce</option><option>Retain</option><option>Transfer</option><option>Reduce + Transfer</option><option>Retain + Transfer</option></select></div>`).join("")
+}
+function buildCoverage(){
+ const items=[...document.querySelectorAll(".coverChoice")].map(s=>({risk:s.dataset.risk,treatment:s.value}));
+ coverageMap.coverage_map=items;coverageMap.notes=coverNotes.value;coverageMap.updated_at=new Date().toISOString();
+ coverageOut.innerHTML=`<p>${items.map(x=>`<span class="badge">${x.risk}：${x.treatment}</span>`).join(" ")}</p><div class="callout green"><b>《我的风险与保险地图 v1》已生成。</b><br>下一步不是“把所有项目都变成 Transfer”，而是优先找出目前仍处于“尚未评估”、且潜在损失会破坏财务系统的风险。</div>`;
+ mark("map")
+}
+function exportCoverage(){
+ if(!coverageMap.coverage_map)buildCoverage();
+ const data={chapter:"09 保险究竟在买什么？",artifact:"我的风险与保险地图 v1",exported_at:new Date().toISOString(),framework:coverageMap,principles:["Emergency Fund承担Risk Retention，Insurance承担Risk Transfer","优先识别低概率高损失和会破坏家庭现金流的风险","先读保险责任与责任免除，再看保额","保额不等于实际赔款","医疗费用、疾病给付和收入损失是不同风险","寿险保护的是经济依赖和家庭责任","保险预算必须可持续，并定期复核"]};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="我的风险与保险地图_v1.json";a.click();URL.revokeObjectURL(u)
+}
+try{const saved=JSON.parse(localStorage.getItem("finance_ch9_coverage_map")||"null");if(saved)coverageMap=saved}catch(e){}
+initCoverage();riskMatrix();contractReader();gapCalc();readProgress();
+</script>
+</body></html>

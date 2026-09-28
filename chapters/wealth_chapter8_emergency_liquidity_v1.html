@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第八章｜为什么有一部分钱永远不应该拿去投资？— 个人财富系统</title>
+<style>
+:root{
+  --bg:#efe1c3;--paper:#fbf3df;--ink:#332a22;--muted:#766858;--line:#d6c199;
+  --red:#8f342a;--redbg:#f1ddd5;--green:#455f4c;--greenbg:#dfe7dc;
+  --gold:#a77a2b;--goldbg:#f2e4bd;--blue:#445d70;--bluebg:#dce5e9;--deep:#2e2924;
+  --shadow:0 18px 50px rgba(74,52,28,.14)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);line-height:1.9;font-family:ui-serif,"Noto Serif SC","Source Han Serif SC","Songti SC",STSong,serif;background:radial-gradient(circle at 12% 7%,rgba(255,255,255,.45),transparent 25%),radial-gradient(circle at 88% 15%,rgba(100,74,40,.07),transparent 22%),repeating-linear-gradient(0deg,rgba(90,63,34,.022) 0 1px,transparent 1px 5px),var(--bg)}
+a{color:var(--green);text-underline-offset:3px}.wrap{max-width:1340px;margin:auto;padding:24px}.layout{display:grid;grid-template-columns:275px minmax(0,930px);gap:30px;justify-content:center;align-items:start}
+.sidebar{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto}.sidebox{background:rgba(251,243,223,.84);border:1px solid var(--line);border-radius:13px;padding:15px;margin-bottom:12px}.sidebox b{display:block}.sidebox small{color:var(--muted)}
+nav a{display:block;text-decoration:none;color:var(--muted);font-size:12.05px;padding:5px 7px;border-radius:7px}nav a:hover{background:#efdfbd;color:var(--ink)}
+.progress{height:7px;background:#e3d1aa;border-radius:999px;overflow:hidden;margin-top:8px}.progress i{display:block;height:100%;width:0;background:var(--red);transition:.2s}
+.paper{background:rgba(251,243,223,.97);border:1px solid rgba(170,143,96,.48);box-shadow:var(--shadow);border-radius:7px;overflow:hidden}
+.hero{padding:68px 74px 50px;border-bottom:1px solid var(--line);position:relative}.hero:before{content:"";position:absolute;left:28px;top:30px;bottom:30px;width:1px;background:rgba(143,52,42,.28)}
+.kicker{font-size:12px;letter-spacing:.18em;color:var(--red);font-weight:800}h1{font-size:49px;line-height:1.2;margin:13px 0 17px;letter-spacing:-.035em}.subtitle{font-size:20px;color:var(--muted);max-width:790px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 9px;background:#f7edd4;color:var(--muted)}
+.content{padding:54px 74px 76px}section{margin-bottom:62px}h2{font-size:30px;line-height:1.35;margin:0 0 18px}h3{font-size:21px;margin:30px 0 10px}p{margin:9px 0 16px}.lead{font-size:18px}
+.callout{padding:19px 21px;border-left:5px solid;margin:23px 0;border-radius:4px}.red{background:var(--redbg);border-color:var(--red)}.green{background:var(--greenbg);border-color:var(--green)}.gold{background:var(--goldbg);border-color:var(--gold)}.blue{background:var(--bluebg);border-color:var(--blue)}
+.label{font-size:11px;font-weight:800;letter-spacing:.14em;margin-bottom:4px}.card{padding:20px;border:1px solid var(--line);border-radius:10px;background:#fff9ea;margin:15px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}
+.table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.table th{font-size:11px;color:var(--muted)}
+.formula{background:var(--deep);color:#f8edd6;font:16px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:17px 19px;border-radius:8px;margin:18px 0}
+.case{padding:22px;border:1px solid var(--line);border-radius:10px;background:#faf0db;margin:14px 0}.casehead{display:flex;justify-content:space-between;gap:12px;align-items:baseline}.casehead b{font-size:18px}.casehead span{font-size:12px;color:var(--muted)}
+.quote{padding:23px 27px;background:#eee0c4;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:19px;margin:24px 0}
+.metric{padding:15px;background:#f8edd4;border:1px solid var(--line);border-radius:9px}.metric b{display:block;font-size:20px;color:var(--green)}.metric span{font-size:12px;color:var(--muted)}
+.small{font-size:12px;color:var(--muted)}.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 7px;font-size:11px;background:#f6ead0;margin:2px}
+.flow{display:grid;grid-template-columns:1fr 42px 1fr 42px 1fr 42px 1fr 42px 1fr;gap:7px;align-items:center;margin:20px 0}.flowbox{padding:15px;border:1px solid var(--line);border-radius:9px;background:#fff9ea;text-align:center}.arrow{text-align:center;color:var(--red);font-size:22px}
+.layer{padding:17px;border:1px solid var(--line);border-radius:10px;background:#fff9ea;margin:10px 0}.layer b{font-size:18px}.layer1{border-left:7px solid var(--red)}.layer2{border-left:7px solid var(--green)}.layer3{border-left:7px solid var(--blue)}
+input[type=number],input[type=text],input[type=file],select{width:100%;border:1px solid #c7ad80;background:#fffaf0;border-radius:7px;padding:10px 11px;color:var(--ink);font:inherit}
+input[type=range]{width:100%;accent-color:var(--red)}button{border:0;border-radius:8px;padding:10px 15px;background:var(--red);color:#fff;font-weight:800;cursor:pointer}button.secondary{background:var(--green)}button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.feedback{margin-top:14px;padding:15px 17px;border:1px dashed #b69d70;border-radius:8px;background:#f5e9cf}.tool-title{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.range-row{display:grid;grid-template-columns:165px 1fr 85px;gap:10px;align-items:center;margin:12px 0}.bar{height:10px;background:#e3d1aa;border-radius:999px;overflow:hidden}.bar i{display:block;height:100%;background:var(--green)}
+.scenario{display:block;border:1px solid var(--line);border-radius:8px;background:#fff9ea;padding:10px 12px;margin:7px 0;cursor:pointer}.scenario.good{background:var(--greenbg);border-color:var(--green)}.scenario.bad{background:var(--redbg);border-color:var(--red)}
+.end{background:var(--deep);color:#f5ebd7;padding:28px;border-radius:9px}.end h2{color:#fff5df}.refs{font-size:13px;color:var(--muted)}.refs li{margin-bottom:10px}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{display:none}.hero,.content{padding-left:36px;padding-right:36px}}
+@media(max-width:780px){.wrap{padding:0}.paper{border-radius:0}.hero,.content{padding:30px 20px}h1{font-size:34px}.grid2,.grid3,.grid4,.grid5,.flow,.range-row{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="layout">
+
+<aside class="sidebar">
+<div class="sidebox"><b>个人财富系统</b><small>第八章 · 安全垫与流动性</small></div>
+<div class="sidebox"><small>阅读进度 <span id="readPct">0%</span></small><div class="progress"><i id="readProg"></i></div></div>
+<div class="sidebox"><small>互动完成度 <span id="taskPct">0%</span></small><div class="progress"><i id="taskProg"></i></div></div>
+<div class="sidebox"><nav>
+<a href="#goal">00 为什么投资前先谈现金</a><a href="#shock">01 什么是 Financial Shock</a><a href="#definition">02 应急金到底是什么</a><a href="#saving">03 应急金 vs 普通储蓄</a><a href="#reserve">04 vs Planned Reserve</a><a href="#goalFund">05 vs 目标资金</a><a href="#cash">06 现金为什么不可替代</a><a href="#liquidity">07 流动性风险</a><a href="#forced">08 被迫卖出风险</a><a href="#insurance">09 自我保险</a><a href="#twoshocks">10 两类冲击</a><a href="#starter">11 起步垫与完整安全垫</a><a href="#months">12 3–6个月从哪里来</a><a href="#factors">13 六个决定因素</a><a href="#income">14 收入来源相关性</a><a href="#freelance">15 自由职业者</a><a href="#fixed">16 固定成本刚性</a><a href="#where">17 应急金放哪里</a><a href="#stocks">18 为什么不能全放股票</a><a href="#spectrum">19 流动性光谱</a><a href="#cost">20 现金机会成本</a><a href="#worth">21 为什么仍值得</a><a href="#debt">22 高息债务冲突</a><a href="#use">23 什么时候可以用</a><a href="#rebuild">24 用完以后</a><a href="#layers">25 三层现金结构</a><a href="#cases">26 四个案例</a><a href="#mistakes">27 九个误区</a><a href="#tool1">28 Financial Shock Simulator</a><a href="#tool2">29 应急金规模计算器</a><a href="#tool3">30 安全垫分层器</a><a href="#tool4">31 应急金场景判断</a><a href="#summary">32 总结</a><a href="#refs">33 资料与注释</a>
+</nav></div></aside>
+
+<main class="paper">
+<header class="hero"><div class="kicker">CHAPTER 08 · LIQUIDITY & RESILIENCE</div><h1>为什么有一部分钱永远不应该拿去投资？</h1><div class="subtitle">应急金、流动性与财务韧性：现金的任务不是跑赢市场，而是在真正的风险发生时，仍然确定地存在。</div><div class="meta"><span class="pill">预计阅读 65–80 分钟</span><span class="pill">安全边界第一章</span><span class="pill">4 个核心互动</span><span class="pill">最终产物：财务安全垫方案 v1</span></div></header>
+
+<article class="content">
+
+<section id="goal"><h2>00｜为什么投资之前，必须先谈现金？</h2><p class="lead">投资负责长期增长，流动性负责让系统在短期冲击中活下来。它们不是同一任务。</p><p>Investor.gov 的基础路径会把 emergency fund 放在正式投资知识之前；CFPB 也把 emergency fund 定义为专门应对非计划支出和金融紧急情况的现金储备。原因并不复杂：如果一次小型金融冲击就迫使你借信用卡、消费贷，或者在市场低点出售投资资产，那么长期财富计划会被短期流动性问题打断。</p><div class="callout red"><div class="label">本章核心命题</div><b>应急资金的任务不是赚钱，而是在风险真正发生时仍然可靠、可用，并保护其他目标不被一起破坏。</b></div></section>
+
+<section id="shock"><h2>01｜什么叫 Financial Shock？——不是“这个月花多了”</h2><p>Financial shock 指会突然改变家庭现金流状态的事件。它可能来自支出端，也可能来自收入端。</p><div class="grid3"><div class="card"><b>Expense Shock</b><p>医疗、必要维修、紧急搬家等计划外支出突然增加。</p></div><div class="card"><b>Income Shock</b><p>失业、收入暂停、项目减少、业务骤降。</p></div><div class="card"><b>Combined Shock</b><p>收入下降的同时，必须承担新的支出，风险最高。</p></div></div><p>CFPB 的应急金指南同时列举了意外维修、医疗账单和收入损失，说明 emergency fund 本来就不是只为“某件东西突然坏了”准备。</p></section>
+
+<section id="definition"><h2>02｜应急金到底是什么？</h2><p>一个尽量精确的工作定义是：</p><div class="formula">Emergency Fund = 专门为不可预见、必要且可能影响正常财务运行的事件预留的高流动现金储备</div><p>它有三个关键词：<b>不可预见、必要、现金储备。</b>如果支出已经知道什么时候发生，就通常应该由其他资金桶承担。</p></section>
+
+<section id="saving"><h2>03｜应急金和“普通储蓄”有什么区别？</h2><p>普通储蓄只是“没有花掉的钱”的泛称；应急金则拥有明确任务和使用规则。</p><div class="grid2"><div class="card"><b>普通储蓄</b><p>可能同时准备旅游、买设备、投资、应急，没有明确边界。</p></div><div class="card"><b>应急金</b><p>用途受限：专门吸收计划外冲击。</p></div></div><p>给应急金命名、隔离和设定规则的意义，是避免它在真正风险发生前就被普通消费不断侵蚀。</p></section>
+
+<section id="reserve"><h2>04｜它和第五章 Planned Reserve 必须彻底分开</h2><p>第五章已经建立了“计划准备金”：低频但可以预见的支出应该提前月度化。</p><table class="table"><thead><tr><th>事件</th><th>是否可预见</th><th>更适合来自哪里</th></tr></thead><tbody><tr><td>明年保险年费</td><td>是</td><td>Planned Reserve</td></tr><tr><td>三年后换电脑</td><td>是</td><td>Planned Reserve / Goal Fund</td></tr><tr><td>半年后已确定搬家</td><td>是</td><td>Goal Fund</td></tr><tr><td>突然必要医疗自付</td><td>否</td><td>Emergency Fund</td></tr><tr><td>突然失业</td><td>发生时间不确定</td><td>Emergency Fund</td></tr></tbody></table><div class="callout gold"><div class="label">重要边界</div>如果每年都拿应急金交保险、旅行和换设备，应急金当然会“永远存不够”。问题是资金任务被混用了。</div></section>
+
+<section id="goalFund"><h2>05｜它和第三章短期目标资金也不同</h2><p>目标资金有金额、日期和用途；应急金没有确定使用日期，甚至最好永远不需要动用。</p><div class="flow"><div class="flowbox"><b>Operating Cash</b><br><span class="small">日常运行</span></div><div class="arrow">→</div><div class="flowbox"><b>Planned Reserve</b><br><span class="small">可预见低频支出</span></div><div class="arrow">→</div><div class="flowbox"><b>Goal Fund</b><br><span class="small">确定目标</span></div><div class="arrow">→</div><div class="flowbox"><b>Emergency Fund</b><br><span class="small">未知冲击</span></div><div class="arrow">→</div><div class="flowbox"><b>Investment Capital</b><br><span class="small">长期风险资本</span></div></div></section>
+
+<section id="cash"><h2>06｜为什么现金收益低，却仍然不可替代？</h2><p>储蓄和投资之间本来就存在交换。Investor.gov 指出，安全、随时可用的储蓄通常收益较低，而长期投资有更好的增长机会。应急资金选择前者，不是因为不知道投资收益更高，而是因为任务不同。</p><div class="grid3"><div class="card"><b>确定性</b><p>不希望紧急时本金刚好大幅下降。</p></div><div class="card"><b>流动性</b><p>需要时能较快转成支付能力。</p></div><div class="card"><b>低决策摩擦</b><p>紧急状态下不需要判断市场是否适合卖出。</p></div></div></section>
+
+<section id="liquidity"><h2>07｜Liquidity Risk：有资产，不代表需要时有钱</h2><p>第四章已经出现过这个问题：净资产很高的人也可能流动性很差。CFA 的私人财富规划课程把 liquidity 和 liquidity risk management 单独列出，就是因为财富管理不能只看长期回报，还必须保证目标和现金流承诺有足够流动资源支持。</p><div class="quote"><b>流动性风险不是“我有没有资产”，而是“需要付款时，我能否以可接受代价及时获得现金”。</b></div></section>
+
+<section id="forced"><h2>08｜真正危险的不是“股票跌了”，而是“跌的时候你必须卖”</h2><div class="case"><div class="casehead"><b>100,000 元全部投资股票</b><span>市场随后下跌 30%</span></div><p>如果此时不需要钱，你仍然拥有继续持有的选择。但如果同时失业，每月必要支出 8000 元，你可能被迫在 70,000 元附近卖出资产支付生活。</p></div><p>这样，市场波动就从<b>未实现波动</b>变成了<b>被迫实现的损失</b>。应急金的一个重要作用，就是把生活现金流和长期投资资产之间隔开。</p></section>
+
+<section id="insurance"><h2>09｜应急金其实是一种 Self-Insurance</h2><p>个人可以用自己的现金承担一部分中小型风险，这在风险管理里可以理解为 risk retention。第九章会进一步讨论：当损失足够大、个人难以承担时，为什么需要把风险转移给保险机构。</p><div class="formula">较小、可自担风险 → Cash Buffer / Risk Retention<br>巨大、难以自担风险 → Insurance / Risk Transfer</div></section>
+
+<section id="twoshocks"><h2>10｜安全垫真正要防的是两类冲击</h2><div class="grid2"><div class="card"><b>支出冲击</b><p>需要一次性多拿出多少钱？</p></div><div class="card"><b>收入冲击</b><p>如果收入暂停，多久以后恢复？</p></div></div><p>只为“突然修车”准备的钱，不一定足以应对失业三个月；只按“几个月生活费”计算，也可能忽略家庭中某些高额自付风险。</p></section>
+
+<section id="starter"><h2>11｜小应急金和完整安全垫不是一回事</h2><p>CFPB 明确提醒，应急金多少取决于个人情况，而且哪怕先存一小笔也有价值。一个更符合现实的建设过程是：</p><div class="grid2"><div class="card"><b>Starter Emergency Fund</b><p>先吸收常见的小型突发支出，降低每次小事故都重新借债的概率。</p></div><div class="card"><b>Full Emergency Reserve</b><p>逐步扩充到能够面对收入中断和较大冲击的完整安全垫。</p></div></div><div class="callout green"><div class="label">不要把“没到终点”理解成“完全没用”</div>第一笔缓冲资金就已经改变了下一次小型冲击发生时的选择。</div></section>
+
+<section id="months"><h2>12｜“3–6个月”到底从哪里来？</h2><p>FINRA 等机构长期把约 3–6 个月支出作为一种常见 emergency fund 目标。但它同时也强调，具体目标取决于收入安全程度和个人情况，而且任何可以先存下的金额都有帮助。</p><div class="callout red"><div class="label">这不是金融定律</div><b>3–6个月是经验范围，不是每个人都必须完全相同的标准答案。</b></div></section>
+
+<section id="factors"><h2>13｜你的安全垫真正应该由六个变量决定</h2><div class="grid3"><div class="card"><b>收入稳定性</b><p>波动越大，通常越需要缓冲。</p></div><div class="card"><b>收入来源数量</b><p>单一来源比多个相互独立来源更集中。</p></div><div class="card"><b>必要生活成本</b><p>安全垫应围绕维持系统运行的基本支出，而非所有消费。</p></div><div class="card"><b>固定成本刚性</b><p>房租、贷款、长期合同越难缩减，失业后越难快速降支。</p></div><div class="card"><b>家庭责任</b><p>需要支持的人越多，冲击影响范围越大。</p></div><div class="card"><b>保险与风险转移</b><p>某些重大风险如果已有保险覆盖，现金不必独自承担全部损失。</p></div></div><h3>再加一个经常被忽略的变量：Recovery Time</h3><p>真正重要的问题不是“会不会失业”，而是：<b>如果今天收入归零，通常需要多久恢复稳定收入？</b>就业市场、行业周期、职业专业化程度都会影响这个时间。</p></section>
+
+<section id="income"><h2>14｜单收入家庭和双收入家庭，风险为什么不一样？</h2><p>两个收入来源可以互相提供缓冲，但前提是它们真的相对独立。如果两个人在同一行业、同一公司，经济冲击可能同时影响两份收入。</p><div class="callout blue"><div class="label">提前认识一个未来还会出现的概念</div><b>相关性。</b>以后资产配置会讨论资产相关性；这里先讨论收入来源的相关性。</div></section>
+
+<section id="freelance"><h2>15｜为什么自由职业者通常更需要厚一点的流动性？</h2><p>变动收入者面对的并不只有真正的“失业”，正常月份之间也可能存在明显波动。此时一部分现金同时承担：</p><div class="grid2"><div class="card"><b>Emergency Buffer</b><p>防真正的突发冲击。</p></div><div class="card"><b>Income Smoothing Buffer</b><p>把波动收入转化成相对平稳的生活现金流。</p></div></div><p>所以只看“全年平均收入很高”并不能说明流动性一定安全。</p></section>
+
+<section id="fixed"><h2>16｜固定成本越高，为什么安全垫需求往往越大？</h2><p>第五章已经建立“生活刚性率”。如果住房、贷款、合同支出很高，收入下降时支出也无法同步快速下降。</p><div class="formula">收入下降速度 > 支出下降速度 → 安全垫消耗加快</div><p>这也是为什么同样月收入的人，固定成本 40% 和 80% 时，面对失业的韧性完全不同。</p></section>
+
+<section id="where"><h2>17｜应急金到底应该放在哪里？</h2><p>第一目标不是“收益最高”，而是四项功能：</p><div class="grid4"><div class="card"><b>本金相对稳定</b></div><div class="card"><b>需要时较快可取</b></div><div class="card"><b>规则足够简单</b></div><div class="card"><b>与日常自由消费适当隔离</b></div></div><p>FINRA 的消费者教育同样强调，应急资金应保存在不承担投资风险、需要时能够快速访问的安全位置。具体工具仍需要根据所在国家和机构规则判断。</p></section>
+
+<section id="stocks"><h2>18｜为什么不能把全部应急金投入股票？</h2><p>股票可能拥有更高长期预期收益，但应急金面临两个无法控制的问题：</p><div class="grid2"><div class="card"><b>Price Risk</b><p>需要钱时，市场价格可能正在大幅下跌。</p></div><div class="card"><b>Timing Risk</b><p>你不能决定事故、失业或医疗支出什么时候发生。</p></div></div><div class="callout red"><div class="label">真正的问题</div><b>紧急提款时点与资产下跌时点可能重合。</b></div></section>
+
+<section id="spectrum"><h2>19｜货币基金、短存款等可以完全等同于现金吗？</h2><p>更成熟的理解不是“现金 / 非现金”二分，而是<b>Liquidity Spectrum（流动性光谱）</b>。例如 Investor.gov 将 money market fund 定义为投资短期、高流动性债务工具和现金等价物的共同基金；它通常风险较低，但依然属于基金，而不是银行存款。</p><div class="flow"><div class="flowbox"><b>立即支付现金</b></div><div class="arrow">→</div><div class="flowbox"><b>高流动银行存款</b></div><div class="arrow">→</div><div class="flowbox"><b>低波动 / 现金等价工具</b></div><div class="arrow">→</div><div class="flowbox"><b>短期限受约束工具</b></div><div class="arrow">→</div><div class="flowbox"><b>长期风险资产</b></div></div><p>越往右，通常越不能默认“现在就能无损使用”。</p></section>
+
+<section id="cost"><h2>20｜现金当然有机会成本</h2><div class="grid3"><div class="card"><b>Inflation Risk</b><p>购买力可能被通胀侵蚀。</p></div><div class="card"><b>Lower Expected Return</b><p>长期预期收益通常低于风险资产。</p></div><div class="card"><b>Cash Drag</b><p>现金过多可能拖慢整体财富增长。</p></div></div><p>因此“安全垫越大越好”同样不成立。现金有功能，也有成本。</p></section>
+
+<section id="worth"><h2>21｜为什么这个机会成本仍然可能值得付？</h2><p>应急金可能替你避免：</p><div class="grid3"><div class="card"><b>高息借债</b></div><div class="card"><b>市场低点被迫卖出</b></div><div class="card"><b>中断长期投资</b></div><div class="card"><b>动用教育 / 住房目标资金</b></div><div class="card"><b>被迫接受不理想工作</b></div><div class="card"><b>一次支出变成长尾债务</b></div></div><div class="quote"><b>应急金的“收益”，往往不出现在利息里，而出现在危机发生时没有破坏其他系统。</b></div></section>
+
+<section id="debt"><h2>22｜有高息债务时：先还债还是先存应急金？</h2><p>两个极端都不够成熟：现金完全归零后全力还债，会让下一次小事故再次制造新债；而一边承担极高借款成本、一边慢慢堆很大现金，也可能效率低。</p><div class="formula">基础现金缓冲 → 优先处理高成本债务 → 逐步扩充完整安全垫</div><p>这是一种课程思路，不是所有人的统一处方。具体顺序要看债务成本、收入稳定性、现有缓冲和家庭责任。</p></section>
+
+<section id="use"><h2>23｜什么时候可以真正使用应急金？</h2><p>可以先问三个问题：</p><div class="grid3"><div class="card"><b>Unexpected?</b><p>是不是事先无法合理计划？</p></div><div class="card"><b>Necessary?</b><p>是不是确实需要解决？</p></div><div class="card"><b>Urgent?</b><p>是不是不能合理等待？</p></div></div><p>三者越同时成立，越接近真正 emergency。</p></section>
+
+<section id="rebuild"><h2>24｜使用应急金，不代表规划失败</h2><p>CFPB 的教育材料明确提醒：如果真的需要，就使用应急储蓄；这正是它存在的目的。之后再逐步重建。</p><div class="formula">建立 → 冲击发生 → 使用 → 系统恢复 → 重建</div><div class="callout green"><div class="label">Buffer 的正确理解</div>安全垫不是一个“永远不能下降的成绩”，而是一种会在风险发生时主动吸收冲击、之后再恢复的结构。</div></section>
+
+<section id="layers"><h2>25｜把安全垫做成三层，而不是一个数字</h2><div class="layer layer1"><b>Layer 1｜Immediate Cash</b><p>今天或明天就可能需要的极短期支付能力。重点是立即可用。</p></div><div class="layer layer2"><b>Layer 2｜Core Emergency Reserve</b><p>承担大部分突发支出和短期收入中断。重点是安全、稳定和高流动性。</p></div><div class="layer layer3"><b>Layer 3｜Extended Buffer</b><p>面对更长失业期或更大的收入波动。在保持可靠性的前提下，可以接受略低即时性。</p></div><p>这种分层可以减少“所有安全资金都长期躺在同一个活期账户”的低效率，同时又不把核心安全垫暴露在高波动市场。</p></section>
+
+<section id="cases"><h2>26｜四个现实案例</h2><div class="case"><div class="casehead"><b>A｜“我有 20 万股票，所以不用应急金。”</b><span>被迫卖出风险</span></div><p>市场下跌 35% 时失业，如果没有现金层，就可能被迫在低位出售资产。</p></div><div class="case"><div class="casehead"><b>B｜自由职业者年收入很好，但只有两个月现金</b><span>收入波动</span></div><p>三个月没有项目，就可能出现现金缺口。年均收入无法替代短期流动性。</p></div><div class="case"><div class="casehead"><b>C｜家庭净资产 300 万，现金只有 1 万</b><span>高净资产 ≠ 高流动性</span></div><p>大量财富集中在房产时，临时支出仍可能造成现金压力。</p></div><div class="case"><div class="casehead"><b>D｜旅行、保险、换电脑都从应急金出</b><span>资金桶混用</span></div><p>这些支出本身可预测，更适合 Planned Reserve 或 Goal Fund。</p></div></section>
+
+<section id="mistakes"><h2>27｜九个最容易学歪的地方</h2>
+<div class="callout red"><div class="label">误区 1</div><b>必须严格存满六个月，才能开始其他财务任务。</b></div>
+<div class="callout red"><div class="label">误区 2</div><b>所有人都应该存同样月数。</b></div>
+<div class="callout red"><div class="label">误区 3</div><b>现金越多越安全，所以越多越好。</b></div>
+<div class="callout red"><div class="label">误区 4</div><b>信用卡额度就是应急金。</b></div>
+<div class="callout red"><div class="label">误区 5</div><b>有股票，需要时卖掉就行。</b></div>
+<div class="callout red"><div class="label">误区 6</div><b>房产很多，所以现金不重要。</b></div>
+<div class="callout red"><div class="label">误区 7</div><b>所有大额支出都算 emergency。</b></div>
+<div class="callout red"><div class="label">误区 8</div><b>用了应急金说明规划失败。</b></div>
+<div class="callout red"><div class="label">误区 9</div><b>应急金应该追求最高利率。</b></div>
+</section>
+
+<section id="tool1"><div class="tool-title"><h2>28｜互动一：Financial Shock Simulator</h2><span class="badge">可导入第 4 章财务体检</span></div><div class="card">
+<label>可选：导入第 4 章《个人财务体检报告 v1》JSON<input id="reportFile" type="file" accept=".json,application/json" onchange="importReport(event)"></label>
+<div class="grid2"><label>高流动资产（元）<input id="sLiquid" type="number" value="30000"></label><label>月度必要支出（元）<input id="sNeed" type="number" value="6000"></label><label>正常月收入（元）<input id="sIncome" type="number" value="12000"></label><label>第三章目标投入（元/月）<input id="sGoal" type="number" value="2000"></label></div>
+<label>冲击情景<select id="shockType"><option value="expense">突然发生 10,000 元必要支出</option><option value="loss3">收入完全中断 3 个月</option><option value="half6">收入下降 50%，持续 6 个月</option><option value="combo">收入完全中断 3 个月 + 20,000 元突然支出</option></select></label>
+<button class="secondary" onclick="simulateShock()">模拟冲击</button>
+<div id="shockOut" class="feedback">系统会显示冲击后的现金余额、能够支撑多久，以及是否必须暂停目标或寻找其他资金来源。</div></div></section>
+
+<section id="tool2"><div class="tool-title"><h2>29｜互动二：我的应急金规模计算器</h2><span class="badge">输出课程讨论区间，不是唯一标准</span></div><div class="card">
+<label>每月必要支出（元）<input id="eNeed" type="number" value="6000"></label>
+<div class="grid2">
+<label>收入稳定性<select id="eStable"><option value="0">较稳定</option><option value="1" selected>中等</option><option value="2">高波动</option></select></label>
+<label>收入来源<select id="eSources"><option value="0">多个相对独立来源</option><option value="1" selected>主要依赖单一来源</option><option value="2">单一且高度不稳定</option></select></label>
+<label>固定成本刚性<select id="eRigid"><option value="0">低</option><option value="1" selected>中</option><option value="2">高</option></select></label>
+<label>家庭 / 财务责任<select id="eDepend"><option value="0">较低</option><option value="1" selected>中等</option><option value="2">较高</option></select></label>
+<label>恢复稳定收入时间<select id="eRecovery"><option value="0">约 1–2 个月</option><option value="1" selected>约 3–6 个月</option><option value="2">可能超过 6 个月</option></select></label>
+<label>重大风险保险保护<select id="eInsurance"><option value="0">相对较完整</option><option value="1" selected>基础 / 不确定</option><option value="2">明显不足</option></select></label>
+</div>
+<button class="secondary" onclick="calcEmergency()">生成安全垫讨论区间</button>
+<div id="emergencyOut" class="feedback">这里不会给“你必须存 68,432 元”这种伪精确结论，而会解释为什么区间向上或向下移动。</div></div></section>
+
+<section id="tool3"><div class="tool-title"><h2>30｜互动三：现金安全垫分层器</h2><span class="badge">Liquidity Architecture</span></div><div class="card">
+<label>准备作为安全垫的总金额（元）<input id="lTotal" type="number" value="60000" oninput="updateLayers()"></label>
+<div class="range-row"><span>即时层</span><input id="l1" type="range" min="0" max="100" value="15" oninput="updateLayers()"><b id="l1v">15%</b></div>
+<div class="range-row"><span>核心应急层</span><input id="l2" type="range" min="0" max="100" value="55" oninput="updateLayers()"><b id="l2v">55%</b></div>
+<div class="range-row"><span>延伸缓冲层</span><input id="l3" type="range" min="0" max="100" value="30" oninput="updateLayers()"><b id="l3v">30%</b></div>
+<p>总计：<b id="layerTotal">100%</b></p>
+<button class="secondary" onclick="buildLayers()">生成我的三层结构</button>
+<div id="layerOut" class="feedback">即时层追求今天可用；核心层追求安全与高流动性；延伸层允许略低即时性，但仍不应承担高市场波动。</div></div></section>
+
+<section id="tool4"><div class="tool-title"><h2>31｜互动四：这笔钱到底该不该动应急金？</h2><span class="badge">Emergency / Planned / Goal / Normal</span></div><div class="card">
+<p><b>点击你认为属于“应急金”的场景：</b></p>
+<div id="scenarioBox"></div>
+<div id="scenarioOut" class="feedback">判断时先问：Unexpected? Necessary? Urgent?</div>
+<button class="ghost" onclick="exportPlan()">导出《我的财务安全垫方案 v1》</button>
+</div></section>
+
+<section id="summary"><div class="end"><h2>32｜如果这一章真正学会了，你应该多出这九句话</h2><p><b>1. 应急金的任务不是获得最高收益。</b></p><p><b>2. Financial Shock 既包括支出冲击，也包括收入冲击。</b></p><p><b>3. 可预见低频支出不应该长期侵蚀应急金。</b></p><p><b>4. 高净资产不代表高流动性。</b></p><p><b>5. 应急金的重要作用之一，是防止市场下跌时被迫卖出长期资产。</b></p><p><b>6. 3–6个月只是常见经验范围，不是统一金融定律。</b></p><p><b>7. 收入稳定性、固定成本、家庭责任和恢复时间都会改变安全垫需求。</b></p><p><b>8. 现金有机会成本，但这个成本换来的是财务韧性。</b></p><p><b>9. 真正使用应急金时，它不是失败，而是在履行任务。</b></p><p><b>下一章：</b>应急金适合自己承担中小型冲击，但有些损失大到个人不适合靠现金硬扛。第 9 章将正式进入：<b>保险究竟在买什么？</b></p></div></section>
+
+<section id="refs"><h2>33｜本章资料来源与如何使用它们</h2><ol class="refs">
+<li><b>Consumer Financial Protection Bureau — An Essential Guide to Building an Emergency Fund.</b> 用于 emergency fund 的定义、收入损失与突发账单、储蓄规模因人而异、安全可访问的保存原则，以及使用后重新建立等框架。<br><a href="https://www.consumerfinance.gov/an-essential-guide-to-building-an-emergency-fund/">CFPB</a></li>
+<li><b>CFPB — Emergency Savings and Financial Security.</b> 用于 emergency savings 与债务、履行财务义务及金融福祉之间的研究背景。<br><a href="https://www.consumerfinance.gov/data-research/research-reports/emergency-savings-financial-security-insights-from-making-ends-meet-survey-and-consumer-credit-panel/">CFPB Research</a></li>
+<li><b>FINRA — How to Prepare for and Survive Financial Hardship / Emergency Fund Education.</b> 用于“3–6个月”为常见目标而非绝对标准，以及即使先存一部分也有帮助、安全且可快速访问等原则。<br><a href="https://www.finra.org/investors/insights/prepare-survive-financial-hardship">FINRA</a></li>
+<li><b>Investor.gov — Save for a Rainy Day / Introduction to Investing.</b> 用于储蓄和投资在安全、可用性、通胀和长期增长机会之间的权衡，以及 emergency fund 在投资前的重要性。<br><a href="https://www.investor.gov/introduction-investing/investing-basics/save-and-invest/save-rainy-day">Rainy Day Fund</a> ｜ <a href="https://www.investor.gov/introduction-investing">Introduction to Investing</a></li>
+<li><b>CFA Institute — Wealth Planning, 2026.</b> 用于私人财富规划中的 liquidity、liquidity risk management 与 goals-based planning 之间的联系。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/wealth-planning">CFA Institute</a></li>
+<li><b>Investor.gov — Money Market Fund.</b> 用于强调 money market fund 属于基金产品、主要投资短期高流动性债务工具与现金等价物，不能简单写成银行存款。<br><a href="https://www.investor.gov/introduction-investing/investing-basics/glossary/money-market-fund">Investor.gov</a></li>
+<li><b>课程说明.</b> 本章“应急金规模计算器”使用透明的教育性启发式规则，只为了把风险因素转成可讨论区间，不是监管标准、信贷规则或个别化财务建议。具体现金工具的存款保险、赎回、到账和本金风险应查看所在地当前官方规则及产品文件。</li>
+</ol></section>
+
+</article></main></div></div>
+
+<script>
+const done=new Set();let imported=null;let planData={};let scenarioCount=0;
+function mark(k){done.add(k);const p=Math.round(done.size/4*100);document.getElementById("taskPct").textContent=p+"%";document.getElementById("taskProg").style.width=p+"%"}
+function readProgress(){const d=document.documentElement,h=d.scrollHeight-d.clientHeight,p=h>0?Math.round((d.scrollTop||0)/h*100):0;document.getElementById("readPct").textContent=p+"%";document.getElementById("readProg").style.width=p+"%"}window.addEventListener("scroll",readProgress);
+function fmt(x){return new Intl.NumberFormat("zh-CN",{style:"currency",currency:"CNY",maximumFractionDigits:0}).format(Number(x)||0)}
+async function importReport(e){const f=e.target.files[0];if(!f)return;try{imported=JSON.parse(await f.text());if(imported.balance)sLiquid.value=imported.balance.liquid||0;if(imported.cashflow){sNeed.value=(imported.cashflow.need||0)+(imported.cashflow.fixed||0)+(imported.cashflow.annualMonthly||0);sIncome.value=imported.cashflow.income||0;sGoal.value=imported.cashflow.goal||0;eNeed.value=sNeed.value}}catch(err){}}
+function simulateShock(){
+  const liquid=Number(sLiquid.value||0),need=Number(sNeed.value||0),income=Number(sIncome.value||0),goal=Number(sGoal.value||0),type=shockType.value;
+  let cash=liquid,months=0,note="",goalPaused=false,deficit=0;
+  if(type==="expense"){
+    cash-=10000;note="一次性必要支出 10,000 元已经直接减少安全垫。";
+  }else if(type==="loss3"){
+    for(let i=0;i<3;i++){cash-=need;months++}
+    note="收入完全中断 3 个月，模拟仅保留必要生活支出，默认重要目标暂时暂停。";goalPaused=true;
+  }else if(type==="half6"){
+    for(let i=0;i<6;i++){cash+=income*0.5-need;months++}
+    note="收入下降 50% 持续 6 个月。若剩余收入仍高于必要支出，安全垫可能消耗较慢。";goalPaused=true;
+  }else{
+    cash-=20000;for(let i=0;i<3;i++){cash-=need;months++}
+    note="收入中断与突然支出同时发生，是典型 Combined Shock。";goalPaused=true;
+  }
+  if(cash<0)deficit=Math.abs(cash);
+  const cover=need>0?Math.max(cash,0)/need:0;
+  let status=cash>=0?`冲击后仍剩 ${fmt(cash)} 高流动资金。`:`安全垫不足，出现约 ${fmt(deficit)} 现金缺口。`;
+  document.getElementById("shockOut").innerHTML=`<div class="grid3"><div class="metric"><span>冲击前安全垫</span><b>${fmt(liquid)}</b></div><div class="metric"><span>冲击后现金</span><b>${fmt(cash)}</b></div><div class="metric"><span>剩余必要支出覆盖</span><b>${cover.toFixed(1)} 个月</b></div></div><hr><b>${status}</b><br>${note}${goalPaused?`<br><span class="small">为保护基本生活，本模拟默认暂时停止每月 ${fmt(goal)} 的目标投入。现实中是否暂停需按目标重要性决定。</span>`:""}`;
+  planData.shock={liquid,need,income,goal,type,cash,cover};mark("shock");
+}
+function calcEmergency(){
+  const need=Number(eNeed.value||0);
+  const vals=[eStable,eSources,eRigid,eDepend,eRecovery,eInsurance].map(x=>Number(x.value));
+  const score=vals.reduce((a,b)=>a+b,0);
+  let low,high,label;
+  if(score<=2){low=2;high=3;label="风险因素相对较少";}
+  else if(score<=5){low=3;high=4;label="存在一些需要缓冲的因素";}
+  else if(score<=8){low=4;high=6;label="收入或责任结构对流动性要求较高";}
+  else{low=6;high=9;label="多项风险因素同时存在，可考虑更长的安全期";}
+  const starter=Math.min(Math.max(need*0.5,1000),need);
+  const explanations=[];
+  const names=["收入稳定性","收入来源集中度","固定成本刚性","责任范围","收入恢复时间","保险保护不足"];
+  vals.forEach((v,i)=>{if(v===2)explanations.push(names[i]+"偏高");});
+  document.getElementById("emergencyOut").innerHTML=`<div class="grid3"><div class="metric"><span>起步安全垫</span><b>${fmt(starter)} 起</b></div><div class="metric"><span>课程讨论区间</span><b>${low}–${high} 个月</b></div><div class="metric"><span>对应必要支出</span><b>${fmt(need*low)}–${fmt(need*high)}</b></div></div><hr><b>${label}。</b>${explanations.length?` 其中需要特别关注：${explanations.join("、")}。`:""}<p class="small">这是课程启发式模型，不是监管标准或个别化财务建议。你可以结合历史突发支出、就业市场、家庭支持和保险覆盖进一步调整。</p>`;
+  planData.target={need,score,low,high,minAmount:need*low,maxAmount:need*high,starter};mark("target");
+}
+function updateLayers(){
+  let total=0;[1,2,3].forEach(i=>{const v=Number(document.getElementById("l"+i).value);document.getElementById("l"+i+"v").textContent=v+"%";total+=v});
+  const el=document.getElementById("layerTotal");el.textContent=total+"%";el.style.color=total===100?"var(--green)":"var(--red)";
+}
+function buildLayers(){
+  const total=Number(lTotal.value||0),p=[1,2,3].map(i=>Number(document.getElementById("l"+i).value)),sum=p.reduce((a,b)=>a+b,0);
+  if(sum!==100){layerOut.innerHTML="<b>请先让三层比例加总到 100%。</b>";return}
+  const a=p.map(x=>total*x/100);
+  layerOut.innerHTML=`<div class="layer layer1"><b>即时层：${fmt(a[0])}</b><br><span class="small">用于极短期支付，优先考虑立即可用。</span></div><div class="layer layer2"><b>核心应急层：${fmt(a[1])}</b><br><span class="small">承担大部分突发支出和短期收入中断，强调本金稳定和高流动性。</span></div><div class="layer layer3"><b>延伸缓冲层：${fmt(a[2])}</b><br><span class="small">为更长恢复期准备，可以接受略低即时性，但不应依赖高波动市场。</span></div>`;
+  planData.layers={total,percentages:p,amounts:a};mark("layers");
+}
+const scenarios=[
+  {text:"洗衣机突然损坏，而且属于当前生活必需设备",bucket:"Emergency Fund",emergency:true},
+  {text:"三个月后的旅行",bucket:"Goal Fund / Planned Reserve",emergency:false},
+  {text:"失业后下个月的基本房租和食品",bucket:"Emergency Fund",emergency:true},
+  {text:"新游戏打折，只剩 24 小时",bucket:"Normal / Flexible Spending",emergency:false},
+  {text:"突然发生且保险未覆盖的必要医疗自付",bucket:"Emergency Fund",emergency:true},
+  {text:"半年后已经知道要交的学费",bucket:"Goal Fund",emergency:false},
+  {text:"每年固定出现的保险续费",bucket:"Planned Reserve",emergency:false},
+  {text:"汽车事故后必须维修才能正常上班",bucket:"Emergency Fund（若保险等无法及时覆盖）",emergency:true},
+  {text:"朋友婚礼红包",bucket:"Normal / Planned Spending",emergency:false},
+  {text:"突然必须跨城处理家庭紧急事件的交通费用",bucket:"Emergency Fund",emergency:true}
+];
+function initScenarios(){
+  const box=document.getElementById("scenarioBox");
+  scenarios.forEach((s,i)=>{const el=document.createElement("span");el.className="scenario";el.textContent=(i+1)+". "+s.text;el.onclick=()=>judgeScenario(el,s);box.appendChild(el)})
+}
+function judgeScenario(el,s){
+  if(el.dataset.done)return;el.dataset.done="1";scenarioCount++;
+  if(s.emergency)el.classList.add("good");else el.classList.add("bad");
+  scenarioOut.innerHTML=`<b>更合适的资金桶：</b>${s.bucket}<br><span class="small">${s.emergency?"这个场景同时具有较强的非计划性、必要性和紧迫性。":"这笔支出并非典型 emergency，更适合提前计划或从正常消费预算承担。"}</span>`;
+  if(scenarioCount>=5)mark("scenarios");
+}
+function exportPlan(){
+  const data={chapter:"08 为什么有一部分钱永远不应该拿去投资？",exported_at:new Date().toISOString(),plan:planData,principles:["应急金优先服务安全与流动性，不追求收益最大化","可预见低频支出使用 Planned Reserve，而不是长期侵蚀应急金","真正使用应急金后，优先重新建立安全垫","安全垫规模根据收入稳定性、固定成本、责任范围与恢复时间调整"]};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="我的财务安全垫方案_v1.json";a.click();URL.revokeObjectURL(u)
+}
+updateLayers();initScenarios();readProgress();
+</script>
+</body></html>

@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十五章｜债券：为什么“借钱给别人”能成为资产？—个人财富系统</title>
+<style>
+:root{
+  --bg:#efe1c3;--paper:#fbf3df;--ink:#332a22;--muted:#766858;--line:#d6c199;
+  --red:#8f342a;--redbg:#f1ddd5;--green:#455f4c;--greenbg:#dfe7dc;
+  --gold:#a77a2b;--goldbg:#f2e4bd;--blue:#445d70;--bluebg:#dce5e9;--deep:#2e2924;
+  --shadow:0 18px 50px rgba(74,52,28,.14)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);line-height:1.9;font-family:ui-serif,"Noto Serif SC","Source Han Serif SC","Songti SC",STSong,serif;background:radial-gradient(circle at 12% 7%,rgba(255,255,255,.45),transparent 25%),radial-gradient(circle at 88% 15%,rgba(100,74,40,.07),transparent 22%),repeating-linear-gradient(0deg,rgba(90,63,34,.022) 0 1px,transparent 1px 5px),var(--bg)}
+a{color:var(--green);text-underline-offset:3px}.wrap{max-width:1340px;margin:auto;padding:24px}.layout{display:grid;grid-template-columns:275px minmax(0,930px);gap:30px;justify-content:center;align-items:start}
+.sidebar{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto}.sidebox{background:rgba(251,243,223,.84);border:1px solid var(--line);border-radius:13px;padding:15px;margin-bottom:12px}.sidebox b{display:block}.sidebox small{color:var(--muted)}
+nav a{display:block;text-decoration:none;color:var(--muted);font-size:12px;padding:5px 7px;border-radius:7px}nav a:hover{background:#efdfbd;color:var(--ink)}
+.progress{height:7px;background:#e3d1aa;border-radius:999px;overflow:hidden;margin-top:8px}.progress i{display:block;height:100%;width:0;background:var(--red);transition:.2s}
+.paper{background:rgba(251,243,223,.97);border:1px solid rgba(170,143,96,.48);box-shadow:var(--shadow);border-radius:7px;overflow:hidden}
+.hero{padding:68px 74px 50px;border-bottom:1px solid var(--line);position:relative}.hero:before{content:"";position:absolute;left:28px;top:30px;bottom:30px;width:1px;background:rgba(143,52,42,.28)}
+.kicker{font-size:12px;letter-spacing:.18em;color:var(--red);font-weight:800}h1{font-size:49px;line-height:1.2;margin:13px 0 17px;letter-spacing:-.035em}.subtitle{font-size:20px;color:var(--muted);max-width:800px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 9px;background:#f7edd4;color:var(--muted)}
+.content{padding:54px 74px 76px}section{margin-bottom:62px}h2{font-size:30px;line-height:1.35;margin:0 0 18px}h3{font-size:21px;margin:30px 0 10px}p{margin:9px 0 16px}.lead{font-size:18px}
+.callout{padding:19px 21px;border-left:5px solid;margin:23px 0;border-radius:4px}.red{background:var(--redbg);border-color:var(--red)}.green{background:var(--greenbg);border-color:var(--green)}.gold{background:var(--goldbg);border-color:var(--gold)}.blue{background:var(--bluebg);border-color:var(--blue)}
+.label{font-size:11px;font-weight:800;letter-spacing:.14em;margin-bottom:4px}.card{padding:20px;border:1px solid var(--line);border-radius:10px;background:#fff9ea;margin:15px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.table th{font-size:11px;color:var(--muted)}
+.formula{background:var(--deep);color:#f8edd6;font:16px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:17px 19px;border-radius:8px;margin:18px 0}
+.case{padding:22px;border:1px solid var(--line);border-radius:10px;background:#faf0db;margin:14px 0}.casehead{display:flex;justify-content:space-between;gap:12px;align-items:baseline}.casehead b{font-size:18px}.casehead span{font-size:12px;color:var(--muted)}
+.quote{padding:23px 27px;background:#eee0c4;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:19px;margin:24px 0}
+.small{font-size:12px;color:var(--muted)}.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 7px;font-size:11px;background:#f6ead0;margin:2px}
+.metric{padding:15px;background:#f8edd4;border:1px solid var(--line);border-radius:9px}.metric b{display:block;font-size:20px;color:var(--green)}.metric span{font-size:12px;color:var(--muted)}
+input[type=text],input[type=number],select{width:100%;border:1px solid #c7ad80;background:#fffaf0;border-radius:7px;padding:10px 11px;color:var(--ink);font:inherit}
+input[type=range]{width:100%;accent-color:var(--red)}
+button{border:0;border-radius:8px;padding:10px 15px;background:var(--red);color:#fff;font-weight:800;cursor:pointer}button.secondary{background:var(--green)}button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.feedback{margin-top:14px;padding:15px 17px;border:1px dashed #b69d70;border-radius:8px;background:#f5e9cf}.tool-title{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.timeline{display:flex;gap:9px;overflow:auto;padding:16px 0}.cashnode{min-width:110px;text-align:center;padding:12px;border:1px solid var(--line);border-radius:9px;background:#fff9ea}.cashnode b{display:block;color:var(--green)}
+canvas{width:100%;height:320px;border:1px solid var(--line);border-radius:9px;background:#fffaf0;margin-top:14px}
+.end{background:var(--deep);color:#f5ebd7;padding:28px;border-radius:9px}.end h2{color:#fff5df}.refs{font-size:13px;color:var(--muted)}.refs li{margin-bottom:10px}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{display:none}.hero,.content{padding-left:36px;padding-right:36px}}
+@media(max-width:780px){.wrap{padding:0}.paper{border-radius:0}.hero,.content{padding:30px 20px}h1{font-size:34px}.grid2,.grid3,.grid4{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="layout">
+<aside class="sidebar">
+<div class="sidebox"><b>个人财富系统</b><small>第十五章 · 债券</small></div>
+<div class="sidebox"><small>阅读进度 <span id="readPct">0%</span></small><div class="progress"><i id="readProg"></i></div></div>
+<div class="sidebox"><small>互动完成度 <span id="taskPct">0%</span></small><div class="progress"><i id="taskProg"></i></div></div>
+<div class="sidebox"><nav>
+<a href="#goal">00 为什么借钱给别人能成为资产</a><a href="#claim">01 债权人的合同权利</a><a href="#anatomy">02 债券解剖</a><a href="#face">03 Face Value</a><a href="#coupon">04 Coupon</a><a href="#maturity">05 Maturity</a><a href="#cashflow">06 现金流时间轴</a><a href="#zero">07 Zero-Coupon</a><a href="#fixedfloat">08 固定与浮动利率</a><a href="#price">09 为什么价格不等于面值</a><a href="#couponyield">10 Coupon ≠ Yield</a><a href="#currentyield">11 Current Yield</a><a href="#ytm">12 YTM</a><a href="#assumptions">13 YTM 假设</a><a href="#valuation">14 债券如何定价</a><a href="#inverse">15 利率—价格反向关系</a><a href="#premium">16 Premium / Discount</a><a href="#pull">17 Pull to Par</a><a href="#rateRisk">18 Interest-Rate Risk</a><a href="#maturityEffect">19 长债为什么更敏感</a><a href="#couponEffect">20 低票息为什么更敏感</a><a href="#duration">21 Duration</a><a href="#modified">22 Modified Duration</a><a href="#convexity">23 Convexity</a><a href="#credit">24 Credit Risk</a><a href="#spread">25 Credit Spread</a><a href="#govrisk">26 国债也有别的风险</a><a href="#reinvest">27 Reinvestment Risk</a><a href="#liquidity">28 Liquidity Risk</a><a href="#options">29 Embedded Options</a><a href="#curve">30 Yield Curve</a><a href="#china">31 中国国债体系</a><a href="#saving">32 储蓄国债</a><a href="#book">33 记账式国债</a><a href="#compareChina">34 两类国债怎么区分</a><a href="#rating">35 Credit Rating</a><a href="#fund">36 债券基金 ≠ 单只债券</a><a href="#cases">37 四个案例</a><a href="#mistakes">38 十个误区</a><a href="#tool1">39 Bond Anatomy Lab</a><a href="#tool2">40 Interest Rate Seesaw</a><a href="#tool3">41 Duration Lab</a><a href="#tool4">42 Yield & Spread Lab</a><a href="#summary">43 总结</a><a href="#refs">44 资料与注释</a>
+</nav></div></aside>
+
+<main class="paper">
+<header class="hero"><div class="kicker">CHAPTER 15 · FIXED INCOME</div><h1>债券：为什么“借钱给别人”能成为资产？</h1><div class="subtitle">面值、票息、到期收益率、利率风险、久期与信用利差：所谓“固定收益”，固定的往往只是合同，而不是你的市场价格和最终回报。</div><div class="meta"><span class="pill">预计阅读 90–105 分钟</span><span class="pill">DCF 首次真实落地</span><span class="pill">4 个债券实验</span><span class="pill">最终产物：债券阅读卡 v1</span></div></header>
+
+<article class="content">
+<section id="goal"><h2>00｜为什么“别人欠我的钱”可以成为我的资产？</h2><p class="lead">借款人的负债，正好是债权人的资产。债券只是把这种未来索取本金和利息的合同权利标准化、证券化，并在很多情况下允许转让交易。</p><div class="grid2"><div class="card"><b>发行人 Issuer</b><p>今天获得资金，未来承担还本付息义务，因此形成负债。</p></div><div class="card"><b>持有人 Bondholder</b><p>今天交出资金，获得未来约定现金流的请求权，因此形成资产。</p></div></div><div class="callout red"><div class="label">本章第一原则</div><b>债券首先是一组未来现金流的合同，其次才是一个会在市场上显示价格的证券。</b></div></section>
+
+<section id="claim"><h2>01｜债券真正代表什么权利？</h2><p>和股票不同，债券持有人通常不是企业剩余所有者，而是债权人。发行人承诺按合同在特定时间支付利息，并在到期时偿还本金。债券的核心语言因此是：<b>谁欠钱、欠多少、什么时候付、付多少、能不能按约付。</b></p></section>
+
+<section id="anatomy"><h2>02｜一只普通债券可以被拆成五个基本部件</h2><div class="grid3"><div class="card"><b>Issuer</b><p>谁借钱。</p></div><div class="card"><b>Face / Par Value</b><p>合同本金。</p></div><div class="card"><b>Coupon Rate</b><p>票息率。</p></div><div class="card"><b>Maturity</b><p>何时归还本金。</p></div><div class="card"><b>Market Price / Yield</b><p>今天市场如何给这组现金流定价。</p></div></div></section>
+
+<section id="face"><h2>03｜Face Value / Par Value：面值不是市场价格</h2><p>面值通常代表到期时约定偿还的本金。例如一张债券面值 1000 元，并不意味着你今天一定需要花 1000 元才能买到它。</p><div class="formula">Face Value = 合同本金<br>Market Price = 今天市场对未来现金流给出的价格</div><p>市场价格可以是 950，也可以是 1050。</p></section>
+
+<section id="coupon"><h2>04｜Coupon Rate：票息率只决定合同利息，不直接等于投资收益率</h2><p>面值 1000 元、年票息率 5%，若每年付息一次，则每年合同票息为：</p><div class="formula">1000 × 5% = 50 元</div><p>注意，50 元是根据面值计算，而不是根据今天的市场价格计算。</p></section>
+
+<section id="maturity"><h2>05｜Maturity：债券的现金流有一个时间结构</h2><p>到期日决定何时偿还合同本金。期限越长，未来现金流距离今天越远，贴现率变化对现值的影响通常也越显著。</p></section>
+
+<section id="cashflow"><h2>06｜把债券还原成一张现金流时间轴</h2><div class="case"><div class="casehead"><b>面值 1000，票息 5%，3 年期，每年付息</b><span>最基础示例</span></div><div class="timeline"><div class="cashnode"><span>今天</span><b>− 市场价格</b></div><div class="cashnode"><span>Year 1</span><b>+50</b></div><div class="cashnode"><span>Year 2</span><b>+50</b></div><div class="cashnode"><span>Year 3</span><b>+1050</b></div></div></div><p>从这一刻开始，债券就不再神秘：它只是不同时间点上的现金流。</p></section>
+
+<section id="zero"><h2>07｜Zero-Coupon Bond：没有票息，也完全可以产生收益</h2><p>零息债券在持有期间不定期支付票息，而是以低于到期偿还金额的价格发行或交易。比如今天以 900 买入、到期按 1000 偿还，收益来自价格与到期本金之间的差额和时间价值。</p><div class="callout blue"><div class="label">重要纠偏</div><b>“没有现金票息”不等于“没有收益”；“票息很高”也不等于总收益一定高。</b></div></section>
+
+<section id="fixedfloat"><h2>08｜Fixed-Rate 与 Floating-Rate：合同现金流也可以有不同结构</h2><div class="grid2"><div class="card"><b>Fixed-Rate</b><p>票息率按合同固定，因此市场利率变化主要通过价格重新定价。</p></div><div class="card"><b>Floating-Rate</b><p>票息会跟随参考利率等机制调整，因此现金流本身会随利率环境改变。</p></div></div></section>
+
+<section id="price"><h2>09｜债券价格为什么不一定等于 1000？</h2><p>因为市场不会因为合同写着“面值 1000”就始终愿意花 1000 买它。市场会比较：这只旧债未来提供的现金流，与今天新出现的其他投资机会相比是否有吸引力。</p><p>于是市场价格会调整，直到这组未来现金流隐含的回报重新接近当前市场要求。</p></section>
+
+<section id="couponyield"><h2>10｜Coupon Rate ≠ Yield：全章最重要的分界线</h2><div class="case"><div class="casehead"><b>面值 1000，每年票息 50</b><span>合同现金流不变</span></div><table class="table"><thead><tr><th>买入价格</th><th>票息金额</th><th>票息 / 买入价</th></tr></thead><tbody><tr><td>900</td><td>50</td><td>5.56%</td></tr><tr><td>1000</td><td>50</td><td>5.00%</td></tr><tr><td>1100</td><td>50</td><td>4.55%</td></tr></tbody></table></div><p>同一张债券的票息没有变化，但你支付的价格不同，投资收益率就变了。</p></section>
+
+<section id="currentyield"><h2>11｜Current Yield：第一种简单收益率</h2><div class="formula">Current Yield = Annual Coupon ÷ Current Market Price</div><p>它比票息率更接近“我按今天价格买入以后，一年的现金票息相对买价是多少”，但仍不完整，因为没有把到期本金和剩余期限完整计入。</p></section>
+
+<section id="ytm"><h2>12｜Yield to Maturity：把所有现金流和时间同时纳入</h2><p>CFA 2026 将 YTM 定义为：使未来所有债券现金流的现值恰好等于当前市场价格的单一内部收益率。</p><div class="formula">Price = Σ [ Cash Flow_t ÷ (1 + YTM)^t ]</div><p>它把票息、买入价格、面值和剩余期限全部放进同一个回报指标，因此比 Current Yield 完整得多。</p></section>
+
+<section id="assumptions"><h2>13｜YTM 为什么仍然不是“保证年化收益”？</h2><p>CFA 当前框架明确指出，实现与 YTM 相等的回报需要若干假设，包括：持有至到期、发行人按约支付所有本金和票息、票息能够以相同 YTM 再投资等。</p><div class="callout gold"><div class="label">所以</div><b>Quoted YTM 是一种条件化的收益度量，不是无条件保证。</b></div></section>
+
+<section id="valuation"><h2>14｜债券定价就是第十一章 PV 的真实应用</h2><p>一只三年债券的价格，本质上等于每一笔未来现金流分别贴现后的总和。</p><div class="formula">P = C/(1+r) + C/(1+r)^2 + (C+F)/(1+r)^3</div><p>其中 C 是票息，F 是面值，r 是市场要求收益率。这是债券世界绝大多数定价直觉的起点。</p></section>
+
+<section id="inverse"><h2>15｜为什么市场利率上升，旧固定利率债券价格反而下降？</h2><p>假设你的旧债每年只付 3%，现在市场出现同风险、同期限、每年付 5% 的新债。如果旧债仍卖 1000，几乎没有人愿意用同样价格买更低现金流。因此旧债价格必须下降，直到按新价格买入后的隐含回报重新有竞争力。</p><div class="formula">Market Yield ↑ → Existing Fixed Coupon Less Attractive → Price ↓<br>Market Yield ↓ → Existing Fixed Coupon More Attractive → Price ↑</div><p>这不是神秘规律，而是第十一章机会成本和贴现率重新定价的直接结果。</p></section>
+
+<section id="premium"><h2>16｜Premium / Par / Discount Bond</h2><div class="grid3"><div class="card"><b>Premium</b><p>市场价格高于面值，通常意味着票息率高于当前类似债券要求收益率。</p></div><div class="card"><b>Par</b><p>价格接近面值，通常票息率与市场要求收益率较接近。</p></div><div class="card"><b>Discount</b><p>价格低于面值，通常票息率低于当前市场要求收益率。</p></div></div></section>
+
+<section id="pull"><h2>17｜Pull to Par：为什么临近到期时价格会向面值靠近？</h2><p>如果发行人正常履约，到期时投资者收到的是合同本金，而不是“无限期市场报价”。因此随着剩余期限缩短，价格中的折价或溢价会逐渐被到期现金流约束。</p><p>但这不能被误读成“任何债券只要等到到期都一定回本”，因为违约、提前赎回、买入成本和其他合同条款仍然存在。</p></section>
+
+<section id="rateRisk"><h2>18｜Interest-Rate Risk：不违约，也完全可能产生市场亏损</h2><p>信用质量很高的债券仍然可能因为市场收益率上升而跌价。如果你必须在到期前卖出，就可能实现亏损。</p><div class="quote"><b>Credit Safe ≠ Price Stable。</b></div></section>
+
+<section id="maturityEffect"><h2>19｜为什么期限越长，通常越怕利率变化？</h2><p>距离今天越远的现金流，需要被贴现更多期。贴现率只变化一点，远期现金流的现值变化通常更明显。</p><p>CFA 2026 明确指出，其他条件相同，期限更长的债券通常对 YTM 变化具有更高的价格敏感度。</p></section>
+
+<section id="couponEffect"><h2>20｜为什么低票息债券通常更敏感？</h2><p>高票息债券会更早返还较多现金；低票息债券则把更多价值集中在较远的本金偿还。于是后者的价值更依赖遥远未来现金流，对贴现率更敏感。</p></section>
+
+<section id="duration"><h2>21｜Duration：不是“债券还有几年到期”</h2><p>Macaulay Duration 可以直观理解成未来现金流回收时间的现值加权平均。它受到到期时间、票息和收益率共同影响。</p><div class="callout blue"><div class="label">不要混淆</div><b>Maturity 是合同最后期限；Duration 描述现金流时间结构，并进一步帮助衡量利率风险。</b></div></section>
+
+<section id="modified"><h2>22｜Modified Duration：把“怕利率”变成一个数字</h2><div class="formula">ΔPrice / Price ≈ − Modified Duration × ΔYield</div><p>例如 Modified Duration = 5，收益率上升 1 个百分点，价格近似下降约 5%。CFA 2026 仍然把 Modified Duration 作为估计债券市场价值对 YTM 变化敏感度的核心工具。</p><p>这是近似值，而不是保证精确结果。</p></section>
+
+<section id="convexity"><h2>23｜为什么 Duration 只是近似？因为价格—收益率关系是一条曲线</h2><p>Duration 用线性方式近似一条实际弯曲的 Price–Yield Curve。当收益率变化很小时近似通常很好；变化变大时，误差扩大。</p><p>Convexity 是对这种非线性的二阶补充。CFA 当前固定收益框架同样把 duration 作为一阶效应，把 convexity 作为二阶效应。</p></section>
+
+<section id="credit"><h2>24｜Credit Risk：债券最大的另一条风险轴</h2><p>借给中央政府、大型企业和高负债企业，偿付风险显然不同。信用风险不只在真正违约那一天才存在。</p><div class="grid3"><div class="card"><b>Default</b><p>不能按合同还本付息。</p></div><div class="card"><b>Downgrade</b><p>信用质量评价下降。</p></div><div class="card"><b>Spread Widening</b><p>市场要求更高风险补偿，价格先下降。</p></div></div></section>
+
+<section id="spread"><h2>25｜Credit Spread：市场为额外风险要求多少补偿？</h2><div class="formula">Credit / Yield Spread ≈ Risky Bond Yield − Benchmark Yield</div><p>例如基准收益率 3%，某公司债要求 5%，两者相差 2 个百分点，也就是 200 basis points。</p><p>CFA 2026 的 yield spread 框架明确指出，债券收益率可以分解为 benchmark rate 与 spread；后者可能反映信用、流动性、税务等发行人或证券特定因素。</p></section>
+
+<section id="govrisk"><h2>26｜政府债券不是“所有维度零风险”</h2><p>高信用政府债可能拥有极低信用风险，但仍可能暴露于利率、通胀、再投资、流动性和跨币种购买力风险。</p><div class="formula">Low Credit Risk ≠ No Interest-Rate Risk ≠ No Inflation Risk</div></section>
+
+<section id="reinvest"><h2>27｜Reinvestment Risk：票息收到以后怎么办？</h2><p>如果利率下降，未来收到的票息只能以更低收益率再投资，于是最终实现回报可能低于最初假设。</p><div class="grid2"><div class="card"><b>利率上升</b><p>旧债价格受压，但未来票息可以在更高收益率环境再投资。</p></div><div class="card"><b>利率下降</b><p>旧债价格可能上涨，但票息再投资收益下降。</p></div></div><p>价格风险与再投资风险经常是同一利率变化的两个方向。</p></section>
+
+<section id="liquidity"><h2>28｜Liquidity Risk：很多债券不像大盘股那样频繁成交</h2><p>CFA 2026 指出，许多债券交易并不活跃，价格发现比上市股票更困难，因此还会使用相似债券进行 matrix pricing。</p><p>所以屏幕上有一个“参考价”，并不等于任何时候都能按这个价格大额成交。</p></section>
+
+<section id="options"><h2>29｜Embedded Options：有些债券的未来现金流也会改变</h2><p>Callable Bond 允许发行人在符合条款时提前赎回；Puttable Bond 则可能给予投资者回售权。它们会改变未来现金流的时间或金额，因此简单 YTM 和普通 Duration 可能不再足够。</p><p>本章只识别概念，不进入期权债复杂定价。</p></section>
+
+<section id="curve"><h2>30｜Yield Curve：不同期限资金今天分别值多少钱？</h2><p>横轴放期限，纵轴放同类风险债券的收益率，就得到收益率曲线。它可以向上、平坦或倒挂。</p><div class="callout gold"><div class="label">本章边界</div><b>收益率曲线首先是一张“期限—收益率”横截面，不把某一种曲线形状直接变成确定的宏观预测。</b></div></section>
+
+<section id="china"><h2>31｜中国国债不能只理解成一种产品</h2><p>现实个人投资者至少会遇到储蓄国债与记账式国债。它们底层发行人都是中央政府，但持有结构、交易方式和提前退出机制并不相同。</p></section>
+
+<section id="saving"><h2>32｜储蓄国债：更接近面向个人持有的储蓄型国债结构</h2><p>财政部 2026 年公告明确，储蓄国债（凭证式）面向个人发行、不可流通转让，但可按规定提前兑取；2026 年第三、第四期储蓄国债（电子式）则为固定利率、固定期限品种，并设置提前兑取计息规则。</p><div class="case"><div class="casehead"><b>2026 年第三、第四期储蓄国债（电子式）</b><span>仅作当期案例，不是长期固定利率</span></div><table class="table"><thead><tr><th>期次</th><th>期限</th><th>票面年利率</th><th>起息</th></tr></thead><tbody><tr><td>第三期</td><td>3 年</td><td>1.63%</td><td>2026-06-10</td></tr><tr><td>第四期</td><td>5 年</td><td>1.70%</td><td>2026-06-10</td></tr></tbody></table><p class="small">财政部 2026-06-08 公告。未来发行利率会变化，应以当期公告为准。</p></div></section>
+
+<section id="book"><h2>33｜记账式国债：存在公开市场价格</h2><p>财政部 2026 年第 1 号公告规定，记账式国债自上市日起可在全国银行间债券市场、证券交易所债券市场上市交易；符合条件的投资者还可通过相应柜台渠道参与。</p><p>例如 2026 年记账式附息（十六期）国债为 10 年期、固定利率附息债，票面利率 1.66%，并于 2026 年 8 月 19 日起上市交易。这里的利率仍只是具体发行实例。</p><div class="callout blue"><div class="label">这意味着</div><b>如果到期前卖出，成交价格可能高于面值，也可能低于面值。市场利率变化会直接进入你的退出价格。</b></div></section>
+
+<section id="compareChina"><h2>34｜储蓄国债 vs 记账式国债：发行人相同，不代表产品结构相同</h2><table class="table"><thead><tr><th>维度</th><th>储蓄国债</th><th>记账式国债</th></tr></thead><tbody>
+<tr><td>主要面向</td><td>个人储蓄投资者</td><td>社会各类投资者</td></tr>
+<tr><td>退出机制</td><td>按规定提前兑取</td><td>上市后可市场交易</td></tr>
+<tr><td>市场价格</td><td>不以持续二级市场交易为核心</td><td>存在二级市场价格</td></tr>
+<tr><td>利率—价格关系</td><td>提前兑取主要依具体规则</td><td>到期前市场价格直接受收益率变化影响</td></tr>
+</tbody></table></section>
+
+<section id="rating"><h2>35｜Credit Rating：信用评级不是“安全认证章”</h2><p>评级反映对信用质量的评估，但它不会消除信用变化、利率变化和流动性风险，也不意味着价格不会下跌。</p><div class="quote"><b>Credit Rating ≠ Total Risk Score。</b></div></section>
+
+<section id="fund"><h2>36｜Bond Fund ≠ Individual Bond</h2><p>单只债券有自己的面值和到期日；如果按约履行，到期时有明确本金偿还安排。债券基金则持续持有、买卖许多不同期限债券，基金本身通常没有一个“统一到期日，届时按面值还本”的概念。</p><div class="callout red"><div class="label">所以这句话不成立</div><b>“债券基金跌了没关系，等里面的债券全部到期就一定回本。”</b></div></section>
+
+<section id="cases"><h2>37｜四个现实案例</h2>
+<div class="case"><div class="casehead"><b>A｜“5% 票息，所以我的收益就是 5%”</b><span>Coupon ≠ Yield</span></div><p>如果面值 1000、票息 50，但你花 1200 买入，Current Yield 只有约 4.17%，完整 YTM 还要进一步考虑最终只按合同本金偿还。</p></div>
+<div class="case"><div class="casehead"><b>B｜“这是国债，所以不会亏”</b><span>Credit Risk ≠ Interest-Rate Risk</span></div><p>如果是可交易的长期固定利率国债，市场收益率明显上涨时，二级市场价格可能下降。</p></div>
+<div class="case"><div class="casehead"><b>C｜公司没有违约，债券为什么先跌？</b><span>Spread Widening</span></div><p>市场认为信用恶化后要求更高收益率，即使真正违约还没发生，贴现率已经上升，价格就会先重新定价。</p></div>
+<div class="case"><div class="casehead"><b>D｜“债券基金总会到期还本金”</b><span>Vehicle Difference</span></div><p>基金是滚动组合，不存在整个基金统一按面值到期偿还的机制。</p></div>
+</section>
+
+<section id="mistakes"><h2>38｜十个最容易学错的地方</h2>
+<div class="callout red"><div class="label">误区 1</div><b>票息率就是投资收益率。</b></div>
+<div class="callout red"><div class="label">误区 2</div><b>固定收益就是总收益固定。</b></div>
+<div class="callout red"><div class="label">误区 3</div><b>债券市场价格一直等于面值。</b></div>
+<div class="callout red"><div class="label">误区 4</div><b>利率上涨只会让债券收益更高，不会带来价格损失。</b></div>
+<div class="callout red"><div class="label">误区 5</div><b>国债意味着所有维度都没有风险。</b></div>
+<div class="callout red"><div class="label">误区 6</div><b>Maturity 就是 Duration。</b></div>
+<div class="callout red"><div class="label">误区 7</div><b>YTM 是保证收益。</b></div>
+<div class="callout red"><div class="label">误区 8</div><b>信用评级高就代表债券完全安全。</b></div>
+<div class="callout red"><div class="label">误区 9</div><b>票息越高，债券一定越值得买。</b></div>
+<div class="callout red"><div class="label">误区 10</div><b>债券基金和单只债券具有相同的到期回本机制。</b></div>
+</section>
+
+<section id="tool1"><div class="tool-title"><h2>39｜互动一：Bond Anatomy Lab</h2><span class="badge">把债券变成现金流合同</span></div><div class="card">
+<div class="grid2"><label>Face Value（元）<input id="aFace" type="number" value="1000"></label><label>Coupon Rate（%）<input id="aCoupon" type="number" value="5" step="0.1"></label><label>Maturity（年）<input id="aYears" type="number" value="5"></label><label>付息频率<select id="aFreq"><option value="1">每年一次</option><option value="2">每半年一次</option></select></label></div>
+<button class="secondary" onclick="anatomyLab()">生成现金流</button>
+<div id="anatomyOut" class="feedback"></div><div id="cashTimeline" class="timeline"></div>
+</div></section>
+
+<section id="tool2"><div class="tool-title"><h2>40｜互动二：Interest Rate Seesaw</h2><span class="badge">Yield ↑ → Price ↓</span></div><div class="card">
+<div class="grid2"><label>面值（元）<input id="sFace" type="number" value="1000"></label><label>票息率（%）<input id="sCoupon" type="number" value="3"></label><label>剩余期限（年）<input id="sYears" type="number" value="10"></label><label>市场 YTM（%）<input id="sYtm" type="number" value="4" step="0.1"></label></div>
+<button class="secondary" onclick="seesawLab()">重新定价</button>
+<div id="seesawOut" class="feedback"></div><canvas id="priceChart" width="800" height="320"></canvas>
+</div></section>
+
+<section id="tool3"><div class="tool-title"><h2>41｜互动三：Duration Lab</h2><span class="badge">近似价格变化 vs 精确 DCF</span></div><div class="card">
+<div class="grid2"><label>面值（元）<input id="dFace" type="number" value="1000"></label><label>票息率（%）<input id="dCoupon" type="number" value="2"></label><label>剩余期限（年）<input id="dYears" type="number" value="20"></label><label>当前 YTM（%）<input id="dYtm" type="number" value="3"></label></div>
+<label>市场收益率变化：<b id="dShiftLabel">+1.00%</b><input id="dShift" type="range" min="-200" max="200" step="25" value="100" oninput="durationLab()"></label>
+<div id="durationOut" class="feedback"></div>
+</div></section>
+
+<section id="tool4"><div class="tool-title"><h2>42｜互动四：Yield & Credit Spread Lab</h2><span class="badge">Benchmark + Spread</span></div><div class="card">
+<div class="grid2"><label>基准收益率（%）<input id="cBase" type="number" value="3" step="0.1"></label><label>信用利差（%）<input id="cSpread" type="number" value="2" step="0.1"></label><label>面值（元）<input id="cFace" type="number" value="1000"></label><label>票息率（%）<input id="cCoupon" type="number" value="4"></label><label>剩余期限（年）<input id="cYears" type="number" value="5"></label></div>
+<button class="secondary" onclick="spreadLab()">计算 Required Yield 与价格</button>
+<div id="spreadOut" class="feedback"></div>
+<button class="ghost" onclick="exportCard()">导出《我的债券阅读卡 v1》</button>
+</div></section>
+
+<section id="summary"><div class="end"><h2>43｜如果这一章真正学会了，你应该多出这十句话</h2>
+<p><b>1. 债券首先是一组合同现金流。</b></p>
+<p><b>2. 面值、市场价格、票息率和收益率不是同一个数字。</b></p>
+<p><b>3. Coupon Rate 决定合同票息，Price 决定我为了这些现金流付多少钱。</b></p>
+<p><b>4. YTM 是带条件的内部收益率，不是无条件保证。</b></p>
+<p><b>5. 市场收益率上升时，旧固定票息债券价格通常下降。</b></p>
+<p><b>6. 长期限、低票息债券通常具有更高利率敏感性。</b></p>
+<p><b>7. Duration 不是剩余期限，而是现金流时间结构和价格敏感度工具。</b></p>
+<p><b>8. 债券同时存在利率、信用、再投资和流动性风险。</b></p>
+<p><b>9. 同样是国债，储蓄国债和记账式国债的退出与定价机制可以不同。</b></p>
+<p><b>10. 单只债券和债券基金不拥有相同的到期回本结构。</b></p>
+<p><b>下一章：</b>第 16 章会从“债权人”走向“所有者”：<b>股票——你买下的到底是什么？</b></p>
+</div></section>
+
+<section id="refs"><h2>44｜本章资料来源与使用边界</h2><ol class="refs">
+<li><b>CFA Institute — Fixed-Income Bond Valuation: Prices and Yields, 2026 Curriculum.</b> 用于 DCF 定价、YTM、Premium / Par / Discount、价格与 YTM 反向关系、期限与票息对价格敏感度的影响。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/fixed-income-bond-valuation-prices-and-yields">CFA Institute</a></li>
+<li><b>CFA Institute — Yield and Yield Spread Measures for Fixed-Rate Bonds, 2026 Curriculum.</b> 用于 benchmark yield + spread、信用与流动性等因素进入债券收益率的框架。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/yield-and-yield-spread-measures-for-fixed-rate-bonds">CFA Institute</a></li>
+<li><b>CFA Institute — Yield-Based Bond Duration Measures and Properties / Overview of Fixed-Income Portfolio Management, 2026 Curriculum.</b> 用于 modified duration、convexity 以及期限、票息和 YTM 对利率敏感度的影响。</li>
+<li><b>财政部 — 国债业务公告 2026 年第 92 号。</b> 2026 年第三、第四期储蓄国债（电子式）：3 年期 1.63%、5 年期 1.70%，2026-06-10 起息；仅作为当期产品实例。<br><a href="https://zwgls.mof.gov.cn/ywgg/202606/t20260608_3991313.htm">财政部</a></li>
+<li><b>财政部 — 国债业务公告 2026 年第 33 号。</b> 储蓄国债（凭证式）面向个人发行、不可流通转让，可按规定提前兑取。<br><a href="https://zwgls.mof.gov.cn/ywgg/202603/t20260305_3984711.htm">财政部</a></li>
+<li><b>财政部 — 国债业务公告 2026 年第 1 号及第 134 号。</b> 记账式国债上市交易制度，以及 2026 年 10 年期记账式附息国债的具体发行案例。<br><a href="https://zwgls.mof.gov.cn/ywgg/202601/t20260106_3981390.htm">财政部 2026 年第 1 号</a></li>
+<li><b>课程边界说明.</b> 所有利率、价差和债券价格模拟均用于教学。债券实际税务、交易费用、信用状态、市场流动性和产品条款需以购买时正式文件和当期市场信息为准。</li>
+</ol></section>
+</article></main></div></div>
+
+<script>
+const done=new Set();let bondCard={};
+function mark(k){done.add(k);const p=Math.round(done.size/4*100);taskPct.textContent=p+"%";taskProg.style.width=p+"%"}
+function readProgress(){const d=document.documentElement,h=d.scrollHeight-d.clientHeight,p=h>0?Math.round((d.scrollTop||0)/h*100):0;readPct.textContent=p+"%";readProg.style.width=p+"%"}window.addEventListener("scroll",readProgress);
+function fmt(x){return new Intl.NumberFormat("zh-CN",{style:"currency",currency:"CNY",maximumFractionDigits:2}).format(Number(x)||0)}
+function bondPrice(face,couponRate,years,ytm,freq=1){
+  const n=Math.round(years*freq),c=face*(couponRate/100)/freq,r=(ytm/100)/freq;
+  if(Math.abs(r)<1e-12)return c*n+face;
+  let p=0;for(let i=1;i<=n;i++)p+=c/Math.pow(1+r,i);p+=face/Math.pow(1+r,n);return p
+}
+function macaulay(face,couponRate,years,ytm,freq=1){
+  const n=Math.round(years*freq),c=face*(couponRate/100)/freq,r=(ytm/100)/freq,p=bondPrice(face,couponRate,years,ytm,freq);
+  let num=0;for(let i=1;i<=n;i++){const cf=i===n?c+face:c;num+=(i/freq)*cf/Math.pow(1+r,i)}
+  return num/p
+}
+function modifiedDuration(face,couponRate,years,ytm,freq=1){
+  const mac=macaulay(face,couponRate,years,ytm,freq);return mac/(1+(ytm/100)/freq)
+}
+function anatomyLab(){
+  const face=Number(aFace.value||1000),coupon=Number(aCoupon.value||0),years=Math.max(1,Number(aYears.value||1)),freq=Number(aFreq.value||1),periods=Math.round(years*freq),pay=face*(coupon/100)/freq;
+  cashTimeline.innerHTML="";
+  for(let i=1;i<=periods;i++){const node=document.createElement("div");node.className="cashnode";const isLast=i===periods;node.innerHTML=`<span>${freq===2?`第 ${i} 个半年`:`Year ${i}`}</span><b>+${fmt(pay+(isLast?face:0))}</b>`;cashTimeline.appendChild(node)}
+  anatomyOut.innerHTML=`<div class="grid3"><div class="metric"><span>每期票息</span><b>${fmt(pay)}</b></div><div class="metric"><span>总付息期数</span><b>${periods}</b></div><div class="metric"><span>最后一期现金流</span><b>${fmt(pay+face)}</b></div></div><p>这就是这只债券的合同现金流骨架。市场价格变化，并不会自动改变固定利率债券的合同票息。</p>`;
+  bondCard.anatomy={face,coupon,years,freq,pay};mark("anatomy")
+}
+function drawPriceCurve(face,coupon,years,current){
+  const canvas=priceChart,ctx=canvas.getContext("2d"),w=canvas.width,h=canvas.height,pad=46,pts=[];
+  for(let y=.25;y<=10;y+=.25)pts.push({y,p:bondPrice(face,coupon,years,y,1)});
+  const min=Math.min(...pts.map(d=>d.p)),max=Math.max(...pts.map(d=>d.p));
+  ctx.clearRect(0,0,w,h);ctx.strokeStyle="#cdb78b";ctx.beginPath();ctx.moveTo(pad,15);ctx.lineTo(pad,h-pad);ctx.lineTo(w-15,h-pad);ctx.stroke();
+  ctx.strokeStyle="#8f342a";ctx.lineWidth=3;ctx.beginPath();pts.forEach((d,i)=>{const x=pad+(w-pad-20)*(d.y/10),yy=(h-pad-10)-(h-pad-30)*(d.p-min)/(max-min);if(i===0)ctx.moveTo(x,yy);else ctx.lineTo(x,yy)});ctx.stroke();
+  const cp=bondPrice(face,coupon,years,current,1),x=pad+(w-pad-20)*(current/10),yy=(h-pad-10)-(h-pad-30)*(cp-min)/(max-min);
+  ctx.fillStyle="#455f4c";ctx.beginPath();ctx.arc(x,yy,6,0,Math.PI*2);ctx.fill();ctx.fillStyle="#766858";ctx.font="12px serif";ctx.fillText("YTM →",w-64,h-12);ctx.fillText("Price",7,24)
+}
+function seesawLab(){
+  const face=Number(sFace.value||1000),coupon=Number(sCoupon.value||0),years=Math.max(.5,Number(sYears.value||1)),ytm=Math.max(.01,Number(sYtm.value||0.01)),p=bondPrice(face,coupon,years,ytm,1);
+  let status=Math.abs(p-face)<1?"接近 Par":p>face?"Premium（高于面值）":"Discount（低于面值）";
+  seesawOut.innerHTML=`<div class="grid3"><div class="metric"><span>市场 YTM</span><b>${ytm.toFixed(2)}%</b></div><div class="metric"><span>理论价格</span><b>${fmt(p)}</b></div><div class="metric"><span>状态</span><b style="font-size:15px">${status}</b></div></div><p>${ytm>coupon?"市场要求收益率高于票息率，因此旧现金流需要通过更低价格获得竞争力。":ytm<coupon?"市场要求收益率低于票息率，因此较高的旧票息更有吸引力，价格可高于面值。":"YTM 与票息率接近时，价格通常接近面值。"}</p>`;
+  drawPriceCurve(face,coupon,years,ytm);bondCard.seesaw={face,coupon,years,ytm,price:p,status};mark("seesaw")
+}
+function durationLab(){
+  const face=Number(dFace.value||1000),coupon=Number(dCoupon.value||0),years=Math.max(.5,Number(dYears.value||1)),ytm=Math.max(.01,Number(dYtm.value||.01)),shift=Number(dShift.value)/100; // percentage points
+  dShiftLabel.textContent=(shift>=0?"+":"")+shift.toFixed(2)+"%";
+  const oldP=bondPrice(face,coupon,years,ytm,1),md=modifiedDuration(face,coupon,years,ytm,1),mac=macaulay(face,coupon,years,ytm,1),approxPct=-md*(shift/100)*100,newY=Math.max(.001,ytm+shift),newP=bondPrice(face,coupon,years,newY,1),exactPct=(newP/oldP-1)*100;
+  durationOut.innerHTML=`<div class="grid4"><div class="metric"><span>Macaulay Duration</span><b>${mac.toFixed(2)} 年</b></div><div class="metric"><span>Modified Duration</span><b>${md.toFixed(2)}</b></div><div class="metric"><span>Duration 近似变化</span><b>${approxPct.toFixed(2)}%</b></div><div class="metric"><span>DCF 精确重定价</span><b>${exactPct.toFixed(2)}%</b></div></div><p>当前理论价 ${fmt(oldP)} → 新 YTM ${newY.toFixed(2)}% 下理论价 ${fmt(newP)}。收益率变化越大，线性 Duration 近似与真实弯曲价格曲线的差距通常越明显。</p>`;
+  bondCard.duration={face,coupon,years,ytm,shift,mac,modified:md,approxPct,exactPct};mark("duration")
+}
+function spreadLab(){
+  const base=Number(cBase.value||0),spread=Number(cSpread.value||0),face=Number(cFace.value||1000),coupon=Number(cCoupon.value||0),years=Math.max(.5,Number(cYears.value||1)),req=base+spread,p=bondPrice(face,coupon,years,req,1);
+  const low=bondPrice(face,coupon,years,base+Math.max(0,spread-1),1),high=bondPrice(face,coupon,years,base+spread+1,1);
+  spreadOut.innerHTML=`<div class="grid3"><div class="metric"><span>Benchmark</span><b>${base.toFixed(2)}%</b></div><div class="metric"><span>Credit Spread</span><b>${spread.toFixed(2)}%</b></div><div class="metric"><span>Required Yield</span><b>${req.toFixed(2)}%</b></div></div><hr><div class="grid3"><div class="metric"><span>当前理论价格</span><b>${fmt(p)}</b></div><div class="metric"><span>Spread 缩窄 1%</span><b>${fmt(low)}</b></div><div class="metric"><span>Spread 扩大 1%</span><b>${fmt(high)}</b></div></div><p>在合同现金流不变时，信用利差扩大意味着投资者要求更高贴现率，债券现值通常下降。Spread 并不只等于违约概率，也可能包含流动性和其他风险补偿。</p>`;
+  bondCard.spread={base,spread,requiredYield:req,face,coupon,years,price:p};mark("spread")
+}
+function exportCard(){
+  const data={chapter:"15 债券：为什么借钱给别人能成为资产？",exported_at:new Date().toISOString(),card:bondCard,principles:["区分Face Value、Market Price、Coupon Rate和Yield","不把YTM当作无条件保证收益","同时评估利率风险、信用风险、再投资风险和流动性风险","用Duration理解利率敏感度，但知道它只是近似","区分单只债券与债券基金的到期结构","中国国债需区分储蓄国债与记账式国债的退出和市场定价机制"]};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="我的债券阅读卡_v1.json";a.click();URL.revokeObjectURL(u)
+}
+anatomyLab();seesawLab();durationLab();readProgress();
+</script>
+</body></html>

@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十七章｜基金、指数和ETF：为什么普通人不一定需要选股票？—个人财富系统</title>
+<style>
+:root{
+  --bg:#efe1c3;--paper:#fbf3df;--ink:#332a22;--muted:#766858;--line:#d6c199;
+  --red:#8f342a;--redbg:#f1ddd5;--green:#455f4c;--greenbg:#dfe7dc;
+  --gold:#a77a2b;--goldbg:#f2e4bd;--blue:#445d70;--bluebg:#dce5e9;--deep:#2e2924;
+  --shadow:0 18px 50px rgba(74,52,28,.14)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);line-height:1.9;font-family:ui-serif,"Noto Serif SC","Source Han Serif SC","Songti SC",STSong,serif;background:radial-gradient(circle at 12% 7%,rgba(255,255,255,.45),transparent 25%),radial-gradient(circle at 88% 15%,rgba(100,74,40,.07),transparent 22%),repeating-linear-gradient(0deg,rgba(90,63,34,.022) 0 1px,transparent 1px 5px),var(--bg)}
+a{color:var(--green);text-underline-offset:3px}.wrap{max-width:1340px;margin:auto;padding:24px}.layout{display:grid;grid-template-columns:275px minmax(0,930px);gap:30px;justify-content:center;align-items:start}
+.sidebar{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto}.sidebox{background:rgba(251,243,223,.84);border:1px solid var(--line);border-radius:13px;padding:15px;margin-bottom:12px}.sidebox b{display:block}.sidebox small{color:var(--muted)}
+nav a{display:block;text-decoration:none;color:var(--muted);font-size:12px;padding:5px 7px;border-radius:7px}nav a:hover{background:#efdfbd;color:var(--ink)}
+.progress{height:7px;background:#e3d1aa;border-radius:999px;overflow:hidden;margin-top:8px}.progress i{display:block;height:100%;width:0;background:var(--red);transition:.2s}
+.paper{background:rgba(251,243,223,.97);border:1px solid rgba(170,143,96,.48);box-shadow:var(--shadow);border-radius:7px;overflow:hidden}
+.hero{padding:68px 74px 50px;border-bottom:1px solid var(--line);position:relative}.hero:before{content:"";position:absolute;left:28px;top:30px;bottom:30px;width:1px;background:rgba(143,52,42,.28)}
+.kicker{font-size:12px;letter-spacing:.18em;color:var(--red);font-weight:800}h1{font-size:49px;line-height:1.2;margin:13px 0 17px;letter-spacing:-.035em}.subtitle{font-size:20px;color:var(--muted);max-width:820px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 9px;background:#f7edd4;color:var(--muted)}
+.content{padding:54px 74px 76px}section{margin-bottom:62px}h2{font-size:30px;line-height:1.35;margin:0 0 18px}h3{font-size:21px;margin:30px 0 10px}p{margin:9px 0 16px}.lead{font-size:18px}
+.callout{padding:19px 21px;border-left:5px solid;margin:23px 0;border-radius:4px}.red{background:var(--redbg);border-color:var(--red)}.green{background:var(--greenbg);border-color:var(--green)}.gold{background:var(--goldbg);border-color:var(--gold)}.blue{background:var(--bluebg);border-color:var(--blue)}
+.label{font-size:11px;font-weight:800;letter-spacing:.14em;margin-bottom:4px}.card{padding:20px;border:1px solid var(--line);border-radius:10px;background:#fff9ea;margin:15px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.table th{font-size:11px;color:var(--muted)}
+.formula{background:var(--deep);color:#f8edd6;font:16px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:17px 19px;border-radius:8px;margin:18px 0}
+.case{padding:22px;border:1px solid var(--line);border-radius:10px;background:#faf0db;margin:14px 0}.casehead{display:flex;justify-content:space-between;gap:12px;align-items:baseline}.casehead b{font-size:18px}.casehead span{font-size:12px;color:var(--muted)}
+.quote{padding:23px 27px;background:#eee0c4;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:19px;margin:24px 0}
+.small{font-size:12px;color:var(--muted)}.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 7px;font-size:11px;background:#f6ead0;margin:2px}
+.metric{padding:15px;background:#f8edd4;border:1px solid var(--line);border-radius:9px}.metric b{display:block;font-size:20px;color:var(--green)}.metric span{font-size:12px;color:var(--muted)}
+input[type=text],input[type=number],select{width:100%;border:1px solid #c7ad80;background:#fffaf0;border-radius:7px;padding:10px 11px;color:var(--ink);font:inherit}
+input[type=checkbox]{accent-color:var(--red);transform:translateY(1px)}
+button{border:0;border-radius:8px;padding:10px 15px;background:var(--red);color:#fff;font-weight:800;cursor:pointer}button.secondary{background:var(--green)}button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.feedback{margin-top:14px;padding:15px 17px;border:1px dashed #b69d70;border-radius:8px;background:#f5e9cf}.tool-title{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.flow{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap}.flowstep{flex:1 1 125px;padding:13px;border:1px solid var(--line);border-radius:9px;background:#fff9ea}.flowstep b{display:block}.arrow{align-self:center;color:var(--red);font-size:21px}
+.bar{height:22px;background:#e5d5b3;border-radius:6px;overflow:hidden;margin:5px 0 10px}.bar i{display:block;height:100%;background:var(--green)}.bar.redbar i{background:var(--red)}.bar.goldbar i{background:var(--gold)}
+.checkrow{display:flex;gap:9px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--line)}
+canvas{width:100%;height:320px;border:1px solid var(--line);border-radius:9px;background:#fffaf0;margin-top:14px}
+.end{background:var(--deep);color:#f5ebd7;padding:28px;border-radius:9px}.end h2{color:#fff5df}.refs{font-size:13px;color:var(--muted)}.refs li{margin-bottom:10px}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{display:none}.hero,.content{padding-left:36px;padding-right:36px}}
+@media(max-width:780px){.wrap{padding:0}.paper{border-radius:0}.hero,.content{padding:30px 20px}h1{font-size:34px}.grid2,.grid3,.grid4{grid-template-columns:1fr}.arrow{transform:rotate(90deg);text-align:center}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="layout">
+<aside class="sidebar">
+<div class="sidebox"><b>个人财富系统</b><small>第十七章 · 基金、指数与 ETF</small></div>
+<div class="sidebox"><small>阅读进度 <span id="readPct">0%</span></small><div class="progress"><i id="readProg"></i></div></div>
+<div class="sidebox"><small>互动完成度 <span id="taskPct">0%</span></small><div class="progress"><i id="taskProg"></i></div></div>
+<div class="sidebox"><nav>
+<a href="#goal">00 为什么研究股票后反而不选股</a><a href="#fund">01 Fund</a><a href="#share">02 基金份额</a><a href="#nav">03 NAV</a><a href="#index">04 Index</a><a href="#rulebook">05 指数是规则</a><a href="#weighting">06 Weighting</a><a href="#capweight">07 市值加权</a><a href="#equal">08 等权</a><a href="#priceweight">09 价格加权</a><a href="#smartbeta">10 Smart Beta</a><a href="#reconstitution">11 Rebalancing</a><a href="#indexfund">12 Index Fund</a><a href="#replication">13 复制方法</a><a href="#tracking">14 Tracking Difference / Error</a><a href="#underperform">15 为什么会落后指数</a><a href="#active">16 Active Fund</a><a href="#alphabeta">17 Alpha / Beta</a><a href="#activevalue">18 主动管理的价值</a><a href="#difficulty">19 为什么持续超越很难</a><a href="#spiva">20 SPIVA</a><a href="#survivorship">21 Survivorship Bias</a><a href="#persistence">22 Persistence</a><a href="#fees">23 Fees</a><a href="#mutual">24 Mutual Fund</a><a href="#etf">25 ETF</a><a href="#twoprices">26 NAV vs Market Price</a><a href="#creation">27 Creation / Redemption</a><a href="#spread">28 Bid–Ask Spread</a><a href="#liquidity">29 两层流动性</a><a href="#activeetf">30 ETF ≠ Passive</a><a href="#indexnotetf">31 Index Fund ≠ ETF</a><a href="#feeder">32 ETF 联接基金</a><a href="#broad">33 宽基</a><a href="#theme">34 行业 / 主题</a><a href="#overlap">35 ETF 重叠</a><a href="#benchmark">36 Benchmark</a><a href="#history">37 历史收益怎么看</a><a href="#decisionstack">38 Investment Decision Stack</a><a href="#cases">39 四个案例</a><a href="#mistakes">40 十个误区</a><a href="#tool1">41 Fund X-Ray</a><a href="#tool2">42 Build an Index</a><a href="#tool3">43 Tracking Lab</a><a href="#tool4">44 Active vs Index Decision Lab</a><a href="#summary">45 总结</a><a href="#refs">46 资料与注释</a>
+</nav></div></aside>
+
+<main class="paper">
+<header class="hero"><div class="kicker">CHAPTER 17 · FUNDS, INDEXES & ETFs</div><h1>基金、指数和 ETF：为什么普通人不一定需要选股票？</h1><div class="subtitle">从“挑赢家”到“选择一套规则”：基金是载体，指数是规则，ETF 是交易结构，主动与被动则是不同的决策分工。</div><div class="meta"><span class="pill">预计阅读 95–115 分钟</span><span class="pill">Stage V 收口章</span><span class="pill">4 个基金 / 指数实验</span><span class="pill">最终产物：基金与指数阅读卡 v1</span></div></header>
+
+<article class="content">
+<section id="goal"><h2>00｜为什么认真研究股票以后，反而可能选择“不选股票”？</h2><p class="lead">第十六章已经展示了选一家公司真正需要判断多少东西：商业模式、利润、现金流、资本配置、竞争、估值与市场预期。于是自然出现一个问题：如果我的目标只是获得某类市场长期经济暴露，我是否必须亲自判断每一家公司的未来？</p><div class="callout red"><div class="label">本章第一原则</div><b>指数化不是“放弃判断”，而是把判断从“哪家公司会赢”上移到“我要承担哪种市场风险、遵循什么规则、通过什么载体持有、付出多少实现成本”。</b></div></section>
+
+<section id="fund"><h2>01｜Fund：基金首先是一种 pooled vehicle</h2><p>基金把许多投资者的资金集中起来，再按照基金合同投资股票、债券、货币市场工具或其他资产。Investor.gov 当前对 mutual fund 和 ETF 的基本解释仍然是这一逻辑。</p><p>因此“基金”并不能告诉你风险高低。一个股票基金、长期债券基金、货币基金和商品基金，底层风险完全不同。</p></section>
+
+<section id="share"><h2>02｜买基金时，你拥有的是基金份额</h2><p>你通常不直接登记成为基金持有的每家公司股东，而是拥有基金份额，对基金资产净值享有比例权益。</p><div class="formula">Fund Share → proportional claim on fund net assets → underlying securities exposure</div></section>
+
+<section id="nav"><h2>03｜NAV：基金到底“每一份值多少”？</h2><div class="formula">NAV per Share = (Fund Assets − Fund Liabilities) ÷ Shares Outstanding</div><p>基金净值上涨的本质，是底层资产、利息、股息、费用以及其他现金流共同改变了基金净资产，而不是基金公司凭空创造财富。</p></section>
+
+<section id="index"><h2>04｜Index：指数首先是一套测量规则，不是一个基金</h2><p>Investor.gov 将市场指数定义为衡量一篮子证券表现的指标。投资者不能直接“买一个数字指数”，而是通过指数基金、ETF 等载体获得相应经济暴露。</p><div class="quote"><b>Index = Rulebook；Index Fund = 执行这本规则的基金产品。</b></div></section>
+
+<section id="rulebook"><h2>05｜一个指数是怎样被“制造”出来的？</h2><div class="grid4"><div class="card"><b>Universe</b><p>从哪些证券开始筛？</p></div><div class="card"><b>Selection</b><p>谁能进入？</p></div><div class="card"><b>Weighting</b><p>进去以后占多少？</p></div><div class="card"><b>Rebalancing</b><p>多久重新调整？</p></div></div><p>所以指数不是自然界自己生长出来的“市场本体”，而是一套人为定义、然后规则化执行的方法。</p></section>
+
+<section id="weighting"><h2>06｜Weighting：同样一篮子股票，权重规则不同，结果也不同</h2><p>如果指数成分完全相同，但一个按市值加权、一个每家公司等权、另一个按价格加权，它们的指数结果就会不同。</p><div class="formula">Index Return = Σ (Security Weight × Security Return)</div></section>
+
+<section id="capweight"><h2>07｜Market-Cap Weighting：最常见的指数逻辑之一</h2><p>公司市值越大，指数权重通常越高。Investor.gov 当前也指出，许多市场指数使用 market capitalization 决定权重。</p><p>它的一个重要特征是：股票价格上涨带来市值增加时，权重会自然变化，因此不像等权指数那样必须频繁交易才能恢复固定权重。</p></section>
+
+<section id="equal"><h2>08｜Equal Weighting：每家公司先从同样权重开始</h2><p>100 家公司，每家 1%。价格变化以后权重会漂移，所以需要定期 rebalance 回到目标。</p><p>等权并不是“更中立”，它会相对市值加权增加小市值公司的权重，并带来不同换手率和风险暴露。</p></section>
+
+<section id="priceweight"><h2>09｜Price Weighting：股价高的公司权重更大</h2><p>Investor.gov 以道琼斯工业平均指数为典型例子解释 price-weighted methodology。</p><p>第十六章已经学过，100 元股价并不代表公司规模一定比 10 元股票大，因此价格加权和市值加权代表的是两套完全不同的规则哲学。</p></section>
+
+<section id="smartbeta"><h2>10｜Smart Beta / Factor Index：被动也可能非常复杂</h2><p>一些非传统指数按照价值、质量、动量、低波动、股息等因子筛选或加权。Investor.gov 当前也提醒，这类 smart beta、quant 或 custom index products 虽然仍按规则运行，但规则可能比传统宽基复杂得多。</p><div class="callout blue"><div class="label">所以</div><b>Passive does not mean simple；Rules-based does not mean neutral。</b></div></section>
+
+<section id="reconstitution"><h2>11｜Reconstitution / Rebalancing：指数自己也会变化</h2><p>公司可能进入或离开指数，权重也会按规则重新调整。指数基金为了继续跟踪指数，需要同步交易，因此被动投资并不是“买完以后基金经理什么都不做”。</p></section>
+
+<section id="indexfund"><h2>12｜Index Fund：目标是跟踪一个指数</h2><p>Investor.gov 当前仍将 index fund 定义为一种 mutual fund 或 ETF，其目标是跟踪某个市场指数。这里再次提醒：</p><div class="formula">Index = Benchmark / Rule<br>Index Fund = Investment Vehicle implementing that rule</div></section>
+
+<section id="replication"><h2>13｜Full Replication vs Sampling</h2><div class="grid2"><div class="card"><b>Full Replication</b><p>尽量按照指数权重持有全部成分证券。</p></div><div class="card"><b>Sampling</b><p>持有代表性样本，以较少证券近似指数风险收益特征。</p></div></div><p>Investor.gov 也指出，指数基金可能持有指数全部成分，也可能进行抽样复制。抽样能够降低某些执行复杂度，但也可能增加跟踪偏离。</p></section>
+
+<section id="tracking"><h2>14｜Tracking Difference 和 Tracking Error 不是同一个概念</h2><div class="grid2"><div class="card"><b>Tracking Difference</b><p>基金实际收益相对指数长期平均差多少。例如指数 +10%，基金 +9.7%，差 −0.3%。</p></div><div class="card"><b>Tracking Error</b><p>基金相对指数的收益差有多不稳定，通常关注偏离的波动程度。</p></div></div><p>一个基金可以长期稳定落后指数 0.2%，另一个平均也差不多，但每年偏离幅度忽高忽低；它们的 Tracking Error 会不同。</p></section>
+
+<section id="underperform"><h2>15｜为什么指数基金通常不能完美复制指数？</h2><p>Investor.gov 当前明确指出，指数基金可能因为费用、交易成本和 tracking error 低于指数本身。</p><div class="grid3"><div class="card"><b>Expense Ratio</b></div><div class="card"><b>Trading Costs</b></div><div class="card"><b>Cash Drag</b></div><div class="card"><b>Sampling</b></div><div class="card"><b>Tax / Withholding</b></div><div class="card"><b>Rebalance Timing</b></div></div></section>
+
+<section id="active"><h2>16｜Active Fund：组合决策来自管理人的持续判断</h2><p>主动基金经理会研究公司、债券、宏观、行业和估值，然后主动决定买什么、卖什么、持有多少，通常希望战胜某个适当基准或实现特定风险收益目标。</p><p>主动与被动真正的区别并不是“有没有管理”，而是：</p><div class="formula">Rules-based portfolio decisions vs Manager-discretion portfolio decisions</div></section>
+
+<section id="alphabeta"><h2>17｜Alpha / Beta：先建立最简单的直觉</h2><div class="grid2"><div class="card"><b>Beta / Market Exposure</b><p>你本来就因为持有某一类市场而获得的系统性市场暴露。</p></div><div class="card"><b>Alpha</b><p>在考虑适当基准与风险后，主动判断额外创造的价值。</p></div></div><p>基金比指数多赚 2%，并不能直接宣称 Alpha=2%，因为它也可能只是承担了更高小盘、行业或杠杆风险。</p></section>
+
+<section id="activevalue"><h2>18｜主动管理理论上为什么可能有价值？</h2><p>研究信息、识别错误定价、在低效率市场寻找机会、管理信用风险、调整特定暴露，都可能产生价值。</p><div class="callout green"><div class="label">保持边界</div><b>本章不会把主动管理写成“错误选择”，也不会把指数写成“唯一正确答案”。真正问题是：额外决策带来的价值，能否在费用和风险以后留下来。</b></div></section>
+
+<section id="difficulty"><h2>19｜持续超越基准为什么难？</h2><p>市场中所有投资者合起来就是市场。有人相对市场跑赢，就会有人相对市场跑输；主动管理还额外承担研究、交易和管理成本。</p><div class="formula">Net Active Result = Gross Skill / Positioning − Fees − Trading Frictions − Mistakes</div></section>
+
+<section id="spiva"><h2>20｜SPIVA：它提供经验记录，不提供“永恒定律”</h2><p>S&P Dow Jones Indices 的 SPIVA U.S. Year-End 2025 显示，2025 年美国大型股主动基金中约 79% 低于 S&P 500。不同类别结果并不完全一致，部分小盘和其他资产类别的主动管理结果明显不同。</p><p>更合理的结论不是“主动管理永远失败”，而是：</p><div class="quote"><b>持续、费用后、风险调整后战胜适当基准，是一个很高的要求；而且不同市场的难度并不相同。</b></div></section>
+
+<section id="survivorship"><h2>21｜Survivorship Bias：消失的基金不能从历史中消失</h2><p>如果十年前存在 100 只基金，表现较差的 30 只后来清盘或合并，今天只拿剩下 70 只回看历史，行业看起来就会比真实情况更优秀。</p><p>因此严谨的基金研究不能只看今天仍存在的赢家。</p></section>
+
+<section id="persistence"><h2>22｜Performance Persistence：去年冠军能不能继续赢？</h2><p>S&P 的 U.S. Persistence Scorecard Year-End 2025 继续显示，主动股票基金持续维持相对领先往往很困难；从更长时间看，曾经位于前列的基金很多无法保持同样排名。</p><div class="formula">Past Performance ≠ Persistent Skill</div></section>
+
+<section id="fees"><h2>23｜基金世界里，费用为什么格外重要？</h2><p>第十二章已经学过 Fee Drag。基金世界更直接：如果两个产品拥有相近底层暴露和毛收益，费用更高的产品必须先获得额外毛超额收益，才能让投资者最终净结果相同。</p><p>成本还是少数在投资发生前就相对可见的变量之一。</p></section>
+
+<section id="mutual"><h2>24｜Mutual Fund：通常按 NAV 与基金本身申购赎回</h2><p>Investor.gov 当前说明，普通 mutual fund 份额通常由投资者直接向基金申购或赎回，价格以基金计算的 NAV 为基础，通常每个交易日计算一次。</p></section>
+
+<section id="etf"><h2>25｜ETF 的关键词不是 Index，而是 Exchange-Traded</h2><p>ETF 零售份额像股票一样在交易所二级市场全天交易。Investor.gov 当前明确指出，ETF 买卖发生在市场价格上，而市场价格并不保证正好等于 NAV。</p><div class="callout red"><div class="label">最重要的纠偏</div><b>ETF = Vehicle / Trading Structure；Index / Active = Portfolio Management Approach。</b></div></section>
+
+<section id="twoprices"><h2>26｜ETF 为什么同时有 NAV 和 Market Price？</h2><div class="grid2"><div class="card"><b>NAV</b><p>底层资产减去负债后的每份基金净值。</p></div><div class="card"><b>Market Price</b><p>交易所买卖双方真实成交的价格。</p></div></div><p>市场价格高于 NAV 叫 Premium，低于 NAV 叫 Discount。Investor.gov 当前仍明确提醒 ETF 买入价格可能高于或低于净值。</p></section>
+
+<section id="creation"><h2>27｜Creation / Redemption：为什么 ETF 价格通常不会无限偏离 NAV？</h2><p>Authorized Participants 可以在一级市场用一篮子资产创建大额 ETF 份额，也可以赎回大额份额换取底层资产。套利力量通常帮助市场价格靠近基金净值。</p><div class="formula">ETF Premium → creation / arbitrage pressure<br>ETF Discount → redemption / arbitrage pressure</div><p>这是一种机制倾向，不是“任何时候都完全相等”的保证。</p></section>
+
+<section id="spread"><h2>28｜Bid–Ask Spread：ETF 的真实成本不只有管理费</h2><p>买价 10.00 元、卖价 9.98 元时，投资者即使底层资产完全没变化，立即买入再卖出也会面对交易价差。</p><div class="formula">Total Implementation Cost ≠ Expense Ratio Alone</div></section>
+
+<section id="liquidity"><h2>29｜ETF 流动性必须拆成两层</h2><div class="grid2"><div class="card"><b>Share Liquidity</b><p>ETF 份额本身成交活跃程度与买卖价差。</p></div><div class="card"><b>Underlying Liquidity</b><p>底层资产究竟是否容易真实成交。</p></div></div><p>一个 ETF 表面成交活跃，并不意味着底层资产在极端市场环境下一定同样具有深度。</p></section>
+
+<section id="activeetf"><h2>30｜2026 年必须更新：ETF ≠ Passive</h2><p>深交所投资者教育页面在 2026 年 8 月 17 日已经单独发布“什么是主动ETF”“主动ETF与指数ETF有何异同”等问答。这意味着在中国市场现实语境里，继续把 ETF 定义为“被动指数基金”已经不准确。</p><div class="formula">ETF describes how the fund is traded.<br>Active / Index describes how the portfolio is managed.</div></section>
+
+<section id="indexnotetf"><h2>31｜反过来，Index Fund 也不一定是 ETF</h2><p>指数基金完全可以采用普通开放式基金结构。于是最清楚的分类应该做成二维：</p><table class="table"><thead><tr><th></th><th>Index / Rules-based</th><th>Active</th></tr></thead><tbody><tr><td>普通开放式基金</td><td>可以</td><td>可以</td></tr><tr><td>ETF</td><td>可以</td><td>也可以</td></tr></tbody></table></section>
+
+<section id="feeder"><h2>32｜ETF 联接基金：Vehicle on Vehicle</h2><p>ETF 联接基金通常通过普通开放式基金结构，把大部分资产投资于目标 ETF，让不直接使用交易所 ETF 交易路径的投资者也能获得类似底层暴露。</p><p>这再次证明第十四章的框架：</p><div class="formula">Underlying Asset → ETF Vehicle → Feeder Fund Vehicle</div></section>
+
+<section id="broad"><h2>33｜宽基指数：降低的是单一公司风险，不是所有市场风险</h2><p>覆盖多个行业、大量公司的宽基指数可以降低单一公司失败对整体组合的影响。但市场整体下跌时，宽基股票指数仍然会下跌。</p><p>宽基的价值在于更广的风险分散，而不是“不会亏”。</p></section>
+
+<section id="theme"><h2>34｜行业 / 主题指数：几十只股票也可能只有一个风险源</h2><p>芯片、医药、新能源、AI、军工等主题指数即使包含几十家公司，也可能高度暴露于相同政策、估值和行业周期。</p><div class="quote"><b>Many Holdings ≠ Broad Diversification。</b></div></section>
+
+<section id="overlap"><h2>35｜买五只 ETF，为什么仍可能没有真正分散？</h2><p>科技 ETF、AI ETF、互联网 ETF、成长 ETF、半导体 ETF 的名称不同，但前十大持仓可能大量重叠。</p><div class="callout gold"><div class="label">真正应该检查</div><b>Overlap、行业暴露、地域暴露、因子暴露，而不是基金数量。</b></div></section>
+
+<section id="benchmark"><h2>36｜Benchmark：评价基金前必须先回答“和谁比？”</h2><p>一个中小盘股票基金和银行存款比较“谁收益高”，意义很有限。真正合理的比较需要寻找风险来源和投资范围相近的适当基准。</p><div class="formula">Fund Analysis begins with: Compared with what?</div></section>
+
+<section id="history"><h2>37｜基金历史收益至少要同时看五个东西</h2><div class="grid3"><div class="card"><b>Return</b></div><div class="card"><b>Benchmark</b></div><div class="card"><b>Risk / Drawdown</b></div><div class="card"><b>Fees</b></div><div class="card"><b>Time Period</b></div></div><p>孤立的“过去一年上涨 30%”几乎无法告诉你基金经理是否有可重复技能，也无法告诉你未来是否适合某个目标。</p></section>
+
+<section id="decisionstack"><h2>38｜Investment Decision Stack：以后“怎么选基金”就按这一层层往上看</h2>
+<div class="flow"><div class="flowstep"><b>Underlying Asset</b><span>股票 / 债券 / 商品</span></div><div class="arrow">→</div><div class="flowstep"><b>Exposure</b><span>国家 / 行业 / 期限</span></div><div class="arrow">→</div><div class="flowstep"><b>Index / Strategy</b><span>市值 / 因子 / 主动</span></div><div class="arrow">→</div><div class="flowstep"><b>Vehicle</b><span>基金 / ETF / 联接</span></div></div>
+<div class="flow" style="margin-top:9px"><div class="flowstep"><b>Provider</b><span>管理与复制方式</span></div><div class="arrow">→</div><div class="flowstep"><b>Cost & Tracking</b><span>费用 / Spread / Error</span></div><div class="arrow">→</div><div class="flowstep"><b>Investor Behavior</b><span>为什么买、何时卖、能否执行</span></div></div>
+</section>
+
+<section id="cases"><h2>39｜四个现实案例</h2>
+<div class="case"><div class="casehead"><b>A｜“我买的是 ETF，所以风险低”</b><span>Vehicle ≠ Risk Level</span></div><p>如果底层是高波动单一行业股票，风险主要仍来自股票和行业集中度。</p></div>
+<div class="case"><div class="casehead"><b>B｜“基金去年第一，经理肯定最强”</b><span>Outcome ≠ Persistent Skill</span></div><p>可能来自特定风格顺风、集中风险或随机性；必须继续看基准、风险和长期持续性。</p></div>
+<div class="case"><div class="casehead"><b>C｜两只基金跟踪同一指数</b><span>Index Return ≠ Fund Return</span></div><p>费用、交易、复制方式和跟踪误差不同，最终投资者收益也会不同。</p></div>
+<div class="case"><div class="casehead"><b>D｜“我有五只 ETF，所以已经很分散”</b><span>Check Overlap</span></div><p>如果底层前十大持仓高度重叠，基金数量增加并没有增加五份独立风险来源。</p></div>
+</section>
+
+<section id="mistakes"><h2>40｜十个最容易学错的地方</h2>
+<div class="callout red"><div class="label">误区 1</div><b>基金是一种和股票、债券并列的底层资产。</b></div>
+<div class="callout red"><div class="label">误区 2</div><b>ETF 就等于指数基金。</b></div>
+<div class="callout red"><div class="label">误区 3</div><b>指数基金一定采用 ETF 结构。</b></div>
+<div class="callout red"><div class="label">误区 4</div><b>指数投资完全没有人为判断。</b></div>
+<div class="callout red"><div class="label">误区 5</div><b>被动投资意味着基金完全不需要管理。</b></div>
+<div class="callout red"><div class="label">误区 6</div><b>指数基金收益一定等于指数。</b></div>
+<div class="callout red"><div class="label">误区 7</div><b>ETF 市场价格永远等于 NAV。</b></div>
+<div class="callout red"><div class="label">误区 8</div><b>主动基金一定不可能优于指数。</b></div>
+<div class="callout red"><div class="label">误区 9</div><b>买很多基金自然就是充分分散。</b></div>
+<div class="callout red"><div class="label">误区 10</div><b>历史收益最高的基金就是未来最好的基金。</b></div>
+</section>
+
+<section id="tool1"><div class="tool-title"><h2>41｜互动一：Fund X-Ray</h2><span class="badge">基金外壳下面到底是什么？</span></div><div class="card">
+<label>选择一个虚构基金<select id="fxFund">
+<option>未来科技成长ETF</option><option>全球宽基股票指数基金</option><option>长期信用债基金</option><option>高股息低波动指数ETF</option><option>主动精选股票ETF</option>
+</select></label>
+<button class="secondary" onclick="fundXray()">拆解基金</button>
+<div id="fundOut" class="feedback">会拆成 Underlying、Exposure、Strategy、Vehicle、Concentration、Cost 和主要风险。</div>
+</div></section>
+
+<section id="tool2"><div class="tool-title"><h2>42｜互动二：Build an Index</h2><span class="badge">亲手制造一个指数</span></div><div class="card">
+<label>选择权重方法<select id="idxMethod"><option value="cap">Market-Cap Weighted</option><option value="equal">Equal Weighted</option><option value="price">Price Weighted</option></select></label>
+<label>A 公司上涨幅度（%）<input id="idxAReturn" type="number" value="20" step="1"></label>
+<button class="secondary" onclick="buildIndex()">计算权重与指数回报</button>
+<div id="indexOut" class="feedback"></div>
+<table class="table"><thead><tr><th>公司</th><th>股价</th><th>市值（亿）</th><th>权重</th><th>本期收益</th><th>指数贡献</th></tr></thead><tbody id="indexRows"></tbody></table>
+</div></section>
+
+<section id="tool3"><div class="tool-title"><h2>43｜互动三：Tracking Lab</h2><span class="badge">Index vs Fund NAV</span></div><div class="card">
+<label>指数年度收益序列（%，逗号分隔）<input id="trIndex" type="text" value="8,-10,15,5,12"></label>
+<div class="grid2"><label>Expense Ratio（%）<input id="trFee" type="number" value="0.3" step="0.05"></label><label>Tracking Noise（标准差%，教学模拟）<input id="trNoise" type="number" value="0.4" step="0.1"></label></div>
+<button class="secondary" onclick="trackingLab()">模拟基金跟踪</button>
+<div id="trackingOut" class="feedback">使用固定伪随机序列模拟偏离，便于每次结果可复现。</div>
+<canvas id="trackChart" width="800" height="320"></canvas>
+</div></section>
+
+<section id="tool4"><div class="tool-title"><h2>44｜互动四：Active vs Index Decision Lab</h2><span class="badge">不是选赢家，而是看你把什么决策交给谁</span></div><div class="card">
+<p><b>勾选你愿意亲自持续承担的判断：</b></p>
+<div class="grid2">
+<div>
+<div class="checkrow"><input class="decision" data-side="active" type="checkbox" id="d1"><label for="d1">判断基金经理是否真的有持续选股能力</label></div>
+<div class="checkrow"><input class="decision" data-side="active" type="checkbox" id="d2"><label for="d2">分析经理风格是否漂移、何时失效</label></div>
+<div class="checkrow"><input class="decision" data-side="active" type="checkbox" id="d3"><label for="d3">持续比较主动基金与适当基准</label></div>
+<div class="checkrow"><input class="decision" data-side="active" type="checkbox" id="d4"><label for="d4">接受更高管理费，以换取潜在主动价值</label></div>
+</div>
+<div>
+<div class="checkrow"><input class="decision" data-side="index" type="checkbox" id="d5"><label for="d5">理解指数覆盖的市场和资产类别</label></div>
+<div class="checkrow"><input class="decision" data-side="index" type="checkbox" id="d6"><label for="d6">研究指数编制、权重和集中度</label></div>
+<div class="checkrow"><input class="decision" data-side="index" type="checkbox" id="d7"><label for="d7">比较费用、Tracking Difference / Error</label></div>
+<div class="checkrow"><input class="decision" data-side="index" type="checkbox" id="d8"><label for="d8">接受市场本身会出现长期回撤，而不靠选股逃避</label></div>
+</div>
+</div>
+<button class="secondary" onclick="decisionLab()">生成 Decision Burden Map</button>
+<div id="decisionOut" class="feedback">这里不会判断“主动还是指数更好”，只显示两条路径分别要求你解决什么问题。</div>
+<button class="ghost" onclick="exportCard()">导出《我的基金与指数阅读卡 v1》</button>
+</div></section>
+
+<section id="summary"><div class="end"><h2>45｜如果这一章真正学会了，你应该多出这十句话</h2>
+<p><b>1. 基金是载体，底层风险来自基金真正持有的资产。</b></p>
+<p><b>2. 指数是一套规则和基准，不是一个可以直接购买的数字。</b></p>
+<p><b>3. 指数的 Universe、Selection、Weighting 和 Rebalancing 都会改变暴露。</b></p>
+<p><b>4. Index Fund 可以是 ETF，也可以是普通开放式基金。</b></p>
+<p><b>5. ETF 描述交易结构，不等于被动管理；2026 年中国市场已经有主动 ETF 投教体系。</b></p>
+<p><b>6. 基金不会完美等于指数，费用、交易和 Tracking Error 都会造成偏离。</b></p>
+<p><b>7. ETF 还要额外观察 Market Price、NAV、Premium / Discount 和 Bid–Ask Spread。</b></p>
+<p><b>8. 主动与指数不是信仰之争，而是不同的决策分工和成本结构。</b></p>
+<p><b>9. 多只基金不等于充分分散，必须检查底层持仓和风险重叠。</b></p>
+<p><b>10. 选基金的顺序应该是底层资产 → 暴露 → 策略 / 指数 → 载体 → 成本与跟踪 → 自己能否执行。</b></p>
+<p><b>下一章：</b>第 18 章会把前面所有东西真正组合起来：<b>为什么资产配置比寻找“神基”更重要？</b></p>
+</div></section>
+
+<section id="refs"><h2>46｜本章资料来源与使用边界</h2><ol class="refs">
+<li><b>Investor.gov — Mutual Funds / ETFs.</b> 用于基金汇集投资者资金、基金份额、NAV、ETF 在交易所按市场价格交易，以及 ETF 市价可能相对 NAV 出现 Premium / Discount 的基本结构。<br><a href="https://www.investor.gov/introduction-investing/investing-basics/investment-products/mutual-funds-and-exchange-traded-2">Investor.gov ETFs</a></li>
+<li><b>Investor.gov — Index Funds.</b> 用于 Index Fund 定义、完全复制 / Sampling、Tracking Error，以及费用、交易成本和跟踪偏离导致基金低于指数的框架。<br><a href="https://www.investor.gov/introduction-investing/investing-basics/investment-products/mutual-funds-and-exchange-traded-4">Investor.gov Index Funds</a></li>
+<li><b>Investor.gov — Smart Beta / Non-Traditional Index Funds.</b> 用于因子、定制指数和“规则化不等于简单”的边界。</li>
+<li><b>深圳证券交易所投资者教育 — 主动 ETF 系列问答，2026-08-17.</b> 深交所公开列出“什么是主动ETF”“主动ETF与指数ETF有何异同”“投资者如何参与主动ETF投资”等问答，因此本章把 ETF 明确作为交易型基金结构，而不把它和被动指数策略画等号。<br><a href="https://investor.szse.cn/knowledge/">深交所投资者教育</a></li>
+<li><b>S&P Dow Jones Indices — SPIVA U.S. Year-End 2025.</b> 2025 年美国大型股主动基金约 79% 低于 S&P 500；不同基金类别结果不同，本章只把它作为主动管理难度的经验材料。<br><a href="https://www.spglobal.com/spdji/en/spiva/article/spiva-us">SPIVA U.S.</a></li>
+<li><b>S&P Dow Jones Indices — U.S. Persistence Scorecard Year-End 2025.</b> 用于“曾经排名领先不等于持续领先”的基金业绩持续性讨论。<br><a href="https://www.spglobal.com/spdji/en/spiva/article/us-persistence-scorecard/">SPIVA Persistence</a></li>
+<li><b>课程边界说明.</b> 本章不推荐主动或被动基金，也不推荐任何具体指数、ETF 或基金代码。互动中的费用、收益、Tracking Noise 和基金属性均为教学模拟；真实基金应查阅最新招募说明书、基金合同、持仓、费用、指数编制方案与交易数据。</li>
+</ol></section>
+</article></main></div></div>
+
+<script>
+const done=new Set();let fundCard={};
+function mark(k){done.add(k);const p=Math.round(done.size/4*100);taskPct.textContent=p+"%";taskProg.style.width=p+"%";saveLocal()}
+function readProgress(){const d=document.documentElement,h=d.scrollHeight-d.clientHeight,p=h>0?Math.round((d.scrollTop||0)/h*100):0;readPct.textContent=p+"%";readProg.style.width=p+"%"}window.addEventListener("scroll",readProgress);
+function saveLocal(){try{localStorage.setItem("finance_ch17_fund_card",JSON.stringify(fundCard))}catch(e){}}
+function fmtPct(x){return (Number(x)>=0?"+":"")+Number(x).toFixed(2)+"%"}
+function parseSeries(s){return s.split(/[,，\s]+/).map(Number).filter(Number.isFinite).slice(0,30)}
+
+const funds={
+"未来科技成长ETF":{
+  underlying:"股票",exposure:"科技 / 成长主题",strategy:"规则化主题指数跟踪",vehicle:"ETF",
+  concentration:"高：假设前十大 62%",cost:"Expense Ratio 0.50%（教学）",
+  risks:["股票市场","科技行业集中","估值","指数规则","ETF价格 / NAV偏离"]
+},
+"全球宽基股票指数基金":{
+  underlying:"全球公开股票",exposure:"多国家、多行业宽基股票市场",strategy:"市值加权指数跟踪",vehicle:"普通开放式指数基金",
+  concentration:"相对分散，但大型公司权重仍较高",cost:"Expense Ratio 0.20%（教学）",
+  risks:["全球股票市场","国家 / 币种","指数集中度","跟踪偏离"]
+},
+"长期信用债基金":{
+  underlying:"中长期公司债 / 信用债",exposure:"信用 + 久期",strategy:"主动债券管理",vehicle:"普通开放式基金",
+  concentration:"发行人分散但受共同利率 / 信用周期影响",cost:"Expense Ratio 0.60%（教学）",
+  risks:["利率 / 久期","信用利差","违约","流动性"]
+},
+"高股息低波动指数ETF":{
+  underlying:"股票",exposure:"高股息 + 低波动因子",strategy:"Smart Beta / 因子指数",vehicle:"ETF",
+  concentration:"可能偏向特定行业和风格",cost:"Expense Ratio 0.35%（教学）",
+  risks:["股票市场","因子失效","行业偏离","指数规则"]
+},
+"主动精选股票ETF":{
+  underlying:"股票",exposure:"取决于基金经理当前持仓",strategy:"主动管理",vehicle:"ETF",
+  concentration:"取决于组合，可能高于宽基指数",cost:"Expense Ratio 0.80%（教学）",
+  risks:["股票市场","经理选择","风格漂移","集中度","ETF交易结构"]
+}
+};
+function fundXray(){
+ const d=funds[fxFund.value];
+ fundOut.innerHTML=`<div class="grid3"><div class="metric"><span>Underlying</span><b style="font-size:16px">${d.underlying}</b></div><div class="metric"><span>Exposure</span><b style="font-size:16px">${d.exposure}</b></div><div class="metric"><span>Strategy</span><b style="font-size:16px">${d.strategy}</b></div><div class="metric"><span>Vehicle</span><b style="font-size:16px">${d.vehicle}</b></div><div class="metric"><span>Concentration</span><b style="font-size:14px">${d.concentration}</b></div><div class="metric"><span>Cost</span><b style="font-size:14px">${d.cost}</b></div></div><hr><p><b>主要风险：</b>${d.risks.map(x=>`<span class="badge">${x}</span>`).join(" ")}</p><p>风险并不是由“基金”或“ETF”三个字决定，而是由底层资产、市场暴露、策略、集中度和实现结构共同决定。</p>`;
+ fundCard.fundXray={fund:fxFund.value,...d};mark("xray")
+}
+
+const companies=[
+ {n:"A",price:10,cap:1000},{n:"B",price:100,cap:800},{n:"C",price:30,cap:300},{n:"D",price:5,cap:200},{n:"E",price:80,cap:100},{n:"F",price:20,cap:50}
+];
+function buildIndex(){
+ const method=idxMethod.value,aRet=Number(idxAReturn.value||0);
+ let raws=companies.map(c=>method==="cap"?c.cap:method==="equal"?1:c.price);
+ const sum=raws.reduce((a,b)=>a+b,0),weights=raws.map(x=>x/sum);
+ const returns=companies.map((c,i)=>i===0?aRet:[5,-4,8,2,-6][i-1]);
+ let idxRet=0,indexRows.innerHTML="";
+ companies.forEach((c,i)=>{
+   const contr=weights[i]*returns[i];idxRet+=contr;
+   indexRows.innerHTML+=`<tr><td>${c.n}</td><td>${c.price}</td><td>${c.cap}</td><td>${(weights[i]*100).toFixed(2)}%</td><td>${fmtPct(returns[i])}</td><td>${fmtPct(contr)}</td></tr>`;
+ });
+ indexOut.innerHTML=`<div class="grid3"><div class="metric"><span>权重规则</span><b style="font-size:15px">${idxMethod.options[idxMethod.selectedIndex].text}</b></div><div class="metric"><span>A 公司权重</span><b>${(weights[0]*100).toFixed(2)}%</b></div><div class="metric"><span>指数本期回报</span><b>${fmtPct(idxRet)}</b></div></div><p>成分股完全没变，只改变权重规则，A 公司上涨 ${aRet}% 对指数的贡献就会不同。这就是“指数方法论本身也是暴露选择”。</p>`;
+ fundCard.indexBuild={method,aReturn:aRet,weights:companies.map((c,i)=>({company:c.n,weight:weights[i],return:returns[i]})),indexReturn:idxRet};mark("index")
+}
+
+function seededNoise(i){
+ const seq=[0.18,-0.42,0.31,-0.16,0.07,0.52,-0.29,0.12,-0.37,0.24];
+ return seq[i%seq.length];
+}
+function statsDiff(diffs){
+ const mean=diffs.reduce((a,b)=>a+b,0)/diffs.length;
+ const sd=Math.sqrt(diffs.reduce((a,b)=>a+(b-mean)**2,0)/diffs.length);
+ return {mean,sd};
+}
+function drawLines(canvas,arrays,colors){
+ const ctx=canvas.getContext("2d"),w=canvas.width,h=canvas.height,p=44;
+ ctx.clearRect(0,0,w,h);ctx.strokeStyle="#cdb78b";ctx.beginPath();ctx.moveTo(p,15);ctx.lineTo(p,h-p);ctx.lineTo(w-15,h-p);ctx.stroke();
+ const all=arrays.flat(),min=Math.min(...all),max=Math.max(...all),span=Math.max(max-min,1),N=Math.max(...arrays.map(a=>a.length))-1;
+ arrays.forEach((arr,k)=>{ctx.strokeStyle=colors[k];ctx.lineWidth=3;ctx.beginPath();arr.forEach((v,i)=>{const x=p+(w-p-20)*(i/Math.max(N,1)),y=(h-p-10)-(h-p-30)*(v-min)/span;i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.stroke()});
+ ctx.fillStyle="#766858";ctx.font="12px serif";ctx.fillText("Wealth Index",5,24);ctx.fillText("Time →",w-66,h-12)
+}
+function trackingLab(){
+ const idx=parseSeries(trIndex.value);if(!idx.length)return;
+ const fee=Number(trFee.value||0),noise=Number(trNoise.value||0);
+ let iv=100,fv=100,iPath=[100],fPath=[100],fundR=[],diffs=[];
+ idx.forEach((r,i)=>{
+   const fr=r-fee+seededNoise(i)*noise;
+   fundR.push(fr);diffs.push(fr-r);iv*=1+r/100;fv*=1+fr/100;iPath.push(iv);fPath.push(fv);
+ });
+ const st=statsDiff(diffs),idxTot=(iv/100-1)*100,fundTot=(fv/100-1)*100;
+ trackingOut.innerHTML=`<div class="grid4"><div class="metric"><span>指数累计回报</span><b>${fmtPct(idxTot)}</b></div><div class="metric"><span>基金累计回报</span><b>${fmtPct(fundTot)}</b></div><div class="metric"><span>平均 Tracking Difference</span><b>${fmtPct(st.mean)}</b></div><div class="metric"><span>模拟 Tracking Error</span><b>${st.sd.toFixed(2)}%</b></div></div><p>基金每年先承受 ${fee.toFixed(2)}% 的持续费用拖累，再叠加复制 / 交易等模拟噪声。Tracking Difference 描述平均偏离；Tracking Error 描述偏离有多不稳定。</p>`;
+ drawLines(trackChart,[iPath,fPath],["#455f4c","#8f342a"]);
+ fundCard.tracking={indexReturns:idx,fee,noise,fundReturns:fundR,indexTotal:idxTot,fundTotal:fundTot,trackingDifference:st.mean,trackingError:st.sd};mark("tracking")
+}
+
+function decisionLab(){
+ const checked=[...document.querySelectorAll(".decision:checked")];
+ const a=checked.filter(x=>x.dataset.side==="active").length, i=checked.filter(x=>x.dataset.side==="index").length;
+ let msg="";
+ if(a===0&&i===0)msg="你还没有勾选任何持续判断。真正投资之前，需要先承认：无论主动还是指数，都不存在“完全不需要做决策”的路径。";
+ else if(a>i)msg="你愿意承担较多管理人研究和主动判断责任。接下来最重要的是建立基准、费用、风格和持续性检查，而不是只看排名。";
+ else if(i>a)msg="你更愿意把个股选择交给规则化市场暴露，但仍需要认真选择指数范围、权重、集中度、费用和跟踪质量。";
+ else msg="你对两种路径的决策负担接受程度接近。后续更应该围绕具体目标、资产类别和可执行性判断，而不是把主动 / 指数变成阵营选择。";
+ decisionOut.innerHTML=`<div class="grid2"><div class="metric"><span>主动路径：你愿意持续承担</span><b>${a} / 4</b><div class="bar redbar"><i style="width:${a/4*100}%"></i></div></div><div class="metric"><span>指数路径：你愿意持续承担</span><b>${i} / 4</b><div class="bar"><i style="width:${i/4*100}%"></i></div></div></div><hr><p>${msg}</p><p class="small">这不是风险测评或基金推荐，只是把两种投资路径各自需要解决的问题显性化。</p>`;
+ fundCard.decisionBurden={activeChecked:a,indexChecked:i,message:msg};mark("decision")
+}
+
+function exportCard(){
+ const data={chapter:"17 基金、指数和ETF：为什么普通人不一定需要选股票？",exported_at:new Date().toISOString(),card:fundCard,principles:[
+ "基金是载体，先识别底层资产和经济暴露",
+ "指数是一套规则，检查Universe、Selection、Weighting和Rebalancing",
+ "ETF描述交易结构，不自动等于指数或低风险",
+ "比较指数基金同时看费用、Tracking Difference和Tracking Error",
+ "评价主动基金必须使用适当Benchmark并考虑风险、费用和业绩持续性",
+ "基金数量不等于分散程度，检查持仓和风险重叠",
+ "主动与指数是不同的决策分工，而不是信仰选择"
+ ]};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="我的基金与指数阅读卡_v1.json";a.click();URL.revokeObjectURL(u)
+}
+try{const saved=JSON.parse(localStorage.getItem("finance_ch17_fund_card")||"null");if(saved)fundCard=saved}catch(e){}
+fundXray();buildIndex();trackingLab();readProgress();
+</script>
+</body></html>

@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十二章｜通胀、费用和税为什么会悄悄吃掉收益？— 个人财富系统</title>
+<style>
+:root{
+  --bg:#efe1c3;--paper:#fbf3df;--ink:#332a22;--muted:#766858;--line:#d6c199;
+  --red:#8f342a;--redbg:#f1ddd5;--green:#455f4c;--greenbg:#dfe7dc;
+  --gold:#a77a2b;--goldbg:#f2e4bd;--blue:#445d70;--bluebg:#dce5e9;--deep:#2e2924;
+  --shadow:0 18px 50px rgba(74,52,28,.14)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);line-height:1.9;font-family:ui-serif,"Noto Serif SC","Source Han Serif SC","Songti SC",STSong,serif;background:radial-gradient(circle at 12% 7%,rgba(255,255,255,.45),transparent 25%),radial-gradient(circle at 88% 15%,rgba(100,74,40,.07),transparent 22%),repeating-linear-gradient(0deg,rgba(90,63,34,.022) 0 1px,transparent 1px 5px),var(--bg)}
+a{color:var(--green);text-underline-offset:3px}.wrap{max-width:1340px;margin:auto;padding:24px}.layout{display:grid;grid-template-columns:275px minmax(0,930px);gap:30px;justify-content:center;align-items:start}
+.sidebar{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto}.sidebox{background:rgba(251,243,223,.84);border:1px solid var(--line);border-radius:13px;padding:15px;margin-bottom:12px}.sidebox b{display:block}.sidebox small{color:var(--muted)}
+nav a{display:block;text-decoration:none;color:var(--muted);font-size:12px;padding:5px 7px;border-radius:7px}nav a:hover{background:#efdfbd;color:var(--ink)}
+.progress{height:7px;background:#e3d1aa;border-radius:999px;overflow:hidden;margin-top:8px}.progress i{display:block;height:100%;width:0;background:var(--red);transition:.2s}
+.paper{background:rgba(251,243,223,.97);border:1px solid rgba(170,143,96,.48);box-shadow:var(--shadow);border-radius:7px;overflow:hidden}
+.hero{padding:68px 74px 50px;border-bottom:1px solid var(--line);position:relative}.hero:before{content:"";position:absolute;left:28px;top:30px;bottom:30px;width:1px;background:rgba(143,52,42,.28)}
+.kicker{font-size:12px;letter-spacing:.18em;color:var(--red);font-weight:800}h1{font-size:49px;line-height:1.2;margin:13px 0 17px;letter-spacing:-.035em}.subtitle{font-size:20px;color:var(--muted);max-width:790px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 9px;background:#f7edd4;color:var(--muted)}
+.content{padding:54px 74px 76px}section{margin-bottom:62px}h2{font-size:30px;line-height:1.35;margin:0 0 18px}h3{font-size:21px;margin:30px 0 10px}p{margin:9px 0 16px}.lead{font-size:18px}
+.callout{padding:19px 21px;border-left:5px solid;margin:23px 0;border-radius:4px}.red{background:var(--redbg);border-color:var(--red)}.green{background:var(--greenbg);border-color:var(--green)}.gold{background:var(--goldbg);border-color:var(--gold)}.blue{background:var(--bluebg);border-color:var(--blue)}
+.label{font-size:11px;font-weight:800;letter-spacing:.14em;margin-bottom:4px}.card{padding:20px;border:1px solid var(--line);border-radius:10px;background:#fff9ea;margin:15px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.table th{font-size:11px;color:var(--muted)}
+.formula{background:var(--deep);color:#f8edd6;font:16px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:17px 19px;border-radius:8px;margin:18px 0}
+.case{padding:22px;border:1px solid var(--line);border-radius:10px;background:#faf0db;margin:14px 0}.casehead{display:flex;justify-content:space-between;gap:12px;align-items:baseline}.casehead b{font-size:18px}.casehead span{font-size:12px;color:var(--muted)}
+.quote{padding:23px 27px;background:#eee0c4;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:19px;margin:24px 0}
+.small{font-size:12px;color:var(--muted)}.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 7px;font-size:11px;background:#f6ead0;margin:2px}
+.metric{padding:15px;background:#f8edd4;border:1px solid var(--line);border-radius:9px}.metric b{display:block;font-size:20px;color:var(--green)}.metric span{font-size:12px;color:var(--muted)}
+input[type=text],input[type=number],select{width:100%;border:1px solid #c7ad80;background:#fffaf0;border-radius:7px;padding:10px 11px;color:var(--ink);font:inherit}
+button{border:0;border-radius:8px;padding:10px 15px;background:var(--red);color:#fff;font-weight:800;cursor:pointer}button.secondary{background:var(--green)}button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.feedback{margin-top:14px;padding:15px 17px;border:1px dashed #b69d70;border-radius:8px;background:#f5e9cf}.tool-title{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.waterfall{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap}.step{flex:1 1 145px;border:1px solid var(--line);border-radius:9px;padding:14px;background:#fff9ea}.step b{display:block;font-size:20px}.arrow{align-self:center;font-size:22px;color:var(--red)}
+.basket-row{display:grid;grid-template-columns:1.4fr 1fr 1fr 44px;gap:8px;margin:8px 0}.remove{padding:8px;background:#7f5b4c}
+canvas{width:100%;height:320px;border:1px solid var(--line);border-radius:9px;background:#fffaf0;margin-top:14px}
+.end{background:var(--deep);color:#f5ebd7;padding:28px;border-radius:9px}.end h2{color:#fff5df}.refs{font-size:13px;color:var(--muted)}.refs li{margin-bottom:10px}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{display:none}.hero,.content{padding-left:36px;padding-right:36px}}
+@media(max-width:780px){.wrap{padding:0}.paper{border-radius:0}.hero,.content{padding:30px 20px}h1{font-size:34px}.grid2,.grid3,.grid4,.basket-row{grid-template-columns:1fr}.arrow{transform:rotate(90deg);text-align:center}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="layout">
+<aside class="sidebar">
+<div class="sidebox"><b>个人财富系统</b><small>第十二章 · 通胀、费用与税</small></div>
+<div class="sidebox"><small>阅读进度 <span id="readPct">0%</span></small><div class="progress"><i id="readProg"></i></div></div>
+<div class="sidebox"><small>互动完成度 <span id="taskPct">0%</span></small><div class="progress"><i id="taskProg"></i></div></div>
+<div class="sidebox"><nav>
+<a href="#goal">00 账户涨8%真的变富8%吗</a><a href="#layers">01 三层收益率</a><a href="#inflation">02 Inflation</a><a href="#cpi">03 CPI 测什么</a><a href="#personal">04 个人通胀</a><a href="#power">05 购买力</a><a href="#nominal">06 名义与实际财富</a><a href="#real">07 Real Return</a><a href="#approx">08 为什么相减只是近似</a><a href="#compoundInflation">09 通胀也会复利</a><a href="#cash">10 现金的真实风险</a><a href="#beat">11 跑赢通胀不是唯一目标</a><a href="#fees">12 费用</a><a href="#onepercent">13 1%为什么很大</a><a href="#feeTypes">14 一次性与持续费用</a><a href="#expense">15 Expense Ratio</a><a href="#zero">16 “零费用”</a><a href="#compare">17 如何比较费用</a><a href="#tax">18 税</a><a href="#taxsource">19 税对哪类收益发生</a><a href="#chinaTax">20 中国税务不能一刀切</a><a href="#deposit">21 存款利息当前规则</a><a href="#structures">22 Taxable / Deferred / Exempt</a><a href="#deferral">23 税延为什么有价值</a><a href="#realized">24 已实现与未实现</a><a href="#turnover">25 换手率</a><a href="#grossnet">26 Gross vs Net</a><a href="#realafter">27 Real After-Tax Return</a><a href="#waterfall">28 收益瀑布</a><a href="#math">29 为什么不能直接相减</a><a href="#cases">30 四个案例</a><a href="#mistakes">31 十个误区</a><a href="#tool1">32 购买力实验室</a><a href="#tool2">33 长期费用拖累</a><a href="#tool3">34 Return Waterfall</a><a href="#tool4">35 个人通胀篮子</a><a href="#goalInflation">36 Goal Inflation</a><a href="#summary">37 总结</a><a href="#refs">38 资料与注释</a>
+</nav></div></aside>
+
+<main class="paper">
+<header class="hero"><div class="kicker">CHAPTER 12 · REAL RETURN</div><h1>通胀、费用和税为什么会悄悄吃掉收益？</h1><div class="subtitle">从名义收益走向真实财富：账户里赚了多少，不等于购买力增加多少，也不等于最后真正留下多少。</div><div class="meta"><span class="pill">预计阅读 75–90 分钟</span><span class="pill">真实收益核心章</span><span class="pill">4 个互动实验</span><span class="pill">最终产物：真实收益地图 v1</span></div></header>
+
+<article class="content">
+<section id="goal"><h2>00｜账户上涨 8%，你真的变富 8% 了吗？</h2><p class="lead">不一定。因为“账户里的数字增长”只是名义层面的第一步。真正的财富结果还要经过费用、税和价格水平变化。</p><div class="formula">账户毛收益 ≠ 费用后收益 ≠ 税后收益 ≠ 真实购买力增长</div><div class="callout red"><div class="label">以后看到任何收益率，先问三件事</div><b>Gross or Net? Nominal or Real? Pre-tax or After-tax?</b></div></section>
+
+<section id="layers"><h2>01｜三层收益率：同一个“8%”可能在说完全不同的东西</h2><div class="grid3"><div class="card"><b>Gross Nominal Return</b><p>资产本身的名义毛收益。</p></div><div class="card"><b>Net / After-Tax Return</b><p>扣除相关费用与适用税负后的结果。</p></div><div class="card"><b>Real Return</b><p>进一步考虑通胀后的购买力增长。</p></div></div><p>如果不先统一口径，两个看起来“收益率一样”的产品或策略根本无法公平比较。</p></section>
+
+<section id="inflation"><h2>02｜Inflation：不是“某一样东西涨价”</h2><p>通胀描述的是总体价格水平在一段时期内的变化。国家统计局对 CPI 的解释强调，它综合反映居民消费商品和服务价格水平的总体变动。</p><p>所以某种蔬菜涨价 30%，或者某款手机涨价，并不能单独证明“整体通胀就是 30%”。</p></section>
+
+<section id="cpi"><h2>03｜CPI 到底在测什么？</h2><p>CPI 需要一个具有代表性的消费篮子，并根据居民实际消费结构赋予不同类别不同权重。中国 CPI 当前覆盖食品烟酒、衣着、居住、生活用品及服务、交通通信、教育文化娱乐、医疗保健、其他用品及服务八大类。</p><div class="callout blue"><div class="label">为什么要有权重？</div>食品价格上涨 10% 和汽车价格不变，不能直接平均成 5%。居民花在不同类别上的钱并不一样。</div></section>
+
+<section id="personal"><h2>04｜CPI 不等于“我的个人通胀率”</h2><p>官方 CPI 描述的是代表性居民消费篮子的总体变化，但每个人的支出结构不同。大学生、育儿家庭、退休老人，对房租、教育、医疗、交通和食品的权重可能完全不同。</p><div class="formula">个人通胀估计 ≈ Σ（个人支出权重 × 对应类别价格变化）</div><p>这个“个人通胀率”只是课程规划工具，不替代官方 CPI；它帮助你理解自己的生活成本到底暴露在哪些价格变化上。</p></section>
+
+<section id="power"><h2>05｜真正被通胀改变的是 Purchasing Power</h2><div class="case"><div class="casehead"><b>今天一顿饭 20 元</b><span>100 元可以买 5 顿</span></div><p>如果未来同样一顿饭变成 25 元，同样 100 元只能买 4 顿。账户里的 100 元没有减少，但实际能够购买的东西减少了。</p></div><div class="quote"><b>名义金额稳定，不等于真实价值稳定。</b></div></section>
+
+<section id="nominal"><h2>06｜名义金额上涨，为什么仍然可能“变穷”？</h2><p>如果资产收益只有 2%，但生活成本总体上涨 3%，账户数字在增加，购买力却可能下降。这就是“名义正收益、实际负收益”。</p></section>
+
+<section id="real"><h2>07｜Real Return 的精确公式</h2><div class="formula">1 + Real Return = (1 + Nominal Return) ÷ (1 + Inflation)</div><p>例如名义收益 8%、通胀 3%：</p><div class="formula">1.08 ÷ 1.03 − 1 ≈ 4.85%</div><p>真实购买力增长约 4.85%，不是正好 5%。</p></section>
+
+<section id="approx"><h2>08｜为什么“收益率 − 通胀”只是近似？</h2><p>因为资产上涨和价格上涨是两个比例变化，严格关系是乘除法，不是简单加减。</p><div class="case"><div class="casehead"><b>100 元资产涨到 108 元</b><span>同时价格指数从 100 到 103</span></div><p>真实购买力比例是 108 ÷ 103 ≈ 1.0485，所以实际增长约 4.85%。</p></div><p>当收益率与通胀都较小时，直接相减通常是不错的快速估算；但知道精确关系，才能避免在高通胀或高收益环境里产生明显误差。</p></section>
+
+<section id="compoundInflation"><h2>09｜通胀也会复利</h2><p>如果价格水平每年上涨 3%，十年后不是简单增加 30%，而是：</p><div class="formula">1.03^10 ≈ 1.344<br>1.03^30 ≈ 2.427</div><p>换句话说，今天 100 元能购买的同一组商品，如果长期每年平均上涨 3%，三十年后可能需要约 243 元。</p></section>
+
+<section id="cash"><h2>10｜现金最大的错觉：没有波动，所以没有风险</h2><p>现金在名义层面可能非常稳定，但只要收益持续低于生活成本增长，购买力就会慢慢下降。</p><div class="callout gold"><div class="label">为第十三章提前埋一个重要概念</div><b>风险不等于“价格上下波动”。购买力下降也是一种风险。</b></div></section>
+
+<section id="beat"><h2>11｜“跑赢通胀”不是所有资金的唯一目标</h2><p>三个月后必须交学费的钱，第一任务可能是本金稳定和流动性，而不是承担大幅市场波动去追求跑赢 CPI。</p><p>真正应该问的是：<b>这笔钱承担什么任务？它需要在什么风险约束下维持购买力？</b></p></section>
+
+<section id="fees"><h2>12｜第二个侵蚀者：Fees</h2><p>费用危险的地方在于数字很小：0.25%、0.5%、1%。但它从能够继续复利的本金中持续拿走一部分。</p><div class="formula">长期费用损失 = 当期被扣费用 + 这些费用未来原本能够产生的复合收益</div></section>
+
+<section id="onepercent"><h2>13｜为什么 1% 看起来很小，长期却很大？</h2><p>Investor.gov 的长期费用示例说明：同样的初始投资、相同毛回报，只因为持续费用率不同，20 年后的终值就可能拉开很大差距。</p><p>真正应该看的不是“今年只扣 1%”，而是：</p><div class="quote"><b>如果这 1% 每年都不再参与后续复利，几十年后少掉的总财富是多少？</b></div></section>
+
+<section id="feeTypes"><h2>14｜一次性费用和持续费用不是同一种东西</h2><div class="grid2"><div class="card"><b>Transaction Costs</b><p>买卖时发生，例如佣金、部分申购赎回费用、买卖价差。</p></div><div class="card"><b>Ongoing Costs</b><p>持有期间持续发生，例如管理费、托管费、基金运营费用等。</p></div></div><p>一次性费用影响交易时点，持续费用则会反复削弱未来可复利本金。</p></section>
+
+<section id="expense"><h2>15｜Expense Ratio：为什么你没看到扣款，成本仍然发生了？</h2><p>基金的管理、运营、行政等成本通常从基金资产中持续扣除，因此不会总以“银行卡扣 20 元”的方式出现，但会体现在基金净值和投资者最终回报里。</p><p>这也是为什么第十章的产品尽调不能只问“有没有申购费”，还要看整个持有成本结构。</p></section>
+
+<section id="zero"><h2>16｜“0 费用”首先要问：哪一种费用是 0？</h2><p>产品可以没有申购费，但仍可能有管理费、销售服务费、买卖价差、交易成本或赎回成本。</p><div class="callout red"><div class="label">看到“零费用”不要停止阅读</div><b>0 Fee → Which Fee?</b></div></section>
+
+<section id="compare"><h2>17｜费用真正应该怎样比较？</h2><p>先确认两个产品是不是在完成相似任务、承担相似风险、提供相似服务，再比较总成本。否则拿一个复杂主动服务产品和一个简单指数工具，只看费率数字高低，本身也可能失去语境。</p><div class="callout green"><div class="label">原则</div><b>Low Cost 很重要，但 Lowest Cost 并不会脱离产品任务自动成为 Best Fit。</b></div></section>
+
+<section id="tax"><h2>18｜第三个侵蚀者：Tax</h2><p>税收会让部分已经形成的收益离开投资系统，因此同样具有“当期扣除 + 未来复利机会减少”的双重影响。</p><p>但税务部分不能简单套一个统一税率，因为不同国家、资产、交易市场、账户和政策可能差异很大。</p></section>
+
+<section id="taxsource"><h2>19｜税到底可能作用在哪一层收益？</h2><div class="grid3"><div class="card"><b>Interest</b><p>利息类收入。</p></div><div class="card"><b>Dividend / Distribution</b><p>股息、红利及相关分配。</p></div><div class="card"><b>Capital Gain</b><p>资产转让或价格上涨后的实现收益。</p></div></div><p>真正的第一步不是背税率，而是判断：<b>这笔收益在法律和税务上属于什么性质？</b></p></section>
+
+<section id="chinaTax"><h2>20｜中国投资税收为什么不能“一刀切”理解？</h2><p>现行个人所得税法确实把利息、股息、红利所得和财产转让所得等列入应税所得类型，并规定了相应比例税率框架；但具体金融资产可能存在免税、暂免、优惠、代扣或其他特别规则。</p><div class="callout blue"><div class="label">本章只教 Tax Awareness，不做“投资税率大全”</div>每次都应该重新核验：<b>资产类型、收益性质、当前政策、纳税时点、是否存在优惠或暂免。</b></div></section>
+
+<section id="deposit"><h2>21｜一个很好的中国现实例子：储蓄存款利息</h2><p>截至 2026 年公开税务办事口径仍然明确：自 2008 年 10 月 9 日起，对储蓄存款利息所得暂免征收个人所得税。</p><p>这说明不能看到个税法中的“利息所得”税率，就直接推导“银行存款利息现在一定按统一比例扣税”。</p></section>
+
+<section id="structures"><h2>22｜Taxable / Tax-Deferred / Tax-Exempt 是三种不同结构</h2><div class="grid3"><div class="card"><b>Taxable</b><p>按适用规则在当前或相应时点产生税负。</p></div><div class="card"><b>Tax-Deferred</b><p>税负延后到未来某个时点。</p></div><div class="card"><b>Tax-Exempt</b><p>符合规则的收益免税。</p></div></div><p>这里学习的是结构，不照搬美国 401(k)、IRA 等具体制度。</p></section>
+
+<section id="deferral"><h2>23｜为什么“晚交税”本身也有时间价值？</h2><p>税延不等于免税。它的价值来自：原本现在就要离开投资系统的钱，可以继续保留更长时间并参与复利。</p><div class="formula">Tax Deferral = More Capital Retained for Longer → More Compounding Time</div><p>这正是第十一章 Time Value of Money 在税务问题上的直接应用。</p></section>
+
+<section id="realized"><h2>24｜Realized vs Unrealized：账面赚了不等于已经“实现”</h2><p>资产从 100 涨到 120、但仍然持有，这 20 通常可以称为未实现收益；出售后才形成已实现结果。税收是否以及何时发生，很多情况下和“有没有实现”有关，但具体规则仍然依赖资产和当地制度。</p></section>
+
+<section id="turnover"><h2>25｜Turnover：频繁买卖为什么可能让毛收益很好看、净结果变差？</h2><p>高换手可能增加佣金、买卖价差、其他交易摩擦，也可能更频繁触发某些税务事件。</p><div class="quote"><b>策略真正值得比较的是投资者最终保留下来的结果，而不只是毛收益曲线。</b></div></section>
+
+<section id="grossnet"><h2>26｜Gross Return 和 Net Return</h2><div class="grid2"><div class="card"><b>Gross Return</b><p>尚未扣除部分管理、运营或其他相关成本之前的收益。</p></div><div class="card"><b>Net Return</b><p>扣除适用成本后更接近投资者实际获得的收益。</p></div></div><p>看基金、资管或任何投资策略的历史业绩时，必须先确认展示口径。</p></section>
+
+<section id="realafter"><h2>27｜最终真正应该关心：Real After-Tax Return</h2><p>假设毛收益 8%，费用后约 7%，再考虑适用税务处理，最后才用通胀把名义结果转换成购买力结果。</p><div class="formula">Gross Nominal → Net of Fees → After Tax → Adjust for Inflation → Real After-Tax Return</div><p>这个数字更接近“我的购买力到底增长了多少”。</p></section>
+
+<section id="waterfall"><h2>28｜Return Waterfall：收益到底是怎样一层层变少的？</h2><div class="waterfall"><div class="step"><span class="small">起点</span><b>Gross Nominal</b><p>资产毛收益</p></div><div class="arrow">→</div><div class="step"><span class="small">费用</span><b>Net Return</b><p>投资成本之后</p></div><div class="arrow">→</div><div class="step"><span class="small">税</span><b>After-Tax</b><p>适用税务处理后</p></div><div class="arrow">→</div><div class="step"><span class="small">通胀</span><b>Real Return</b><p>转换为购买力</p></div></div></section>
+
+<section id="math"><h2>29｜为什么不能写成“8% − 1% − 20%税 − 3%通胀”？</h2><p>因为税通常不是从全部本金直接扣一个比例，费用和税的发生方式、时点也可能不同，通胀又是对最终购买力的比例调整。</p><p>正确思路是：<b>把每一层作用在正确的基数上，再逐层计算。</b></p></section>
+
+<section id="cases"><h2>30｜四个现实案例</h2>
+<div class="case"><div class="casehead"><b>A｜“存款利率 2%，财富每年增长 2%”</b><span>名义正 ≠ 实际正</span></div><p>如果生活成本上涨 3%，账户数字增加，但购买力可能下降。</p></div>
+<div class="case"><div class="casehead"><b>B｜两个类似基金，费用差 1%</b><span>Fee Drag</span></div><p>毛收益相同时，费用差异会逐年削弱可复利本金，长期终值差距越来越大。</p></div>
+<div class="case"><div class="casehead"><b>C｜“利息所得税率是 20%，所以存款利息一定扣 20%”</b><span>一般规则 ≠ 当前具体产品政策</span></div><p>中国储蓄存款利息目前仍有暂免个人所得税政策。</p></div>
+<div class="case"><div class="casehead"><b>D｜高换手策略毛收益略高</b><span>Gross Performance ≠ Investor Outcome</span></div><p>交易摩擦和适用税务成本可能使投资者最终留下的财富更少。</p></div>
+</section>
+
+<section id="mistakes"><h2>31｜十个最容易学歪的地方</h2>
+<div class="callout red"><div class="label">误区 1</div><b>账户余额没下降，就没有损失。</b></div>
+<div class="callout red"><div class="label">误区 2</div><b>CPI 就是我的个人通胀率。</b></div>
+<div class="callout red"><div class="label">误区 3</div><b>收益率减通胀就是精确实际收益。</b></div>
+<div class="callout red"><div class="label">误区 4</div><b>现金没有波动，所以完全没有风险。</b></div>
+<div class="callout red"><div class="label">误区 5</div><b>任何资金都应该为了“跑赢通胀”承担市场风险。</b></div>
+<div class="callout red"><div class="label">误区 6</div><b>1% 的费用太小，可以忽略。</b></div>
+<div class="callout red"><div class="label">误区 7</div><b>零申购费就是零成本。</b></div>
+<div class="callout red"><div class="label">误区 8</div><b>中国所有投资收益都统一按 20% 纳税。</b></div>
+<div class="callout red"><div class="label">误区 9</div><b>税延等于免税。</b></div>
+<div class="callout red"><div class="label">误区 10</div><b>比较产品只看历史收益率。</b></div>
+</section>
+
+<section id="tool1"><div class="tool-title"><h2>32｜互动一：Purchasing Power Lab</h2><span class="badge">名义金额 ↔ 今天购买力</span></div><div class="card">
+<div class="grid2"><label>今天的金额（元）<input id="pNow" type="number" value="100000"></label><label>年通胀率（%）<input id="pInf" type="number" value="3" step="0.1"></label><label>时间（年）<input id="pYears" type="number" value="20"></label></div>
+<button class="secondary" onclick="powerLab()">计算未来购买力</button>
+<div id="powerOut" class="feedback">会同时显示：未来维持今天购买力需要多少钱，以及未来同样 10 万相当于今天多少购买力。</div>
+<canvas id="powerChart" width="800" height="320"></canvas>
+</div></section>
+
+<section id="tool2"><div class="tool-title"><h2>33｜互动二：1% 的长期费用到底值多少钱？</h2><span class="badge">Fee Drag</span></div><div class="card">
+<div class="grid2"><label>初始本金（元）<input id="fPV" type="number" value="100000"></label><label>每月投入（元）<input id="fPMT" type="number" value="1000"></label><label>毛收益率（%）<input id="fGross" type="number" value="7"></label><label>期限（年）<input id="fYears" type="number" value="20"></label></div>
+<button class="secondary" onclick="feeLab()">比较 0 / 0.25 / 0.5 / 1 / 1.5% 持续费用</button>
+<div id="feeOut" class="feedback">重点看最终财富差额，而不是只看“今年扣了多少”。</div></div></section>
+
+<section id="tool3"><div class="tool-title"><h2>34｜互动三：Return Waterfall</h2><span class="badge">Gross → Net → After Tax → Real</span></div><div class="card">
+<div class="grid2">
+<label>毛收益率（%）<input id="wGross" type="number" value="8" step="0.1"></label>
+<label>持续费用率（%）<input id="wFee" type="number" value="0.8" step="0.1"></label>
+<label>数学模拟税率（%，作用于正收益部分）<input id="wTax" type="number" value="0" step="0.1"></label>
+<label>通胀率（%）<input id="wInf" type="number" value="3" step="0.1"></label>
+</div>
+<button class="secondary" onclick="waterfallLab()">拆解真实收益</button>
+<div id="waterOut" class="feedback">税率字段只用于数学情景模拟，不代表任何具体金融产品当前适用税率。</div></div></section>
+
+<section id="tool4"><div class="tool-title"><h2>35｜互动四：我的 Personal Inflation Basket</h2><span class="badge">个人规划工具，不替代 CPI</span></div><div class="card">
+<div id="basketRows"></div>
+<button class="ghost" onclick="addBasket()">＋ 添加类别</button>
+<button class="secondary" onclick="calcBasket()">计算个人通胀估计</button>
+<div id="basketOut" class="feedback">各类别权重应尽量加总到 100%。</div>
+<button class="ghost" onclick="exportMap()">导出《我的真实收益地图 v1》</button>
+</div></section>
+
+<section id="goalInflation"><h2>36｜Goal Inflation：你的目标金额也会“变老”</h2><p>第三章如果写“五年后教育资金需要 300,000 元”，必须继续问：这是今天价格还是未来价格？</p><div class="case"><div class="casehead"><b>今天 300,000 元的目标成本</b><span>假设专项成本每年上涨 4%</span></div><p>五年后的名义目标金额约为：</p><div class="formula">300,000 × 1.04^5 ≈ 365,000</div></div><p>教育、医疗、住房等具体目标的价格变化可能与总体 CPI 不同。所以真正的目标倒推流程应该是：</p><div class="formula">今天目标价格 → 目标专属通胀 → 未来名义目标 → 费用后/税后收益假设 → 每月需要投入</div></section>
+
+<section id="summary"><div class="end"><h2>37｜如果这一章真正学会了，你应该多出这十句话</h2><p><b>1. 名义收益不等于真实购买力增长。</b></p><p><b>2. CPI 是总体价格指标，不等于每个人的个人生活成本。</b></p><p><b>3. 实际收益的精确关系是比例关系，不只是简单相减。</b></p><p><b>4. 通胀本身也具有复合效应。</b></p><p><b>5. 没有价格波动，不代表没有购买力风险。</b></p><p><b>6. 持续费用会同时减少当前资产和未来复利本金。</b></p><p><b>7. “零费用”必须继续问到底是哪一种费用为零。</b></p><p><b>8. 税收应按具体资产、收益性质和当前规则判断，不能套统一税率。</b></p><p><b>9. Gross Return 不等于投资者最终真正留下的结果。</b></p><p><b>10. 最终真正关心的是：费用后、税后、通胀后的真实收益。</b></p><p><b>下一章：</b>现在我们终于知道真正需要的不是最高名义收益，而是足够的真实收益。第 13 章将继续追问：<b>为了获得这些收益，我到底需要承担什么风险？</b></p></div></section>
+
+<section id="refs"><h2>38｜本章资料来源与边界</h2><ol class="refs">
+<li><b>国家统计局 — CPI 相关统计知识。</b> 用于 CPI 定义、居民消费类别、权重和购买力概念。<br><a href="https://www.stats.gov.cn/zs/tjws/tjzb/202301/t20230101_1903757.html">国家统计局</a></li>
+<li><b>Investor.gov / SEC — Fees and Expenses.</b> 用于交易费用、持续费用、基金费用率以及小额年度费用长期侵蚀终值的消费者教育。<br><a href="https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/updated">Investor.gov</a></li>
+<li><b>Investor.gov — Mutual Fund and ETF Fees and Expenses.</b> 用于基金运营费用从基金资产中扣除、低费用或零 expense ratio 不代表所有成本都为零的解释。<br><a href="https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/mutual-fund-and-etf-fees-and-expenses-investor-bulletin">Investor.gov</a></li>
+<li><b>中华人民共和国个人所得税法及国家税务总局公开办税口径。</b> 用于利息、股息、红利、财产转让等所得类别以及“具体资产仍需结合当前优惠和特别规则判断”的税务边界。</li>
+<li><b>储蓄存款利息所得政策。</b> 截至 2026 年公开税务办事页面仍注明：2008 年 10 月 9 日以后孳生的储蓄存款利息暂免征收个人所得税。具体政策后续如有变化，应以届时官方规则为准。</li>
+<li><b>课程边界说明.</b> “个人通胀率”是个人规划用的简化加权估计，不是官方统计指标；Return Waterfall 中的自定义税率仅作数学情景模拟，不构成税务建议。具体投资税务处理应按资产、交易、身份及当时有效法规核验。</li>
+</ol></section>
+
+</article></main></div></div>
+
+<script>
+const done=new Set(); let realMap={};
+function mark(k){done.add(k);const p=Math.round(done.size/4*100);taskPct.textContent=p+"%";taskProg.style.width=p+"%"}
+function readProgress(){const d=document.documentElement,h=d.scrollHeight-d.clientHeight,p=h>0?Math.round((d.scrollTop||0)/h*100):0;readPct.textContent=p+"%";readProg.style.width=p+"%"}window.addEventListener("scroll",readProgress);
+function fmt(x){return new Intl.NumberFormat("zh-CN",{style:"currency",currency:"CNY",maximumFractionDigits:0}).format(Number(x)||0)}
+function fvMonthly(pv,pmt,annual,years){const r=annual/12/100,n=Math.round(years*12);if(r===0)return pv+pmt*n;return pv*Math.pow(1+r,n)+pmt*((Math.pow(1+r,n)-1)/r)}
+function drawPower(canvas,series1,series2){const ctx=canvas.getContext("2d"),w=canvas.width,h=canvas.height,p=42;ctx.clearRect(0,0,w,h);ctx.strokeStyle="#cdb78b";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(p,15);ctx.lineTo(p,h-p);ctx.lineTo(w-15,h-p);ctx.stroke();const all=[...series1,...series2].map(x=>x.v),max=Math.max(...all,1),N=Math.max(series1.length,series2.length)-1;function plot(arr,color){ctx.strokeStyle=color;ctx.lineWidth=3;ctx.beginPath();arr.forEach((d,i)=>{const x=p+(w-p-20)*(i/Math.max(N,1)),y=(h-p)-((h-p-25)*(d.v/max));if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.stroke()}plot(series1,"#8f342a");plot(series2,"#455f4c");ctx.fillStyle="#766858";ctx.font="12px serif";ctx.fillText("金额",8,24);ctx.fillText("时间 →",w-70,h-12)}
+function powerLab(){const now=Number(pNow.value||0),inf=Number(pInf.value||0)/100,years=Math.max(0,Number(pYears.value||0));const futureNeed=now*Math.pow(1+inf,years),futureSameReal=now/Math.pow(1+inf,years);powerOut.innerHTML=`<div class="grid3"><div class="metric"><span>今天购买力</span><b>${fmt(now)}</b></div><div class="metric"><span>${years} 年后维持同等购买力</span><b>${fmt(futureNeed)}</b></div><div class="metric"><span>${years} 年后仍只有同样名义金额，相当于今天</span><b>${fmt(futureSameReal)}</b></div></div><hr><p>如果收入和资产都不随价格水平同步增长，长期通胀会持续压缩实际购买能力。</p>`;let a=[],b=[];for(let y=0;y<=years;y++){a.push({v:now*Math.pow(1+inf,y)});b.push({v:now/Math.pow(1+inf,y)})}drawPower(powerChart,a,b);realMap.purchasingPower={now,inflation:inf*100,years,futureNeed,futureSameReal};mark("power")}
+function feeLab(){const pv=Number(fPV.value||0),pmt=Number(fPMT.value||0),gross=Number(fGross.value||0),years=Math.max(1,Number(fYears.value||1)),fees=[0,.25,.5,1,1.5];const baseline=fvMonthly(pv,pmt,gross,years);let rows="";fees.forEach(f=>{const final=fvMonthly(pv,pmt,gross-f,years);rows+=`<tr><td>${f.toFixed(2)}%</td><td>${fmt(final)}</td><td>${fmt(baseline-final)}</td></tr>`});feeOut.innerHTML=`<table class="table"><thead><tr><th>持续年费</th><th>期末金额</th><th>相对 0% 费用少掉的财富</th></tr></thead><tbody>${rows}</tbody></table><p class="small">这里把费用简化为直接降低年化净增长率，用于展示长期费用拖累，不代表所有产品费用都以同样方式计提。</p>`;realMap.fees={pv,pmt,gross,years,fees};mark("fees")}
+function waterfallLab(){const gross=Number(wGross.value||0)/100,fee=Number(wFee.value||0)/100,tax=Number(wTax.value||0)/100,inf=Number(wInf.value||0)/100;const net=Math.max(-.999,gross-fee);const afterTax=net>0?net*(1-tax):net;const real=(1+afterTax)/(1+inf)-1;waterOut.innerHTML=`<div class="waterfall"><div class="step"><span class="small">Gross Nominal</span><b>${(gross*100).toFixed(2)}%</b></div><div class="arrow">→</div><div class="step"><span class="small">After Fee</span><b>${(net*100).toFixed(2)}%</b></div><div class="arrow">→</div><div class="step"><span class="small">After Tax</span><b>${(afterTax*100).toFixed(2)}%</b></div><div class="arrow">→</div><div class="step"><span class="small">Real After-Tax</span><b>${(real*100).toFixed(2)}%</b></div></div><p class="small">税率只用于教学模拟，并假设其作用于正的费用后收益；现实税务规则可能按资产和实现时点完全不同。</p>`;realMap.waterfall={gross:gross*100,fee:fee*100,tax:tax*100,inflation:inf*100,net:net*100,afterTax:afterTax*100,real:real*100};mark("waterfall")}
+function addBasket(name="住房",weight=35,change=3){const r=document.createElement("div");r.className="basket-row";r.innerHTML=`<input class="bName" type="text" value="${name}"><input class="bWeight" type="number" value="${weight}" step="0.1"><input class="bChange" type="number" value="${change}" step="0.1"><button class="remove" onclick="this.parentElement.remove()">×</button>`;basketRows.appendChild(r)}
+function calcBasket(){const rows=[...document.querySelectorAll(".basket-row")].map(r=>({name:r.querySelector(".bName").value,weight:Number(r.querySelector(".bWeight").value||0),change:Number(r.querySelector(".bChange").value||0)}));const sum=rows.reduce((a,b)=>a+b.weight,0),personal=rows.reduce((a,b)=>a+b.weight*b.change/100,0);basketOut.innerHTML=`<div class="grid2"><div class="metric"><span>权重总计</span><b>${sum.toFixed(1)}%</b></div><div class="metric"><span>个人通胀估计</span><b>${personal.toFixed(2)}%</b></div></div><hr>${Math.abs(sum-100)>.5?`<p><b>注意：</b>权重目前不是 100%，建议先调整后再把结果用于个人规划。</p>`:`<p>这个结果反映的是你填写的个人支出结构与价格变化，不等于官方 CPI。</p>`}`;realMap.personalInflation={rows,totalWeight:sum,estimate:personal};mark("basket")}
+function exportMap(){const data={chapter:"12 通胀、费用和税为什么会悄悄吃掉收益？",exported_at:new Date().toISOString(),map:realMap,principles:["区分毛收益、净收益、税后收益和实际收益","个人通胀估计是规划工具，不替代官方CPI","长期费用用终值差而不是单年费率理解","具体金融资产税务处理按当前官方规则核验，不套统一税率","财务目标同时记录今天购买力和未来名义金额"]};const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="我的真实收益地图_v1.json";a.click();URL.revokeObjectURL(u)}
+addBasket("住房",35,3);addBasket("食品",25,4);addBasket("交通通信",10,1);addBasket("教育娱乐",15,2);addBasket("医疗",5,5);addBasket("其他",10,2);readProgress();
+</script>
+</body></html>

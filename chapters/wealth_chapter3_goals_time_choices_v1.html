@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第三章｜钱究竟应该服务什么？— 个人财富系统</title>
+<style>
+:root{
+  --bg:#efe1c3;--paper:#fbf3df;--paper2:#f7ecd3;--ink:#332a22;--muted:#766858;
+  --line:#d6c199;--red:#8f342a;--redbg:#f1ddd5;--green:#455f4c;--greenbg:#dfe7dc;
+  --gold:#a77a2b;--goldbg:#f2e4bd;--blue:#445d70;--bluebg:#dce5e9;--deep:#2e2924;
+  --shadow:0 18px 50px rgba(74,52,28,.14)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--ink);line-height:1.9;
+  font-family:ui-serif,"Noto Serif SC","Source Han Serif SC","Songti SC",STSong,serif;
+  background:
+    radial-gradient(circle at 12% 7%,rgba(255,255,255,.45),transparent 25%),
+    radial-gradient(circle at 88% 15%,rgba(100,74,40,.07),transparent 22%),
+    repeating-linear-gradient(0deg,rgba(90,63,34,.022) 0 1px,transparent 1px 5px),
+    var(--bg)
+}
+a{color:var(--green);text-underline-offset:3px}
+.wrap{max-width:1320px;margin:auto;padding:24px}
+.layout{display:grid;grid-template-columns:270px minmax(0,900px);gap:30px;justify-content:center;align-items:start}
+.sidebar{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto}
+.sidebox{background:rgba(251,243,223,.84);border:1px solid var(--line);border-radius:13px;padding:15px;margin-bottom:12px}
+.sidebox b{display:block}.sidebox small{color:var(--muted)}
+nav a{display:block;text-decoration:none;color:var(--muted);font-size:12.5px;padding:5px 7px;border-radius:7px}
+nav a:hover{background:#efdfbd;color:var(--ink)}
+.progress{height:7px;background:#e3d1aa;border-radius:999px;overflow:hidden;margin-top:8px}
+.progress i{display:block;height:100%;width:0;background:var(--red);transition:.2s}
+.paper{background:rgba(251,243,223,.97);border:1px solid rgba(170,143,96,.48);box-shadow:var(--shadow);border-radius:7px;overflow:hidden}
+.hero{padding:68px 74px 50px;border-bottom:1px solid var(--line);position:relative}
+.hero:before{content:"";position:absolute;left:28px;top:30px;bottom:30px;width:1px;background:rgba(143,52,42,.28)}
+.kicker{font-size:12px;letter-spacing:.18em;color:var(--red);font-weight:800}
+h1{font-size:49px;line-height:1.2;margin:13px 0 17px;letter-spacing:-.035em}
+.subtitle{font-size:20px;color:var(--muted);max-width:760px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 9px;background:#f7edd4;color:var(--muted)}
+.content{padding:54px 74px 76px}
+section{margin-bottom:62px}
+h2{font-size:30px;line-height:1.35;margin:0 0 18px}
+h3{font-size:21px;margin:30px 0 10px}
+h4{font-size:17px;margin:20px 0 7px}
+p{margin:9px 0 16px}
+.lead{font-size:18px}
+.callout{padding:19px 21px;border-left:5px solid;margin:23px 0;border-radius:4px}
+.red{background:var(--redbg);border-color:var(--red)}
+.green{background:var(--greenbg);border-color:var(--green)}
+.gold{background:var(--goldbg);border-color:var(--gold)}
+.blue{background:var(--bluebg);border-color:var(--blue)}
+.label{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+.card{padding:20px;border:1px solid var(--line);border-radius:10px;background:#fff9ea;margin:15px 0}
+.quote{padding:23px 27px;background:#eee0c4;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:19px;margin:24px 0}
+.quote cite{display:block;font-style:normal;color:var(--muted);font-size:12px;margin-top:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.kmap{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:18px 0}
+.kmap div{padding:15px 12px;background:#f7ecd2;border:1px solid var(--line);border-radius:8px;text-align:center}
+.kmap b{display:block;color:var(--green);margin-bottom:3px}
+.formula{background:var(--deep);color:#f8edd6;font:16px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:17px 19px;border-radius:8px;margin:18px 0}
+.table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}
+.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.table th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.book{display:grid;grid-template-columns:115px 1fr;gap:20px;padding:21px;border:1px solid var(--line);border-radius:10px;background:#f8edd6;margin:16px 0}
+.cover{height:155px;border-radius:4px;background:linear-gradient(155deg,#783a31,#c38263);display:flex;align-items:flex-end;padding:12px;color:#fff5df;font-size:13px;font-weight:800;box-shadow:3px 4px 0 rgba(75,50,30,.15)}
+.book.alt .cover{background:linear-gradient(155deg,#5c4031,#a5764b)}
+.book.third .cover{background:linear-gradient(155deg,#23403d,#6c8577)}
+.book h4{margin:0 0 5px;font-size:19px}
+.note{color:var(--muted);font-size:13px}
+.case{padding:22px;border:1px solid var(--line);border-radius:10px;background:#faf0db;margin:14px 0}
+.casehead{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.casehead b{font-size:18px}.casehead span{font-size:12px;color:var(--muted)}
+.stepchain{display:grid;grid-template-columns:1fr 42px 1fr 42px 1fr 42px 1fr;gap:7px;align-items:center;margin:22px 0}
+.step{padding:16px;border:1px solid var(--line);border-radius:9px;background:#f8edd6;text-align:center}
+.arrow{text-align:center;color:var(--red);font-size:24px}
+.metric{padding:15px;background:#f8edd4;border:1px solid var(--line);border-radius:9px}
+.metric b{display:block;font-size:20px;color:var(--green)}
+.metric span{font-size:12px;color:var(--muted)}
+input[type=number],input[type=text],input[type=date],textarea,select{
+  width:100%;border:1px solid #c7ad80;background:#fffaf0;border-radius:7px;padding:10px 11px;color:var(--ink);font:inherit
+}
+textarea{min-height:84px}
+button{border:0;border-radius:8px;padding:10px 15px;background:var(--red);color:#fff;font-weight:800;cursor:pointer}
+button.secondary{background:var(--green)}
+button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.feedback{margin-top:14px;padding:15px 17px;border:1px dashed #b69d70;border-radius:8px;background:#f5e9cf}
+.range-row{display:grid;grid-template-columns:145px 1fr 85px;gap:10px;align-items:center;margin:12px 0}
+input[type=range]{width:100%;accent-color:var(--red)}
+.value-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:12px 0}
+.value-chip{border:1px solid var(--line);background:#fff9ea;border-radius:999px;padding:8px 11px;text-align:center;cursor:pointer;font-size:13px}
+.value-chip.sel{background:#e1e9dc;outline:2px solid var(--green)}
+.goal-card{padding:17px;border:1px solid var(--line);background:#fff9ea;border-radius:10px;margin:12px 0}
+.goal-card h4{margin:0 0 5px}
+.goal-card .goal-meta{font-size:12px;color:var(--muted)}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 7px;margin:2px;font-size:11px;background:#f6ead0}
+.conflict{padding:18px;border:1px solid var(--line);background:#f8edd5;border-radius:10px}
+.goalbar{height:9px;background:#e1d0aa;border-radius:999px;overflow:hidden;margin-top:7px}
+.goalbar i{display:block;height:100%;background:var(--green)}
+.small{font-size:12px;color:var(--muted)}
+.end{background:var(--deep);color:#f5ebd7;padding:28px;border-radius:9px}
+.end h2{color:#fff5df}
+.refs{font-size:13px;color:var(--muted)}
+.refs li{margin-bottom:10px}
+hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+@media(max-width:1030px){.layout{grid-template-columns:1fr}.sidebar{display:none}.hero,.content{padding-left:36px;padding-right:36px}}
+@media(max-width:720px){
+  .wrap{padding:0}.paper{border-radius:0}.hero,.content{padding:30px 20px}h1{font-size:34px}
+  .grid2,.grid3,.grid4,.kmap,.book,.value-grid{grid-template-columns:1fr}
+  .stepchain{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}
+  .range-row{grid-template-columns:110px 1fr 65px}
+  .cover{height:100px;width:80px}
+}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="layout">
+
+<aside class="sidebar">
+  <div class="sidebox"><b>个人财富系统</b><small>第三章 · 目标、时间与选择</small></div>
+  <div class="sidebox"><small>阅读进度 <span id="readPct">0%</span></small><div class="progress"><i id="readProg"></i></div></div>
+  <div class="sidebox"><small>互动完成度 <span id="taskPct">0%</span></small><div class="progress"><i id="taskProg"></i></div></div>
+  <div class="sidebox"><nav>
+    <a href="#goal">00 今天要建立什么认知</a>
+    <a href="#life">01 财务目标不是人生目标</a>
+    <a href="#values">02 从价值观到目标</a>
+    <a href="#energy">03 钱也是生命时间</a>
+    <a href="#timecontrol">04 财富与时间控制权</a>
+    <a href="#goalquality">05 愿望怎样变成财务目标</a>
+    <a href="#horizon">06 目标为什么必须分时间</a>
+    <a href="#amount">07 一个目标需要多少钱</a>
+    <a href="#reverse">08 从终点倒推每个月</a>
+    <a href="#conflict">09 目标互相冲突怎么办</a>
+    <a href="#priority">10 怎样判断优先级</a>
+    <a href="#gbp">11 Goals-Based Planning</a>
+    <a href="#enough">12 “足够”到底是多少</a>
+    <a href="#overSaving">13 过度储蓄也是问题吗</a>
+    <a href="#cases">14 三个案例</a>
+    <a href="#mistakes">15 七种目标错误</a>
+    <a href="#hourly">16 真实时薪计算器</a>
+    <a href="#map">17 我的人生—金钱地图</a>
+    <a href="#allocation">18 目标冲突实验</a>
+    <a href="#summary">19 本章总结</a>
+    <a href="#refs">20 资料与注释</a>
+  </nav></div>
+</aside>
+
+<main class="paper">
+<header class="hero">
+  <div class="kicker">CHAPTER 03 · GOALS, TIME & CHOICE</div>
+  <h1>钱究竟应该服务什么？</h1>
+  <div class="subtitle">从“想赚更多”走向真正的财务规划：把价值观翻译成人生目标，再把人生目标转化成金额、时间、优先级与可执行行动。</div>
+  <div class="meta">
+    <span class="pill">预计阅读 55–70 分钟</span>
+    <span class="pill">核心概念 15 个</span>
+    <span class="pill">专业来源 8 组</span>
+    <span class="pill">3 个核心互动</span>
+  </div>
+</header>
+
+<article class="content">
+
+<section id="goal">
+<h2>00｜今天到底要建立什么认知？</h2>
+<p class="lead">第一章告诉我们财富不只是收入，第二章解释了我们为什么会形成不同的金钱习惯。第三章要回答的是：<b>如果钱是一种有限资源，它最终应该替你完成什么？</b></p>
+<p>这一步之所以重要，是因为一个没有明确任务的钱包，很容易被眼前最响亮的欲望接管。收入增加以后，如果你不知道新增资源要服务什么，它往往只会被生活方式升级吸收；投资收益增加以后，如果没有目标，你也很难判断应该继续承担风险、兑现收益，还是调整配置。</p>
+<p>CFP Board 对财务规划的定义有一个非常重要的取向：专业规划关注的是人的<b>人生目标</b>，金融建议只是实现这些目标的工具。CFA Institute 的私人财富课程同样把 goals-based planning 视为重要框架，并强调应把金融资源与个人独特目标和处境相匹配，而不是只看投资组合有没有跑赢某个基准。</p>
+
+<div class="callout red"><div class="label">本章最终要完成的转变</div>
+从“我想多赚一点、多存一点、多投一点”，变成：<b>我知道自己要保护什么、争取什么、什么时候需要多少钱，以及有限资源应该先流向哪里。</b>
+</div>
+
+<div class="stepchain">
+  <div class="step"><b>价值</b><br><span class="small">什么对我重要</span></div><div class="arrow">→</div>
+  <div class="step"><b>人生目标</b><br><span class="small">我想过怎样的生活</span></div><div class="arrow">→</div>
+  <div class="step"><b>财务目标</b><br><span class="small">需要哪些资源</span></div><div class="arrow">→</div>
+  <div class="step"><b>金融工具</b><br><span class="small">钱最终放在哪里</span></div>
+</div>
+</section>
+
+<section id="life">
+<h2>01｜第一条原则：财务目标不是人生目标</h2>
+<p>“我要存到 100 万”听起来像一个目标，但从财务规划角度看，它其实是不完整的。真正的问题是：<b>这 100 万准备替你完成什么？</b></p>
+
+<div class="grid2">
+  <div class="card"><b>财务数字</b><p>“我要存 100 万。”</p></div>
+  <div class="card"><b>人生目标</b><p>“我希望拥有两到三年可以不依赖工资的选择空间，用来换城市、读书或尝试自己的项目。”</p></div>
+</div>
+
+<p>同样是 100 万，如果一个人准备三年后读研，另一个人准备二十年后退休，第三个人准备作为创业备用金，这三个人的现金需求、风险承受能力、投资期限和优先级都会不同。数字一样，不代表财务任务一样。</p>
+
+<div class="callout blue"><div class="label">CFP 的核心提醒</div>
+财务规划的终点不是完成一个孤立的“金融数字”，而是帮助一个人更有可能实现真正想要的人生目标。<b>金融目标是手段，不是人生终点。</b>
+</div>
+
+<h3>所以，目标至少有四层</h3>
+<table class="table">
+<thead><tr><th>层级</th><th>例子</th><th>它回答的问题</th></tr></thead>
+<tbody>
+<tr><td>价值</td><td>自主、成长</td><td>什么对我真正重要？</td></tr>
+<tr><td>人生目标</td><td>有能力换城市读研</td><td>我希望未来发生什么？</td></tr>
+<tr><td>财务目标</td><td>三年后准备 20 万元</td><td>需要多少资源、何时需要？</td></tr>
+<tr><td>金融工具</td><td>现金、存款、债券、基金等</td><td>这笔钱应该怎样保存或增长？</td></tr>
+</tbody>
+</table>
+<p>很多人的学习顺序恰好相反：先选基金，再找理由；先想收益率，再想钱要做什么。第三章就是要把顺序重新摆正。</p>
+</section>
+
+<section id="values">
+<h2>02｜从价值观到目标：钱增加以后，你希望什么也跟着增加？</h2>
+<p>“价值观”这个词很容易变得空泛，所以我们把它放回具体选择里。假如明年你的可支配收入突然多出 5 万元，你最希望什么随之增加？是安全感、独立性、学习能力、陪伴家人的时间、创作自由，还是体验世界的机会？</p>
+
+<div class="grid4">
+  <div class="card"><b>安全</b><p>意外发生时，不需要立刻借钱或被迫做决定。</p></div>
+  <div class="card"><b>自由</b><p>可以拒绝不合适的工作、关系或居住方式。</p></div>
+  <div class="card"><b>成长</b><p>教育、技能、研究、职业转换、长期学习。</p></div>
+  <div class="card"><b>关系</b><p>有资源照顾家人、维持重要关系与共同体验。</p></div>
+  <div class="card"><b>创造</b><p>为项目、作品、创业或长期研究保留时间和资金。</p></div>
+  <div class="card"><b>体验</b><p>旅行、兴趣、文化活动、生活质量。</p></div>
+  <div class="card"><b>稳定</b><p>住房、固定生活环境、持续可预测的现金流。</p></div>
+  <div class="card"><b>贡献</b><p>帮助他人、公益、家族责任、长期传承。</p></div>
+</div>
+
+<p>价值不是目标，但它负责决定目标的方向。CFP Board 的旧版实践标准曾明确指出，在确定个人目标和优先级时，需要探索客户的价值、态度、预期和时间期限，因为这些因素会影响目标本身以及目标的排序。</p>
+
+<div class="callout gold"><div class="label">这一章不会做的事</div>
+不会告诉你“安全比体验高级”“长期目标比当下生活正确”。个人财务不是道德排名。真正专业的问题是：<b>你的资源配置是否和你声称重视的东西一致？</b>
+</div>
+</section>
+
+<section id="energy">
+<h2>03｜《Your Money or Your Life》：钱其实也是生命时间</h2>
+
+<div class="book">
+  <div class="cover">YOUR<br>MONEY<br>OR YOUR LIFE</div>
+  <div>
+    <h4>Vicki Robin & Joe Dominguez｜重新定义“价格”</h4>
+    <p>这本书最有力量的思想之一，是把金钱重新理解为 <b>life energy</b>：为了获得收入，我们交出去的不只是正式工时，还有通勤、准备、职业相关开销，以及工作之后恢复精力所消耗的时间。</p>
+  </div>
+</div>
+
+<p>因此，一件商品标价 1000 元，并不意味着它对所有人都拥有相同的真实成本。一个人的“名义时薪”可能是 100 元，但如果把通勤、加班、职业开销和恢复时间加入，真实可支配时薪可能只有 60 元。此时 1000 元代表的就不是“十个小时”，而可能是接近十七个小时的生命时间。</p>
+
+<div class="formula">真实时薪 ≈（税后工作收入 − 工作相关额外成本）÷（正式工时 + 通勤 + 额外工作/准备/恢复时间）</div>
+
+<h3>这不是为了让你对消费产生罪恶感</h3>
+<p>真正的问题不是“这杯咖啡值不值得我工作多久”，而是重新获得一种比例感。某件东西如果能带来长期使用价值、重要体验或真正改善生活，那么它可能非常值得；另一些看似不贵的重复消费，累积起来却可能占用大量你原本想交给未来目标的生命时间。</p>
+
+<div class="callout green"><div class="label">关键认知</div>
+把价格换算成时间后，消费不再只是“钱离开账户”，而变成：<b>我愿不愿意用自己生命中的这一段时间，交换眼前这个结果？</b>
+</div>
+</section>
+
+<section id="timecontrol">
+<h2>04｜《金钱心理学》：财富很重要的一种效用，是控制自己的时间</h2>
+
+<div class="book alt">
+  <div class="cover">THE<br>PSYCHOLOGY<br>OF MONEY</div>
+  <div>
+    <h4>Morgan Housel｜“control over your time”</h4>
+    <p>Housel 把对时间的控制视为金钱能够提供的重要价值之一：资源越充足，一个人在面对工作、搬家、休息、等待和意外时，通常拥有越多“不必马上答应”的空间。</p>
+  </div>
+</div>
+
+<p>这解释了为什么第一章我们一直把财富与“选择权”联系起来。现金储备的意义不只是账户好看，而是你可以等待；没有高成本债务的意义不只是少付利息，而是未来收入不必先被大量锁定；长期资产的意义也不仅是增值，而是逐步减少你对下一份工资的绝对依赖。</p>
+
+<div class="grid3">
+  <div class="card"><b>钱可以买“等待”</b><p>不用因为短期现金不足，在最差时间接受任何工作或出售资产。</p></div>
+  <div class="card"><b>钱可以买“拒绝”</b><p>可以对不合适的工作、消费和机会说不。</p></div>
+  <div class="card"><b>钱可以买“尝试”</b><p>给学习、转行、创作或创业留下承担失败的空间。</p></div>
+</div>
+
+<p>所以第三章中的目标，不应该只写“我要有多少钱”，还要写：<b>这笔钱最终想替我换回什么时间、什么自由、什么生活能力？</b></p>
+</section>
+
+<section id="goalquality">
+<h2>05｜什么时候一个“愿望”才算真正的财务目标？</h2>
+<p>“以后想买房”“有机会想出国读书”“希望早点退休”都是愿望，但还不能直接用来规划。一个可以执行的财务目标至少要回答七个问题。</p>
+
+<table class="table">
+<thead><tr><th>维度</th><th>要回答的问题</th><th>例子</th></tr></thead>
+<tbody>
+<tr><td>Goal</td><td>到底准备完成什么？</td><td>三年后读研</td></tr>
+<tr><td>Amount</td><td>预计需要多少资源？</td><td>20 万元</td></tr>
+<tr><td>Time</td><td>什么时候需要？</td><td>36 个月后</td></tr>
+<tr><td>Current Resources</td><td>已经准备多少？</td><td>5 万元</td></tr>
+<tr><td>Priority</td><td>它在其他目标中排第几？</td><td>最高优先级</td></tr>
+<tr><td>Flexibility</td><td>金额/时间能否调整？</td><td>最多可延期一年</td></tr>
+<tr><td>Why</td><td>为什么值得投入资源？</td><td>职业方向与长期研究需要</td></tr>
+</tbody>
+</table>
+
+<p>CFPB 的 Your Money, Your Goals 工具包会把“Setting SMART goals”“Putting goals into action”“Planning for life events and large purchases”“Revising goals”分成独立工具。这一点很值得我们借鉴：<b>目标不是写完一次就结束，而是要能转成行动，并且允许修订。</b></p>
+
+<div class="callout blue"><div class="label">比普通 SMART 再多一步</div>
+SMART 可以帮助目标变具体，但个人财务还必须考虑：<b>优先级、可延期性、替代方案和目标失败的后果。</b>这些因素决定一个目标应该得到多少确定性和多少风险预算。
+</div>
+</section>
+
+<section id="horizon">
+<h2>06｜为什么目标一定要分时间？——时间期限最终会决定风险</h2>
+<p>同样是 5 万元，“半年以后交学费”和“30 年以后养老”在财务上不是同一笔钱。前者最重要的是到时候一定能拿出来；后者则有很长时间，可以承受更多短期波动来争取长期增长。</p>
+
+<table class="table">
+<thead><tr><th>目标期限</th><th>典型问题</th><th>最重要的属性</th><th>后续投资含义</th></tr></thead>
+<tbody>
+<tr><td>短期：0–2 年</td><td>学费、搬家、旅行、大额购买</td><td>流动性、确定性</td><td>通常不能依赖高波动资产按时上涨</td></tr>
+<tr><td>中期：2–7 年</td><td>深造、首付、创业准备</td><td>增长与稳定之间平衡</td><td>需要结合目标弹性决定风险</td></tr>
+<tr><td>长期：7 年以上</td><td>退休、长期财富积累</td><td>购买力与长期增长</td><td>时间通常允许承担更多短期价格波动</td></tr>
+</tbody>
+</table>
+
+<p>CFA 的 goals-based planning 会为不同目标建立不同的子组合，每个目标拥有自己的时间期限和所需成功概率。它提醒我们：<b>风险不是抽象地问“我怕不怕跌”，而是问“这次波动会不会让我无法按时完成目标？”</b></p>
+
+<div class="callout red"><div class="label">提前埋下后续课程的一条主线</div>
+以后资产配置不是“年轻就多买股票、年纪大就少买”这么简单。真正重要的是：<b>哪一笔钱承担哪一个目标，距离使用还有多久，失败的后果是什么。</b>
+</div>
+</section>
+
+<section id="amount">
+<h2>07｜一个目标到底需要多少钱？——从愿望变成 Funding Gap</h2>
+<p>当目标拥有金额和时间以后，第一次真正可以计算。</p>
+
+<div class="formula">目标资金缺口 = 目标未来所需金额 − 当前已为该目标准备的资源</div>
+
+<div class="case">
+<div class="casehead"><b>例：三年后的读研计划</b><span>先用最简单版本理解</span></div>
+<p>预计总成本 200,000 元，目前已有专项储蓄 50,000 元，那么今天看到的资金缺口是 150,000 元。</p>
+</div>
+
+<p>但是现实中还要继续问：三年后的 20 万是不是仍然是 20 万？学费、房租和生活费可能上涨；如果当前资源正在获得收益，也可能减少未来需要补充的金额。这就引出了后面会深入学习的通胀、复利与现值。</p>
+
+<h3>目标估算里常见的四种假设</h3>
+<div class="grid4">
+  <div class="card"><b>价格变化</b><p>未来目标成本可能随通胀或行业价格变化。</p></div>
+  <div class="card"><b>投资收益</b><p>已有资金可能增长，但收益不能当作保证。</p></div>
+  <div class="card"><b>税与费用</b><p>某些收入、投资或交易会有摩擦成本。</p></div>
+  <div class="card"><b>目标变化</b><p>计划本身也可能扩大、缩小或延后。</p></div>
+</div>
+
+<p>CFP Board 的规划标准要求在制定目标和分析方案时考虑合理假设。专业规划的一个核心差别就在这里：<b>不是把今天看到的数字直接搬到未来，而是明确你依赖了哪些假设。</b></p>
+</section>
+
+<section id="reverse">
+<h2>08｜从终点倒推：每个月究竟需要做什么？</h2>
+<p>目标真正变得有力量，是在它能反过来影响今天。先暂时不考虑投资收益，用最基础的方法理解。</p>
+
+<div class="case">
+<div class="casehead"><b>目标：三年后准备 18 万元</b><span>当前已有 3.6 万元</span></div>
+<p>资金缺口 = 180,000 − 36,000 = 144,000 元。</p>
+<p>距离目标还有 36 个月。</p>
+<div class="formula">每月需准备 = 144,000 ÷ 36 = 4,000 元</div>
+</div>
+
+<p>这一刻，“我以后想读研”第一次变成了今天可以执行的动作：“从现在开始，每个月需要把大约 4000 元指向这个目标。”如果这个数字完全不现实，那么问题也变得清楚：要么提高收入、减少其他支出、延后时间、降低目标成本，要么重新排序。</p>
+
+<div class="callout green"><div class="label">这就是规划真正开始的地方</div>
+好的目标不会只是让人“更有动力”。它最重要的价值，是让你尽早发现：<b>目标、时间和资源之间到底匹不匹配。</b>
+</div>
+</section>
+
+<section id="conflict">
+<h2>09｜真正困难的地方：目标互相冲突怎么办？</h2>
+<p>个人财务里最常见的困难，不是“没有目标”，而是目标太多。</p>
+
+<div class="case">
+<div class="casehead"><b>假设你每月只能拿出 5,000 元用于未来</b><span>但你同时想完成：</span></div>
+<p>一年后旅行 20,000 元；三年后读研 100,000 元；五年后买车 100,000 元；尽快建立 50,000 元应急金；同时还想做长期投资。</p>
+</div>
+
+<p>这五件事都可能合理，但资源有限意味着它们不可能同时按最快速度完成。CFP Board 的规划流程因此要求规划者帮助客户识别、选择并排序目标，还要讨论某一个目标对其他目标的影响。</p>
+
+<div class="quote">“选择一个目标，本身就是在决定另一部分资源暂时不去哪里。”<cite>本课程对目标冲突的工作定义</cite></div>
+
+<p>这不是悲观，而是财务规划真正有价值的地方：如果资源没有约束，就不需要规划。<b>规划存在的原因，就是有限资源必须做选择。</b></p>
+</section>
+
+<section id="priority">
+<h2>10｜目标优先级不能只看“我最想要哪个”</h2>
+<p>“最喜欢”只是一个维度。一个成熟的目标排序至少还要考虑六个问题。</p>
+
+<table class="table">
+<thead><tr><th>判断维度</th><th>核心问题</th></tr></thead>
+<tbody>
+<tr><td>紧迫性</td><td>距离目标发生还有多久？</td></tr>
+<tr><td>重要性</td><td>它对基本生活、长期发展和幸福感影响多大？</td></tr>
+<tr><td>后果</td><td>没有完成会发生什么？只是遗憾，还是会产生严重风险？</td></tr>
+<tr><td>替代性</td><td>有没有更便宜或更容易的替代方案？</td></tr>
+<tr><td>可延期性</td><td>可以推迟一年、两年吗？推迟的成本是什么？</td></tr>
+<tr><td>不可逆性</td><td>错过现在，以后还有机会补回来吗？</td></tr>
+</tbody>
+</table>
+
+<p>例如，应急准备和旅行都能提升生活质量，但一次真正的财务冲击可能迫使你借高成本债务，而旅行往往可以延后。相反，一些具有年龄窗口或职业窗口的教育机会，也可能比某些长期消费目标更不容易延期。</p>
+
+<div class="callout gold"><div class="label">目标排序不是算法替你生活</div>
+这些维度只负责把取舍“显影”。最终优先级仍然需要你本人决定，因为不同人对风险、关系、成长和体验的价值权重不同。
+</div>
+</section>
+
+<section id="gbp">
+<h2>11｜Goals-Based Planning：为什么专业财富管理越来越强调“完成任务”</h2>
+<p>CFA Institute 2026 Private Wealth Curriculum 把 goals-based planning 明确列为财富规划的重要组成部分。它的核心思想很直接：<b>把个人金融资源与具体目标匹配，并把目标是否实现放在是否跑赢市场基准之前。</b></p>
+
+<div class="grid3">
+  <div class="card"><b>传统提问</b><p>这个组合今年跑赢指数了吗？</p></div>
+  <div class="card"><b>目标导向提问</b><p>孩子教育资金按计划累积了吗？退休目标成功概率是否仍可接受？</p></div>
+  <div class="card"><b>真正的风险</b><p>不只是“波动大不大”，而是目标最终会不会出现资金缺口。</p></div>
+</div>
+
+<p>CFA 还把 goals-based planning 分成四个步骤：定义目标、排序并量化目标、为目标构建组合、持续管理这些组合。每个目标可以拥有自己的时间期限和成功概率要求。</p>
+
+<div class="callout blue"><div class="label">对我们后续资产配置课的影响</div>
+第 18 章不会问“什么组合理论上收益最高”，而会回到你今天建立的目标地图：<b>哪部分资产是在保护不能失败的目标，哪部分是在追求长期增长，哪部分需要保持随时可用。</b>
+</div>
+</section>
+
+<section id="enough">
+<h2>12｜“足够”到底是多少？——如果终点永远后移，财富永远不会完成任务</h2>
+<p>《金钱心理学》中 “Never Enough” 的讨论很适合放在这里。收入、资产和消费标准都具有很强的相对性。如果评价标准始终来自比自己更多的人，那么无论数字增长到什么程度，“够”都可能继续向前移动。</p>
+
+<p>这并不是要求你停止追求收入增长，而是区分两个完全不同的问题：</p>
+<div class="grid2">
+  <div class="card"><b>增长问题</b><p>我还能不能让能力、收入和资产继续提高？</p></div>
+  <div class="card"><b>满足问题</b><p>什么程度已经足够支持我重视的生活？</p></div>
+</div>
+
+<p>如果没有第二个问题，第一个问题就没有边界。人很容易把“更多”本身变成目标，于是每次收入上涨都只能短暂提高满意度，随后新的参照标准出现。</p>
+
+<h3>“Enough”更像是一组底线，而不是一个神奇数字</h3>
+<p>例如：我有足够现金面对常见意外；我有能力维持基本生活；重要的学习和家庭责任有资金来源；长期退休储蓄正在推进；在这些事情不被破坏的情况下，我愿意把一部分资源用于享受现在。</p>
+
+<div class="callout green"><div class="label">真正的意义</div>
+“够”不是让欲望消失，而是帮助你知道：<b>什么时候新增的资源可以从“必须继续防御”转向“真正改善生活”。</b>
+</div>
+</section>
+
+<section id="overSaving">
+<h2>13｜反过来问：为了未来而一直不生活，也可能是财务失败吗？</h2>
+<p>许多理财教育很容易把“储蓄”写成道德上的正确，把“消费”写成错误。但经济学里更准确的理解是：消费与储蓄是把资源放到不同时间点。储蓄本质上是在减少现在可消费资源，为未来保留购买力。</p>
+
+<p>问题因此不应该是“消费好还是储蓄好”，而是：</p>
+<div class="formula">今天的生活价值 + 未来的安全与选择<br>如何在同一份有限资源中取得你愿意接受的平衡？</div>
+
+<h3>年轻阶段有些资源具有时间窗口</h3>
+<p>某些体验、学习、社交、健康投资和职业尝试在特定年龄阶段更有价值，甚至以后无法完全复制。反过来，如果今天完全不准备未来，一次意外或未来收入下降也可能让人生自由显著减少。</p>
+
+<div class="callout red"><div class="label">不要把本章读成“目标越长期越高级”</div>
+真正成熟的目标系统应该同时容纳：<b>当下值得过的生活、可预见的中期计划，以及需要长期准备的未来。</b>
+</div>
+</section>
+
+<section id="cases">
+<h2>14｜三个案例：相同收入，为什么会产生完全不同的理财计划？</h2>
+
+<div class="case">
+<div class="casehead"><b>案例 A：准备三年后读研</b><span>高优先级 / 中期 / 时间较明确</span></div>
+<p>每月可结余 6000 元。最重要目标是三年后准备 18 万元教育与生活费用。由于使用时间明确，这个人必须先确保目标资金按时到位；比起追求高收益，更重要的是控制目标失败风险。</p>
+</div>
+
+<div class="case">
+<div class="casehead"><b>案例 B：希望尽快获得职业自由</b><span>自由 / 流动性 / 长期选择权</span></div>
+<p>同样每月结余 6000 元，但目标是建立可以覆盖一年生活的资金，并逐渐减少对下一份工资的绝对依赖。此时现金缓冲、人力资本和长期投资都会成为不同层次的任务。</p>
+</div>
+
+<div class="case">
+<div class="casehead"><b>案例 C：当前生活已经高度压缩</b><span>需要重新平衡现在与未来</span></div>
+<p>这个人储蓄率非常高，却几乎取消所有休息、兴趣和社交支出。资产增长很快，但生活满意度明显下降。对他而言，规划未必是“再提高储蓄率”，而可能是明确安全底线以后，为当前生活恢复合理预算。</p>
+</div>
+
+<div class="callout gold"><div class="label">三个案例共同说明什么</div>
+资产配置不是在真空中产生的。<b>目标不同，合理的现金流安排、时间期限、风险容忍和资产任务都会变化。</b>
+</div>
+</section>
+
+<section id="mistakes">
+<h2>15｜财务目标最容易设错的七种方式</h2>
+
+<div class="callout red"><div class="label">错误 1</div><b>只有愿望，没有金额。</b><br>“我想旅游”无法判断需要准备多少资源，也无法与其他目标比较。</div>
+<div class="callout red"><div class="label">错误 2</div><b>只有金额，没有理由。</b><br>“我要 100 万”如果不知道为什么，目标很容易在数字增长后继续移动。</div>
+<div class="callout red"><div class="label">错误 3</div><b>没有时间期限。</b><br>没有时间，就无法知道每月需要投入多少，也无法讨论适合的风险。</div>
+<div class="callout red"><div class="label">错误 4</div><b>所有目标都写成最高优先级。</b><br>如果一切都优先，实际上就等于没有优先级。</div>
+<div class="callout red"><div class="label">错误 5</div><b>忽视通胀和成本变化。</b><br>未来的目标价格不一定等于今天看到的价格。</div>
+<div class="callout red"><div class="label">错误 6</div><b>用过度乐观的投资收益填补缺口。</b><br>计划不能建立在“市场一定按我需要的速度上涨”之上。</div>
+<div class="callout red"><div class="label">错误 7</div><b>把目标写完以后永远不再修改。</b><br>职业、家庭、收入和价值观都会变化；目标系统本来就应该定期更新。</div>
+</section>
+
+<section id="hourly">
+<h2>16｜互动一：我的“真实时薪”到底是多少？</h2>
+<p>这个计算器不是为了制造消费焦虑，而是帮助你把价格重新换算成时间。输入的是一个典型月份的大致情况，不需要精确到分钟。</p>
+
+<div class="card">
+<div class="grid2">
+  <label>每月税后工作收入（元）<input id="hIncome" type="number" value="12000"></label>
+  <label>每周正式工作时间（小时）<input id="hWork" type="number" value="40"></label>
+  <label>每周通勤时间（小时）<input id="hCommute" type="number" value="7"></label>
+  <label>每周额外准备/加班/恢复时间（小时）<input id="hExtra" type="number" value="5"></label>
+  <label>每月因工作额外产生的成本（元）<input id="hCost" type="number" value="800"></label>
+  <label>想换算的一笔消费（元）<input id="hPurchase" type="number" value="1000"></label>
+</div>
+<button class="secondary" onclick="calcHourly()">计算真实时薪与生命时间</button>
+<div id="hourlyOut" class="feedback">这里会显示名义时薪、估算真实时薪，以及这笔消费大约对应多少小时。</div>
+</div>
+</section>
+
+<section id="map">
+<h2>17｜互动二：建立《我的人生—金钱地图》</h2>
+<p>这一部分会成为后面课程的重要数据。先选出你最重视的价值，再增加真正需要资金支持的目标。数据只保存在当前浏览器。</p>
+
+<div class="card">
+  <p><b>第一步：选择最重要的 2–4 个价值</b></p>
+  <div class="value-grid" id="valuesGrid">
+    <div class="value-chip" onclick="toggleValue(this)">安全</div>
+    <div class="value-chip" onclick="toggleValue(this)">自由</div>
+    <div class="value-chip" onclick="toggleValue(this)">成长</div>
+    <div class="value-chip" onclick="toggleValue(this)">关系</div>
+    <div class="value-chip" onclick="toggleValue(this)">创造</div>
+    <div class="value-chip" onclick="toggleValue(this)">体验</div>
+    <div class="value-chip" onclick="toggleValue(this)">稳定</div>
+    <div class="value-chip" onclick="toggleValue(this)">贡献</div>
+  </div>
+
+  <hr>
+  <p><b>第二步：增加一个财务目标</b></p>
+  <div class="grid2">
+    <label>目标名称<input id="gName" type="text" placeholder="例如：三年后读研"></label>
+    <label>目标金额（元）<input id="gTarget" type="number" placeholder="200000"></label>
+    <label>当前已经准备（元）<input id="gCurrent" type="number" placeholder="50000"></label>
+    <label>距离目标还有多少个月<input id="gMonths" type="number" placeholder="36"></label>
+    <label>优先级
+      <select id="gPriority">
+        <option value="必须完成">必须完成</option>
+        <option value="高优先">高优先</option>
+        <option value="重要">重要</option>
+        <option value="可选">可选</option>
+      </select>
+    </label>
+    <label>弹性
+      <select id="gFlex">
+        <option value="几乎不能延期">几乎不能延期</option>
+        <option value="可延期 6–12 个月">可延期 6–12 个月</option>
+        <option value="时间较灵活">时间较灵活</option>
+        <option value="金额与时间都可调整">金额与时间都可调整</option>
+      </select>
+    </label>
+  </div>
+  <p><label>为什么这个目标值得我投入资源？<textarea id="gWhy" placeholder="它和我的生活、成长或自由有什么关系？"></textarea></label></p>
+  <button class="secondary" onclick="addGoal()">加入我的目标地图</button>
+  <button class="ghost" onclick="clearGoals()">清空目标</button>
+  <button class="ghost" onclick="exportGoals()">导出目标数据</button>
+  <div id="mapSummary" class="feedback">你的价值和目标会在这里汇总。</div>
+  <div id="goalCards"></div>
+</div>
+</section>
+
+<section id="allocation">
+<h2>18｜互动三：如果每个月只有 5,000 元，五个目标怎么分？</h2>
+<p>这是一个资源冲突实验。你可以修改每月可用于未来的总金额，再给五个目标分配比例。比例必须加总到 100%。系统会用最简单的“零收益”模型估算完成时间，只用于理解取舍。</p>
+
+<div class="card">
+  <label>每月可用于未来目标的金额（元）<input id="budget" type="number" value="5000" oninput="updateConflict()"></label>
+  <div class="range-row"><span>应急金（目标 50,000）</span><input id="c1" type="range" min="0" max="100" value="30" oninput="updateConflict()"><b id="c1v">30%</b></div>
+  <div class="range-row"><span>读研（目标 100,000）</span><input id="c2" type="range" min="0" max="100" value="30" oninput="updateConflict()"><b id="c2v">30%</b></div>
+  <div class="range-row"><span>旅行（目标 20,000）</span><input id="c3" type="range" min="0" max="100" value="10" oninput="updateConflict()"><b id="c3v">10%</b></div>
+  <div class="range-row"><span>买车（目标 100,000）</span><input id="c4" type="range" min="0" max="100" value="10" oninput="updateConflict()"><b id="c4v">10%</b></div>
+  <div class="range-row"><span>长期投资</span><input id="c5" type="range" min="0" max="100" value="20" oninput="updateConflict()"><b id="c5v">20%</b></div>
+  <p>总分配：<b id="confTotal">100%</b></p>
+  <button onclick="calcConflict()">查看目标时间表</button>
+  <div id="confOut" class="feedback">分配完成后，这里会显示每个目标每月得到多少，以及大约多久能完成。</div>
+</div>
+
+<div class="callout blue"><div class="label">实验真正要观察的不是哪个分配“最优”</div>
+而是：<b>当你提高一个目标的速度时，其他目标发生了什么？</b>这就是资源有限条件下的机会成本。
+</div>
+</section>
+
+<section id="summary">
+<div class="end">
+<h2>19｜如果这一章真正学会了，你应该多出这八句话</h2>
+<p><b>1. 财务目标不是人生目标。</b>钱只是完成重要生活任务的工具。</p>
+<p><b>2. 一个目标必须从价值出发。</b>否则金额很容易变成没有终点的比较。</p>
+<p><b>3. 钱也代表生命时间。</b>消费价格可以被重新理解为你为了获得这笔钱投入了多少时间和精力。</p>
+<p><b>4. 财富的重要效用之一是时间控制权。</b>等待、拒绝和尝试都需要资源。</p>
+<p><b>5. 完整财务目标至少要有金额、时间、现有资源、优先级和弹性。</b></p>
+<p><b>6. 时间期限会改变风险。</b>半年后必须使用的钱和三十年后使用的钱不应该承担相同任务。</p>
+<p><b>7. 财务规划的本质之一是取舍。</b>选择一个目标，就是暂时减少另一个目标可获得的资源。</p>
+<p><b>8. “够”必须由你自己定义。</b>理财既不能完全牺牲未来，也不应该为了未来取消今天全部生活。</p>
+<p><b>下一章：</b>现在我们终于知道“我要去哪里”。第 4 章会做一件非常具体的事：<b>把你今天的财务状态完整摊开，判断自己距离这些目标究竟有多远。</b></p>
+</div>
+</section>
+
+<section id="refs">
+<h2>20｜本章资料来源与如何使用它们</h2>
+<ol class="refs">
+  <li><b>CFP Board — Financial Planning and Application of the Practice Standards.</b> 用于本章“人生目标高于孤立金融目标”的核心框架。CFP Board 将 financial planning 定义为整合个人与财务处境、帮助客户实现 life goals 的协作过程。<br><a href="https://www.cfp.net/ethics/compliance-resources/2020/01/financial-planning-and-application-of-the-practice-standards-for-the-financial-planning-process">官方说明</a></li>
+  <li><b>CFP Board — Code of Ethics and Standards of Conduct / Practice Standards.</b> 用于目标识别、目标优先级以及在给出建议前整合个人与财务情况的专业流程。<br><a href="https://www.cfp.net/ethics/code-of-ethics-and-standards-of-conduct">官方标准</a></li>
+  <li><b>CFA Institute — Wealth Planning, 2026 Private Wealth Curriculum.</b> 用于 goals-based planning、目标定义与排序、目标子组合、流动性和生命周期财富框架。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/wealth-planning">官方课程摘要</a></li>
+  <li><b>CFA Institute — Principles / Overview of Asset Allocation.</b> 用于“目标有不同时间期限和成功要求，因此风险应相对目标来理解”的后续资产配置桥梁。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/principles-asset-allocation">官方课程摘要</a></li>
+  <li><b>Consumer Financial Protection Bureau — Your Money, Your Goals.</b> 用于目标设定、目标行动化、人生事件与大额购买、目标修订等工具结构。<br><a href="https://www.consumerfinance.gov/consumer-tools/educator-tools/your-money-your-goals/toolkit/">工具包入口</a></li>
+  <li><b>Vicki Robin & Joe Dominguez — Your Money or Your Life.</b> 本章采用其 “life energy” 与真实时薪思想作为“钱—时间”转换框架；正文为课程化解释，没有复制书中长段文字。<br><a href="https://www.penguinrandomhouse.com/books/303637/your-money-or-your-life-by-vicki-robin-and-joe-dominguez-foreword-by-mr-money-mustache/">出版方页面</a></li>
+  <li><b>Morgan Housel — The Psychology of Money.</b> 本章参考其关于“control over your time”和“Never Enough”的思想，用于解释财富的时间价值与“足够”的边界；正文以概念转述为主。<br><a href="https://www.harriman-house.com/psychologyofmoney">出版方目录</a></li>
+  <li><b>课程计算说明.</b> 本章互动中的资金缺口、每月倒推、真实时薪和目标完成时间均使用教学型简化模型，不含税收、投资收益、资产价格变化等复杂因素；后续章节会逐步把这些变量加入。</li>
+</ol>
+</section>
+
+</article>
+</main>
+</div></div>
+
+<script>
+const taskDone=new Set();
+
+function markTask(k){
+  taskDone.add(k);
+  const pct=Math.round(taskDone.size/3*100);
+  document.getElementById("taskPct").textContent=pct+"%";
+  document.getElementById("taskProg").style.width=pct+"%";
+}
+
+function fmtMoney(x){
+  return new Intl.NumberFormat("zh-CN",{style:"currency",currency:"CNY",maximumFractionDigits:0}).format(Number(x)||0);
+}
+
+function calcHourly(){
+  const income=Number(document.getElementById("hIncome").value||0);
+  const work=Number(document.getElementById("hWork").value||0);
+  const commute=Number(document.getElementById("hCommute").value||0);
+  const extra=Number(document.getElementById("hExtra").value||0);
+  const cost=Number(document.getElementById("hCost").value||0);
+  const purchase=Number(document.getElementById("hPurchase").value||0);
+  const weeks=4.33;
+  const nominalHours=work*weeks;
+  const trueHours=(work+commute+extra)*weeks;
+  const nominal=nominalHours>0?income/nominalHours:0;
+  const trueRate=trueHours>0?Math.max(income-cost,0)/trueHours:0;
+  const life=trueRate>0?purchase/trueRate:0;
+  document.getElementById("hourlyOut").innerHTML=
+    "<div class='grid3'>"+
+    "<div class='metric'><span>名义时薪</span><b>"+fmtMoney(nominal)+"/小时</b></div>"+
+    "<div class='metric'><span>估算真实时薪</span><b>"+fmtMoney(trueRate)+"/小时</b></div>"+
+    "<div class='metric'><span>这笔消费约对应</span><b>"+life.toFixed(1)+" 小时</b></div>"+
+    "</div><hr>"+
+    "这不是要求你用“时间”否定消费。更有价值的问题是：<b>如果知道它大约对应 "+life.toFixed(1)+" 小时，我仍然愿意交换吗？</b>"+
+    "<p class='note'>模型把一个月按约 4.33 周估算，只用于建立比例感。</p>";
+  markTask("hourly");
+}
+
+function selectedValues(){
+  return [...document.querySelectorAll(".value-chip.sel")].map(x=>x.textContent);
+}
+function toggleValue(el){
+  el.classList.toggle("sel");
+  const vals=selectedValues();
+  if(vals.length>4){
+    el.classList.remove("sel");
+    alert("建议先保留最重要的 2–4 个价值。");
+  }
+  saveValues();
+  renderGoals();
+}
+function saveValues(){
+  localStorage.setItem("finance_ch3_values",JSON.stringify(selectedValues()));
+}
+function loadValues(){
+  const vals=JSON.parse(localStorage.getItem("finance_ch3_values")||"[]");
+  document.querySelectorAll(".value-chip").forEach(x=>{if(vals.includes(x.textContent))x.classList.add("sel")});
+}
+function loadGoals(){return JSON.parse(localStorage.getItem("finance_ch3_goals")||"[]")}
+function saveGoals(g){localStorage.setItem("finance_ch3_goals",JSON.stringify(g))}
+function addGoal(){
+  const name=document.getElementById("gName").value.trim();
+  const target=Number(document.getElementById("gTarget").value||0);
+  const current=Number(document.getElementById("gCurrent").value||0);
+  const months=Number(document.getElementById("gMonths").value||0);
+  const priority=document.getElementById("gPriority").value;
+  const flex=document.getElementById("gFlex").value;
+  const why=document.getElementById("gWhy").value.trim();
+  if(!name||target<=0||months<=0){
+    document.getElementById("mapSummary").innerHTML="<b>请至少填写目标名称、目标金额和剩余月份。</b>";
+    return;
+  }
+  const goals=loadGoals();
+  goals.push({id:Date.now(),name,target,current,months,priority,flex,why});
+  saveGoals(goals);
+  ["gName","gTarget","gCurrent","gMonths","gWhy"].forEach(id=>document.getElementById(id).value="");
+  renderGoals(); markTask("map");
+}
+function removeGoal(id){
+  saveGoals(loadGoals().filter(g=>g.id!==id));renderGoals();
+}
+function clearGoals(){
+  localStorage.removeItem("finance_ch3_goals");renderGoals();
+}
+function renderGoals(){
+  const vals=selectedValues(), goals=loadGoals(), box=document.getElementById("goalCards");
+  box.innerHTML="";
+  let totalGap=0,totalMonthly=0;
+  goals.forEach(g=>{
+    const gap=Math.max(g.target-g.current,0);
+    const monthly=g.months>0?gap/g.months:0;
+    totalGap+=gap;totalMonthly+=monthly;
+    const el=document.createElement("div");el.className="goal-card";
+    el.innerHTML="<h4>"+g.name+"</h4>"+
+      "<div class='goal-meta'><span class='badge'>"+g.priority+"</span><span class='badge'>"+g.flex+"</span><span class='badge'>"+g.months+" 个月</span></div>"+
+      "<p><b>目标：</b>"+fmtMoney(g.target)+" ｜ <b>已准备：</b>"+fmtMoney(g.current)+" ｜ <b>缺口：</b>"+fmtMoney(gap)+"</p>"+
+      "<p><b>零收益简化倒推：</b>每月约需 "+fmtMoney(monthly)+"</p>"+
+      (g.why?"<p><b>为什么重要：</b>"+g.why+"</p>":"")+
+      "<button class='ghost' onclick='removeGoal("+g.id+")'>删除</button>";
+    box.appendChild(el);
+  });
+  document.getElementById("mapSummary").innerHTML=
+    "<b>核心价值：</b>"+(vals.length?vals.join(" / "):"尚未选择")+"<br>"+
+    "<b>目标数量：</b>"+goals.length+" ｜ <b>总资金缺口：</b>"+fmtMoney(totalGap)+" ｜ <b>按各自期限倒推的月度合计：</b>"+fmtMoney(totalMonthly)+
+    "<p class='note'>如果月度合计明显高于你的真实可结余资金，这不是“失败”，而是在提醒你：目标需要重新排序、延后、降成本或增加收入。</p>";
+}
+function exportGoals(){
+  const data={
+    chapter:"03 钱究竟应该服务什么？",
+    exported_at:new Date().toISOString(),
+    values:selectedValues(),
+    goals:loadGoals()
+  };
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob),a=document.createElement("a");
+  a.href=url;a.download="我的财务目标地图_v1.json";a.click();URL.revokeObjectURL(url);
+}
+
+function updateConflict(){
+  let total=0;
+  for(let i=1;i<=5;i++){
+    const v=Number(document.getElementById("c"+i).value);
+    total+=v;document.getElementById("c"+i+"v").textContent=v+"%";
+  }
+  const el=document.getElementById("confTotal");el.textContent=total+"%";el.style.color=total===100?"var(--green)":"var(--red)";
+}
+function monthText(months){
+  if(!isFinite(months)||months<=0)return "未分配";
+  if(months<12)return Math.ceil(months)+" 个月";
+  return (months/12).toFixed(1)+" 年";
+}
+function calcConflict(){
+  const budget=Number(document.getElementById("budget").value||0);
+  const ps=[1,2,3,4,5].map(i=>Number(document.getElementById("c"+i).value));
+  const total=ps.reduce((a,b)=>a+b,0);
+  if(total!==100){document.getElementById("confOut").innerHTML="<b>请先让五项比例加总到 100%。</b>";return}
+  const names=["应急金","读研","旅行","买车","长期投资"];
+  const targets=[50000,100000,20000,100000,null];
+  let html="<div class='grid2'>";
+  ps.forEach((p,i)=>{
+    const m=budget*p/100;
+    const months=targets[i]===null?null:(m>0?targets[i]/m:Infinity);
+    html+="<div class='metric'><span>"+names[i]+" · 每月 "+fmtMoney(m)+"</span><b>"+(targets[i]===null?"长期持续":monthText(months))+"</b><div class='goalbar'><i style='width:"+p+"%'></i></div></div>";
+  });
+  html+="</div><hr><b>观察：</b>你每提高某一项的比例，都必须从其他地方拿走比例。重新拖动一次，看看最重要目标的完成时间怎样变化。"+
+    "<p class='note'>这里故意不加入收益率、通胀和已有资产，只让你看清机会成本。</p>";
+  document.getElementById("confOut").innerHTML=html;
+  markTask("conflict");
+}
+
+function updateReadingProgress(){
+  const doc=document.documentElement;
+  const scrollTop=doc.scrollTop||document.body.scrollTop;
+  const height=doc.scrollHeight-doc.clientHeight;
+  const pct=height>0?Math.min(100,Math.round(scrollTop/height*100)):0;
+  document.getElementById("readPct").textContent=pct+"%";
+  document.getElementById("readProg").style.width=pct+"%";
+}
+window.addEventListener("scroll",updateReadingProgress);
+
+loadValues();
+renderGoals();
+updateConflict();
+updateReadingProgress();
+</script>
+</body>
+</html>

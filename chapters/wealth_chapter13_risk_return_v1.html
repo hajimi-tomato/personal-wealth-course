@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十三章｜风险和收益到底是什么关系？— 个人财富系统</title>
+<style>
+:root{
+  --bg:#efe1c3;--paper:#fbf3df;--ink:#332a22;--muted:#766858;--line:#d6c199;
+  --red:#8f342a;--redbg:#f1ddd5;--green:#455f4c;--greenbg:#dfe7dc;
+  --gold:#a77a2b;--goldbg:#f2e4bd;--blue:#445d70;--bluebg:#dce5e9;--deep:#2e2924;
+  --shadow:0 18px 50px rgba(74,52,28,.14)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);line-height:1.9;font-family:ui-serif,"Noto Serif SC","Source Han Serif SC","Songti SC",STSong,serif;background:radial-gradient(circle at 12% 7%,rgba(255,255,255,.45),transparent 25%),radial-gradient(circle at 88% 15%,rgba(100,74,40,.07),transparent 22%),repeating-linear-gradient(0deg,rgba(90,63,34,.022) 0 1px,transparent 1px 5px),var(--bg)}
+a{color:var(--green);text-underline-offset:3px}.wrap{max-width:1340px;margin:auto;padding:24px}.layout{display:grid;grid-template-columns:275px minmax(0,930px);gap:30px;justify-content:center;align-items:start}
+.sidebar{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto}.sidebox{background:rgba(251,243,223,.84);border:1px solid var(--line);border-radius:13px;padding:15px;margin-bottom:12px}.sidebox b{display:block}.sidebox small{color:var(--muted)}
+nav a{display:block;text-decoration:none;color:var(--muted);font-size:12px;padding:5px 7px;border-radius:7px}nav a:hover{background:#efdfbd;color:var(--ink)}
+.progress{height:7px;background:#e3d1aa;border-radius:999px;overflow:hidden;margin-top:8px}.progress i{display:block;height:100%;width:0;background:var(--red);transition:.2s}
+.paper{background:rgba(251,243,223,.97);border:1px solid rgba(170,143,96,.48);box-shadow:var(--shadow);border-radius:7px;overflow:hidden}
+.hero{padding:68px 74px 50px;border-bottom:1px solid var(--line);position:relative}.hero:before{content:"";position:absolute;left:28px;top:30px;bottom:30px;width:1px;background:rgba(143,52,42,.28)}
+.kicker{font-size:12px;letter-spacing:.18em;color:var(--red);font-weight:800}h1{font-size:49px;line-height:1.2;margin:13px 0 17px;letter-spacing:-.035em}.subtitle{font-size:20px;color:var(--muted);max-width:790px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 9px;background:#f7edd4;color:var(--muted)}
+.content{padding:54px 74px 76px}section{margin-bottom:62px}h2{font-size:30px;line-height:1.35;margin:0 0 18px}h3{font-size:21px;margin:30px 0 10px}p{margin:9px 0 16px}.lead{font-size:18px}
+.callout{padding:19px 21px;border-left:5px solid;margin:23px 0;border-radius:4px}.red{background:var(--redbg);border-color:var(--red)}.green{background:var(--greenbg);border-color:var(--green)}.gold{background:var(--goldbg);border-color:var(--gold)}.blue{background:var(--bluebg);border-color:var(--blue)}
+.label{font-size:11px;font-weight:800;letter-spacing:.14em;margin-bottom:4px}.card{padding:20px;border:1px solid var(--line);border-radius:10px;background:#fff9ea;margin:15px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.table th{font-size:11px;color:var(--muted)}
+.formula{background:var(--deep);color:#f8edd6;font:16px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:17px 19px;border-radius:8px;margin:18px 0}
+.case{padding:22px;border:1px solid var(--line);border-radius:10px;background:#faf0db;margin:14px 0}.casehead{display:flex;justify-content:space-between;gap:12px;align-items:baseline}.casehead b{font-size:18px}.casehead span{font-size:12px;color:var(--muted)}
+.quote{padding:23px 27px;background:#eee0c4;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:19px;margin:24px 0}
+.small{font-size:12px;color:var(--muted)}.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 7px;font-size:11px;background:#f6ead0;margin:2px}
+.metric{padding:15px;background:#f8edd4;border:1px solid var(--line);border-radius:9px}.metric b{display:block;font-size:20px;color:var(--green)}.metric span{font-size:12px;color:var(--muted)}
+input[type=text],input[type=number],select{width:100%;border:1px solid #c7ad80;background:#fffaf0;border-radius:7px;padding:10px 11px;color:var(--ink);font:inherit}
+input[type=range]{width:100%;accent-color:var(--red)}
+button{border:0;border-radius:8px;padding:10px 15px;background:var(--red);color:#fff;font-weight:800;cursor:pointer}button.secondary{background:var(--green)}button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.feedback{margin-top:14px;padding:15px 17px;border:1px dashed #b69d70;border-radius:8px;background:#f5e9cf}.tool-title{display:flex;justify-content:space-between;gap:12px;align-items:center}
+canvas{width:100%;height:320px;border:1px solid var(--line);border-radius:9px;background:#fffaf0;margin-top:14px}
+.profilebar{height:12px;background:#e3d1aa;border-radius:999px;overflow:hidden;margin:7px 0 14px}.profilebar i{display:block;height:100%;background:var(--green)}
+.end{background:var(--deep);color:#f5ebd7;padding:28px;border-radius:9px}.end h2{color:#fff5df}.refs{font-size:13px;color:var(--muted)}.refs li{margin-bottom:10px}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{display:none}.hero,.content{padding-left:36px;padding-right:36px}}
+@media(max-width:780px){.wrap{padding:0}.paper{border-radius:0}.hero,.content{padding:30px 20px}h1{font-size:34px}.grid2,.grid3,.grid4{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="layout">
+<aside class="sidebar">
+<div class="sidebox"><b>个人财富系统</b><small>第十三章 · 风险与收益</small></div>
+<div class="sidebox"><small>阅读进度 <span id="readPct">0%</span></small><div class="progress"><i id="readProg"></i></div></div>
+<div class="sidebox"><small>互动完成度 <span id="taskPct">0%</span></small><div class="progress"><i id="taskProg"></i></div></div>
+<div class="sidebox"><nav>
+<a href="#goal">00 高风险高收益哪里不准确</a><a href="#risk">01 风险是什么</a><a href="#loss">02 风险与亏损</a><a href="#volatility">03 Volatility</a><a href="#sd">04 标准差</a><a href="#limit">05 标准差的边界</a><a href="#downside">06 Downside Risk</a><a href="#drawdown">07 Drawdown</a><a href="#maxdd">08 Maximum Drawdown</a><a href="#path">09 路径风险</a><a href="#recovery">10 亏损恢复非对称</a><a href="#permanent">11 永久损失</a><a href="#shortfall">12 目标缺口风险</a><a href="#purchasing">13 购买力风险</a><a href="#liquidity">14 流动性风险</a><a href="#credit">15 信用风险</a><a href="#duration">16 利率与期限风险</a><a href="#equity">17 企业风险</a><a href="#concentration">18 集中风险</a><a href="#behavior">19 行为风险</a><a href="#premium">20 风险溢价</a><a href="#required">21 Required Return</a><a href="#expected">22 为什么只是预期收益</a><a href="#probability">23 Expected Return</a><a href="#decision">24 决策和结果</a><a href="#aversion">25 Risk Aversion</a><a href="#capacity">26 Capacity / Willingness / Need</a><a href="#horizon">27 时间期限</a><a href="#diversification">28 分散化</a><a href="#systematic">29 系统性与非系统性风险</a><a href="#correlation">30 Correlation</a><a href="#adjusted">31 风险调整后收益</a><a href="#boundary">32 本章边界</a><a href="#cases">33 四个案例</a><a href="#mistakes">34 十个误区</a><a href="#tool1">35 Risk Metrics Lab</a><a href="#tool2">36 Drawdown Recovery Lab</a><a href="#tool3">37 Same Average, Different Journey</a><a href="#tool4">38 我的 Risk Profile</a><a href="#summary">39 总结</a><a href="#refs">40 资料与注释</a>
+</nav></div></aside>
+
+<main class="paper">
+<header class="hero"><div class="kicker">CHAPTER 13 · RISK & RETURN</div><h1>风险和收益到底是什么关系？</h1><div class="subtitle">波动、回撤、永久损失、风险溢价与风险承受能力：更高风险不是收益保证，而是更宽的不确定性分布。</div><div class="meta"><span class="pill">预计阅读 80–95 分钟</span><span class="pill">Stage IV 收口章</span><span class="pill">4 个风险实验</span><span class="pill">最终产物：我的风险地图 v1</span></div></header>
+
+<article class="content">
+
+<section id="goal"><h2>00｜“高风险高收益”到底哪里不准确？</h2><p class="lead">更准确的说法是：承担更高风险，通常是为了争取更高的<strong>预期</strong>收益，而不是获得更高的确定收益。</p><p>Investor.gov 对风险承受能力的解释同样强调，投资者是为了潜在更高回报而愿意并能够承受部分或全部本金损失。风险越高，投资者通常要求更高回报作为补偿，但结果仍然是不确定的。</p><div class="callout red"><div class="label">本章第一原则</div><b>Risk ≠ Reward Guarantee。风险只是让结果分布更不确定；风险溢价存在于“预期”层面。</b></div></section>
+
+<section id="risk"><h2>01｜投资风险真正的起点：Uncertainty</h2><p>如果你明天确定会支付 1000 元，那更像一个已知成本。风险困难在于：事情是否发生、何时发生、损失多大、持续多久、是否恢复，都具有不确定性。</p><div class="formula">Risk = 实际结果相对预期结果出现不利偏离的可能性 × 严重程度</div><p>价格波动只是其中一种可观察形式。</p></section>
+
+<section id="loss"><h2>02｜风险和亏损不是一回事</h2><p>风险存在于结果揭晓之前；亏损则是某种风险真正实现后的结果。一个合理决策可能因为不利随机结果而亏损，一次不合理赌博也可能因为幸运而赚钱。</p><div class="quote"><b>Good Decision ≠ Guaranteed Good Outcome。</b></div></section>
+
+<section id="volatility"><h2>03｜Volatility：金融世界最常用的风险语言</h2><p>如果一项资产每年收益都靠近 5%，它的收益路径比较稳定；如果另一项资产年度收益经常在 +40% 和 −25% 之间摇摆，它的离散程度更高。</p><p>CFA 2026 Portfolio Mathematics 仍然以 expected return 描述 reward，以 variance 和 standard deviation 描述 risk，并进一步用协方差和相关性研究组合风险。</p></section>
+
+<section id="sd"><h2>04｜Standard Deviation 到底表示什么？</h2><p>标准差描述收益结果围绕平均收益的分散程度。平均收益同为 8% 时，标准差 3% 和 25% 代表的是完全不同的收益路径。</p><div class="callout blue"><div class="label">不要这样理解</div>标准差 25% 并不意味着“一年最多亏 25%”。它不是最大损失上限，而是收益分布离散程度的统计描述。</div></section>
+
+<section id="limit"><h2>05｜为什么标准差不是完整的风险定义？</h2><p>标准差把上涨 30% 和下跌 30% 都视为偏离平均值 30%，但现实投资者往往不会觉得两者同样糟糕。</p><p>同时，一个价格长期很稳定的资产也可能因为违约、破产、流动性枯竭等事件突然产生巨大损失。因此：</p><div class="formula">Volatility is a Risk Measure, not the Definition of All Risk.</div></section>
+
+<section id="downside"><h2>06｜Downside Risk：很多人真正关心的是“不利方向”</h2><p>如果目标是五年后必须有 20 万元，那么真正重要的不是收益偏离平均值本身，而是结果有没有落到目标以下。因此金融风险管理还会使用下行偏差、shortfall risk 等指标。</p></section>
+
+<section id="drawdown"><h2>07｜Drawdown：从峰值到谷底究竟跌了多少？</h2><div class="case"><div class="casehead"><b>100 → 130 → 90</b><span>起点到终点只跌 10%</span></div><p>但从曾经的高点 130 到 90，回撤约为 −30.8%。这比简单比较起点和终点更接近持有人真实经历。</p></div></section>
+
+<section id="maxdd"><h2>08｜Maximum Drawdown：最难受的时候发生了什么？</h2><p>最大回撤记录历史上从某个高点到之后低点的最大跌幅。假设一个 100 万元账户经历 −40% 最大回撤，意味着某个阶段可能从高点 100 万下降到约 60 万。</p><div class="callout gold"><div class="label">把统计翻译成人</div><b>真正的问题不是“−40% 这个数字大不大”，而是“在账户掉到 60 万时，我还能不能继续执行计划？”</b></div></section>
+
+<section id="path"><h2>09｜路径风险：最终结果接近，中间体验也可能完全不同</h2><p>两个组合十年后都可能从 100 万变成 180 万，但一个平稳上涨，另一个中途先跌到 55 万再恢复。对于中途需要提款的人、心理承受能力有限的人、或者因为下跌卖出的人，这两条路径绝不是等价的。</p></section>
+
+<section id="recovery"><h2>10｜为什么回撤越深，恢复越困难？</h2><div class="formula">Recovery Gain = 1 ÷ (1 − Loss) − 1</div><table class="table"><thead><tr><th>跌幅</th><th>回到原值需要上涨</th></tr></thead><tbody><tr><td>−10%</td><td>+11.1%</td></tr><tr><td>−20%</td><td>+25%</td></tr><tr><td>−50%</td><td>+100%</td></tr><tr><td>−80%</td><td>+400%</td></tr></tbody></table><p>这和第十一章学习的百分比非对称完全一致。</p></section>
+
+<section id="permanent"><h2>11｜Permanent Loss of Capital：有些“跌”不会自动回来</h2><p>资产从 100 跌到 70 再涨到 120，是剧烈波动；一家企业从 100 跌到 0 并破产，则是资本永久损失。</p><div class="grid2"><div class="card"><b>Temporary Price Volatility</b><p>价格暂时大幅偏离，但经济价值可能恢复。</p></div><div class="card"><b>Permanent Impairment</b><p>资产创造现金流的能力永久受损，甚至归零。</p></div></div></section>
+
+<section id="shortfall"><h2>12｜Shortfall Risk：真正的财务规划风险可能是“钱不够”</h2><p>CFA 的组合数学课程把 shortfall risk 作为风险指标之一。对个人而言，它尤其重要：</p><div class="case"><div class="casehead"><b>五年后学费目标：200,000 元</b><span>实际只有 190,000 元</span></div><p>投资仍然可能是赚钱的，但目标没有被完整资金化。从规划视角看，这仍然是一种失败。</p></div><div class="quote"><b>真正的风险，是钱在需要的时候无法完成它应该完成的任务。</b></div></section>
+
+<section id="purchasing"><h2>13｜Purchasing-Power Risk：第十二章留下的风险</h2><p>现金价格几乎不波动，却可能因为通胀持续失去购买力。这说明“低波动”与“低风险”并不是同义词。</p></section>
+
+<section id="liquidity"><h2>14｜Liquidity Risk：净资产很多，也可能在需要钱时陷入困难</h2><p>价值 100 万元的资产，如果在紧急时无法迅速变现，或者只能接受巨大折价，仍然可能无法解决当期现金需求。这就是第八章已经建立的流动性风险。</p></section>
+
+<section id="credit"><h2>15｜Credit Risk：借款人到底能不能还钱？</h2><p>债券和借贷最核心的风险之一，是对手方不能按约支付利息或本金。这里先记住：信用风险来自履约能力，而不只是市场价格每天如何变化。</p></section>
+
+<section id="duration"><h2>16｜Interest-Rate / Duration Risk：固定收益不等于价格固定</h2><p>市场利率变化会改变既有固定收益资产的相对吸引力，从而影响价格。第十五章债券会正式展开这一机制。</p></section>
+
+<section id="equity"><h2>17｜Equity / Business Risk：股票为什么没有固定结果？</h2><p>股东拥有企业剩余权益。未来利润、竞争、成本、需求、管理决策和估值都可能变化，所以股票的未来现金流和最终回报具有很大不确定性。</p></section>
+
+<section id="concentration"><h2>18｜Concentration Risk：你可能不是承担“更多收益机会”，而是把风险集中在一个点</h2><p>全部资金押在一家公司、一种行业、一个国家或一种收入来源上，都会让某个局部冲击对整体财富造成巨大影响。</p><div class="callout red"><div class="label">一个重要纠偏</div><b>风险更集中，并不意味着市场会因为你“更勇敢”而自动奖励更高回报。</b></div></section>
+
+<section id="behavior"><h2>19｜Behavioral Risk：有时最大的风险是你自己无法坚持</h2><p>即使资产本身长期表现符合预期，如果投资者在深度回撤时恐慌卖出、上涨后追高、频繁切换策略，也可能把一个可执行计划变成很差的实际结果。第十九章会完整讨论这一层。</p></section>
+
+<section id="premium"><h2>20｜Risk Premium：为什么有人愿意承担风险？</h2><p>如果两个投资其他条件完全相同，而 B 有明显更高风险，投资者通常会要求 B 提供更高的预期回报，才愿意承担这种不确定性。这部分额外预期回报就是风险溢价。</p><div class="formula">Required Return ≈ Low-Risk Alternative + Risk Premium(s)</div></section>
+
+<section id="required"><h2>21｜Required Return：要求的回报，不是保证的回报</h2><p>假设较低风险机会提供约 3%，某风险资产为了吸引投资者需要额外 4% 风险补偿，那么 7% 更接近“投资者要求的预期回报”，并不是明年账户必然增长 7%。</p></section>
+
+<section id="expected"><h2>22｜为什么风险更高只意味着“预期”收益更高？</h2><p>如果风险资产每年都确定比低风险资产多赚 4%，那这 4% 就不是风险溢价，而更像确定套利。真正的风险补偿必须和“不确定结果”同时存在。</p></section>
+
+<section id="probability"><h2>23｜Expected Return：期望值不是你下一次真正会拿到的结果</h2><div class="case"><div class="casehead"><b>20% 概率 +40%，60% 概率 +10%，20% 概率 −30%</b><span>概率模型</span></div><div class="formula">0.2×40% + 0.6×10% + 0.2×(−30%) = 8%</div><p>Expected Return = 8%，但真正下一期的结果可能是 +40%、+10% 或 −30%，而不是必然拿到 8%。</p></div></section>
+
+<section id="decision"><h2>24｜Good Decision 和 Good Outcome 必须分开</h2><p>一次符合目标、风险承受能力和概率逻辑的决策也可能遇到坏结果；一次赌博式决策也可能短期幸运获利。只用一两次结果判断决策质量，会产生严重误导。</p></section>
+
+<section id="aversion"><h2>25｜Risk Aversion：不是不敢投资，而是不愿无偿承担风险</h2><p>如果两个选择预期收益相同，通常会偏好风险更低者；如果要接受更高风险，则通常要求更高预期回报作为补偿。这是现代投资组合选择的重要起点之一。</p></section>
+
+<section id="capacity"><h2>26｜个人风险承受必须拆成三个维度</h2><div class="grid3"><div class="card"><b>Risk Capacity / Ability</b><p>客观上能承受多大损失？看现金、收入、负债、目标和期限。</p></div><div class="card"><b>Risk Willingness</b><p>心理上能否接受账户下跌而不破坏计划？</p></div><div class="card"><b>Risk Need</b><p>为了实现目标，真的需要承担多少风险？</p></div></div><p>Investor.gov 把 risk tolerance 解释为投资者为了潜在更高回报而愿意并能够承担损失的程度；本课程再加入 Need，是为了防止“我能冒险，所以我就应该冒最大风险”的误区。</p></section>
+
+<section id="horizon"><h2>27｜Time Horizon 为什么改变风险选择？</h2><p>Investor.gov 当前仍把 time horizon 与 risk tolerance 视为资产配置的关键因素。时间越短，越难承受在提款日前发生大幅市场下跌；时间较长则通常拥有更多恢复和调整空间。</p><div class="callout gold"><div class="label">但不要误读</div><b>长期持有不会让风险自动消失。时间只是改变你面对某些风险的能力和约束。</b></div></section>
+
+<section id="diversification"><h2>28｜Diversification：分散化究竟解决什么？</h2><p>Investor.gov 用“不要把所有鸡蛋放在一个篮子里”解释分散化。真正目的不是保证不亏，而是降低单一投资、单一行业或单一风险源失败对整体财富的冲击。</p><p>买很多只相同行业股票，并不一定实现真正分散。</p></section>
+
+<section id="systematic"><h2>29｜Systematic vs Unsystematic Risk</h2><div class="grid2"><div class="card"><b>Unsystematic Risk</b><p>公司、项目、个体事件造成的风险，通常可以通过分散持有显著降低。</p></div><div class="card"><b>Systematic Risk</b><p>宏观、市场、利率等大范围风险，简单增加公司数量不能完全消除。</p></div></div><p>CFA 2026 课程明确指出，投资者一般不应期待因为承担本可分散的非系统性风险而获得额外回报补偿。</p></section>
+
+<section id="correlation"><h2>30｜Correlation：组合风险为什么不是简单相加？</h2><p>如果两个资产总是同时上涨、同时下跌，它们提供的分散作用有限。如果收益变化并不完全同步，组合波动就可能低于单个资产风险的简单加总。</p><div class="quote"><b>资产数量不是关键，风险来源之间的相关性才是关键。</b></div></section>
+
+<section id="adjusted"><h2>31｜Risk-Adjusted Return：多赚 1%，到底多承担了多少风险？</h2><p>如果 A 年收益 10%、波动 5%，B 收益 11%、波动 30%，不能只说 B“收益更高”。真正的问题是：为了多出的收益，你承担了多少额外不确定性。</p><p>后续会遇到 Sharpe Ratio 等正式指标；这一章只先建立“收益必须和风险一起比较”的直觉。</p></section>
+
+<section id="boundary"><h2>32｜本章故意不深入 CAPM、Beta、VaR 和 Efficient Frontier</h2><p>这些都是专业金融里的重要工具，但如果这一章全部展开，会把个人金融训练营直接变成定量金融课程。这里先建立真正可迁移的核心：风险维度、风险溢价、目标风险和风险承受结构。到第十八章资产配置时再回来使用必要部分。</p></section>
+
+<section id="cases"><h2>33｜四个现实案例</h2>
+<div class="case"><div class="casehead"><b>A｜两个基金平均收益都接近 8%</b><span>Return alone is incomplete</span></div><p>A 每年稳定在 6%–10% 附近，B 经常 +40%、−25%、+35%、−20%。平均收益可能接近，但标准差、最大回撤和真实持有体验完全不同。</p></div>
+<div class="case"><div class="casehead"><b>B｜资产下跌 40%，是不是涨 40% 就回来？</b><span>Recovery asymmetry</span></div><p>100 跌到 60，需要上涨 66.7% 才能回到 100。</p></div>
+<div class="case"><div class="casehead"><b>C｜两年后买房的钱全部投入高波动资产</b><span>Shortfall Risk</span></div><p>长期预期收益可能较高，但明确的短期限让提款时大跌成为真正核心风险。</p></div>
+<div class="case"><div class="casehead"><b>D｜全部押在一家“特别看好”的公司</b><span>Concentration Risk</span></div><p>承担大量可分散的公司个体风险，并不会自动获得额外市场奖励。</p></div>
+</section>
+
+<section id="mistakes"><h2>34｜十个最容易学歪的地方</h2>
+<div class="callout red"><div class="label">误区 1</div><b>高风险一定带来高收益。</b></div>
+<div class="callout red"><div class="label">误区 2</div><b>风险就是价格波动。</b></div>
+<div class="callout red"><div class="label">误区 3</div><b>标准差能够描述所有投资风险。</b></div>
+<div class="callout red"><div class="label">误区 4</div><b>只要最后涨回来，中间回撤就完全不重要。</b></div>
+<div class="callout red"><div class="label">误区 5</div><b>长期投资以后风险就消失了。</b></div>
+<div class="callout red"><div class="label">误区 6</div><b>现金没有风险。</b></div>
+<div class="callout red"><div class="label">误区 7</div><b>风险承受能力就是“胆子大”。</b></div>
+<div class="callout red"><div class="label">误区 8</div><b>能承担高风险，所以应该承担高风险。</b></div>
+<div class="callout red"><div class="label">误区 9</div><b>买很多股票就一定分散。</b></div>
+<div class="callout red"><div class="label">误区 10</div><b>承担更多可分散风险就应该获得更多回报。</b></div>
+</section>
+
+<section id="tool1"><div class="tool-title"><h2>35｜互动一：Risk Metrics Lab</h2><span class="badge">从一串收益率读出五种信息</span></div><div class="card">
+<p>输入年度收益率，用逗号分隔：</p><input id="mSeries" type="text" value="12,-8,25,-15,10,7">
+<label>起始资金（元）<input id="mStart" type="number" value="100000"></label>
+<button class="secondary" onclick="riskMetrics()">计算风险指标</button>
+<div id="metricOut" class="feedback">会计算算术平均、CAGR、标准差、最差年份、最大回撤和最终财富。</div>
+<canvas id="metricChart" width="800" height="320"></canvas>
+</div></section>
+
+<section id="tool2"><div class="tool-title"><h2>36｜互动二：Drawdown Recovery Lab</h2><span class="badge">Loss–Recovery Curve</span></div><div class="card">
+<label>资产从峰值下跌：<b id="lossLabel">30%</b><input id="lossRange" type="range" min="1" max="90" value="30" oninput="recoveryLab()"></label>
+<div id="recoveryOut" class="feedback"></div>
+<canvas id="recoveryChart" width="800" height="320"></canvas>
+</div></section>
+
+<section id="tool3"><div class="tool-title"><h2>37｜互动三：Same Average, Different Journey</h2><span class="badge">平均收益相近，路径可以完全不同</span></div><div class="card">
+<div class="grid2">
+<label>路径 A<input id="pathA" type="text" value="5,7,6,8,7"></label>
+<label>路径 B<input id="pathB" type="text" value="35,-20,30,-15,3"></label>
+</div>
+<button class="secondary" onclick="journeyLab()">比较路径</button>
+<div id="journeyOut" class="feedback">比较 CAGR、波动率、最大回撤和最终财富。</div>
+<canvas id="journeyChart" width="800" height="320"></canvas>
+</div></section>
+
+<section id="tool4"><div class="tool-title"><h2>38｜互动四：我的 Risk Profile</h2><span class="badge">Ability × Willingness × Need</span></div><div class="card">
+<h3>Ability｜客观承受能力</h3>
+<div class="grid2">
+<label>应急金覆盖<select id="pBuffer"><option value="0">少于3个月</option><option value="1">3–6个月</option><option value="2">超过6个月</option></select></label>
+<label>收入稳定性<select id="pIncome"><option value="0">高波动</option><option value="1">中等</option><option value="2">较稳定</option></select></label>
+<label>近期刚性目标<select id="pGoal"><option value="0">1–3年内有重要提款</option><option value="1">3–7年</option><option value="2">7年以上</option></select></label>
+<label>负债与固定支出压力<select id="pDebt"><option value="0">较高</option><option value="1">中等</option><option value="2">较低</option></select></label>
+</div>
+<h3>Willingness｜心理接受程度</h3>
+<label>如果长期投资从峰值下跌 30%，你更接近：<select id="pWilling"><option value="0">很可能立即卖出大部分</option><option value="1">会明显焦虑并考虑减仓</option><option value="2">可以接受波动并重新检查原计划</option></select></label>
+<h3>Need｜目标是否需要高风险</h3>
+<label>为了实现目标，你估计需要的长期真实回报更接近：<select id="pNeed"><option value="2">较高，否则目标难实现</option><option value="1">中等</option><option value="0">较低回报已经足够</option></select></label>
+<button class="secondary" onclick="profileLab()">生成风险结构</button>
+<div id="profileOut" class="feedback">不会输出单一“风险得分”，而是分别解释 Ability、Willingness 和 Need。</div>
+<button class="ghost" onclick="exportMap()">导出《我的风险地图 v1》</button>
+</div></section>
+
+<section id="summary"><div class="end"><h2>39｜如果这一章真正学会了，你应该多出这十句话</h2><p><b>1. 高风险不是高收益保证，只意味着结果更不确定并可能拥有更高预期收益。</b></p><p><b>2. 波动只是风险的一种表达，不是风险的全部。</b></p><p><b>3. 标准差、最大回撤和永久损失描述的是不同问题。</b></p><p><b>4. 深度亏损需要不对称地更高涨幅才能恢复。</b></p><p><b>5. 目标没有按时被资金化，本身就是 Shortfall Risk。</b></p><p><b>6. 现金、债券、股票分别暴露于不同类型的风险。</b></p><p><b>7. 风险溢价存在于预期层面，不是事后奖励。</b></p><p><b>8. 风险承受必须同时看 Ability、Willingness 和 Need。</b></p><p><b>9. 分散化主要减少可分散的个体风险，不能消除所有系统性风险。</b></p><p><b>10. 真正的风险，是我的钱在需要时无法完成它应该完成的任务。</b></p><p><b>下一章：</b>Stage IV 到这里结束。第 14 章我们不再只谈抽象风险，而是正式进入资产世界：<b>一张图看懂所有主要资产。</b></p></div></section>
+
+<section id="refs"><h2>40｜本章资料来源与使用边界</h2><ol class="refs">
+<li><b>CFA Institute — Portfolio Mathematics, 2026 Curriculum.</b> 用于 expected return、variance、standard deviation、covariance、correlation 与 shortfall risk 的专业框架。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-mathematics">CFA Institute</a></li>
+<li><b>CFA Institute — Portfolio Risk and Return: Part I, 2026 Curriculum.</b> 用于资产风险收益、相关性、组合风险与投资者风险特征的课程框架。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-risk-return-part-1">CFA Institute</a></li>
+<li><b>CFA Institute — 2026 Level I Topic Outlines.</b> 用于 systematic / nonsystematic risk、相关性与分散化等专业边界；课程明确指出投资者不应预期因承担可分散的非系统性风险获得额外回报。</li>
+<li><b>Investor.gov — Asset Allocation and Diversification.</b> 用于 time horizon、risk tolerance、分散化和“风险越高通常要求更高潜在回报”的消费者教育框架。<br><a href="https://www.investor.gov/introduction-investing/getting-started/asset-allocation">Investor.gov</a></li>
+<li><b>Investor.gov — Risk Tolerance.</b> 风险承受被定义为投资者为了潜在更高回报而愿意且能够承受部分或全部本金损失的程度。<br><a href="https://www.investor.gov/introduction-investing/investing-basics/glossary/risk-tolerance">Investor.gov</a></li>
+<li><b>课程边界说明.</b> 本章的历史收益率、概率、回报和组合例子均用于教学，不代表具体资产未来表现。标准差、CAGR、最大回撤等指标只描述风险的不同维度，不应单独用于投资决策。</li>
+</ol></section>
+
+</article></main></div></div>
+
+<script>
+const done=new Set();let riskMap={};
+function mark(k){done.add(k);const p=Math.round(done.size/4*100);taskPct.textContent=p+"%";taskProg.style.width=p+"%"}
+function readProgress(){const d=document.documentElement,h=d.scrollHeight-d.clientHeight,p=h>0?Math.round((d.scrollTop||0)/h*100):0;readPct.textContent=p+"%";readProg.style.width=p+"%"}window.addEventListener("scroll",readProgress);
+function fmt(x){return new Intl.NumberFormat("zh-CN",{style:"currency",currency:"CNY",maximumFractionDigits:0}).format(Number(x)||0)}
+function parseSeries(s){return s.split(/[,，\s]+/).map(Number).filter(x=>Number.isFinite(x)).slice(0,30)}
+function stats(vals,start=100){
+  const mean=vals.reduce((a,b)=>a+b,0)/vals.length;
+  const variance=vals.reduce((a,b)=>a+Math.pow(b-mean,2),0)/vals.length;
+  const sd=Math.sqrt(variance);
+  let wealth=start,peak=start,maxdd=0,path=[start];
+  vals.forEach(r=>{wealth*=1+r/100;peak=Math.max(peak,wealth);const dd=(wealth/peak-1)*100;maxdd=Math.min(maxdd,dd);path.push(wealth)});
+  const cagr=(Math.pow(wealth/start,1/vals.length)-1)*100;
+  return {mean,sd,wealth,maxdd,cagr,worst:Math.min(...vals),path}
+}
+function drawPaths(canvas,arrs,colors){
+  const ctx=canvas.getContext("2d"),w=canvas.width,h=canvas.height,p=42;
+  ctx.clearRect(0,0,w,h);ctx.strokeStyle="#cdb78b";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(p,15);ctx.lineTo(p,h-p);ctx.lineTo(w-15,h-p);ctx.stroke();
+  const all=arrs.flat(),min=Math.min(...all),max=Math.max(...all),span=Math.max(max-min,1),N=Math.max(...arrs.map(a=>a.length))-1;
+  arrs.forEach((arr,k)=>{ctx.strokeStyle=colors[k]||"#455f4c";ctx.lineWidth=3;ctx.beginPath();arr.forEach((v,i)=>{const x=p+(w-p-20)*(i/Math.max(N,1)),y=(h-p-10)-((h-p-30)*((v-min)/span));if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.stroke()});
+  ctx.fillStyle="#766858";ctx.font="12px serif";ctx.fillText("财富",8,24);ctx.fillText("时间 →",w-70,h-12)
+}
+function riskMetrics(){
+  const vals=parseSeries(mSeries.value),start=Number(mStart.value||100000);if(!vals.length)return;
+  const s=stats(vals,start);
+  metricOut.innerHTML=`<div class="grid3"><div class="metric"><span>算术平均</span><b>${s.mean.toFixed(2)}%</b></div><div class="metric"><span>CAGR</span><b>${s.cagr.toFixed(2)}%</b></div><div class="metric"><span>标准差</span><b>${s.sd.toFixed(2)}%</b></div><div class="metric"><span>最差年份</span><b>${s.worst.toFixed(2)}%</b></div><div class="metric"><span>最大回撤</span><b>${s.maxdd.toFixed(2)}%</b></div><div class="metric"><span>最终财富</span><b>${fmt(s.wealth)}</b></div></div><hr><p>算术平均告诉你单期平均；CAGR 描述真实复合增长；标准差描述波动；最大回撤描述最差峰谷体验。它们不是同一个风险概念。</p>`;
+  drawPaths(metricChart,[s.path],["#455f4c"]);riskMap.metrics={vals,start,...s};mark("metrics")
+}
+function recoveryLab(){
+  const loss=Number(lossRange.value)/100,rec=1/(1-loss)-1;lossLabel.textContent=(loss*100).toFixed(0)+"%";
+  recoveryOut.innerHTML=`<div class="grid2"><div class="metric"><span>从峰值下跌</span><b>−${(loss*100).toFixed(0)}%</b></div><div class="metric"><span>回到原值需要上涨</span><b>+${(rec*100).toFixed(1)}%</b></div></div><p>${loss>=.5?"深度回撤的恢复要求会急剧上升，这就是为什么避免毁灭性损失如此重要。":"损失和恢复并不对称，即使是中等回撤也需要更高比例的反弹才能回到原点。"}</p>`;
+  let xs=[],ys=[];for(let i=1;i<=90;i++){xs.push(100-i);ys.push((1/(1-i/100)-1)*100)}
+  drawPaths(recoveryChart,[xs,ys],["#8f342a","#455f4c"]);riskMap.recovery={loss:loss*100,recovery:rec*100};mark("recovery")
+}
+function journeyLab(){
+  const A=parseSeries(pathA.value),B=parseSeries(pathB.value);if(!A.length||!B.length)return;
+  const a=stats(A,100000),b=stats(B,100000);
+  journeyOut.innerHTML=`<table class="table"><thead><tr><th>指标</th><th>路径 A</th><th>路径 B</th></tr></thead><tbody><tr><td>算术平均</td><td>${a.mean.toFixed(2)}%</td><td>${b.mean.toFixed(2)}%</td></tr><tr><td>CAGR</td><td>${a.cagr.toFixed(2)}%</td><td>${b.cagr.toFixed(2)}%</td></tr><tr><td>标准差</td><td>${a.sd.toFixed(2)}%</td><td>${b.sd.toFixed(2)}%</td></tr><tr><td>最大回撤</td><td>${a.maxdd.toFixed(2)}%</td><td>${b.maxdd.toFixed(2)}%</td></tr><tr><td>最终财富</td><td>${fmt(a.wealth)}</td><td>${fmt(b.wealth)}</td></tr></tbody></table><p>平均收益相近时，财富路径、回撤和波动仍可能完全不同。</p>`;
+  drawPaths(journeyChart,[a.path,b.path],["#455f4c","#8f342a"]);riskMap.journey={A:{series:A,...a},B:{series:B,...b}};mark("journey")
+}
+function labelLevel(v){return v<=2?"较低":v<=5?"中等":"较高"}
+function profileLab(){
+  const ability=Number(pBuffer.value)+Number(pIncome.value)+Number(pGoal.value)+Number(pDebt.value);
+  const willingness=Number(pWilling.value);
+  const need=Number(pNeed.value);
+  const abilityText=labelLevel(ability),willText=willingness===0?"较低":willingness===1?"中等":"较高",needText=need===0?"较低":need===1?"中等":"较高";
+  let note="";
+  if(ability>=5&&willingness<=1)note="你的客观承受能力高于心理接受程度。未来资产配置不宜只按财务能力设计，否则深度回撤时可能难以坚持。";
+  else if(ability<=2&&willingness===2)note="你心理上愿意冒险，但客观财务缓冲较弱。真正风险预算应受 Ability 约束。";
+  else if(ability>=4&&need===0)note="你可能有较强风险承受能力，但目标并不要求很高风险。能承担风险不代表必须把风险用满。";
+  else note="三个维度相对接近。后续资产配置仍要结合具体目标期限和资产特征，而不是把本结果直接变成股票比例。";
+  profileOut.innerHTML=`<div class="grid3"><div class="metric"><span>Ability</span><b>${abilityText}</b><div class="profilebar"><i style="width:${ability/8*100}%"></i></div></div><div class="metric"><span>Willingness</span><b>${willText}</b><div class="profilebar"><i style="width:${(willingness+1)/3*100}%"></i></div></div><div class="metric"><span>Need</span><b>${needText}</b><div class="profilebar"><i style="width:${(need+1)/3*100}%"></i></div></div></div><hr><p>${note}</p><p class="small">这不是投资者适当性测评，也不是资产配置建议，而是为后续第18章建立自己的风险结构。</p>`;
+  riskMap.profile={ability,abilityText,willingness,willText,need,needText,note};mark("profile")
+}
+function exportMap(){
+  const data={chapter:"13 风险和收益到底是什么关系？",exported_at:new Date().toISOString(),map:riskMap,principles:["不把高风险理解为高收益保证","同时观察波动、回撤、永久损失、短缺和流动性风险","风险承受同时看Ability、Willingness和Need","不为可免费分散的集中风险期待额外奖励","真正的风险是资金在需要时无法完成目标"]};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="我的风险地图_v1.json";a.click();URL.revokeObjectURL(u)
+}
+riskMetrics();recoveryLab();readProgress();
+</script>
+</body></html>

@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>第二十章｜把所有东西变成你的个人财富系统｜扩展版</title>
+<style>
+:root{
+  --bg:#efe1c3;--paper:#fbf3df;--paper2:#fff9ea;--ink:#332a22;--muted:#766858;--line:#d6c199;
+  --red:#8f342a;--redbg:#f1ddd5;--green:#455f4c;--greenbg:#dfe7dc;--gold:#a77a2b;--goldbg:#f2e4bd;
+  --blue:#445d70;--bluebg:#dce5e9;--deep:#2e2924;--shadow:0 18px 50px rgba(74,52,28,.14)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--ink);line-height:1.9;
+  font-family:ui-serif,"Noto Serif SC","Source Han Serif SC","Songti SC",STSong,serif;
+  background:
+    radial-gradient(circle at 12% 7%,rgba(255,255,255,.45),transparent 25%),
+    radial-gradient(circle at 88% 15%,rgba(100,74,40,.07),transparent 22%),
+    repeating-linear-gradient(0deg,rgba(90,63,34,.022) 0 1px,transparent 1px 5px),
+    var(--bg)
+}
+a{color:var(--green);text-underline-offset:3px}
+.wrap{max-width:1390px;margin:auto;padding:24px}
+.layout{display:grid;grid-template-columns:280px minmax(0,960px);gap:30px;justify-content:center;align-items:start}
+.sidebar{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto}
+.sidebox{background:rgba(251,243,223,.87);border:1px solid var(--line);border-radius:13px;padding:15px;margin-bottom:12px}
+.sidebox b{display:block}.sidebox small{color:var(--muted)}
+nav a{display:block;text-decoration:none;color:var(--muted);font-size:12px;padding:5px 7px;border-radius:7px}
+nav a:hover{background:#efdfbd;color:var(--ink)}
+.progress{height:7px;background:#e3d1aa;border-radius:999px;overflow:hidden;margin-top:8px}
+.progress i{display:block;height:100%;width:0;background:var(--red);transition:.2s}
+.paper{background:rgba(251,243,223,.97);border:1px solid rgba(170,143,96,.48);box-shadow:var(--shadow);border-radius:7px;overflow:hidden}
+.hero{padding:72px 78px 54px;border-bottom:1px solid var(--line);position:relative}
+.hero:before{content:"";position:absolute;left:30px;top:30px;bottom:30px;width:1px;background:rgba(143,52,42,.28)}
+.kicker{font-size:12px;letter-spacing:.18em;color:var(--red);font-weight:800}
+h1{font-size:51px;line-height:1.16;margin:13px 0 18px;letter-spacing:-.04em}
+.subtitle{font-size:20px;color:var(--muted);max-width:840px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 9px;background:#f7edd4;color:var(--muted)}
+.content{padding:56px 78px 82px}
+section{margin-bottom:64px}
+h2{font-size:30px;line-height:1.35;margin:0 0 18px}
+h3{font-size:21px;margin:30px 0 10px}
+p{margin:9px 0 16px}.lead{font-size:18px}
+.callout{padding:19px 21px;border-left:5px solid;margin:23px 0;border-radius:4px}
+.red{background:var(--redbg);border-color:var(--red)}.green{background:var(--greenbg);border-color:var(--green)}
+.gold{background:var(--goldbg);border-color:var(--gold)}.blue{background:var(--bluebg);border-color:var(--blue)}
+.label{font-size:11px;font-weight:800;letter-spacing:.14em;margin-bottom:4px}
+.card{padding:20px;border:1px solid var(--line);border-radius:10px;background:var(--paper2);margin:15px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}
+.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.table th{font-size:11px;color:var(--muted)}
+.formula{background:var(--deep);color:#f8edd6;font:16px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:17px 19px;border-radius:8px;margin:18px 0}
+.case{padding:22px;border:1px solid var(--line);border-radius:10px;background:#faf0db;margin:14px 0}
+.casehead{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.casehead b{font-size:18px}.casehead span{font-size:12px;color:var(--muted)}
+.quote{padding:23px 27px;background:#eee0c4;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:19px;margin:24px 0}
+.small{font-size:12px;color:var(--muted)}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 7px;font-size:11px;background:#f6ead0;margin:2px}
+.metric{padding:15px;background:#f8edd4;border:1px solid var(--line);border-radius:9px}
+.metric b{display:block;font-size:20px;color:var(--green);word-break:break-word}.metric span{font-size:12px;color:var(--muted)}
+input[type=text],input[type=number],input[type=date],select,textarea{
+  width:100%;border:1px solid #c7ad80;background:#fffaf0;border-radius:7px;padding:10px 11px;color:var(--ink);font:inherit
+}
+textarea{min-height:84px;resize:vertical}
+input[type=range]{width:100%;accent-color:var(--red)}input[type=checkbox]{accent-color:var(--red)}
+button{border:0;border-radius:8px;padding:10px 15px;background:var(--red);color:#fff;font-weight:800;cursor:pointer}
+button.secondary{background:var(--green)}button.bluebtn{background:var(--blue)}button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.feedback{margin-top:14px;padding:15px 17px;border:1px dashed #b69d70;border-radius:8px;background:#f5e9cf}
+.tool-title{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.flow{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap}
+.flowstep{flex:1 1 120px;padding:13px;border:1px solid var(--line);border-radius:9px;background:#fff9ea}
+.flowstep b{display:block}.arrow{align-self:center;color:var(--red);font-size:21px}
+.layer{border:1px solid var(--line);border-radius:10px;padding:18px;margin:10px 0;background:#fff9ea}
+.layer .num{font:700 11px/1 ui-monospace,monospace;color:var(--red);letter-spacing:.12em}
+.status{display:grid;grid-template-columns:1.2fr .9fr .9fr .9fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.status>div{padding:12px;background:#fff9ea}.status .head{font-size:11px;font-weight:800;color:var(--muted);background:#ead9b7}
+.dropzone{border:2px dashed #b89c6e;border-radius:12px;padding:27px;text-align:center;background:#fff8e8;transition:.2s}
+.dropzone.drag{background:#efe1bd;border-color:var(--red)}
+.importitem{display:grid;grid-template-columns:1fr auto;gap:10px;border-bottom:1px dashed var(--line);padding:10px 0}
+.ok{color:var(--green);font-weight:800}.warn{color:var(--gold);font-weight:800}.bad{color:var(--red);font-weight:800}
+.goalrow{padding:14px;border:1px solid var(--line);border-radius:9px;background:#fffaf0;margin:10px 0}
+.goalrow .remove{float:right;background:transparent;border:1px solid var(--line);color:var(--red);padding:4px 8px}
+.chartwrap{overflow:auto}
+canvas{width:100%;height:340px;border:1px solid var(--line);border-radius:9px;background:#fffaf0;margin-top:14px}
+.constitution{background:#fffdf4;border:1px solid #bca16f;padding:34px;border-radius:4px;box-shadow:inset 0 0 0 6px rgba(214,193,153,.18)}
+.constitution h3{font-size:26px;margin-top:0}.constitution .rule{padding:12px 0;border-bottom:1px solid var(--line)}
+.emergency{border:2px solid var(--red);padding:22px;border-radius:8px;background:#fff8e8}
+.emergency h3{color:var(--red)}
+.end{background:var(--deep);color:#f5ebd7;padding:30px;border-radius:9px}.end h2{color:#fff5df}
+.refs{font-size:13px;color:var(--muted)}.refs li{margin-bottom:11px}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.hide{display:none!important}
+@media(max-width:1080px){.layout{grid-template-columns:1fr}.sidebar{display:none}.hero,.content{padding-left:38px;padding-right:38px}}
+@media(max-width:780px){.wrap{padding:0}.paper{border-radius:0}.hero,.content{padding:30px 20px}h1{font-size:34px}.grid2,.grid3,.grid4{grid-template-columns:1fr}.arrow{transform:rotate(90deg);text-align:center}.status{grid-template-columns:1fr 1fr}.status .head:nth-child(n+3){display:none}}
+@media print{
+  body{background:white}.wrap{max-width:none;padding:0}.layout{display:block}.sidebar,.toolbar,.no-print,button,input,select,textarea,.dropzone{display:none!important}
+  .paper{box-shadow:none;border:0}.hero,.content{padding:24px 36px}.hero:before{display:none}
+  section{break-inside:avoid-page}.constitution,.emergency{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="layout">
+<aside class="sidebar">
+<div class="sidebox"><b>个人财富系统</b><small>第二十章 · 毕业章</small></div>
+<div class="sidebox"><small>阅读进度 <span id="readPct">0%</span></small><div class="progress"><i id="readProg"></i></div></div>
+<div class="sidebox"><small>工作台完成度 <span id="taskPct">0%</span></small><div class="progress"><i id="taskProg"></i></div></div>
+<div class="sidebox"><nav>
+<a href="#goal">00 从知识到系统</a><a href="#wellbeing">01 财富系统优化什么</a><a href="#cycle">02 财务规划是循环</a><a href="#architecture">03 六层系统</a><a href="#facts">04 Facts</a><a href="#stockflow">05 Stock &amp; Flow</a><a href="#safety">06 Safety</a><a href="#goals">07 Goals</a><a href="#growth">08 Growth</a><a href="#investmentstack">09 Investment Stack</a><a href="#capital">10 Investment Capital</a><a href="#governance">11 Behavior &amp; IPS</a><a href="#lifetime">12 Lifetime Planning</a><a href="#retirement">13 Retirement as Funding</a><a href="#longevity">14 Longevity Risk</a><a href="#sequence">15 Sequence Risk</a><a href="#withdrawal">16 Withdrawal Framework</a><a href="#review">17 Review Cycle</a><a href="#events">18 Market vs Life Event</a><a href="#version">19 Version Control</a><a href="#enough">20 Enough</a><a href="#failures">20A 系统失效方式</a><a href="#cases">21 四个综合案例</a><a href="#mistakes">22 最终十个误区</a><a href="#workspace">23 Graduation Workspace</a><a href="#importer">24 Master Import Center</a><a href="#builder">25 Wealth System Builder</a><a href="#lifetimeLab">26 Lifetime Funding Lab</a><a href="#reviewLab">27 Annual Review Engine</a><a href="#constitution">28 One-Page Constitution</a><a href="#emergency">29 Emergency Page</a><a href="#export">30 Master Export</a><a href="#summary">31 课程闭环</a><a href="#refs">32 资料与边界</a>
+</nav></div></aside>
+<main class="paper">
+<header class="hero">
+<div class="kicker">CHAPTER 20 · PERSONAL WEALTH OPERATING SYSTEM</div>
+<h1>把所有东西变成你的个人财富系统</h1>
+<div class="subtitle">从“我懂了很多金融知识”到“我的钱按照一套长期规则运行”：财务事实、目标、安全边界、增长引擎、行为治理与年度复盘。</div>
+<div class="meta"><span class="pill">最终毕业章</span><span class="pill">预计阅读 / 实操 120–150 分钟</span><span class="pill">支持前章 JSON 汇总</span><span class="pill">Master JSON + 打印模式</span><span class="pill">扩展正文版 · 教材结构</span></div>
+</header>
+<article class="content">
+<section id="goal">
+<h2>00｜课程终点不是“知道更多”，而是拥有一个会运行的系统</h2>
+<p class="lead">前十九章解决了很多局部问题：钱为什么影响选择、怎样做财务体检、如何建立支出系统、怎样处理债务与风险、复利和通胀如何作用、股票债券基金到底是什么、如何构建投资组合，以及怎样避免自己在压力中破坏组合。</p>
+<p>但知识本身不会自动变成结果。一个人可以知道什么是应急金，却没有建立应急储备；知道资产配置，却一直追逐基金排名；知道损失厌恶，却在市场大跌时仍然清仓。最后真正需要的是一种比“我记得这些知识”更可靠的东西：</p>
+<div class="quote"><b>一个能把事实、目标、规则、行动和复盘连接起来的 Personal Wealth Operating System。</b></div>
+<div class="callout red"><div class="label">最终章第一原则</div><b>财富管理不是寻找一个永远正确的答案，而是建立一个能够随着现实变化持续更新、同时又不会被每一次市场噪声轻易推翻的系统。</b></div>
+
+<h3>知识和系统的差别，到底在哪里？</h3>
+<p>“我知道应该做什么”属于知识层；“即使忙、焦虑、市场波动，事情仍然会按照规则继续发生”才属于系统层。比如，知道每月应该储蓄并不等于已经形成储蓄系统。真正的系统至少还需要明确：钱从哪个账户进入、什么时候自动转出、转多少、什么情况下暂停、谁负责检查，以及如果本月现金流异常应该先削减哪一类支出。</p>
+<p>因此，一个完整的财富系统至少包含三种东西：<b>State（状态）</b>、<b>Rule（规则）</b>和<b>Feedback（反馈）</b>。状态告诉你现在在哪里，例如净资产、现金流、负债余额和目标资金进度；规则告诉你遇到常见情况时应该如何行动，例如应急金低于目标时优先补充、组合超出容忍带时再平衡；反馈则告诉你规则是否仍然适合现实，例如每年重新检查目标、收入稳定性和家庭责任。</p>
+<div class="grid3">
+<div class="card"><b>State</b><p>现在发生了什么？数字、合同、期限、账户、目标进度。</p></div>
+<div class="card"><b>Rule</b><p>通常情况下怎么处理？优先级、阈值、自动化和禁止事项。</p></div>
+<div class="card"><b>Feedback</b><p>什么时候重新检查？什么变化足以让原规则失效？</p></div>
+</div>
+<h3>为什么最后一章不能只是“前十九章摘要”？</h3>
+<p>摘要只负责帮助记忆；系统必须承担行动。前面每一章的知识，如果不能在最终系统里找到自己的位置，就仍然只是散落的概念。例如“复利”如果不能连接到长期目标投入，“保险”如果不能连接到家庭现金流风险，“ETF”如果不能连接到战略资产配置，那么这些知识仍然没有真正进入个人财务生活。</p>
+<div class="case"><div class="casehead"><b>例：两个都“学过理财”的人</b><span>Knowledge vs System</span></div>
+<p>A 能解释复利、ETF 和资产配置，但没有固定储蓄机制、没有年度复盘，也不知道哪些钱三年内要用；B 对金融术语了解更少，但有清晰现金流、应急储备、目标账户、长期配置和固定复盘日期。真正面对失业、市场下跌和大额支出时，B 的系统往往更有韧性。差别并不来自谁记得更多术语，而来自谁已经把知识变成了运行机制。</p></div>
+</section>
+<section id="wellbeing">
+<h2>01｜财富系统最终优化的，不应该只是净资产数字</h2>
+<p>CFPB 对 Financial Well-Being 的研究特别适合作为整门课的终点框架：财务福祉并不是单纯由收入、净资产或信用分数决定，而是一个人的财务情况和金钱选择能否同时提供<strong>安全感与选择自由</strong>。</p>
+<div class="grid4">
+<div class="card"><b>Day-to-Day Control</b><p>日常和月度财务是否在控制之中，账单和生活支出是否可持续。</p></div>
+<div class="card"><b>Shock Resilience</b><p>遇到失业、重大支出等冲击时，是否有能力吸收，而不会马上进入长期倒退。</p></div>
+<div class="card"><b>Goal Progress</b><p>重要目标是不是正在真正获得资金，而不只是停留在愿望。</p></div>
+<div class="card"><b>Freedom of Choice</b><p>钱是否增加了选择工作的、休息的、学习的、迁移的和生活方式的自由。</p></div>
+</div>
+<p>因此最终系统不会制造一个“财富健康总分”。我们保留多个状态维度，因为一个单一数字会把现金流、保险、目标和投资这些承担不同任务的东西粗暴折算在一起。</p>
+
+<h3>为什么不做“财富健康总分”？</h3>
+<p>一个总分看起来很直观，却容易制造虚假的精确感。假设甲拥有很高净资产，但全部资产低流动、月度现金流紧张；乙净资产低一些，却没有高成本债务、拥有充足安全垫、长期目标投入稳定。如果把这些维度压缩成一个数字，系统必须人为决定“1个月应急金”和“1万元净资产”到底谁值几分，这种权重很难有普遍合理性。</p>
+<p>因此最终系统采用<b>状态描述而不是总分</b>。每个模块都回答四件事：Current State、Target / Rule、Gap、Next Review。这样当问题出现时，可以直接定位是现金流、债务、安全垫、目标还是投资结构出了问题。</p>
+<div class="status">
+<div class="head">模块</div><div class="head">Current State</div><div class="head">Target / Rule</div><div class="head">Gap / Next Review</div>
+<div>Cash Flow</div><div>本月实际流入流出</div><div>持续非负并为目标留出资金</div><div>找出结构性缺口</div>
+<div>Safety</div><div>应急覆盖、保险、负债</div><div>按个人风险设定底线</div><div>下一次复核日期</div>
+<div>Goals</div><div>资金进度</div><div>金额、期限与投入规则</div><div>缺口及优先级</div>
+<div>Investment</div><div>当前配置</div><div>战略配置和再平衡规则</div><div>漂移与实施成本</div>
+</div>
+<h3>四个 Financial Well-Being 结果之间会相互制约</h3>
+<p>如果为了追求长期收益把全部现金都投入高波动资产，Goal Progress 可能看起来更积极，但 Day-to-Day Control 和 Shock Resilience 可能恶化；如果为了绝对安全长期持有过多低收益资产，又可能使长期目标需要更高储蓄率。财富系统不是把每一个指标都“最大化”，而是在不同任务之间形成可持续关系。</p>
+</section>
+<section id="cycle">
+<h2>02｜财务规划必须是循环，而不是做完一次以后封存</h2>
+<p>CFP Board 在 2026 年继续使用七步财务规划过程：理解个人与财务情况、识别和选择目标、分析当前行动与替代方案、形成建议、呈现建议、实施，以及最后的 <b>Monitor progress and update</b>。</p>
+<div class="flow">
+<div class="flowstep"><b>Understand</b><span>理解现实</span></div><div class="arrow">→</div>
+<div class="flowstep"><b>Goals</b><span>确定目标</span></div><div class="arrow">→</div>
+<div class="flowstep"><b>Analyze</b><span>分析路径</span></div><div class="arrow">→</div>
+<div class="flowstep"><b>Implement</b><span>真正执行</span></div><div class="arrow">→</div>
+<div class="flowstep"><b>Monitor</b><span>监测更新</span></div>
+</div>
+<p>个人版本不需要复制专业服务流程的每个沟通步骤，但必须保留这条逻辑：<b>现实 → 目标 → 方案 → 执行 → 反馈 → 更新</b>。如果没有最后的反馈环，所有计划都会随着人生变化逐渐失效。</p>
+
+<h3>系统为什么必须有反馈环？</h3>
+<p>财务规划中的大多数输入都会变化。收入可能从固定工资变成项目收入；租房可能变成购房；家庭责任会变化；利率、税制、保险条款和养老金制度也可能变化。一个在 25 岁合理的系统，不会因为当时计算正确就自动适合 35 岁。</p>
+<p>因此，最终系统必须同时保留“稳定”和“可更新”两个特征。稳定意味着市场每天波动时不会重写计划；可更新意味着当目标、现金流和责任真的发生变化时，不会因为“长期主义”而拒绝调整。真正需要区分的是：<b>Noise</b> 和 <b>New Information</b>。</p>
+<div class="grid2">
+<div class="card"><b>Noise</b><p>短期市场涨跌、热搜、基金排名、朋友账户收益。这些东西可能值得观察，但通常不足以重写整个财富系统。</p></div>
+<div class="card"><b>New Information</b><p>收入结构变化、家庭责任变化、重大债务、目标期限改变、保险覆盖变化。它们可能真正改变系统输入。</p></div>
+</div>
+</section>
+<section id="architecture">
+<h2>03｜整个 Personal Wealth System 可以压缩成六层</h2>
+<div class="layer"><span class="num">LAYER 01 · FACTS</span><h3>我现在在哪里？</h3><p>资产、负债、收入、支出、账户、固定承诺。先记录事实，不急着评价。</p></div>
+<div class="layer"><span class="num">LAYER 02 · SAFETY</span><h3>什么会让我被迫退出长期计划？</h3><p>应急储备、流动性、保险、债务规则、消费者保护和账户安全。</p></div>
+<div class="layer"><span class="num">LAYER 03 · GOALS</span><h3>这些钱最终要完成什么任务？</h3><p>金额、期限、重要性、弹性、资金缺口和持续投入。</p></div>
+<div class="layer"><span class="num">LAYER 04 · GROWTH</span><h3>真正长期不用的钱怎样增长？</h3><p>真实收益、风险预算、资产配置、股票债券与基金实施。</p></div>
+<div class="layer"><span class="num">LAYER 05 · BEHAVIOR</span><h3>压力中怎样不破坏计划？</h3><p>IPS、再平衡、冷静期、Checklist、No-Trade Rules、Decision Journal。</p></div>
+<div class="layer"><span class="num">LAYER 06 · REVIEW</span><h3>什么时候保持不动，什么时候真正更新？</h3><p>月度、季度、年度和事件触发复盘，形成 Change Log。</p></div>
+<div class="formula">FACTS → SAFETY → GOALS → GROWTH → BEHAVIOR → REVIEW ↺</div>
+
+<h3>为什么这六层存在严格的依赖关系？</h3>
+<p>如果 Facts 不清楚，Safety 的规模没有依据；如果 Safety 没有建立，长期投资随时可能被突发支出打断；如果 Goals 不明确，就无法判断风险与收益是否“足够”；如果 Growth 没有行为规则，再好的配置也可能在市场压力下被破坏；如果没有 Review，整个系统会随着人生变化逐渐过期。</p>
+<p>这意味着财富管理不是“同时把六件事都做到最好”，而是存在一定施工顺序。底层越不稳定，上层越难持续。某个阶段把时间花在改善现金流、处理高成本债务或建立安全垫，并不意味着“没有投资意识”，而是在维护整个系统的基础。</p>
+<div class="callout blue"><div class="label">Dependency Rule</div><b>上层策略只有在下层约束允许时才有意义。长期投资不能代替短期流动性，保险不能代替应急现金，收益率也不能代替明确目标。</b></div>
+</section>
+<section id="facts">
+<h2>04｜Facts：财富系统的第一层必须先回答“什么是真的？”</h2>
+<p>这一层对应第四到第七章。它不需要告诉你自己“健康不健康”，而是让财务世界变得可观察。</p>
+<table class="table"><thead><tr><th>事实</th><th>至少记录</th><th>它解决什么问题</th></tr></thead><tbody>
+<tr><td>Assets</td><td>现金、存款、投资、房产及其他主要资产</td><td>我拥有怎样的资源</td></tr>
+<tr><td>Liabilities</td><td>余额、利率、还款额、期限</td><td>未来现金流已经出售多少</td></tr>
+<tr><td>Income</td><td>固定、浮动和其他收入</td><td>系统每月获得多少新资源</td></tr>
+<tr><td>Spending</td><td>核心固定、必要变动、生活方式、计划性不规则支出</td><td>钱真实流向哪里</td></tr>
+<tr><td>Commitments</td><td>债务、家庭责任、计划大额支出</td><td>哪些现金流已经被未来占用</td></tr>
+<tr><td>Infrastructure</td><td>账户、支付、信用、自动扣款</td><td>钱通过什么系统运行</td></tr>
+</tbody></table>
+
+<h3>财务事实必须带日期，因为“事实”会过期</h3>
+<p>一份资产负债表没有日期，意义会大幅下降。信用卡余额可能一周后变化，基金市值每天变化，年度奖金并不是稳定月收入。最终系统里的关键数字都应该知道“截至什么时候”和“来自哪里”。这也是为什么 Master System 更像一个版本化记录，而不是永远正确的数据库。</p>
+<h3>不要把估值变化和真实储蓄混为一谈</h3>
+<p>净资产本月增加 5 万，可能来自工资结余，也可能只是股票上涨；净资产下降也可能来自一次合理的大额消费，而不是财务系统恶化。最终复盘时应该尽量把净资产变化拆成：储蓄、偿还本金、资产价格变化、资产购买 / 出售以及其他一次性项目。</p>
+<div class="formula">Δ Net Worth ≈ Savings + Debt Principal Repaid + Asset Price Change + Other Capital Events</div>
+<h3>隐藏义务也属于 Facts</h3>
+<p>很多未来承诺不会完整出现在传统资产负债表里，例如已经决定但尚未支付的学费、租约、赡养责任、未来几年的大额设备更换。它们不一定是会计负债，却会真实占用未来现金流。个人财富系统必须把“法律负债”和“规划承诺”都看见。</p>
+<div class="case"><div class="casehead"><b>例：账上有 20 万现金，就有 20 万可投资吗？</b><span>Fact → Commitment</span></div>
+<p>如果其中 5 万是半年后的学费、3 万是下一年度已计划的大额支出、6 万承担应急储备，那么真正没有短期任务的金额可能只有剩余部分。资产余额只是事实；只有把未来承诺加入以后，才开始形成规划。</p></div>
+</section>
+<section id="stockflow">
+<h2>05｜Net Worth 和 Cash Flow 必须同时存在：Stock 与 Flow</h2>
+<p>净资产是某一时点的存量；现金流是一个时期内资源怎样进入和离开的流量。一个人可能拥有很高资产，但每月现金流持续为负；也可能净资产暂时不高，但收入稳定、负债低、储蓄率高。</p>
+<div class="grid2"><div class="card"><b>Balance Sheet</b><p>回答“今天拥有多少净资源？”</p><div class="formula">Net Worth = Assets − Liabilities</div></div><div class="card"><b>Cash Flow</b><p>回答“系统每个月在变好还是变差？”</p><div class="formula">Net Cash Flow = Inflows − Outflows</div></div></div>
+
+<h3>为什么现金流通常比“本月投资涨跌”更值得频繁关注？</h3>
+<p>长期投资回报高度波动，而且大部分日常波动不受个人控制；现金流中的固定成本、生活方式支出、债务还款和储蓄自动化，则更接近可以管理的变量。如果每周盯着投资盈亏，却一年都不知道自己月均必要支出是多少，就把注意力放在了控制能力较弱的地方。</p>
+<h3>Free Cash Flow 的个人版本</h3>
+<p>课程前面把个人可自由配置现金流简化为：税后收入减去必要支出、债务义务和固定承诺。最终章里，这个数字不需要追求会计精确，而是回答一个实际问题：每个月到底有多少新资源可以被分配给短期目标、安全层和长期投资。</p>
+<div class="formula">Personal Planning Cash Flow ≈ Disposable Income − Necessary Spending − Debt Obligations − Fixed Commitments</div>
+<p>如果这个数字长期为负，优先级通常不是寻找更高收益产品，而是重新处理收入、支出或负债结构。</p>
+</section>
+<section id="safety">
+<h2>06｜Safety：安全层不是“投资之前的杂项”，而是长期投资的连续性基础设施</h2>
+<p>如果一个突发支出就迫使你卖出长期组合，或者一次账户诈骗就破坏多年积累，那么投资组合本身设计得再漂亮也没有意义。</p>
+<div class="grid3">
+<div class="card"><b>Emergency Reserve</b><p>承担低频但需要即时现金的冲击，目标是 Liquidity + Certainty。</p></div>
+<div class="card"><b>Insurance</b><p>把无法舒服自留的大额风险转移出去，关注责任范围而不是“保单数量”。</p></div>
+<div class="card"><b>Debt Rules</b><p>知道未来现金流已经被多少还款占用，并防止高成本债务吞噬未来选择。</p></div>
+<div class="card"><b>Consumer Protection</b><p>牌照、适当性、证据、诈骗识别和争议处理。</p></div>
+<div class="card"><b>Account Security</b><p>认证、账户隔离、异常交易与恢复路径。</p></div>
+<div class="card"><b>Planned Reserves</b><p>把可预见大额支出与真正 Emergency 区分开。</p></div>
+</div>
+<div class="quote"><b>安全层的价值，不是“跑赢市场”，而是减少在最坏时点被迫破坏长期计划的概率。</b></div>
+
+<h3>Safety Layer 的内部顺序：流动性、风险自留、风险转移、账户保护</h3>
+<p>安全层本身也不是一个单一“应急金账户”。它至少包含四个不同任务：第一，手边有能够立即使用的流动性；第二，知道哪些中小风险由自己承担；第三，把可能摧毁家庭现金流的大风险通过保险等机制转移；第四，避免诈骗和账户问题直接破坏已有资产。</p>
+<p>这里可以重新使用第八、九章的关系：<b>Emergency Fund = Risk Retention；Insurance = Risk Transfer</b>。两者不是互相替代。应急金适合承担“发生时必须立即付款、但金额在可承受范围内”的风险；保险更适合处理某些低概率、高损失事件。</p>
+<h3>安全层为什么和债务高度耦合？</h3>
+<p>高固定还款意味着收入一旦中断，现金流会更快进入压力状态。同样 6 个月的应急储备，对没有债务的人和每月有高额还款义务的人，经济含义并不一样。因此安全垫不能只看“金额”，还要看必要现金流和债务刚性。</p>
+<div class="case"><div class="casehead"><b>例：应急金看似一样，韧性却不同</b><span>Cash Buffer × Fixed Commitments</span></div>
+<p>甲和乙都有 6 万元应急现金。甲每月必要支出 6000 元，没有债务；乙每月必要支出 9000 元，另有 4000 元刚性还款。两个人账面“都有 6 万”，但能够承受的收入中断时间明显不同。最终系统应该记录覆盖月数，而不是只记录金额。</p></div>
+</section>
+<section id="goals">
+<h2>07｜Goals：钱必须有任务，否则风险和收益都没有参照物</h2>
+<p>第三章建立了从价值到财务目标的链条。最终系统应该让每个目标至少拥有：名称、目标金额、当前资金、时间、重要性、可调整性和持续投入。</p>
+<div class="formula">Goal Gap = Target Amount − Current Dedicated Funding − Future Planned Contributions (adjusted for assumptions)</div>
+<p>最关键的变化是：不再问“这个资产收益高不高”，而问“它是否适合这笔钱的任务”。一年后的刚性支出与二十年后的长期目标，即使属于同一个人，也拥有不同的 Shortfall Risk。</p>
+<div class="callout blue"><div class="label">最后一次回收第三章</div><b>Money has jobs. Risk belongs to the goal, not merely to the person.</b></div>
+
+<h3>目标必须分优先级，因为资源永远有限</h3>
+<p>当所有目标都写成“重要”，系统就没有优先级。更实用的方式是区分：<b>Must</b>（失败代价很高的刚性目标）、<b>Important</b>（重要但金额或时间可以调整）、<b>Optional</b>（可以推迟或取消）。当现金流突然恶化时，系统才知道哪些投入应该继续、哪些可以暂时降低。</p>
+<h3>目标不是一个金额，而是一条资金化路径</h3>
+<p>“五年后需要 20 万”只是目标终点。真正的系统还要回答：目前已经有多少专用资金？未来每月投入多少？这笔钱允许多大波动？如果预期收益低于计划怎么办？如果收入下降，目标金额、期限和月投入哪个变量最先调整？</p>
+<div class="formula">Goal Plan = Target Amount + Target Date + Current Funding + Contribution Rule + Risk Boundary + Flexibility</div>
+<h3>目标冲突应该显性化</h3>
+<p>例如，同时存在“未来两年保留大量现金”和“尽可能提高长期投资投入”时，两者可能争夺同一笔可支配现金流。正确做法不是假装两个目标都能满额实现，而是明确优先顺序、最小可接受金额和可调整变量。</p>
+</section>
+<section id="growth">
+<h2>08｜Growth：真正能够承担长期风险的资本，才进入投资层</h2>
+<p>整套课程到这里应该形成一个非常明确的顺序：不是“一有钱就寻找投资”，而是先确认事实、安全边界和目标，再识别真正长期不用的资本。</p>
+<p>增长层承接第11—18章：时间价值、通胀与费用、风险收益、资产类别、债券、股票、基金与指数，以及战略资产配置。</p>
+
+<h3>“长期不用”比“现在没用”更重要</h3>
+<p>很多资金看起来暂时闲置，但并不代表它真正属于长期投资资本。半年后的学费、明年的搬家费用、计划更换电脑的预算，即使今天躺在活期账户里，也已经有明确任务。Growth Layer 只应该接收那些短期任务和安全层已经被隔离后的资本。</p>
+<h3>Required Return 和 Expected Return 必须分开</h3>
+<p>一个目标“需要”每年 8% 才能按现有投入实现，不代表市场“应该”给你 8%。如果合理假设下的预期回报低于目标所需回报，解决方式可能是增加储蓄、延长时间、降低目标金额，或承担更多风险；不能把需要自动变成预期。</p>
+<div class="formula">Required Return = Goal math<br/>Expected Return = Market assumption<br/>They are not the same thing.</div>
+<h3>最终增长要看 Real After-Cost Result</h3>
+<p>第十二章已经把名义收益拆开：投资毛收益还要经过费用、税务和通胀。最终系统真正关心的是目标购买力，因此长期规划应该尽量在同一口径下比较：要么都用名义数字并明确通胀，要么用真实购买力数字，避免把今天的目标金额和几十年后的名义财富直接比较。</p>
+</section>
+<section id="investmentstack">
+<h2>09｜把全部投资章节压缩成一张 Investment Stack</h2>
+<div class="flow">
+<div class="flowstep"><b>Goal</b><span>钱要做什么</span></div><div class="arrow">→</div>
+<div class="flowstep"><b>Horizon</b><span>什么时候用</span></div><div class="arrow">→</div>
+<div class="flowstep"><b>Real Return Need</b><span>需要多少真实增长</span></div><div class="arrow">→</div>
+<div class="flowstep"><b>Risk Budget</b><span>Ability / Willingness / Need</span></div>
+</div>
+<div class="flow" style="margin-top:9px">
+<div class="flowstep"><b>SAA</b><span>战略资产配置</span></div><div class="arrow">→</div>
+<div class="flowstep"><b>Asset Classes</b><span>现金 / 债券 / 股票...</span></div><div class="arrow">→</div>
+<div class="flowstep"><b>Vehicle</b><span>基金 / ETF / 直接持有</span></div><div class="arrow">→</div>
+<div class="flowstep"><b>Behavior</b><span>怎样执行和再平衡</span></div>
+</div>
+<p>这张图也解释了为什么“买哪只基金”只是投资流程后半段的实施问题，而不是起点。</p>
+
+<h3>投资产品为什么永远应该位于后半段？</h3>
+<p>如果用户一上来问“哪只 ETF 最好”，其实跳过了前面多个决定层级：这笔钱的目标是什么？属于股票还是债券暴露？是否需要全球市场还是单一市场？使用指数还是主动管理？只有这些决定完成以后，具体 ETF 才有评价标准。否则“费用更低”“过去收益更高”都可能是在比较不承担同一任务的产品。</p>
+<p>最终 Master System 不试图保存所有基金代码，而是优先保存更稳定的政策层信息：目标、战略配置、允许的工具类型、再平衡规则和行为约束。产品本身可以变，政策不应该因为产品变化而失去结构。</p>
+</section>
+<section id="capital">
+<h2>10｜Investment Capital：不要把所有账户余额都误认为“可拿去投资的钱”</h2>
+<p>本章使用一个规划概念，而不是法律或会计定义：</p>
+<div class="formula">Long-Term Investment Capital ≈ Total Financial Assets<br/>− Near-Term Spending<br/>− Emergency Reserve<br/>− Planned Reserves<br/>− Other Ring-Fenced Goals</div>
+<p>它的作用是给资金任务划边界。短期要交房租的钱、应急储备和几年内确定使用的目标资金，不应该因为“账户里暂时闲着”就自动变成长期风险资本。</p>
+
+<h3>Investment Capital 不是一个永久固定的池子</h3>
+<p>它会随着人生变化增减。大额目标临近时，一部分长期资本可能逐渐转入目标资金；应急储备被使用后，新增现金流可能先回补安全层；收入显著提高后，更多自由现金流才可能进入长期投资。因此，“我应该长期投资多少钱”是一个动态问题。</p>
+<div class="case"><div class="casehead"><b>教学例：同样 30 万金融资产，两个人的投资资本不同</b><span>Ring-Fenced Money</span></div>
+<p>甲未来一年没有大额支出，应急储备充分，长期目标遥远；乙一年内有 10 万刚性支出，应急储备尚未建立，还有较高固定还款。两个人都拥有 30 万金融资产，但真正适合长期承担市场风险的资本完全不同。资产总额不是风险资本总额。</p></div>
+</section>
+<section id="governance">
+<h2>11｜Behavior + IPS：投资系统最终必须拥有“宪法”</h2>
+<p>CFA 2026 的 Portfolio Planning 仍然强调，IPS 应记录投资目标、时间期限、税务与法律约束、流动性和其他重要情况，并据此形成 Strategic Asset Allocation 与再平衡政策。</p>
+<p>个人版 IPS 至少需要回答：</p>
+<div class="grid2">
+<div class="card"><b>Purpose</b><p>这笔投资为什么存在？</p></div>
+<div class="card"><b>Constraints</b><p>期限、流动性和不能承受什么。</p></div>
+<div class="card"><b>Strategic Allocation</b><p>长期目标资产结构。</p></div>
+<div class="card"><b>Allowed / Prohibited</b><p>允许使用和明确不使用的工具。</p></div>
+<div class="card"><b>Rebalancing</b><p>什么时候把组合拉回目标。</p></div>
+<div class="card"><b>Change Triggers</b><p>什么事实发生后才允许重新设计政策。</p></div>
+</div>
+<p>第十九章再补上：IPS 不只是一份投资说明，它还是 Behavioral Constitution——让市场情绪不能直接拥有执行权限。</p>
+
+<h3>IPS 最重要的功能不是“写得专业”，而是减少重复决策</h3>
+<p>如果每次市场下跌都重新讨论“现在是不是该降股票”，每次基金排名变化都重新讨论“是不是该换产品”，投资者会不断暴露在第十九章的行为偏误中。IPS 的价值在于把高频问题提前变成低频规则。</p>
+<div class="grid2">
+<div class="card"><b>Policy Question</b><p>什么情况下允许改变战略资产配置？</p></div>
+<div class="card"><b>Implementation Question</b><p>同一资产类别里是否可以更换基金或执行工具？</p></div>
+<div class="card"><b>Rebalancing Question</b><p>什么幅度的偏离值得行动？</p></div>
+<div class="card"><b>Behavior Question</b><p>哪些刺激永远不能单独成为交易理由？</p></div>
+</div>
+<h3>一个好的 IPS 会明确“不做什么”</h3>
+<p>允许事项通常很容易写，禁止事项反而更能保护系统。例如：不用不理解的杠杆工具；不因为单日市场下跌改变长期配置；不因为资产跌破成本价自动加仓；不因为基金过去一年排名第一替换长期核心持仓。No-Trade List 本质上是在提前削减未来高压环境中的决策空间。</p>
+</section>
+<section id="lifetime">
+<h2>12｜Lifetime Planning：财富系统不仅要会积累，也必须会使用</h2>
+<p>CFA 2026 Investment Planning 明确把退休财务分成两个阶段：工作时期建立财富的 <b>Accumulation</b>，以及退休以后逐步使用财富的 <b>Decumulation</b>。后者因为寿命和健康期限的不确定性尤其复杂。</p>
+<div class="grid3">
+<div class="card"><b>Accumulation</b><p>Income → Save → Invest。核心问题是怎样持续增加资本。</p></div>
+<div class="card"><b>Transition</b><p>目标逐渐接近，提款时间和流动性的重要性上升。</p></div>
+<div class="card"><b>Decumulation</b><p>Reliable Income + Portfolio → Withdraw → Spend。核心问题变成怎样把资本转成可持续生活现金流。</p></div>
+</div>
+<div class="callout gold"><div class="label">重要转变</div><b>财富系统不应该只回答“怎样把钱变多”，还必须回答“钱什么时候应该被安全而有目的地使用”。</b></div>
+
+<h3>Human Capital 也会随生命周期变化</h3>
+<p>年轻阶段，未来工资和职业能力本身就是一种重要的“人力资本”。随着年龄和职业阶段变化，未来劳动收入的剩余年限会下降，而金融资本占个人总经济资源的比重逐渐上升。这并不意味着所有人都应该套用某个年龄公式，但说明资产配置不能只盯着证券账户。</p>
+<h3>Transition Phase 为什么值得单独存在？</h3>
+<p>从积累到提款不是某一天突然切换。目标临近时，需要逐渐考虑提款时点、现金流来源、资产波动、税务和流动性。一个距离目标还有 20 年的组合，与只剩 2 年就必须提款的组合，承担同样比例的高波动资产可能具有完全不同的 Shortfall Risk。</p>
+<div class="quote"><b>生命周期规划不是按年龄机械降风险，而是让资产结构随“未来现金流方向”变化。</b></div>
+</section>
+<section id="retirement">
+<h2>13｜Retirement 不是一个产品，而是一个长期 Funding Problem</h2>
+<p>“退休应该买什么产品”是把问题问得太晚。更底层的问题是：未来生活需要多少支出，可靠收入能覆盖多少，剩余缺口需要多少金融资产支持。</p>
+<div class="formula">Retirement / Transition Funding Gap<br/>≈ Planned Spending − Reliable Income</div>
+<p>然后才继续问：这个缺口持续多少年？通胀怎样改变支出？投资组合承担什么回报与风险？支出是否可调整？意外医疗和家庭责任怎样处理？</p>
+<p>因此“存到某个神奇数字”不是完整退休规划。</p>
+
+<h3>可靠收入和投资组合承担的是不同角色</h3>
+<p>退休后的现金流通常可能来自多种来源：养老金 / 年金性质收入、租金、兼职收入以及投资组合提款。它们的稳定性、通胀敏感度和持续时间不同。最终系统首先要区分哪些收入可以合理视作较可靠基础，再计算需要由投资组合承担的缺口。</p>
+<h3>退休缺口不是一次性“需要多少钱”的唯一数字</h3>
+<p>如果支出会随时间变化，医疗和住房成本可能不同，退休初期和高龄阶段的消费结构也可能不同。使用一个固定年度支出乘以固定年数只是粗略模型。更稳健的方法是把支出计划写成区间和场景，并明确哪些支出刚性、哪些可以在市场困难时期调整。</p>
+<div class="grid2">
+<div class="card"><b>Essential Spending</b><p>住房、基本生活、医疗等较难大幅削减。</p></div>
+<div class="card"><b>Flexible Spending</b><p>旅行、升级消费、赠与等更有调整空间。</p></div>
+</div>
+</section>
+<section id="longevity">
+<h2>14｜Longevity Risk：退休阶段多了一个积累期没有的核心风险</h2>
+<p>一个长期提款系统不仅担心投资回报，还担心金融资本在生命结束之前先耗尽。寿命越不确定、可靠收入越少、支出越刚性，这个问题越重要。</p>
+<p>因此退休规划需要把资产、支出、可靠收入、寿命区间和提款规则一起研究，而不能只看平均投资回报。</p>
+
+<h3>Longevity Risk 不只是“活得久”</h3>
+<p>真正的问题是：寿命本身不确定，而支出和投资回报也同时不确定。如果规划只假设活到 85 岁，实际活到 95 岁，系统需要额外支持十年现金流；如果后期还发生高额医疗或照护支出，资金压力可能进一步增加。</p>
+<p>因此最终系统中的 Lifetime Plan 应该被理解成情景范围，而不是单一预测。可以同时观察较短、基准和较长寿命情景，并关注哪些支出可以调整、哪些收入具有终身性质。目的不是算出“最准确的死亡年龄”，而是识别系统对寿命假设是否过于脆弱。</p>
+</section>
+<section id="sequence">
+<h2>15｜Sequence-of-Returns Risk：平均收益一样，提款结果也可能完全不同</h2>
+<p>假设两个 20 年投资路径拥有同样一组年度收益，只是顺序相反。没有提款时，最终复合结果可能相同；但如果退休后每年固定提款，早期大跌会迫使投资者在价格低位卖出更多份额，后续反弹参与的资本已经变少。</p>
+<div class="grid2"><div class="card"><b>Accumulation</b><p>早期下跌时，新的储蓄反而可以用更低价格获得更多份额。</p></div><div class="card"><b>Decumulation</b><p>早期下跌时，生活提款可能迫使组合在低位减少份额。</p></div></div>
+<p>所以工作阶段和提款阶段面对同样的波动，数学意义并不相同。</p>
+
+<h3>用一个具体数字看 Sequence Risk</h3>
+<p>假设进入提款阶段时拥有 100 万元，每年年初需要从组合中取出 8 万元。两条五年路径都包含 +20%、+10%、0%、−10%、−20% 这五个收益，只是顺序相反。没有提款时，两条路径的五年复合结果完全相同；但一边提款时，先经历 −20%、−10% 的路径会在低位卖出更多资产，后面即使出现 +20% 也只能作用在更小的本金上。</p>
+<p>这就是为什么“长期平均回报 6%”不足以描述退休系统。平均数隐藏了路径，而提款恰恰让路径变得重要。</p>
+<div class="callout gold"><div class="label">Sequence Risk 的核心</div><b>当现金流方向从“持续投入”变成“持续取出”，相同回报集合的排列顺序开始改变最终可持续性。</b></div>
+</section>
+<section id="withdrawal">
+<h2>16｜为什么本课程不提供一个“万能退休提取率”？</h2>
+<p>可持续提款依赖资产配置、初始估值、通胀、税务、寿命、可靠收入、费用、支出弹性以及市场回报顺序。把某个历史研究中的固定比例直接转化为所有人的永久规则，会隐藏这些条件。</p>
+<div class="callout red"><div class="label">本章只建立 Withdrawal Framework</div><b>未来需要多少 → 哪些收入可靠 → 资产承担多少缺口 → 支出是否可调整 → 怎样应对不利序列，而不是给一个无条件的“标准提款率”。</b></div>
+
+<h3>提款规划至少需要四个旋钮</h3>
+<div class="grid4">
+<div class="card"><b>Spending Level</b><p>想维持多少生活支出。</p></div>
+<div class="card"><b>Spending Flexibility</b><p>困难年份能否适度降低非必要支出。</p></div>
+<div class="card"><b>Reliable Income</b><p>多少支出由稳定收入来源覆盖。</p></div>
+<div class="card"><b>Portfolio Risk</b><p>剩余缺口由怎样的资产结构承担。</p></div>
+</div>
+<p>如果模型显示资产压力过大，不只有“追求更高投资收益”这一条路。还可以调整退休 / 转换时间、提高工作阶段储蓄、降低目标支出、增加稳定收入来源或提高支出弹性。系统思维的价值就在于不把所有问题都压在收益率一个变量上。</p>
+</section>
+<section id="review">
+<h2>17｜Review：财富系统真正运行以后，需要四个维护频率</h2>
+<table class="table"><thead><tr><th>周期</th><th>看什么</th><th>不做什么</th></tr></thead><tbody>
+<tr><td>Monthly</td><td>现金流、账单、自动转账、债务还款、目标投入</td><td>不重做整个投资策略</td></tr>
+<tr><td>Quarterly</td><td>目标进度、组合漂移、行为日志、安全和账户问题</td><td>不因为一个季度业绩重写长期目标</td></tr>
+<tr><td>Annual</td><td>完整 Balance Sheet、Cash Flow、Goals、Emergency、Insurance、Debt、SAA、IPS、Lifetime Plan</td><td>不只比较投资收益率</td></tr>
+<tr><td>Life Event</td><td>收入重大变化、家庭责任、居住 / 税务环境、重大目标、健康或负债结构变化</td><td>不等待固定年度日期</td></tr>
+</tbody></table>
+
+<h3>Monthly / Quarterly / Annual 分工为什么必须不同？</h3>
+<p>如果每个月都重新设计资产配置，系统会被短期噪声绑架；如果一年才发现信用卡连续多月透支，又反应太慢。维护频率应该和信息的变化速度匹配：现金流变化快，适合月度观察；战略资产配置和保险需求变化慢，适合年度或事件触发复核。</p>
+<h3>年度复盘应该同时看 Leading 与 Lagging Indicators</h3>
+<p>净资产和投资收益属于结果型指标；储蓄自动化是否执行、目标投入是否完成、债务余额是否下降、行为规则是否被违反，则更接近过程指标。只看结果可能把牛市带来的财富增长误认为系统执行很好，也可能把熊市中的合理计划误判成失败。</p>
+<div class="grid2">
+<div class="card"><b>Lagging</b><p>净资产、实际投资回报、目标资金余额。</p></div>
+<div class="card"><b>Leading / Process</b><p>储蓄率、自动投入、负债下降、应急覆盖、规则执行。</p></div>
+</div>
+</section>
+<section id="events">
+<h2>18｜Market Event 与 Life Event：什么值得观察，什么真的值得重做系统？</h2>
+<div class="grid2">
+<div class="card"><b>Market Event</b><p>市场跌 20%、基金短期排名变化、某行业突然热门。它们可能触发再平衡或研究，但不自动要求重做人生规划。</p></div>
+<div class="card"><b>Life / Financial Event</b><p>收入下降 40%、未来三年新增刚性支出、债务结构变化、家庭责任变化。这些可能真正改变 Risk Capacity、Liquidity 和 SAA。</p></div>
+</div>
+<div class="quote"><b>价格变化不自动意味着计划失效；人生事实变化才更可能改变计划的输入。</b></div>
+
+<h3>建立一个简单的 Event Triage</h3>
+<p>每次重大事件发生时，先问它改变的是哪一层。收入下降首先影响 Facts 和 Safety；家庭新增责任会影响 Goals 与 Insurance；市场大跌主要影响 Growth 中的实际权重；账户诈骗首先进入 Consumer Protection。只有当事件真正改变目标、期限、流动性或风险能力时，才可能需要 Reallocation。</p>
+<div class="formula">Event → Which Layer Changed? → Which Rule Applies? → Is Replanning Necessary?</div>
+<p>这个顺序可以阻止“所有坏消息都直接变成投资交易”。</p>
+</section>
+<section id="version">
+<h2>19｜Version Control：财富系统应该允许留下“为什么这样改”的历史</h2>
+<p>软件不会只保存最后一次状态，财富系统也不应该每年覆盖过去。建议使用版本号和 Change Log：</p>
+<div class="case"><div class="casehead"><b>Personal Wealth System v1.0</b><span>2026-09</span></div><p>初次建立完整财富系统。</p></div>
+<div class="case"><div class="casehead"><b>v1.1</b><span>未来某次年度复盘</span></div><p>Emergency Reserve target：6 → 9 months。原因：收入从固定工资变成高波动项目制收入。</p></div>
+<p>这样几年以后回头看，你不仅知道“现在是什么”，还知道“为什么一路变成这样”。</p>
+
+<h3>Change Log 应该记录“原因”，而不只记录“新数字”</h3>
+<p>如果资产配置从 70/30 改成 60/40，只保存新比例，几年后很难判断当时为什么改变。Change Log 至少记录：Date、Old Rule、New Rule、Reason、Evidence、Next Review。这样可以防止事后把所有变化合理化，也让未来的自己知道某条规则是否建立在已经失效的条件上。</p>
+<p>重大版本可以用 v2.0、v3.0；小幅更新可以使用 v1.1、v1.2。版本号本身不重要，重要的是保留时间序列。</p>
+</section>
+<section id="enough">
+<h2>20｜Enough：财富系统最终不是无限最大化，而是为想要的生活提供足够资源</h2>
+<p>如果课程最后只把所有知识汇总成“怎样赚到更多”，那仍然没有回答第三章最重要的问题：钱最终服务什么。</p>
+<p>CFPB 对财务福祉的核心定义是安全感和选择自由，而不是最大资产数字。这给最终章一个很重要的边界：</p>
+<div class="quote"><b>Maximum Number ≠ Maximum Well-Being。目标是 Sufficient Resources for a Chosen Life。</b></div>
+<p>“Enough”不是一个统一人民币数字，而是目标、责任、时间、生活方式和自由之间不断更新的关系。</p>
+
+<h3>“Enough”为什么必须和 Opportunity Cost 一起理解？</h3>
+<p>继续追求更多财富并不是免费的。它可能需要更长工作时间、更高风险、更少当下消费、更晚退休或更少自由时间。真正的财富决策因此不是“多 10 万一定更好”，而是“为了多 10 万，我放弃了什么”。</p>
+<p>当基础安全、重要目标和未来责任已经有充分资金支持以后，新增财富的边际效用可能下降，而时间、健康、创造和关系的价值可能上升。财富系统最终必须把钱放回生活，而不是让生活变成财富数字的附属品。</p>
+<div class="callout green"><div class="label">最终原则</div><b>财富不是目的本身。财富系统的成功，是资源足够支持你真正重视的生活，同时在不确定性中保持可持续。</b></div>
+</section>
+<section id="failures">
+<h2>21A｜一个财富系统最常见的六种失效方式</h2>
+<p>最终系统比单个金融产品更复杂，因此它也有自己的 failure modes。知道这些失效方式，比继续增加更多功能更重要。</p>
+<div class="grid3">
+<div class="card"><b>1. Data Blindness</b><p>资产和现金流长期不更新，系统仍用旧事实做决定。</p></div>
+<div class="card"><b>2. Goal Drift</b><p>目标已经改变，但资金和投资组合仍服务过去的人生版本。</p></div>
+<div class="card"><b>3. Safety Underfunding</b><p>过度追求投资收益，导致任何冲击都要动用长期资产。</p></div>
+<div class="card"><b>4. Product Creep</b><p>不断加入新基金、新账户、新策略，组合变复杂却没有新增任务。</p></div>
+<div class="card"><b>5. Behavior Override</b><p>规则写得很好，但市场压力下每次都允许自己“这次例外”。</p></div>
+<div class="card"><b>6. Review Failure</b><p>系统建立后从不复盘，最终与现实脱节。</p></div>
+</div>
+<h3>复杂度本身也会成为风险</h3>
+<p>如果一个系统需要每周维护几十个表格、每月手工计算几十项指标，它很可能在最忙的时候被放弃。因此最终版本应保留“最小可运行系统”：资产负债表、现金流、安全底线、目标地图、战略配置、行为规则和复盘周期。只有当新增模块真的改善决策时，才值得加入。</p>
+<div class="quote"><b>Professional does not mean complicated. A system that cannot be maintained is not robust.</b></div>
+</section><section id="cases">
+<h2>21｜四个完整生命周期案例</h2>
+<div class="case"><div class="casehead"><b>A｜投资账户涨得很好，但生活一直很紧</b><span>Investment Performance ≠ Financial Well-Being</span></div><p>投资组合持续增长，但现金流常年紧张、没有应急储备，大额开支依赖信用。系统问题发生在 Safety 和 Cash Flow 层，而不是继续寻找更高收益。</p></div>
+<div class="case"><div class="casehead"><b>B｜净资产很多，但所有资产都没有任务</b><span>Assets without jobs</span></div><p>账户和资产很多，却不知道哪些钱两年后要用、哪些是真正长期资本。风险预算没有目标参照，投资组合无法判断是否匹配。</p></div>
+<div class="case"><div class="casehead"><b>C｜五年前的好配置，现在已经不适合</b><span>Good Old Plan ≠ Good Current Plan</span></div><p>当时长期目标遥远，可以承担较大波动；现在三年内出现刚性大额支出，却从未更新流动性和战略配置。问题不是当年的计划错，而是 Review Cycle 缺失。</p></div>
+<div class="case"><div class="casehead"><b>D｜长期平均收益不错，提款初期却遇到连续下跌</b><span>Sequence Risk</span></div><p>平均收益没有反映现金流方向。退休后组合一边下跌一边提款，会比积累阶段更快减少参与后续复苏的本金。</p></div>
+</section>
+<section id="mistakes">
+<h2>22｜整门课程最后十个误区</h2>
+<div class="callout red"><div class="label">误区 1</div><b>财富系统就是投资组合。</b></div>
+<div class="callout red"><div class="label">误区 2</div><b>净资产越高，财务状态一定越好。</b></div>
+<div class="callout red"><div class="label">误区 3</div><b>只要投资收益高，现金流、安全和目标问题都能被解决。</b></div>
+<div class="callout red"><div class="label">误区 4</div><b>应急金和保险只是拖累收益的“闲钱”。</b></div>
+<div class="callout red"><div class="label">误区 5</div><b>退休就是提前算出一个万能财富数字。</b></div>
+<div class="callout red"><div class="label">误区 6</div><b>长期平均收益可以直接预测提款阶段结果。</b></div>
+<div class="callout red"><div class="label">误区 7</div><b>一个战略资产配置可以从年轻一直用到终身。</b></div>
+<div class="callout red"><div class="label">误区 8</div><b>系统越复杂、表格越多，就越专业。</b></div>
+<div class="callout red"><div class="label">误区 9</div><b>财富管理的主要任务是不断寻找更好的金融产品。</b></div>
+<div class="callout red"><div class="label">误区 10</div><b>完成这 20 章，财务规划就结束了。</b></div>
+<div class="quote"><b>第二十章的终点，是第一次完整 Review Cycle 的起点。</b></div>
+</section>
+<section id="workspace">
+<h2>23｜Graduation Workspace：下面开始把课程真正变成你的系统</h2>
+<p>这部分不再只是阅读。你可以导入前面章节导出的 JSON，也可以完全手动填写。工具不会把无法识别的数据偷偷“猜”成某个字段；无法映射的内容会保留原始数据并提示 Manual Entry Needed。</p>
+<div class="toolbar no-print">
+<button class="secondary" onclick="scrollToId('importer')">1. 导入章节 JSON</button>
+<button class="bluebtn" onclick="scrollToId('builder')">2. 建立 Master System</button>
+<button onclick="scrollToId('lifetimeLab')">3. 运行 Lifetime Lab</button>
+<button class="ghost" onclick="scrollToId('constitution')">4. 生成一页宪法</button>
+</div>
+
+<h3>为什么最终工作台仍然坚持 Local-First？</h3>
+<p>个人财务数据高度敏感。这个 HTML 的第一版不需要账号系统、云端数据库或第三方同步才能成立。章节 JSON 和 Master JSON 都可以在本地保存、手动备份和跨设备迁移。这样做牺牲了一些便利，但让“数据存在哪里、谁能看到”保持清晰。</p>
+<p>未来如果真的扩展云同步，应该把加密、权限、版本冲突和恢复机制作为独立工程问题，而不是为了方便直接把所有财务数据发送到未知后端。</p>
+</section>
+<section id="importer">
+<div class="tool-title"><h2>24｜Master Import Center</h2><span class="badge">跨章节 / 跨设备汇总</span></div>
+<div class="dropzone no-print" id="dropzone">
+<b>拖入一个或多个章节 JSON 文件</b>
+<p class="small">或点击下方按钮选择。原始导入内容只在当前浏览器本地处理，本页不会上传网络。</p>
+<input accept=".json,application/json" id="fileInput" multiple="" type="file"/>
+</div>
+<div class="toolbar no-print"><button class="ghost" onclick="clearImports()">清空导入</button><button class="secondary" onclick="loadSavedMaster()">读取本页已保存 Master</button></div>
+<div class="feedback" id="importSummary">尚未导入章节文件。你也可以跳过导入，直接使用下一节的手动输入。</div>
+<div id="importList"></div>
+<h3>建议导入的课程产物</h3>
+<p>
+<span class="badge">财务目标地图</span><span class="badge">财务体检报告</span><span class="badge">支出系统</span>
+<span class="badge">金融基础设施地图</span><span class="badge">债务管理规则</span><span class="badge">财务安全垫方案</span>
+<span class="badge">风险与保险地图</span><span class="badge">消费者保护手册</span><span class="badge">风险地图</span>
+<span class="badge">资产配置框架</span><span class="badge">投资行为防错系统</span>
+</p>
+<p class="small">前面部分章节的 JSON schema 并不完全统一，因此本章采用“宽松识别 + 保存原始数据”的方式。自动识别只用于预填，最终以你在 Master Builder 中确认的内容为准。</p>
+
+<h3>为什么导入时宁愿提示缺失，也不“智能猜测”？</h3>
+<p>财务数据最危险的错误之一不是“空白”，而是“看起来合理但其实映射错了”。例如某章 JSON 中的 `reserve` 可能指计划准备金，也可能指应急储备；如果系统在没有明确 schema 的情况下自动塞进错误字段，最终计算会给人一种虚假的确定感。因此 Master Import 采取保守策略：能识别的预填，不能识别的保留原始数据。</p>
+<p>真正长期可维护的下一步，是逐章统一 schema version 和字段定义；但在当前课程版本里，“不确定就要求人工确认”比“自动填满所有表格”更安全。</p>
+</section>
+<section id="builder">
+<div class="tool-title"><h2>25｜Wealth System Builder</h2><span class="badge">六层系统</span></div>
+<h3>Layer 1 · Financial Facts</h3>
+<div class="grid2">
+<label>金融资产合计<input id="fAssets" type="number" value="0"/></label>
+<label>负债合计<input id="fLiabilities" type="number" value="0"/></label>
+<label>月均税后 / 可支配收入<input id="fIncome" type="number" value="0"/></label>
+<label>月均总支出<input id="fSpending" type="number" value="0"/></label>
+<label>月均必要支出<input id="fEssential" type="number" value="0"/></label>
+<label>月均债务还款<input id="fDebtPay" type="number" value="0"/></label>
+</div>
+<h3>Layer 2 · Safety</h3>
+<div class="grid2">
+<label>可立即使用的应急储备<input id="sEmergency" type="number" value="0"/></label>
+<label>计划性准备金<input id="sReserve" type="number" value="0"/></label>
+<label>应急储备目标覆盖月数<input id="sMonthsTarget" step="0.5" type="number" value="6"/></label>
+<label>保险 / 风险转移状态<select id="sInsurance"><option>尚未梳理</option><option>已建立风险地图，仍有缺口</option><option>已建立并定期复核</option></select></label>
+<label>账户安全 / 消费者保护<select id="sProtection"><option>尚未梳理</option><option>已建立基础规则</option><option>已有完整应急路径</option></select></label>
+</div>
+<h3>Layer 3 · Goals</h3>
+<button class="secondary no-print" onclick="addMasterGoal()">+ 添加目标</button>
+<div id="masterGoals"></div>
+<h3>Layer 4 · Growth</h3>
+<div class="grid2">
+<label>长期战略 Cash %<input id="aCash" type="number" value="10"/></label>
+<label>长期战略 Bonds %<input id="aBonds" type="number" value="30"/></label>
+<label>长期战略 Stocks %<input id="aStocks" type="number" value="50"/></label>
+<label>长期战略 Real / Other %<input id="aOther" type="number" value="10"/></label>
+<label>Risk Ability<select id="rAbility"><option>尚未评估</option><option>较低</option><option>中等</option><option>较高</option></select></label>
+<label>Risk Willingness<select id="rWilling"><option>尚未评估</option><option>较低</option><option>中等</option><option>较高</option></select></label>
+<label>Risk Need<select id="rNeed"><option>尚未评估</option><option>较低</option><option>中等</option><option>较高</option></select></label>
+</div>
+<h3>Layer 5 · Behavior</h3>
+<div class="grid2">
+<label>再平衡规则<input id="bRebalance" type="text" value="按容忍区间 / 定期复核"/></label>
+<label>非计划交易冷静期<input id="bCooling" type="text" value="24小时"/></label>
+<label>什么才允许改变战略配置<textarea id="bChange">目标、期限、流动性、收入/负债结构或风险承受能力发生实质变化。</textarea></label>
+<label>No-Trade Triggers<textarea id="bNoTrade">单日涨跌；热搜；朋友收益截图；单一年份基金排名；资产刚好回到成本价。</textarea></label>
+</div>
+<h3>Layer 6 · Review</h3>
+<div class="grid2">
+<label>月度维护规则<input id="rvMonthly" type="text" value="现金流、账单、自动转账、目标投入"/></label>
+<label>季度复盘规则<input id="rvQuarter" type="text" value="目标进度、组合漂移、行为日志、安全事项"/></label>
+<label>年度复盘月份<select id="rvAnnual"><option>1月</option><option>3月</option><option>6月</option><option selected="">9月</option><option>12月</option></select></label>
+<label>重大事件触发<textarea id="rvEvents">收入重大变化；家庭责任变化；重大目标变化；居住或税务环境变化；重大负债变化。</textarea></label>
+</div>
+<div class="toolbar no-print"><button class="secondary" onclick="buildMaster()">生成 / 更新 Master System</button><button class="ghost" onclick="saveMaster()">保存到本浏览器</button></div>
+<div class="feedback" id="builderOut">填写或导入数据后生成系统状态。不会生成单一健康分数。</div>
+
+<h3>Master Builder 的阅读顺序</h3>
+<p>不要从投资比例开始填。更合理的顺序是：先更新金融资产、负债、收入和支出；再确认应急储备和计划准备金；再更新目标；最后才填写长期资产配置和行为规则。这样 Investment Capital 的边界来自现实财务，而不是反过来为了投资计划去忽略短期责任。</p>
+<div class="callout blue"><div class="label">使用方法</div><b>每次年度复盘都把 Builder 当作一次“重新校准输入”，而不是把上一年所有数字直接复制过去。</b></div>
+</section>
+<section id="lifetimeLab">
+<div class="tool-title"><h2>26｜Lifetime Funding Lab</h2><span class="badge">Assumption Lab · 不是退休预测器</span></div>
+<p>这个实验把 Accumulation 与 Decumulation 放在同一张时间线上。所有回报、通胀和寿命都是你输入的假设，结果只表示“如果这些假设成立，会发生什么”。</p>
+<div class="grid2">
+<label>当前年龄<input id="lAge" type="number" value="30"/></label>
+<label>计划进入提款阶段年龄<input id="lRetire" type="number" value="65"/></label>
+<label>当前长期资本<input id="lCapital" type="number" value="200000"/></label>
+<label>每年投入<input id="lContrib" type="number" value="60000"/></label>
+<label>投入每年增长（%）<input id="lContribG" type="number" value="2"/></label>
+<label>积累阶段名义收益假设（%）<input id="lReturn" type="number" value="6"/></label>
+<label>通胀假设（%）<input id="lInflation" type="number" value="2.5"/></label>
+<label>提款阶段首年生活支出（今天购买力）<input id="lSpend" type="number" value="120000"/></label>
+<label>提款阶段首年可靠收入（今天购买力）<input id="lReliable" type="number" value="50000"/></label>
+<label>规划到年龄<input id="lEndAge" type="number" value="90"/></label>
+</div>
+<div class="toolbar no-print"><button class="secondary" onclick="lifetimeLab()">运行 Lifetime Funding Lab</button></div>
+<div class="feedback" id="lifetimeOut">这里不会告诉你“能不能退休”，而会显示当前假设下积累规模、首年资金缺口以及两种同平均收益但不同顺序的提款路径。</div>
+<div class="chartwrap"><canvas height="340" id="lifeChart" width="900"></canvas></div>
+
+<h3>怎样阅读 Lifetime Funding Lab 的结果？</h3>
+<p>第一，不要把终值当预测值，它只是当前假设下的结果；第二，重点观察结果对投入、通胀、退休年龄和支出的敏感性；第三，比较 Sequence A / B 时，不要问“哪条会真的发生”，而要问“系统是否对不利顺序过于脆弱”。</p>
+<p>如果一个计划只有在非常乐观的收益假设下才能成立，问题可能不在投资产品，而在目标、投入和时间之间缺乏余量。好的长期计划通常需要一定 Margin of Safety。</p>
+</section>
+<section id="reviewLab">
+<div class="tool-title"><h2>27｜Annual Review Engine</h2><span class="badge">Facts → Change → Action</span></div>
+<p>年度复盘不是重新预测市场，而是比较系统状态和规则是否仍然匹配现实。你可以导入上一版 Master JSON，也可以手动填写去年关键数字。</p>
+<div class="grid2">
+<label>上次复盘日期<input id="arPrevDate" type="date"/></label>
+<label>本次复盘日期<input id="arNowDate" type="date"/></label>
+<label>去年净资产<input id="arPrevNW" type="number" value="0"/></label>
+<label>今年净资产<input id="arNowNW" type="number" value="0"/></label>
+<label>去年应急覆盖月数<input id="arPrevEmergency" step="0.1" type="number" value="0"/></label>
+<label>今年应急覆盖月数<input id="arNowEmergency" step="0.1" type="number" value="0"/></label>
+<label>去年长期投资资本<input id="arPrevInvest" type="number" value="0"/></label>
+<label>今年长期投资资本<input id="arNowInvest" type="number" value="0"/></label>
+</div>
+<label>今年发生了哪些重大事实变化？<textarea id="arFacts" placeholder="收入、负债、家庭责任、居住、重大支出……"></textarea></label>
+<label>哪些目标发生了变化？<textarea id="arGoals"></textarea></label>
+<label>今年哪些规则被违反过？为什么？<textarea id="arRules"></textarea></label>
+<label>下一年度最重要的三项系统修改<textarea id="arNext"></textarea></label>
+<div class="toolbar no-print"><button class="secondary" onclick="annualReview()">生成年度 Change Log</button></div>
+<div class="feedback" id="annualOut">复盘关注“事实变化”和“规则变化”，不是把投资收益率当唯一成绩单。</div>
+
+<h3>年度复盘不是绩效考核，而是模型更新</h3>
+<p>“今年净资产没有上涨很多”并不自动意味着失败。如果这一年发生了教育支出、搬家、职业转换或合理消费，净资产变化需要放回目标中解释。相反，牛市让资产大涨，也不能掩盖安全垫不足、债务恶化或行为纪律频繁失守。</p>
+<p>年度复盘真正应该问：去年系统依赖的哪些假设仍然成立？哪些已经变化？哪些规则太复杂导致无法执行？哪些风险没有被看见？下一年只修改最重要的几件事。</p>
+</section>
+<section id="constitution">
+<div class="tool-title"><h2>28｜One-Page Wealth Constitution</h2><span class="badge">可打印</span></div>
+<p>这一页是整个课程最终最简洁的成果：不显示所有数据，只保留决定系统如何运行的规则。</p>
+<div class="toolbar no-print"><button class="secondary" onclick="generateConstitution()">根据当前 Master 生成</button><button class="ghost" onclick="window.print()">打印 / 另存 PDF</button></div>
+<div class="constitution" id="constitutionBox">
+<h3>我的财富宪法</h3>
+<p class="small">尚未生成。先在 Wealth System Builder 中建立 Master System。</p>
+</div>
+
+<h3>为什么“一页财富宪法”比几十页报告更值得保存？</h3>
+<p>完整 Master System 用于分析，一页宪法用于行动。现实中出现市场暴跌、收入变化或投资冲动时，人不太可能重新阅读几十页笔记；一页规则可以快速提醒：钱的任务是什么、安全底线是什么、什么才允许改变战略配置、哪些事情不能成为交易理由。</p>
+<p>它不是法律合同，而是对未来自己的预承诺。</p>
+</section>
+<section id="emergency">
+<h2>29｜Emergency Page：真正出事时，不要从搜索市场新闻开始</h2>
+<div class="emergency">
+<h3>如果发生 Financial Shock</h3>
+<p><b>1.</b> 先确认必要现金流和应急储备；<b>2.</b> 区分 Planned Expense 与真正 Emergency；<b>3.</b> 检查保险和债务安排；<b>4.</b> 在明确需要前，不先破坏长期投资层。</p>
+<h3>如果发生 Market Crash</h3>
+<p><b>1.</b> 打开 IPS；<b>2.</b> 看战略配置和容忍带；<b>3.</b> 确认目标、期限和 Risk Capacity 是否真正变化；<b>4.</b> 新闻和账户亏损本身不直接拥有修改 SAA 的权限。</p>
+<h3>如果发生 Account / Fraud Issue</h3>
+<p><b>1.</b> 尽快限制账户和支付风险；<b>2.</b> 保存交易、通信和页面证据；<b>3.</b> 通过金融机构正式渠道处理；<b>4.</b> 需要时走投诉、报警或争议解决路径；<b>5.</b> 警惕“帮你追回资金”的二次诈骗。</p>
+<p class="small">具体处理程序应以事件发生时所在司法辖区、金融机构和监管部门的最新官方要求为准。</p>
+</div>
+
+<h3>应急页面的设计原则：先恢复控制，再做长期判断</h3>
+<p>真正的危机往往伴随信息不完整和高压力。这个时候最容易犯的错误，是把所有问题一次性混在一起处理。应急页面因此采用“先控制直接损失 → 再恢复现金流 → 再判断长期系统是否真的需要调整”的顺序。</p>
+<p>例如失业首先是收入中断问题，不自动等于“股票应该卖掉”；市场暴跌首先是组合波动和再平衡问题，不自动等于“职业和生活目标发生变化”；诈骗首先是账户安全和证据保全问题，不应该立刻相信所谓追回机构。</p>
+</section>
+<section id="export">
+<div class="tool-title"><h2>30｜Master Export：让系统可以迁移，而不是被锁在一个浏览器里</h2><span class="badge">Portable Data</span></div>
+<p>LocalStorage 适合浏览器内临时保存，但并不适合成为唯一备份。最终章支持导出一个 Master JSON，它可以在未来版本中重新导入。</p>
+<div class="formula">meta<br/>financial_state<br/>safety<br/>goals<br/>risk_profile<br/>investment_policy<br/>asset_allocation<br/>behavior_guardrails<br/>lifetime_plan<br/>financial_wellbeing<br/>review_policy<br/>change_log<br/>source_chapters</div>
+<div class="toolbar no-print">
+<button class="secondary" onclick="exportMaster()">导出《我的个人财富系统_v1.json》</button>
+<button class="ghost" onclick="exportConstitutionText()">导出一页财富宪法 .txt</button>
+<button class="ghost" onclick="window.print()">打印当前系统</button>
+</div>
+<div class="feedback" id="exportOut">建议在重大年度复盘后导出新版本，并保留上一版，而不是覆盖唯一文件。</div>
+
+<h3>Master JSON 应该怎样备份？</h3>
+<p>建议每次重大年度复盘生成一个新文件，例如 `我的个人财富系统_2026_v1.json`、`2027_v2.json`，而不是永远覆盖同一个文件。这样即使未来系统逻辑改变，也可以回到过去版本理解当时的事实与决策。</p>
+<p>JSON 是数据备份；打印版财富宪法则是规则备份。两者承担不同任务。</p>
+</section>
+<section id="summary">
+<div class="end">
+<h2>31｜二十章以后，课程应该形成这一条完整链</h2>
+<p><b>第1—3章：</b>钱为什么重要，最终要服务什么。</p>
+<p><b>第4—10章：</b>现实财务底座、安全边界和金融基础设施是否站得住。</p>
+<p><b>第11—13章：</b>钱、时间、通胀、费用、税和风险怎样改变结果。</p>
+<p><b>第14—17章：</b>现金、债券、股票、房地产、基金、指数与 ETF 到底是什么。</p>
+<p><b>第18章：</b>怎样把这些资产变成 Portfolio，而不是产品清单。</p>
+<p><b>第19章：</b>怎样避免自己在压力中破坏 Portfolio。</p>
+<p><b>第20章：</b>怎样让这一切随着人生变化持续运行。</p>
+<br/>
+<p style="font-size:21px"><b>最终目标不是 Maximum Wealth，而是：足够的安全、持续的目标推进，以及因为钱而增加的生活选择自由。</b></p>
+<p>今天生成的 v1 不是终稿。它真正的价值，是以后仍然可以被事实修订，同时不被每一次噪声随意推翻。</p>
+</div>
+</section>
+<section id="refs">
+<h2>32｜资料来源、方法边界与长期维护</h2>
+<ol class="refs">
+<li><b>CFP Board — 2026 Competency Standards / Financial Planning Process.</b> 2026 年公布的七步过程仍包括理解个人和财务情况、识别目标、分析替代路径、形成 / 呈现 / 实施建议，以及最终的 Monitor Progress and Update。<br/><a href="https://www.cfp.net/news/2026/01/cfp-board-announces-updates-to-the-competency-standards">CFP Board</a></li>
+<li><b>Consumer Financial Protection Bureau — Financial Well-Being.</b> CFPB 将财务福祉概括为：控制日常 / 月度财务、吸收财务冲击、正在朝财务目标前进，以及拥有做出享受生活选择的财务自由。本课程使用四个概念作为结果框架，但不把 CFPB 校准量表直接转化为跨司法辖区的“财富评分”。<br/><a href="https://www.consumerfinance.gov/consumer-tools/financial-well-being/about/">CFPB</a></li>
+<li><b>CFA Institute — Basics of Portfolio Planning and Construction, 2026 Curriculum.</b> 用于 IPS、time horizon、liquidity、tax / legal constraints、战略资产配置与 rebalancing policy 的专业框架。<br/><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/basics-of-portfolio-planning-and-construction">CFA Institute</a></li>
+<li><b>CFA Institute — Investment Planning, 2026 Curriculum.</b> 用于从风险与承诺出发构建投资计划，以及把退休财务区分为 accumulation 与 decumulation 两个阶段。<br/><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/investment-planning">CFA Investment Planning</a></li>
+<li><b>课程方法边界.</b> Lifetime Funding Lab 使用用户自定的名义收益、通胀和支出假设进行情景演算，不是退休预测、收益承诺、养老金建议或税务建议。真实税务、社保、养老金、医疗和遗产规则高度依赖所在地及未来法规，应在实际决策时查阅最新官方信息。</li>
+<li><b>数据边界.</b> 本 HTML 在浏览器本地解析导入 JSON。它不会自动把无法识别的旧章节字段假装映射为确定事实；原始 JSON 会保存在 source_chapters，建议用户在 Master Builder 中人工确认关键数据。</li>
+</ol>
+</section>
+</article>
+</main></div></div>
+<script>
+const $=id=>document.getElementById(id);
+let importedDocs=[];
+let master={
+  meta:{schema:"personal_wealth_system_v1",version:"1.0",created_at:null,updated_at:null},
+  financial_state:{},safety:{},goals:[],risk_profile:{},asset_allocation:{},
+  investment_policy:{},behavior_guardrails:{},lifetime_plan:{},
+  financial_wellbeing:{},review_policy:{},change_log:[],source_chapters:[]
+};
+let completed=new Set();
+function mark(k){completed.add(k);const p=Math.round(completed.size/4*100);$("taskPct").textContent=p+"%";$("taskProg").style.width=p+"%"}
+function readProgress(){const d=document.documentElement,h=d.scrollHeight-d.clientHeight,p=h>0?Math.round((d.scrollTop||0)/h*100):0;$("readPct").textContent=p+"%";$("readProg").style.width=p+"%"}
+window.addEventListener("scroll",readProgress);
+function scrollToId(id){$(id)?.scrollIntoView({behavior:"smooth",block:"start"})}
+function num(id){return Number($(id).value||0)}
+function fmtMoney(x){return Number(x||0).toLocaleString("zh-CN",{style:"currency",currency:"CNY",maximumFractionDigits:0})}
+function fmtNum(x,d=2){return Number(x||0).toLocaleString("zh-CN",{maximumFractionDigits:d})}
+function safeText(v){return String(v??"").replace(/[<>&]/g,m=>({"<":"&lt;",">":"&gt;","&":"&amp;"}[m]))}
+function download(name,text,type="application/json"){
+  const blob=new Blob([text],{type}),u=URL.createObjectURL(blob),a=document.createElement("a");
+  a.href=u;a.download=name;a.click();URL.revokeObjectURL(u)
+}
+function clone(o){return JSON.parse(JSON.stringify(o))}
+function deepFind(obj,keys,depth=0){
+  if(!obj||typeof obj!=="object"||depth>6)return undefined;
+  for(const k of keys){if(Object.prototype.hasOwnProperty.call(obj,k)&&obj[k]!==null&&obj[k]!==undefined)return obj[k]}
+  for(const v of Object.values(obj)){const r=deepFind(v,keys,depth+1);if(r!==undefined)return r}
+}
+function chapterLabel(doc){
+  return doc.chapter||doc.meta?.chapter||doc.title||doc.meta?.title||doc.schema||"未识别章节"
+}
+function classifyDoc(doc){
+  const t=(chapterLabel(doc)+" "+JSON.stringify(doc).slice(0,1600)).toLowerCase();
+  if(t.includes("个人财富系统")||t.includes("personal_wealth_system"))return "master";
+  if(t.includes("财务目标")||t.includes("goal"))return "goals";
+  if(t.includes("财务体检")||t.includes("financial_checkup"))return "checkup";
+  if(t.includes("支出系统")||t.includes("spending"))return "spending";
+  if(t.includes("金融基础设施")||t.includes("infrastructure"))return "infrastructure";
+  if(t.includes("债务")||t.includes("debt"))return "debt";
+  if(t.includes("安全垫")||t.includes("emergency"))return "emergency";
+  if(t.includes("保险")||t.includes("insurance"))return "insurance";
+  if(t.includes("消费者保护")||t.includes("consumer"))return "protection";
+  if(t.includes("风险地图")||t.includes("risk profile"))return "risk";
+  if(t.includes("资产配置")||t.includes("allocation"))return "allocation";
+  if(t.includes("行为防错")||t.includes("behavior"))return "behavior";
+  return "unknown"
+}
+async function handleFiles(files){
+  for(const file of files){
+    try{
+      const text=await file.text(),doc=JSON.parse(text);
+      importedDocs.push({name:file.name,type:classifyDoc(doc),doc});
+      if(classifyDoc(doc)==="master")applyMaster(doc);
+    }catch(e){
+      importedDocs.push({name:file.name,type:"invalid",error:String(e)});
+    }
+  }
+  renderImports();prefillFromImports();mark("import")
+}
+function renderImports(){
+  const valid=importedDocs.filter(x=>x.doc),invalid=importedDocs.filter(x=>!x.doc);
+  $("importSummary").innerHTML=`<b>${valid.length}</b> 个有效 JSON，<b>${invalid.length}</b> 个无法解析。系统会保存有效文档的原始结构，并只对可识别字段做预填。`;
+  $("importList").innerHTML=importedDocs.map(x=>`<div class="importitem"><div><b>${safeText(x.name)}</b><br><span class="small">${x.doc?safeText(chapterLabel(x.doc)):"解析失败"}</span></div><div class="${x.type==="invalid"?"bad":x.type==="unknown"?"warn":"ok"}">${safeText(x.type)}</div></div>`).join("");
+}
+function clearImports(){importedDocs=[];renderImports();$("importSummary").textContent="已清空当前导入。"}
+function applyMaster(doc){
+  const candidate=doc.system||doc.framework||doc.master||doc;
+  if(candidate&&typeof candidate==="object"){
+    master={...master,...clone(candidate)};
+    if(!master.source_chapters)master.source_chapters=[];
+  }
+  hydrateMasterForm()
+}
+function prefillFromImports(){
+  for(const item of importedDocs){
+    if(!item.doc)continue;
+    const d=item.doc,t=item.type;
+    if(t==="goals"){
+      const gs=deepFind(d,["goals","goal_list","goalMap","goal_map"]);
+      if(Array.isArray(gs))gs.slice(0,10).forEach(g=>addMasterGoal({
+        name:g.name||g.goal||g.title||"导入目标",
+        amount:g.amount||g.targetAmount||g.target_amount||0,
+        current:g.currentFunding||g.current_funding||g.current||0,
+        years:g.years||g.timeHorizon||g.time_horizon||5
+      }));
+    }
+    if(t==="checkup"){
+      const assets=deepFind(d,["assets","totalAssets","total_assets"]);
+      const liabilities=deepFind(d,["liabilities","totalLiabilities","total_liabilities"]);
+      const income=deepFind(d,["income","monthlyIncome","monthly_income"]);
+      const spending=deepFind(d,["spending","expenses","monthlySpending","monthly_spending"]);
+      if(typeof assets==="number")$("fAssets").value=assets;
+      if(typeof liabilities==="number")$("fLiabilities").value=liabilities;
+      if(typeof income==="number")$("fIncome").value=income;
+      if(typeof spending==="number")$("fSpending").value=spending;
+    }
+    if(t==="emergency"){
+      const reserve=deepFind(d,["emergencyReserve","emergency_reserve","reserve","buffer"]);
+      const months=deepFind(d,["months","coverageMonths","coverage_months","targetMonths"]);
+      if(typeof reserve==="number")$("sEmergency").value=reserve;
+      if(typeof months==="number")$("sMonthsTarget").value=months;
+    }
+    if(t==="risk"){
+      const ability=deepFind(d,["ability","riskAbility","risk_ability"]);
+      const willingness=deepFind(d,["willingness","riskWillingness","risk_willingness"]);
+      const need=deepFind(d,["need","riskNeed","risk_need"]);
+      setSelectIf($("rAbility"),ability);setSelectIf($("rWilling"),willingness);setSelectIf($("rNeed"),need);
+    }
+    if(t==="allocation"){
+      const w=deepFind(d,["weights","allocation","strategicAllocation","strategic_allocation"]);
+      if(w&&typeof w==="object"){
+        setNumIf("aCash",w.cash??w.Cash);setNumIf("aBonds",w.bonds??w.Bonds);setNumIf("aStocks",w.stocks??w.Stocks);setNumIf("aOther",w.real??w.other??w.real_assets);
+      }
+      const rb=deepFind(d,["rebalancing","rebalancingPolicy","rebalancing_policy"]);
+      if(typeof rb==="string")$("bRebalance").value=rb;
+    }
+    if(t==="behavior"){
+      const cool=deepFind(d,["coolingOff","cooling_off","cooling"]);
+      const noTrade=deepFind(d,["noTradeTriggers","no_trade_triggers"]);
+      const change=deepFind(d,["changeTriggers","change_triggers"]);
+      if(typeof cool==="string")$("bCooling").value=cool;
+      if(typeof noTrade==="string")$("bNoTrade").value=noTrade;
+      if(typeof change==="string")$("bChange").value=change;
+    }
+  }
+}
+function setNumIf(id,v){if(v!==undefined&&v!==null&&!isNaN(Number(v)))$(id).value=Number(v)}
+function setSelectIf(sel,v){
+  if(v===undefined||v===null)return;
+  const s=String(v).toLowerCase();
+  [...sel.options].forEach(o=>{
+    if(o.text.toLowerCase().includes(s)||s.includes(o.text.toLowerCase()))sel.value=o.value
+  })
+}
+const dz=$("dropzone");
+dz.addEventListener("dragover",e=>{e.preventDefault();dz.classList.add("drag")});
+dz.addEventListener("dragleave",()=>dz.classList.remove("drag"));
+dz.addEventListener("drop",e=>{e.preventDefault();dz.classList.remove("drag");handleFiles([...e.dataTransfer.files])});
+$("fileInput").addEventListener("change",e=>handleFiles([...e.target.files]));
+
+let mgid=0;
+function addMasterGoal(g={}){
+  const id=++mgid,div=document.createElement("div");div.className="goalrow";div.dataset.id=id;
+  div.innerHTML=`<button class="remove no-print" onclick="this.parentNode.remove()">删除</button>
+  <div class="grid2">
+  <label>Goal Name<input class="mgName" type="text" value="${safeText(g.name||"新目标")}"></label>
+  <label>目标金额<input class="mgAmount" type="number" value="${Number(g.amount||0)}"></label>
+  <label>当前专用资金<input class="mgCurrent" type="number" value="${Number(g.current||0)}"></label>
+  <label>距离使用（年）<input class="mgYears" type="number" value="${Number(g.years??5)}" step="0.5"></label>
+  <label>重要性<select class="mgImportance"><option>刚性 / 很重要</option><option>重要但可调整</option><option>可延期 / 可放弃</option></select></label>
+  <label>每月计划投入<input class="mgMonthly" type="number" value="${Number(g.monthly||0)}"></label>
+  </div>`;
+  $("masterGoals").appendChild(div)
+}
+function collectGoals(){
+  return [...document.querySelectorAll(".goalrow")].map(r=>({
+    name:r.querySelector(".mgName").value,
+    target_amount:+r.querySelector(".mgAmount").value,
+    current_funding:+r.querySelector(".mgCurrent").value,
+    years:+r.querySelector(".mgYears").value,
+    importance:r.querySelector(".mgImportance").value,
+    monthly_contribution:+r.querySelector(".mgMonthly").value
+  }))
+}
+function buildMaster(){
+  const goals=collectGoals(),assets=num("fAssets"),liab=num("fLiabilities"),income=num("fIncome"),spend=num("fSpending"),essential=num("fEssential"),debtpay=num("fDebtPay");
+  const emergency=num("sEmergency"),reserve=num("sReserve"),targetMonths=num("sMonthsTarget");
+  const cash=num("aCash"),bonds=num("aBonds"),stocks=num("aStocks"),other=num("aOther"),allocSum=cash+bonds+stocks+other;
+  const nw=assets-liab,monthlyNet=income-spend,coverage=essential>0?emergency/essential:null;
+  const investCapital=Math.max(0,assets-emergency-reserve-goals.reduce((s,g)=>s+Math.max(0,g.current_funding),0));
+  master.meta={schema:"personal_wealth_system_v1",version:master.meta?.version||"1.0",created_at:master.meta?.created_at||new Date().toISOString(),updated_at:new Date().toISOString()};
+  master.financial_state={financial_assets:assets,liabilities:liab,net_worth:nw,monthly_income:income,monthly_spending:spend,monthly_essential_spending:essential,monthly_debt_payment:debtpay,monthly_net_cashflow:monthlyNet,long_term_investment_capital_estimate:investCapital};
+  master.safety={emergency_reserve:emergency,planned_reserve:reserve,target_months:targetMonths,current_coverage_months:coverage,insurance_status:$("sInsurance").value,consumer_protection_status:$("sProtection").value};
+  master.goals=goals;
+  master.risk_profile={ability:$("rAbility").value,willingness:$("rWilling").value,need:$("rNeed").value};
+  master.asset_allocation={cash,bonds,stocks,real_other:other,total:allocSum};
+  master.investment_policy={rebalancing_rule:$("bRebalance").value,change_triggers:$("bChange").value};
+  master.behavior_guardrails={cooling_off:$("bCooling").value,no_trade_triggers:$("bNoTrade").value};
+  master.review_policy={monthly:$("rvMonthly").value,quarterly:$("rvQuarter").value,annual_month:$("rvAnnual").value,event_triggers:$("rvEvents").value};
+  master.financial_wellbeing={day_to_day_control:monthlyNet>=0?"现金流当前非负；继续观察稳定性":"现金流当前为负，需要优先检查支出与收入结构",shock_resilience:coverage===null?"缺少必要支出数据":coverage>=targetMonths?"达到当前自设安全垫目标":"低于当前自设安全垫目标",goal_progress:goals.length?`${goals.length} 个目标已进入资金地图`:"尚未建立目标地图",freedom_of_choice:"不使用单一数字评分；在年度复盘中用主观描述更新"};
+  master.source_chapters=importedDocs.filter(x=>x.doc).map(x=>({filename:x.name,type:x.type,chapter:chapterLabel(x.doc),data:x.doc}));
+  const goalGap=goals.reduce((s,g)=>s+Math.max(0,g.target_amount-g.current_funding),0);
+  $("builderOut").innerHTML=`<div class="grid4">
+    <div class="metric"><span>Net Worth</span><b>${fmtMoney(nw)}</b></div>
+    <div class="metric"><span>Monthly Net Cash Flow</span><b>${fmtMoney(monthlyNet)}</b></div>
+    <div class="metric"><span>Emergency Coverage</span><b>${coverage===null?"—":coverage.toFixed(1)+" 月"}</b></div>
+    <div class="metric"><span>Long-Term Investment Capital（规划估算）</span><b>${fmtMoney(investCapital)}</b></div>
+  </div>
+  <hr>
+  <p><b>目标资金缺口（未考虑未来收益与计划投入）：</b>${fmtMoney(goalGap)}</p>
+  <p><b>战略配置：</b>${cash}/${bonds}/${stocks}/${other}，合计 ${allocSum}%。${Math.abs(allocSum-100)>.01?'<span class="bad"> 当前不等于100%，请重新检查。</span>':'<span class="ok"> 权重合计100%。</span>'}</p>
+  <p><b>系统状态：</b>${safeText(master.financial_wellbeing.day_to_day_control)}；${safeText(master.financial_wellbeing.shock_resilience)}。</p>`;
+  mark("builder");saveMaster();generateConstitution()
+}
+function saveMaster(){
+  try{localStorage.setItem("finance_master_wealth_system_v1",JSON.stringify(master));$("exportOut").innerHTML="已把当前 Master System 保存到本浏览器 LocalStorage。请仍然定期导出 JSON 作为可迁移备份。"}catch(e){$("exportOut").textContent="浏览器本地保存失败："+e}
+}
+function loadSavedMaster(){
+  try{
+    const x=JSON.parse(localStorage.getItem("finance_master_wealth_system_v1")||"null");
+    if(!x){$("importSummary").textContent="这个浏览器里还没有保存过 Master System。";return}
+    master=x;hydrateMasterForm();$("importSummary").textContent="已读取这个浏览器中保存的 Master System。"
+  }catch(e){$("importSummary").textContent="读取本地 Master 失败："+e}
+}
+function hydrateMasterForm(){
+  const f=master.financial_state||{},s=master.safety||{},a=master.asset_allocation||{},r=master.risk_profile||{},ip=master.investment_policy||{},bg=master.behavior_guardrails||{},rv=master.review_policy||{};
+  setNumIf("fAssets",f.financial_assets);setNumIf("fLiabilities",f.liabilities);setNumIf("fIncome",f.monthly_income);setNumIf("fSpending",f.monthly_spending);setNumIf("fEssential",f.monthly_essential_spending);setNumIf("fDebtPay",f.monthly_debt_payment);
+  setNumIf("sEmergency",s.emergency_reserve);setNumIf("sReserve",s.planned_reserve);setNumIf("sMonthsTarget",s.target_months);
+  if(s.insurance_status)$("sInsurance").value=s.insurance_status;if(s.consumer_protection_status)$("sProtection").value=s.consumer_protection_status;
+  $("masterGoals").innerHTML="";(master.goals||[]).forEach(g=>addMasterGoal({name:g.name,amount:g.target_amount,current:g.current_funding,years:g.years,monthly:g.monthly_contribution}));
+  setNumIf("aCash",a.cash);setNumIf("aBonds",a.bonds);setNumIf("aStocks",a.stocks);setNumIf("aOther",a.real_other);
+  if(r.ability)$("rAbility").value=r.ability;if(r.willingness)$("rWilling").value=r.willingness;if(r.need)$("rNeed").value=r.need;
+  if(ip.rebalancing_rule)$("bRebalance").value=ip.rebalancing_rule;if(ip.change_triggers)$("bChange").value=ip.change_triggers;
+  if(bg.cooling_off)$("bCooling").value=bg.cooling_off;if(bg.no_trade_triggers)$("bNoTrade").value=bg.no_trade_triggers;
+  if(rv.monthly)$("rvMonthly").value=rv.monthly;if(rv.quarterly)$("rvQuarter").value=rv.quarterly;if(rv.annual_month)$("rvAnnual").value=rv.annual_month;if(rv.event_triggers)$("rvEvents").value=rv.event_triggers;
+}
+function drawLife(paths,retireIndex){
+  const c=$("lifeChart"),ctx=c.getContext("2d"),W=c.width,H=c.height,p=48;
+  ctx.clearRect(0,0,W,H);ctx.strokeStyle="#cdb78b";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(p,18);ctx.lineTo(p,H-p);ctx.lineTo(W-18,H-p);ctx.stroke();
+  const vals=paths.flatMap(x=>x.values),max=Math.max(...vals,1),min=Math.min(...vals,0),span=max-min||1,N=Math.max(...paths.map(x=>x.values.length))-1;
+  const colors=["#455f4c","#8f342a","#445d70"];
+  paths.forEach((path,k)=>{ctx.strokeStyle=colors[k];ctx.lineWidth=3;ctx.beginPath();path.values.forEach((v,i)=>{const x=p+(W-p-24)*(i/Math.max(N,1)),y=(H-p-10)-(H-p-38)*(v-min)/span;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.stroke()});
+  const rx=p+(W-p-24)*(retireIndex/Math.max(N,1));ctx.strokeStyle="#a77a2b";ctx.setLineDash([6,5]);ctx.beginPath();ctx.moveTo(rx,18);ctx.lineTo(rx,H-p);ctx.stroke();ctx.setLineDash([]);
+  ctx.fillStyle="#766858";ctx.font="12px serif";ctx.fillText("财富路径（名义值）",5,18);ctx.fillText("提款阶段开始",Math.min(rx+5,W-100),32);
+}
+function lifetimeLab(){
+  const age=num("lAge"),ret=num("lRetire"),end=num("lEndAge"),capital=num("lCapital"),contrib=num("lContrib"),cg=num("lContribG")/100,r=num("lReturn")/100,inf=num("lInflation")/100,spendToday=num("lSpend"),reliableToday=num("lReliable");
+  if(ret<=age||end<=ret){$("lifetimeOut").innerHTML='<b>提款阶段年龄必须大于当前年龄，规划终点年龄必须大于提款阶段年龄。</b>';return}
+  let wealth=capital,annual=contrib,acc=[wealth];
+  for(let y=age;y<ret;y++){wealth=wealth*(1+r)+annual;annual*=1+cg;acc.push(wealth)}
+  const atRetire=wealth,yearsToRet=ret-age,spendFirst=spendToday*Math.pow(1+inf,yearsToRet),reliableFirst=reliableToday*Math.pow(1+inf,yearsToRet),gapFirst=Math.max(0,spendFirst-reliableFirst);
+  const decYears=end-ret;
+  const baseReturns=[.12,-.08,.09,.04,-.03,.11,.06,.02,.08,-.05,.10,.03,.07,.01,.05,-.06,.13,.04,.08,.02];
+  let seqA=[],seqB=[];while(seqA.length<decYears)seqA.push(...baseReturns);seqA=seqA.slice(0,decYears);seqB=[...seqA].reverse();
+  const avg=seqA.reduce((a,b)=>a+b,0)/seqA.length;
+  function path(seq){
+    let w=atRetire,sp=gapFirst,arr=[...acc];
+    for(let i=0;i<seq.length;i++){w=w*(1+seq[i])-sp;arr.push(w);sp*=1+inf}
+    return arr
+  }
+  const pA=path(seqA),pB=path(seqB);
+  master.lifetime_plan={current_age:age,transition_age:ret,end_age:end,current_long_term_capital:capital,annual_contribution:contrib,contribution_growth_pct:cg*100,nominal_return_assumption_pct:r*100,inflation_assumption_pct:inf*100,spending_today:spendToday,reliable_income_today:reliableToday,capital_at_transition_assumption:atRetire,first_year_nominal_spending:spendFirst,first_year_reliable_income:reliableFirst,first_year_gap:gapFirst,sequence_average_pct:avg*100,sequence_A_end:pA[pA.length-1],sequence_B_end:pB[pB.length-1]};
+  $("lifetimeOut").innerHTML=`<div class="grid4">
+  <div class="metric"><span>进入提款阶段时的教学路径资本</span><b>${fmtMoney(atRetire)}</b></div>
+  <div class="metric"><span>首年生活支出（届时名义值）</span><b>${fmtMoney(spendFirst)}</b></div>
+  <div class="metric"><span>首年可靠收入（届时名义值）</span><b>${fmtMoney(reliableFirst)}</b></div>
+  <div class="metric"><span>首年需由资产承担的缺口</span><b>${fmtMoney(gapFirst)}</b></div>
+  </div><hr>
+  <p>Sequence A 与 B 使用完全相同的一组提款阶段年度收益，只是顺序相反，算术平均都约为 <b>${(avg*100).toFixed(2)}%</b>。</p>
+  <p>规划终点时：Sequence A ≈ <b>${fmtMoney(pA[pA.length-1])}</b>；Sequence B ≈ <b>${fmtMoney(pB[pB.length-1])}</b>。差异来自提款发生时的收益顺序，而不是平均收益不同。</p>
+  <p class="small">模型忽略税、费用、真实养老金规则、资产配置变化和支出弹性，仅用于观察 accumulation / decumulation 与 sequence risk。</p>`;
+  drawLife([{values:acc},{values:pA},{values:pB}],yearsToRet);mark("lifetime");saveMaster()
+}
+function annualReview(){
+  const prev=num("arPrevNW"),now=num("arNowNW"),pe=num("arPrevEmergency"),ne=num("arNowEmergency"),pi=num("arPrevInvest"),ni=num("arNowInvest");
+  const log={date:$("arNowDate").value||new Date().toISOString().slice(0,10),previous_review:$("arPrevDate").value||null,net_worth_change:now-prev,emergency_coverage_change:ne-pe,long_term_investment_capital_change:ni-pi,fact_changes:$("arFacts").value,goal_changes:$("arGoals").value,rule_violations:$("arRules").value,next_three_changes:$("arNext").value};
+  master.change_log=master.change_log||[];master.change_log.push(log);master.meta.updated_at=new Date().toISOString();
+  $("annualOut").innerHTML=`<div class="grid3"><div class="metric"><span>Net Worth Change</span><b>${fmtMoney(now-prev)}</b></div><div class="metric"><span>Emergency Coverage Change</span><b>${(ne-pe).toFixed(1)} 月</b></div><div class="metric"><span>Long-Term Capital Change</span><b>${fmtMoney(ni-pi)}</b></div></div>
+  <hr><p><b>事实变化：</b>${safeText(log.fact_changes)||"未填写"}</p><p><b>目标变化：</b>${safeText(log.goal_changes)||"未填写"}</p><p><b>规则违反与原因：</b>${safeText(log.rule_violations)||"未填写"}</p><p><b>下一年度三项重点：</b>${safeText(log.next_three_changes)||"未填写"}</p>`;
+  mark("review");saveMaster()
+}
+function generateConstitution(){
+  if(!master.meta?.created_at)buildMaster();
+  const f=master.financial_state||{},s=master.safety||{},a=master.asset_allocation||{},ip=master.investment_policy||{},bg=master.behavior_guardrails||{},rv=master.review_policy||{},goals=master.goals||[];
+  const topGoals=goals.slice(0,5).map(g=>`${safeText(g.name)}（${g.years}年）`).join("；")||"尚未填写";
+  $("constitutionBox").innerHTML=`<h3>我的财富宪法 · ${safeText(master.meta.version||"1.0")}</h3>
+  <p class="small">生成：${new Date().toLocaleDateString("zh-CN")} · 这是一份个人规则摘要，不是金融产品建议。</p>
+  <div class="rule"><b>01｜我的钱要完成什么</b><p>${topGoals}</p></div>
+  <div class="rule"><b>02｜我的安全底线</b><p>应急储备 ${fmtMoney(s.emergency_reserve||0)}；目标覆盖 ${s.target_months??"—"} 月；必要支出约 ${fmtMoney(f.monthly_essential_spending||0)}/月。</p></div>
+  <div class="rule"><b>03｜我的长期资产结构</b><p>Cash ${a.cash??"—"}% · Bonds ${a.bonds??"—"}% · Stocks ${a.stocks??"—"}% · Real/Other ${a.real_other??"—"}%。</p></div>
+  <div class="rule"><b>04｜我怎样控制组合漂移</b><p>${safeText(ip.rebalancing_rule||"尚未填写")}</p></div>
+  <div class="rule"><b>05｜什么事情才允许改变长期政策</b><p>${safeText(ip.change_triggers||"尚未填写")}</p></div>
+  <div class="rule"><b>06｜什么事情本身不能成为交易理由</b><p>${safeText(bg.no_trade_triggers||"尚未填写")}</p></div>
+  <div class="rule"><b>07｜非计划交易的行为护栏</b><p>冷静期：${safeText(bg.cooling_off||"尚未填写")}。</p></div>
+  <div class="rule"><b>08｜我怎样维护这套系统</b><p>Monthly：${safeText(rv.monthly||"—")}；Quarterly：${safeText(rv.quarterly||"—")}；Annual：${safeText(rv.annual_month||"—")}。</p></div>
+  <div class="rule"><b>09｜我的最终评价标准</b><p>日常可控、能够吸收冲击、重要目标在推进，并且钱正在增加我的生活选择自由，而不是只追求最大投资数字。</p></div>`;
+}
+function exportMaster(){
+  if(!master.meta?.created_at)buildMaster();
+  master.meta.updated_at=new Date().toISOString();master.source_chapters=importedDocs.filter(x=>x.doc).map(x=>({filename:x.name,type:x.type,chapter:chapterLabel(x.doc),data:x.doc}));
+  download("我的个人财富系统_v1.json",JSON.stringify(master,null,2));
+  $("exportOut").innerHTML="已生成 Master JSON。建议保留这个版本，下一次年度复盘另存为新版本，而不是覆盖唯一历史。";
+}
+function exportConstitutionText(){
+  if(!$("constitutionBox").innerText.includes("我的财富宪法 ·"))generateConstitution();
+  download("我的财富宪法_v1.txt",$("constitutionBox").innerText,"text/plain;charset=utf-8")
+}
+
+addMasterGoal({name:"短期重要目标",amount:0,current:0,years:2,monthly:0});
+addMasterGoal({name:"长期财富目标",amount:0,current:0,years:20,monthly:0});
+const today=new Date(),iso=today.toISOString().slice(0,10);$("arNowDate").value=iso;
+const prev=new Date(today);prev.setFullYear(today.getFullYear()-1);$("arPrevDate").value=prev.toISOString().slice(0,10);
+readProgress();
+try{const saved=JSON.parse(localStorage.getItem("finance_master_wealth_system_v1")||"null");if(saved){master=saved;hydrateMasterForm()}}catch(e){}
+</script>
+</body>
+</html>

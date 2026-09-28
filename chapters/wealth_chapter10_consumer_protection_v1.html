@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十章｜金融世界如何保护自己？— 个人财富系统</title>
+<style>
+:root{
+  --bg:#efe1c3;--paper:#fbf3df;--ink:#332a22;--muted:#766858;--line:#d6c199;
+  --red:#8f342a;--redbg:#f1ddd5;--green:#455f4c;--greenbg:#dfe7dc;
+  --gold:#a77a2b;--goldbg:#f2e4bd;--blue:#445d70;--bluebg:#dce5e9;--deep:#2e2924;
+  --shadow:0 18px 50px rgba(74,52,28,.14)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);line-height:1.9;font-family:ui-serif,"Noto Serif SC","Source Han Serif SC","Songti SC",STSong,serif;background:radial-gradient(circle at 12% 7%,rgba(255,255,255,.45),transparent 25%),radial-gradient(circle at 88% 15%,rgba(100,74,40,.07),transparent 22%),repeating-linear-gradient(0deg,rgba(90,63,34,.022) 0 1px,transparent 1px 5px),var(--bg)}
+a{color:var(--green);text-underline-offset:3px}
+.wrap{max-width:1340px;margin:auto;padding:24px}.layout{display:grid;grid-template-columns:275px minmax(0,930px);gap:30px;justify-content:center;align-items:start}
+.sidebar{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto}.sidebox{background:rgba(251,243,223,.84);border:1px solid var(--line);border-radius:13px;padding:15px;margin-bottom:12px}.sidebox b{display:block}.sidebox small{color:var(--muted)}
+nav a{display:block;text-decoration:none;color:var(--muted);font-size:12px;padding:5px 7px;border-radius:7px}nav a:hover{background:#efdfbd;color:var(--ink)}
+.progress{height:7px;background:#e3d1aa;border-radius:999px;overflow:hidden;margin-top:8px}.progress i{display:block;height:100%;width:0;background:var(--red);transition:.2s}
+.paper{background:rgba(251,243,223,.97);border:1px solid rgba(170,143,96,.48);box-shadow:var(--shadow);border-radius:7px;overflow:hidden}
+.hero{padding:68px 74px 50px;border-bottom:1px solid var(--line);position:relative}.hero:before{content:"";position:absolute;left:28px;top:30px;bottom:30px;width:1px;background:rgba(143,52,42,.28)}
+.kicker{font-size:12px;letter-spacing:.18em;color:var(--red);font-weight:800}h1{font-size:49px;line-height:1.2;margin:13px 0 17px;letter-spacing:-.035em}.subtitle{font-size:20px;color:var(--muted);max-width:790px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 9px;background:#f7edd4;color:var(--muted)}
+.content{padding:54px 74px 76px}section{margin-bottom:62px}h2{font-size:30px;line-height:1.35;margin:0 0 18px}h3{font-size:21px;margin:30px 0 10px}p{margin:9px 0 16px}.lead{font-size:18px}
+.callout{padding:19px 21px;border-left:5px solid;margin:23px 0;border-radius:4px}.red{background:var(--redbg);border-color:var(--red)}.green{background:var(--greenbg);border-color:var(--green)}.gold{background:var(--goldbg);border-color:var(--gold)}.blue{background:var(--bluebg);border-color:var(--blue)}
+.label{font-size:11px;font-weight:800;letter-spacing:.14em;margin-bottom:4px}.card{padding:20px;border:1px solid var(--line);border-radius:10px;background:#fff9ea;margin:15px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.table th{font-size:11px;color:var(--muted)}
+.formula{background:var(--deep);color:#f8edd6;font:16px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:17px 19px;border-radius:8px;margin:18px 0}
+.case{padding:22px;border:1px solid var(--line);border-radius:10px;background:#faf0db;margin:14px 0}.casehead{display:flex;justify-content:space-between;gap:12px;align-items:baseline}.casehead b{font-size:18px}.casehead span{font-size:12px;color:var(--muted)}
+.quote{padding:23px 27px;background:#eee0c4;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:19px;margin:24px 0}
+.small{font-size:12px;color:var(--muted)}.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 7px;font-size:11px;background:#f6ead0;margin:2px}
+.metric{padding:15px;background:#f8edd4;border:1px solid var(--line);border-radius:9px}.metric b{display:block;font-size:20px;color:var(--green)}.metric span{font-size:12px;color:var(--muted)}
+input[type=text],input[type=number],textarea,select{width:100%;border:1px solid #c7ad80;background:#fffaf0;border-radius:7px;padding:10px 11px;color:var(--ink);font:inherit}textarea{min-height:96px}
+button{border:0;border-radius:8px;padding:10px 15px;background:var(--red);color:#fff;font-weight:800;cursor:pointer}button.secondary{background:var(--green)}button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.feedback{margin-top:14px;padding:15px 17px;border:1px dashed #b69d70;border-radius:8px;background:#f5e9cf}.tool-title{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.route{padding:14px 16px;border:1px solid var(--line);border-left:6px solid var(--blue);background:#fff9ea;border-radius:9px;margin:8px 0}.route.red{border-left-color:var(--red)}.route.green{border-left-color:var(--green)}
+.flag{padding:12px 14px;border-radius:8px;margin:8px 0;border:1px solid var(--line)}.critical{background:var(--redbg);border-left:6px solid var(--red)}.verify{background:var(--goldbg);border-left:6px solid var(--gold)}.present{background:var(--greenbg);border-left:6px solid var(--green)}
+.opt{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:#fff9ea;margin:7px 0;cursor:pointer}.opt.good{background:var(--greenbg);border-color:var(--green)}.opt.bad{background:var(--redbg);border-color:var(--red)}
+.timeline{border-left:2px solid var(--line);padding-left:18px}.timeline div{margin:10px 0}.end{background:var(--deep);color:#f5ebd7;padding:28px;border-radius:9px}.end h2{color:#fff5df}.refs{font-size:13px;color:var(--muted)}.refs li{margin-bottom:10px}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{display:none}.hero,.content{padding-left:36px;padding-right:36px}}
+@media(max-width:780px){.wrap{padding:0}.paper{border-radius:0}.hero,.content{padding:30px 20px}h1{font-size:34px}.grid2,.grid3,.grid4{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="layout">
+<aside class="sidebar">
+<div class="sidebox"><b>个人财富系统</b><small>第十章 · 金融消费者保护</small></div>
+<div class="sidebox"><small>阅读进度 <span id="readPct">0%</span></small><div class="progress"><i id="readProg"></i></div></div>
+<div class="sidebox"><small>互动完成度 <span id="taskPct">0%</span></small><div class="progress"><i id="taskProg"></i></div></div>
+<div class="sidebox"><nav>
+<a href="#goal">00 为什么懂理财仍可能被骗</a><a href="#rights">01 金融消费者保护什么</a><a href="#map">02 中国监管地图</a><a href="#eight">03 八项基本权利</a><a href="#disclosure">04 知情权与披露</a><a href="#suitability">05 什么是适当性</a><a href="#rules2026">06 2026适当性新规</a><a href="#boundary">07 适当不等于保本</a><a href="#assessment">08 风险测评不是考试</a><a href="#roles">09 销售与建议</a><a href="#conflict">10 利益冲突</a><a href="#license">11 持牌证明什么</a><a href="#due">12 产品尽调八问</a><a href="#oral">13 口头承诺</a><a href="#redflag">14 高收益红旗</a><a href="#return">15 收益来源测试</a><a href="#tips">16 非法荐股</a><a href="#social">17 社会工程</a><a href="#verify">18 转账前五点核验</a><a href="#privacy">19 金融数据权利</a><a href="#controls">20 为什么银行会限制交易</a><a href="#incident">21 出事后五步</a><a href="#evidence">22 保存什么证据</a><a href="#complaint">23 投诉与报警</a><a href="#ladder">24 纠纷升级梯度</a><a href="#second">25 防止二次受骗</a><a href="#write">26 怎么写有效投诉</a><a href="#cases">27 四个案例</a><a href="#mistakes">28 十个误区</a><a href="#tool1">29 监管与维权路由器</a><a href="#tool2">30 Suitability Lab</a><a href="#tool3">31 红旗扫描器</a><a href="#tool4">32 投诉证据包</a><a href="#summary">33 总结</a><a href="#refs">34 资料与注释</a>
+</nav></div></aside>
+
+<main class="paper">
+<header class="hero"><div class="kicker">CHAPTER 10 · CONSUMER PROTECTION</div><h1>金融世界如何保护自己？</h1><div class="subtitle">监管、适当性、信息披露、利益冲突、诈骗识别与维权：合法不等于适合，有牌照也不等于不会亏钱。</div><div class="meta"><span class="pill">预计阅读 70–85 分钟</span><span class="pill">安全边界收口章</span><span class="pill">4 个实战互动</span><span class="pill">最终产物：金融消费者保护手册 v1</span></div></header>
+
+<article class="content">
+
+<section id="goal"><h2>00｜为什么“懂理财”仍然可能被骗？</h2><p class="lead">因为金融决策不只发生在公式里，还发生在真实的销售环境、平台、合同、身份验证、信息披露和利益关系中。</p><p>你可以已经知道复利、预算、应急金和保险，但如果把钱转给了冒牌账户、为了买高风险产品故意把风险测评填高、相信口头“保本”而忽略合同，前面的知识仍然无法保护你。</p><div class="callout red"><div class="label">本章核心命题</div><b>金融消费者保护不是替你做决定，而是尽量让交易在主体合法、信息充分、匹配适当、授权真实、责任可追溯的条件下发生。</b></div></section>
+
+<section id="rights"><h2>01｜金融消费者保护到底在保护什么？</h2><p>它并不等于“投资不能亏”。更准确地说，它保护的是交易过程中的财产安全、信息、选择权、公平性和救济机会。</p><div class="grid3"><div class="card"><b>交易前</b><p>身份、资质、产品信息、费用和风险应当可核实。</p></div><div class="card"><b>交易中</b><p>消费者应当自主选择，机构应履行相应销售与适当性义务。</p></div><div class="card"><b>交易后</b><p>出现错误、争议或欺诈时，应有投诉、申诉和法律救济路径。</p></div></div><div class="callout blue"><div class="label">三个必须分开的概念</div><b>合法 ≠ 无风险；受到监管 ≠ 收益保证；适合你 ≠ 一定赚钱。</b></div></section>
+
+<section id="map"><h2>02｜中国金融监管，普通消费者至少要认得四类角色</h2><table class="table"><thead><tr><th>主体</th><th>课程里最常遇到的领域</th><th>典型问题</th></tr></thead><tbody><tr><td>中国人民银行</td><td>支付、征信、货币金融基础设施、部分消费者保护与反洗钱体系</td><td>征信、支付、账户等制度问题</td></tr><tr><td>国家金融监督管理总局</td><td>银行、保险、金融资产投资公司、消费金融、理财等监管领域</td><td>银行保险产品、适当性、消费者权益</td></tr><tr><td>中国证监会</td><td>证券、基金、期货及资本市场</td><td>证券投资咨询、基金销售、市场违法违规</td></tr><tr><td>公安机关</td><td>涉嫌诈骗、盗窃、非法控制账户等犯罪</td><td>虚假投资平台、被骗转账等</td></tr></tbody></table><p>关键不是背机构名称，而是先判断：<b>这是普通服务纠纷、监管违规，还是涉嫌犯罪？</b></p></section>
+
+<section id="eight"><h2>03｜八项基本权利，要翻译成实际行为</h2><div class="grid4"><div class="card"><b>财产安全权</b><p>机构依法保护资金和交易安全。</p></div><div class="card"><b>知情权</b><p>关键费用、风险和限制应真实披露。</p></div><div class="card"><b>自主选择权</b><p>消费者能够自主决定是否购买。</p></div><div class="card"><b>公平交易权</b><p>避免不公平条款、强制搭售和误导。</p></div><div class="card"><b>依法求偿权</b><p>出现损害时拥有投诉和救济路径。</p></div><div class="card"><b>受教育权</b><p>有机会获得必要的金融知识与风险教育。</p></div><div class="card"><b>受尊重权</b><p>不因年龄、背景等遭受不当差别对待。</p></div><div class="card"><b>信息安全权</b><p>金融账户、身份等敏感信息依法受到保护。</p></div></div></section>
+
+<section id="disclosure"><h2>04｜知情权不只是“文件给你了”</h2><p>一份产品合同可能几十页。理论上风险全部写在里面，不代表消费者真的理解了。有效披露至少应该让你找到：</p><div class="grid3"><div class="card"><b>我买的是什么</b></div><div class="card"><b>可能亏多少</b></div><div class="card"><b>费用是什么</b></div><div class="card"><b>什么时候能退出</b></div><div class="card"><b>谁承担付款义务</b></div><div class="card"><b>什么情况不适用</b></div></div><div class="callout gold"><div class="label">Disclosure Overload</div>真正的能力不是把 80 页合同背下来，而是迅速找到真正改变决策的字段。</div></section>
+
+<section id="suitability"><h2>05｜什么是 Suitability？——不是“好产品”，而是“适不适合这个人”</h2><p>适当性解决的是产品与客户之间的匹配问题。同一个产品，可以对一个人相对匹配，对另一个人非常不合适。</p><div class="formula">Know Your Product + Know Your Customer → Suitable Match</div><p>例如一个可能出现 40% 波动、建议长期持有的投资产品，对于十年不用的钱和半年后必须交学费的钱，意义完全不同。</p></section>
+
+<section id="rules2026"><h2>06｜2026 年中国适当性规则为什么值得认真学？</h2><p>2026 年 2 月 1 日，《金融机构产品适当性管理办法》正式施行。监管提示强调，金融机构应了解产品、了解客户，将适当产品通过适当渠道销售给合适客户；投资型产品需要进行风险等级划分与投资者风险承受能力评估，保险产品则涉及需求分析和财务支付水平评估。</p><div class="callout green"><div class="label">制度变化的真正意义</div>不是让机构“替你选产品”，而是明确：<b>金融销售不能完全忽略客户真实需求和风险承受能力。</b></div></section>
+
+<section id="boundary"><h2>07｜适当 ≠ 保本 ≠ 一定赚钱</h2><p>如果机构完成了适当性匹配和必要披露，产品仍然可能因为正常市场风险产生损失。消费者保护解决的是交易规则和销售行为，不是替投资者消除风险。</p><div class="quote"><b>卖者尽责，买者自负。</b>两者必须同时成立。</div></section>
+
+<section id="assessment"><h2>08｜风险测评不是考试，更不是“等级越高越厉害”</h2><p>监管提示明确提醒消费者应真实、准确、完整提供必要信息，不要为了购买高风险产品虚报风险承受能力。因为一旦测评被你自己故意扭曲，适当性机制就失去了意义。</p><div class="callout red"><div class="label">反过来理解</div>如果你正在搜索“怎么答才能测成 C5”，应该先问：<b>为什么真实的自己并不匹配这个产品？</b></div></section>
+
+<section id="roles"><h2>09｜“他给我建议”之前，先搞清楚他是谁</h2><div class="grid3"><div class="card"><b>销售人员</b><p>主要职责可能是销售机构产品。</p></div><div class="card"><b>持牌投资顾问 / 专业顾问</b><p>可能受额外专业规则约束。</p></div><div class="card"><b>自媒体 / 群主 / 网友</b><p>表达观点并不等于具备金融服务资质。</p></div></div><p>身份不同，能做什么、应承担什么义务、靠什么收入，都可能完全不同。</p></section>
+
+<section id="conflict"><h2>10｜利益冲突：真正要问的是“谁因你的决定获利？”</h2><p>销售佣金本身并不自动等于违规。真正的问题是：不同推荐会不会给推荐者带来不同收入，以及这种利益有没有被妥善披露和管理。</p><div class="grid3"><div class="card"><b>产品佣金</b></div><div class="card"><b>销售任务 / 奖励</b></div><div class="card"><b>自家产品偏好</b></div><div class="card"><b>第三方返佣</b></div><div class="card"><b>资产管理费</b></div><div class="card"><b>付费咨询</b></div></div><div class="callout blue"><div class="label">三个有用的问题</div>“你靠什么收费？”、“我买不同产品，你获得的收入不同吗？”、“你的可推荐范围是不是只有本机构产品？”</div></section>
+
+<section id="license"><h2>11｜“持牌机构”到底能证明什么？</h2><p>它通常能帮助你确认主体处于相应监管框架中，但不能证明：</p><div class="grid3"><div class="card"><b>产品一定赚钱</b></div><div class="card"><b>任何销售话术都正确</b></div><div class="card"><b>这个具体产品一定适合你</b></div></div><p>所以核验至少要分成：<b>机构、人员、产品、渠道、收款账户。</b></p></section>
+
+<section id="due"><h2>12｜购买任何金融产品，先做 Product Due Diligence 八问</h2><table class="table"><thead><tr><th>问题</th><th>为什么要问</th></tr></thead><tbody><tr><td>1. 它到底是什么？</td><td>先确认产品法律和经济性质</td></tr><tr><td>2. 谁欠我钱？</td><td>确认真正承担付款义务的主体</td></tr><tr><td>3. 收益从哪里来？</td><td>没有收益来源，就无法理解风险来源</td></tr><tr><td>4. 最坏情况会损失什么？</td><td>识别本金、流动性、信用和市场风险</td></tr><tr><td>5. 什么时候能退出？</td><td>判断流动性</td></tr><tr><td>6. 所有费用是什么？</td><td>看真实净收益</td></tr><tr><td>7. 有哪些锁定和限制？</td><td>避免需要钱时无法退出</td></tr><tr><td>8. 谁在销售？</td><td>识别身份与利益关系</td></tr></tbody></table></section>
+
+<section id="oral"><h2>13｜口头承诺为什么尤其危险？</h2><p>如果合同写“非保本”，销售人员却说“放心，一般不会亏”，发生争议时，两者性质完全不同。重大承诺应该尽量找到正式书面依据。</p><div class="callout red"><div class="label">四句话出现时一定继续追问</div>“保证收益”“一定能赎回”“保证续保”“贷款肯定能批”——<b>合同哪一条？正式材料在哪里？</b></div></section>
+
+<section id="redflag"><h2>14｜“高收益 + 低风险 + 保本”为什么是重大红旗？</h2><p>收益来自承担风险、时间、资本、流动性或经营活动。如果某个机会强调异常高收益，却无法解释相应风险，反而反复承诺“稳赚”，就应该高度警惕。</p><div class="formula">Higher Return Claim → Ask: What Risk / Business / Cash Flow Generates It?</div></section>
+
+<section id="return"><h2>15｜Return Source Test：先问收益从哪里来</h2><p>一项真实金融资产的收益通常应该能够追溯到某种经济来源，例如：</p><div class="grid3"><div class="card"><b>企业利润</b></div><div class="card"><b>债务利息</b></div><div class="card"><b>资产价格变化</b></div><div class="card"><b>承担信用风险</b></div><div class="card"><b>承担流动性风险</b></div><div class="card"><b>使用杠杆</b></div></div><p>如果一个人只说“年化 20%”，却无法解释钱从哪里赚出来，你实际上也无法判断自己在承担什么。</p></section>
+
+<section id="tips"><h2>16｜非法荐股：“他说得准不准”不是第一个问题</h2><p>监管部门持续提示无资质主体通过社交平台、直播、群聊、付费会员等方式提供荐股服务。真正的第一步应该是：</p><div class="quote"><b>他有没有合法提供这种证券投资咨询服务的资格？</b></div><p>“晒收益”“内部消息”“机构席位”“老师带单”都不能替代资质核验。</p></section>
+
+<section id="social"><h2>17｜诈骗最强的技术常常不是金融，而是 Social Engineering</h2><div class="formula">建立身份 → 制造专业感 → 展示成功案例 → 群体认同 → 制造紧迫感 → 私域转移 → 转账</div><p>所以“我又不贪心，不会被骗”是一种危险自信。很多骗局真正利用的是信任、权威、从众、稀缺和时间压力。</p></section>
+
+<section id="verify"><h2>18｜真正转账之前，做 Five-Point Verification</h2><div class="grid3"><div class="card"><b>1. 机构</b><p>官方渠道能否验证？</p></div><div class="card"><b>2. 人员</b><p>身份和资质能否独立核验？</p></div><div class="card"><b>3. 产品</b><p>官方渠道是否真实存在？</p></div><div class="card"><b>4. 渠道</b><p>网站、App、链接是否官方？</p></div><div class="card"><b>5. 收款账户</b><p>最终钱转给谁？是否与合同主体一致？</p></div></div><div class="callout red"><div class="label">特别危险</div>前面一直用“正规机构”建立信任，最后却要求你向个人账户、陌生第三方或无法核实的虚拟账户付款。</div></section>
+
+<section id="privacy"><h2>19｜金融 App 不是想要什么权限都应该给</h2><p>《个人信息保护法》要求个人信息处理遵循合法、正当、必要和诚信原则，并把收集范围限制在实现目的所需的最小范围。金融账户信息本身也属于敏感个人信息。</p><p>所以通讯录、相册、位置、麦克风、短信等权限出现时，不要只问“不给是不是用不了”，还应该问：<b>这个权限和我要使用的金融功能有什么直接关系？</b></p></section>
+
+<section id="controls"><h2>20｜为什么银行有时会限制账户交易？</h2><p>《反电信网络诈骗法》要求银行和非银行支付机构对异常账户和可疑交易进行监测，并可以根据风险采取重新核验身份、延迟支付结算、限制或中止有关业务等措施。</p><p>消费者保护和风险控制并不矛盾：金融机构需要阻止诈骗资金流动，消费者则需要知道为什么被限制、如何核实和申诉。</p></section>
+
+<section id="incident"><h2>21｜真的出事以后，先做五步，而不是继续争论</h2><div class="grid3"><div class="card"><b>1. Stop</b><p>停止继续付款、授权和按照对方指令操作。</p></div><div class="card"><b>2. Contact</b><p>联系银行、支付机构或相关金融机构确认止付、挂失等可能措施。</p></div><div class="card"><b>3. Preserve</b><p>保存合同、聊天、转账、网址、宣传页面等证据。</p></div><div class="card"><b>4. Classify</b><p>判断是服务争议、违规销售，还是涉嫌诈骗。</p></div><div class="card"><b>5. Escalate</b><p>进入机构投诉、调解、监管、公安或法律救济。</p></div></div></section>
+
+<section id="evidence"><h2>22｜什么证据一定要保存？</h2><div class="grid3"><div class="card"><b>合同 / 产品文件</b></div><div class="card"><b>订单 / 转账凭证</b></div><div class="card"><b>聊天记录</b></div><div class="card"><b>电话 / 录音录像</b></div><div class="card"><b>宣传截图 / 网页</b></div><div class="card"><b>完整时间线</b></div></div><p>维权不是靠“我记得他当时这么说”，而是尽量把事实转成可验证证据。</p></section>
+
+<section id="complaint"><h2>23｜投诉和报警不是同一件事</h2><table class="table"><thead><tr><th>情境</th><th>更接近什么问题</th></tr></thead><tbody><tr><td>错误收取费用</td><td>机构服务纠纷 / 投诉</td></tr><tr><td>销售过程中隐瞒重要风险</td><td>消费者权益 / 销售规范问题</td></tr><tr><td>陌生虚假投资平台骗取转账后失联</td><td>涉嫌诈骗，应考虑公安报案并同时联系支付金融机构止损</td></tr></tbody></table></section>
+
+<section id="ladder"><h2>24｜中国金融纠纷可以先建立一个“升级梯度”</h2><div class="timeline"><div><b>Level 1｜金融机构内部</b><br>先向提供服务的银行、保险、证券、支付等机构提出问题。</div><div><b>Level 2｜纠纷调解</b><br>协商未解决时，可根据具体领域进入相应金融纠纷调解机制。</div><div><b>Level 3｜监管渠道</b><br>如果涉及监管职责范围内的问题，向对应监管体系反映。</div><div><b>Level 4｜仲裁 / 诉讼</b><br>根据合同约定和法律关系进入正式法律救济。</div><div><b>涉嫌犯罪｜公安</b><br>诈骗等涉嫌犯罪的问题不是普通客服投诉。</div></div></section>
+
+<section id="second"><h2>25｜第一次出事以后，不要再被骗第二次</h2><p>“征信修复”“代理退保”“专业代理维权”“追回被骗资金先交服务费”都可能成为新的风险入口。</p><div class="callout gold"><div class="label">原则</div><b>维权服务本身也要查主体、资质、收费、合同与收款账户。</b></div></section>
+
+<section id="write"><h2>26｜一封有效投诉，事实比情绪更重要</h2><div class="formula">Product + Timeline + Amount + Conduct + Evidence + Requested Resolution</div><p>一封投诉不必特别长，但应该清楚告诉对方：发生了什么、什么时候、多少钱、谁做了什么、证据在哪里、你希望如何解决。</p></section>
+
+<section id="cases"><h2>27｜四个现实案例</h2><div class="case"><div class="casehead"><b>A｜“银行里买的理财，为什么还能亏？”</b><span>正规机构 ≠ 保本</span></div><p>机构合法和产品市场风险是两件事。应先确认产品性质、风险等级和披露，而不是从“在哪里买”推断一定保本。</p></div><div class="case"><div class="casehead"><b>B｜付费股票群每天晒盈利截图</b><span>先查人</span></div><p>真正的第一个问题是其是否有合法提供证券投资咨询服务的资格，而不是截图看起来多漂亮。</p></div><div class="case"><div class="casehead"><b>C｜故意把风险测评答高</b><span>适当性失真</span></div><p>这样做实际上破坏了产品与真实风险承受能力之间的匹配机制。</p></div><div class="case"><div class="casehead"><b>D｜账户突然被限制交易</b><span>反诈风控 + 申诉权</span></div><p>异常交易监测可能触发限制措施；消费者同时应该了解原因和适用的核验、申诉渠道。</p></div></section>
+
+<section id="mistakes"><h2>28｜十个最容易学错的地方</h2>
+<div class="callout red"><div class="label">误区 1</div><b>有监管就不会亏钱。</b></div>
+<div class="callout red"><div class="label">误区 2</div><b>有牌照的人说什么都可信。</b></div>
+<div class="callout red"><div class="label">误区 3</div><b>风险测评分数越高越专业。</b></div>
+<div class="callout red"><div class="label">误区 4</div><b>适当性意味着机构替我承担正常投资风险。</b></div>
+<div class="callout red"><div class="label">误区 5</div><b>银行卖的一定都是银行自己的产品。</b></div>
+<div class="callout red"><div class="label">误区 6</div><b>只要有风险提示，所有销售问题都不存在。</b></div>
+<div class="callout red"><div class="label">误区 7</div><b>高收益又无风险，是很好的机会。</b></div>
+<div class="callout red"><div class="label">误区 8</div><b>荐股老师过去“很准”，资质就不重要。</b></div>
+<div class="callout red"><div class="label">误区 9</div><b>被骗后第一件事是继续和对方理论。</b></div>
+<div class="callout red"><div class="label">误区 10</div><b>投诉越愤怒越有效。</b></div>
+</section>
+
+<section id="tool1"><div class="tool-title"><h2>29｜互动一：我的监管与维权路由器</h2><span class="badge">先分类，再找路径</span></div><div class="card">
+<div class="grid2"><label>问题领域<select id="rDomain"><option>银行存款 / 贷款</option><option>银行理财 / 保险</option><option>股票 / 基金 / 证券咨询</option><option>支付 / 账户</option><option>征信</option><option>疑似诈骗</option></select></label><label>问题类型<select id="rType"><option>费用 / 合同 / 服务争议</option><option>销售误导 / 风险披露</option><option>账户限制 / 交易异常</option><option>信息泄露</option><option>被骗转账 / 虚假平台</option></select></label></div>
+<button class="secondary" onclick="routeIssue()">生成处理路径</button>
+<div id="routeOut" class="feedback">这里会给出第一联系对象、升级方向和建议准备材料。</div></div></section>
+
+<section id="tool2"><div class="tool-title"><h2>30｜互动二：Suitability Lab</h2><span class="badge">同一产品，不同的人</span></div><div class="card">
+<p><b>产品：</b>长期投资型产品，建议持有至少 5 年，短期价格波动可能较大，极端情况下可能出现显著本金损失。</p>
+<p><b>你认为谁更需要谨慎甚至避免把关键资金放进这个产品？</b></p>
+<span class="opt" onclick="suit(this,false)">A｜22 岁，收入稳定，这笔钱十年内基本不用，能承受明显波动。</span>
+<span class="opt" onclick="suit(this,true)">B｜半年后需要用这笔钱交学费，不能接受本金明显下降。</span>
+<span class="opt" onclick="suit(this,true)">C｜退休后主要靠这笔钱支付未来两年的基本生活费。</span>
+<div id="suitOut" class="feedback">重点不是判断产品“好不好”，而是产品风险、期限和客户目标是否匹配。</div></div></section>
+
+<section id="tool3"><div class="tool-title"><h2>31｜互动三：Financial Offer Red-Flag Scanner</h2><span class="badge">不输出虚假“诈骗概率”</span></div><div class="card">
+<label><input id="fGuarantee" type="checkbox"> 承诺“保本 / 保收益 / 稳赚”</label><br>
+<label><input id="fPrivate" type="checkbox"> 要求向个人或陌生第三方账户转账</label><br>
+<label><input id="fUrgent" type="checkbox"> 强调“今天不买就没有机会”</label><br>
+<label><input id="fPrivateGroup" type="checkbox"> 从公开平台迅速引流到私聊 / 群聊</label><br>
+<label><input id="fNoLicense" type="checkbox"> 无法独立核验机构或人员资质</label><br>
+<label><input id="fNoSource" type="checkbox"> 无法解释收益来源，只强调收益数字</label><br>
+<label><input id="fContract" type="checkbox"> 可以获得正式合同和官方产品材料</label><br>
+<label><input id="fOfficial" type="checkbox"> 产品可在机构官方渠道独立核验</label><br><br>
+<button class="secondary" onclick="scanFlags()">生成检查结果</button>
+<div id="flagOut" class="feedback">系统只会指出需要立即停下核实的红旗，不会声称能自动判断“是不是诈骗”。</div></div></section>
+
+<section id="tool4"><div class="tool-title"><h2>32｜互动四：投诉证据包生成器</h2><span class="badge">Facts &gt; Emotion</span></div><div class="card">
+<div class="grid2"><label>产品 / 服务<input id="cProduct" type="text" placeholder="例如：某银行理财"></label><label>机构<input id="cInstitution" type="text" placeholder="机构名称"></label><label>涉及金额（元）<input id="cAmount" type="number" placeholder="50000"></label><label>关键日期<input id="cDate" type="text" placeholder="2026-08-12"></label></div>
+<label>发生经过<textarea id="cFacts" placeholder="按时间顺序写事实，不用先写情绪评价。"></textarea></label>
+<label>现有证据<textarea id="cEvidence" placeholder="合同、聊天记录、转账凭证、宣传截图……"></textarea></label>
+<label>希望解决方式<textarea id="cDemand" placeholder="例如：核实销售过程并书面解释相关费用。"></textarea></label>
+<button class="secondary" onclick="buildComplaint()">生成事实摘要</button> <button class="ghost" onclick="exportManual()">导出《金融消费者保护手册 v1》</button>
+<div id="complaintOut" class="feedback">这里会把信息整理成“基本信息—时间线—争议点—证据—诉求”的结构。</div></div></section>
+
+<section id="summary"><div class="end"><h2>33｜前十章到这里，防御体系终于完整了</h2><p><b>1. 合法产品也可以亏钱。</b></p><p><b>2. 适当性保护的是产品与人的匹配，不是收益保证。</b></p><p><b>3. 风险测评应该反映真实自己，而不是为了“解锁”产品。</b></p><p><b>4. 看建议之前，先看建议者的身份和利益关系。</b></p><p><b>5. 买任何金融产品，都先问收益从哪里来、最坏损失是什么。</b></p><p><b>6. 转账前核验机构、人员、产品、渠道和收款账户。</b></p><p><b>7. 金融账户信息和身份信息都属于需要认真保护的敏感信息。</b></p><p><b>8. 出事后优先止损、联系机构、保存证据、正确分类。</b></p><p><b>9. 投诉和报警解决的不是同一种问题。</b></p><p><b>10. 金融消费者保护的最终目的，是让你能够在真实、透明、可追溯的交易环境里自主决策。</b></p><p><b>下一章：</b>前十章主要解决“怎样不让财富系统轻易坏掉”。第 11 章开始，我们正式研究：<b>时间为什么可以让钱增长？</b></p></div></section>
+
+<section id="refs"><h2>34｜本章资料来源与制度边界</h2><ol class="refs">
+<li><b>国家金融监督管理总局 —《金融机构产品适当性管理办法》及消费者提示。</b> 用于 2026 年 2 月 1 日正式实施后的适当性框架：了解产品、了解客户、风险评级、风险承受能力评估，以及消费者真实提供信息等要求。<br><a href="https://www.nfra.gov.cn/branch/shenzhen/view/pages/common/ItemDetail.html?docId=1251555&itemId=1041">监管提示</a></li>
+<li><b>中国金融消费者权益保护制度。</b> 用于财产安全、知情、自主选择、公平交易、依法求偿、受教育、受尊重、信息安全等权利框架。</li>
+<li><b>《中华人民共和国个人信息保护法》。</b> 用于合法、正当、必要、诚信、目的限制和最小范围收集原则，以及金融账户等敏感个人信息的保护。<br><a href="https://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html">中国人大网</a></li>
+<li><b>《中华人民共和国反电信网络诈骗法》。</b> 用于异常账户和可疑交易监测、重新核验身份、延迟结算、限制或中止业务等风险控制机制。<br><a href="https://www.npc.gov.cn/c2/c30834/202209/t20220902_319186.html">中国人大网</a></li>
+<li><b>中国证监会及派出机构投资者保护 / 非法荐股提示。</b> 用于无资质荐股、“保证盈利”、社交媒体引流等常见风险识别。</li>
+<li><b>SEC — Conflicts of Interest / Standards of Conduct.</b> 用于解释佣金、销售奖励、自家产品、第三方付费等利益冲突概念。此部分只作为国际比较和概念教学，不代表中国直接适用同一法律义务。</li>
+<li><b>课程边界说明.</b> 本章不是法律意见。具体投诉、报案、仲裁或诉讼路径应根据产品类型、机构、合同、所在地和当时有效规则确认；遇到涉嫌诈骗或重大资金损失，应优先使用相关金融机构与官方执法、监管渠道。</li>
+</ol></section>
+
+</article></main></div></div>
+
+<script>
+const done=new Set();let manual={};
+function mark(k){done.add(k);const p=Math.round(done.size/4*100);document.getElementById("taskPct").textContent=p+"%";document.getElementById("taskProg").style.width=p+"%"}
+function readProgress(){const d=document.documentElement,h=d.scrollHeight-d.clientHeight,p=h>0?Math.round((d.scrollTop||0)/h*100):0;document.getElementById("readPct").textContent=p+"%";document.getElementById("readProg").style.width=p+"%"}window.addEventListener("scroll",readProgress);
+function routeIssue(){
+  const domain=rDomain.value,type=rType.value;let first="",next="",docs="合同 / 订单、交易或转账凭证、聊天或宣传材料、完整时间线";
+  if(type==="被骗转账 / 虚假平台"||domain==="疑似诈骗"){first="立即联系银行 / 支付机构确认可用的止付、冻结、挂失等措施，并保存全部证据；涉嫌诈骗的，考虑尽快向公安机关报案。";next="同时核验涉及平台、账户和人员身份。不要继续向对方支付所谓“解冻费 / 保证金 / 追款费”。";}
+  else if(domain==="股票 / 基金 / 证券咨询"){first="先向提供产品或服务的证券 / 基金相关机构投诉并索要正式处理记录。";next="如涉及证券基金监管职责，可根据具体事项向证监会体系相关渠道反映；协商不能解决时再考虑调解、仲裁或诉讼。";}
+  else if(domain==="征信"){first="先核对信用报告和信息提供主体；如认为信息错误，优先使用征信异议等正规渠道。";next="不要使用所谓“征信修复”灰色服务。";}
+  else if(domain==="支付 / 账户"){first="先联系银行或支付机构核验交易、账户状态和处置原因。";next="若属于异常账户限制，按机构提供的核验和申诉路径处理；若涉嫌诈骗，同时进入报案与止损流程。";}
+  else{first="先向提供金融产品 / 服务的机构正式投诉，要求生成可追踪的处理记录。";next="协商未解决时，根据机构与产品类型进入调解、对应监管或法律救济。";}
+  routeOut.innerHTML=`<div class="route green"><b>第一步</b><br>${first}</div><div class="route"><b>下一步</b><br>${next}</div><div class="route red"><b>建议准备材料</b><br>${docs}</div><p class="small">这是教育性路由，不替代针对具体案件的法律意见。</p>`;
+  manual.route={domain,type,first,next};mark("route");
+}
+let suitCount=0;
+function suit(el,needsCaution){if(el.dataset.done)return;el.dataset.done="1";el.classList.add(needsCaution?"good":"bad");suitCount++;suitOut.innerHTML=needsCaution?"<b>这是一个明显的适当性冲突。</b> 资金使用期限短或承担损失能力低，与高波动长期产品的特征不匹配。":"<b>这个人相对更有条件承担长期波动。</b> 但仍然不能据此直接断言产品一定适合，还要看目标、知识、整体资产和具体产品风险。";if(suitCount>=2)mark("suit")}
+function scanFlags(){
+  const critical=[],verify=[],present=[];
+  if(fGuarantee.checked)critical.push("承诺保本 / 保收益 / 稳赚");
+  if(fPrivate.checked)critical.push("要求向个人或陌生第三方账户转账");
+  if(fUrgent.checked)verify.push("强烈制造当天付款的紧迫感");
+  if(fPrivateGroup.checked)verify.push("迅速从公开渠道转入私聊 / 群聊");
+  if(fNoLicense.checked)critical.push("机构或人员资质无法独立核验");
+  if(fNoSource.checked)verify.push("无法解释收益来源");
+  if(fContract.checked)present.push("可以获得正式合同和产品文件");
+  if(fOfficial.checked)present.push("产品可在官方渠道独立核验");
+  let h="";
+  if(critical.length)h+=`<div class="flag critical"><b>Critical Red Flags｜先停下核实</b><br>${critical.map(x=>"• "+x).join("<br>")}</div>`;
+  if(verify.length)h+=`<div class="flag verify"><b>Need Verification｜需要进一步验证</b><br>${verify.map(x=>"• "+x).join("<br>")}</div>`;
+  if(present.length)h+=`<div class="flag present"><b>Basic Information Present｜目前已有的正面信息</b><br>${present.map(x=>"• "+x).join("<br>")}</div>`;
+  if(!h)h="<div class='flag verify'><b>信息不足。</b> 至少应独立核验机构、人员、产品、渠道和收款账户。</div>";
+  h+="<p class='small'>这个扫描器不能判断某项机会“是不是诈骗”，只帮助识别应该暂停并核实的结构性红旗。</p>";
+  flagOut.innerHTML=h;manual.flags={critical,verify,present};mark("flags");
+}
+function buildComplaint(){
+  const data={product:cProduct.value.trim(),institution:cInstitution.value.trim(),amount:cAmount.value,date:cDate.value.trim(),facts:cFacts.value.trim(),evidence:cEvidence.value.trim(),demand:cDemand.value.trim()};
+  complaintOut.innerHTML=`<h3>金融争议事实摘要</h3><p><b>产品 / 服务：</b>${data.product||"未填写"}<br><b>机构：</b>${data.institution||"未填写"}<br><b>涉及金额：</b>${data.amount?Number(data.amount).toLocaleString("zh-CN")+" 元":"未填写"}<br><b>关键日期：</b>${data.date||"未填写"}</p><hr><p><b>事实经过</b><br>${data.facts||"未填写"}</p><p><b>现有证据</b><br>${data.evidence||"未填写"}</p><p><b>希望解决方式</b><br>${data.demand||"未填写"}</p><p class="small">正式提交前，建议再次检查日期、金额、主体名称和附件是否准确。</p>`;
+  manual.complaint=data;mark("complaint");
+}
+function exportManual(){
+  const data={chapter:"10 金融世界如何保护自己？",exported_at:new Date().toISOString(),manual,principles:["合法不等于无风险，监管不等于收益保证","风险测评真实填写，不为了购买高风险产品而故意做高","重大金融决策先核验机构、人员、产品、渠道和收款账户","高收益主张首先追问收益来源和对应风险","发生争议时先止损、保存证据、分类问题，再进入正确的投诉或报案路径"]};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="我的金融消费者保护手册_v1.json";a.click();URL.revokeObjectURL(u)
+}
+readProgress();
+</script>
+</body></html>

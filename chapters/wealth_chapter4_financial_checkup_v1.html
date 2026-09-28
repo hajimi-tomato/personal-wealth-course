@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第四章｜给自己做一次完整财务体检 — 个人财富系统</title>
+<style>
+:root{
+  --bg:#efe1c3;--paper:#fbf3df;--paper2:#f7ecd3;--ink:#332a22;--muted:#766858;
+  --line:#d6c199;--red:#8f342a;--redbg:#f1ddd5;--green:#455f4c;--greenbg:#dfe7dc;
+  --gold:#a77a2b;--goldbg:#f2e4bd;--blue:#445d70;--bluebg:#dce5e9;--deep:#2e2924;
+  --shadow:0 18px 50px rgba(74,52,28,.14)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--ink);line-height:1.9;
+  font-family:ui-serif,"Noto Serif SC","Source Han Serif SC","Songti SC",STSong,serif;
+  background:
+    radial-gradient(circle at 12% 7%,rgba(255,255,255,.45),transparent 25%),
+    radial-gradient(circle at 88% 15%,rgba(100,74,40,.07),transparent 22%),
+    repeating-linear-gradient(0deg,rgba(90,63,34,.022) 0 1px,transparent 1px 5px),
+    var(--bg)
+}
+a{color:var(--green);text-underline-offset:3px}
+.wrap{max-width:1330px;margin:auto;padding:24px}
+.layout{display:grid;grid-template-columns:270px minmax(0,920px);gap:30px;justify-content:center;align-items:start}
+.sidebar{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto}
+.sidebox{background:rgba(251,243,223,.84);border:1px solid var(--line);border-radius:13px;padding:15px;margin-bottom:12px}
+.sidebox b{display:block}.sidebox small{color:var(--muted)}
+nav a{display:block;text-decoration:none;color:var(--muted);font-size:12.3px;padding:5px 7px;border-radius:7px}
+nav a:hover{background:#efdfbd;color:var(--ink)}
+.progress{height:7px;background:#e3d1aa;border-radius:999px;overflow:hidden;margin-top:8px}
+.progress i{display:block;height:100%;width:0;background:var(--red);transition:.2s}
+.paper{background:rgba(251,243,223,.97);border:1px solid rgba(170,143,96,.48);box-shadow:var(--shadow);border-radius:7px;overflow:hidden}
+.hero{padding:68px 74px 50px;border-bottom:1px solid var(--line);position:relative}
+.hero:before{content:"";position:absolute;left:28px;top:30px;bottom:30px;width:1px;background:rgba(143,52,42,.28)}
+.kicker{font-size:12px;letter-spacing:.18em;color:var(--red);font-weight:800}
+h1{font-size:49px;line-height:1.2;margin:13px 0 17px;letter-spacing:-.035em}
+.subtitle{font-size:20px;color:var(--muted);max-width:780px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 9px;background:#f7edd4;color:var(--muted)}
+.content{padding:54px 74px 76px}
+section{margin-bottom:62px}
+h2{font-size:30px;line-height:1.35;margin:0 0 18px}
+h3{font-size:21px;margin:30px 0 10px}
+h4{font-size:17px;margin:20px 0 7px}
+p{margin:9px 0 16px}
+.lead{font-size:18px}
+.callout{padding:19px 21px;border-left:5px solid;margin:23px 0;border-radius:4px}
+.red{background:var(--redbg);border-color:var(--red)}
+.green{background:var(--greenbg);border-color:var(--green)}
+.gold{background:var(--goldbg);border-color:var(--gold)}
+.blue{background:var(--bluebg);border-color:var(--blue)}
+.label{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+.card{padding:20px;border:1px solid var(--line);border-radius:10px;background:#fff9ea;margin:15px 0}
+.quote{padding:23px 27px;background:#eee0c4;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:19px;margin:24px 0}
+.quote cite{display:block;font-style:normal;color:var(--muted);font-size:12px;margin-top:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.kmap{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:18px 0}
+.kmap div{padding:15px 12px;background:#f7ecd2;border:1px solid var(--line);border-radius:8px;text-align:center}
+.kmap b{display:block;color:var(--green);margin-bottom:3px}
+.formula{background:var(--deep);color:#f8edd6;font:16px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:17px 19px;border-radius:8px;margin:18px 0}
+.table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}
+.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.table th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.case{padding:22px;border:1px solid var(--line);border-radius:10px;background:#faf0db;margin:14px 0}
+.casehead{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.casehead b{font-size:18px}.casehead span{font-size:12px;color:var(--muted)}
+.metric{padding:15px;background:#f8edd4;border:1px solid var(--line);border-radius:9px}
+.metric b{display:block;font-size:20px;color:var(--green)}
+.metric span{font-size:12px;color:var(--muted)}
+input[type=number],input[type=text],input[type=date],input[type=file],textarea,select{
+  width:100%;border:1px solid #c7ad80;background:#fffaf0;border-radius:7px;padding:10px 11px;color:var(--ink);font:inherit
+}
+textarea{min-height:84px}
+button{border:0;border-radius:8px;padding:10px 15px;background:var(--red);color:#fff;font-weight:800;cursor:pointer}
+button.secondary{background:var(--green)}
+button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.feedback{margin-top:14px;padding:15px 17px;border:1px dashed #b69d70;border-radius:8px;background:#f5e9cf}
+.small{font-size:12px;color:var(--muted)}
+.end{background:var(--deep);color:#f5ebd7;padding:28px;border-radius:9px}
+.end h2{color:#fff5df}
+.refs{font-size:13px;color:var(--muted)}
+.refs li{margin-bottom:10px}
+hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+.tool-title{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:10px}
+.tool-title h3{margin:0}
+.row-editor{display:grid;grid-template-columns:1.4fr 1fr .9fr 44px;gap:8px;align-items:center;margin:8px 0}
+.row-editor.two{grid-template-columns:1.6fr 1fr 44px}
+.row-editor.flow{grid-template-columns:1.2fr 1fr 1fr 44px}
+.remove{padding:8px;background:#7f5b4c}
+.group-title{font-weight:800;color:var(--green);margin-top:18px}
+.bar{height:9px;background:#e4d3ae;border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--green)}
+.bar.redbar i{background:var(--red)}
+.chart-wrap{border:1px solid var(--line);border-radius:10px;background:#fff9ea;padding:14px;margin-top:14px}
+canvas{width:100%;height:270px;display:block}
+.four-axis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.axis{padding:15px;background:#f8edd4;border:1px solid var(--line);border-radius:9px}
+.axis b{display:block;font-size:17px}
+.axis small{color:var(--muted)}
+.tag{display:inline-block;border:1px solid var(--line);background:#f7ecd2;border-radius:999px;padding:2px 7px;font-size:11px;margin:2px}
+.goal-item{padding:14px;border:1px solid var(--line);border-radius:8px;background:#fff9ea;margin:8px 0}
+.diag{padding:15px;border-radius:8px;background:#f8edd4;border:1px solid var(--line);margin:8px 0}
+.diag.good{border-left:5px solid var(--green)}
+.diag.watch{border-left:5px solid var(--gold)}
+.diag.risk{border-left:5px solid var(--red)}
+.wb-row{display:grid;grid-template-columns:1fr 90px;gap:12px;align-items:center;margin:10px 0}
+input[type=range]{width:100%;accent-color:var(--red)}
+.cash-event{display:grid;grid-template-columns:76px 1fr 110px 44px;gap:8px;align-items:center;margin:7px 0}
+@media(max-width:1040px){.layout{grid-template-columns:1fr}.sidebar{display:none}.hero,.content{padding-left:36px;padding-right:36px}}
+@media(max-width:760px){
+  .wrap{padding:0}.paper{border-radius:0}.hero,.content{padding:30px 20px}h1{font-size:34px}
+  .grid2,.grid3,.grid4,.kmap,.four-axis{grid-template-columns:1fr}
+  .row-editor,.row-editor.two,.row-editor.flow,.cash-event{grid-template-columns:1fr}
+  .remove{width:100%}
+}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="layout">
+
+<aside class="sidebar">
+  <div class="sidebox"><b>个人财富系统</b><small>第四章 · 财务体检</small></div>
+  <div class="sidebox"><small>阅读进度 <span id="readPct">0%</span></small><div class="progress"><i id="readProg"></i></div></div>
+  <div class="sidebox"><small>互动完成度 <span id="taskPct">0%</span></small><div class="progress"><i id="taskProg"></i></div></div>
+  <div class="sidebox"><nav>
+    <a href="#goal">00 今天要解决什么</a>
+    <a href="#statements">01 四张个人财务报表</a>
+    <a href="#balance">02 资产负债表</a>
+    <a href="#liquidity">03 资产与流动性</a>
+    <a href="#debt">04 负债的存量与流量</a>
+    <a href="#networth">05 净资产不是成绩</a>
+    <a href="#income">06 收入支出表</a>
+    <a href="#timing">07 月度够用却仍会断现金</a>
+    <a href="#freecash">08 自由现金流</a>
+    <a href="#change">09 净资产变动归因</a>
+    <a href="#ratios">10 五个基础财务比率</a>
+    <a href="#benchmarks">11 为什么不能机械套标准</a>
+    <a href="#wellbeing">12 数字健康 ≠ 财务福祉</a>
+    <a href="#goalslink">13 把第三章目标接回来</a>
+    <a href="#cases">14 三种财务状态</a>
+    <a href="#errors">15 常见填表错误</a>
+    <a href="#tool1">16 资产负债表生成器</a>
+    <a href="#tool2">17 月度现金流表</a>
+    <a href="#tool3">18 时间错配模拟</a>
+    <a href="#tool4">19 财务仪表盘</a>
+    <a href="#summary">20 本章总结</a>
+    <a href="#refs">21 资料与注释</a>
+  </nav></div>
+</aside>
+
+<main class="paper">
+<header class="hero">
+  <div class="kicker">CHAPTER 04 · FINANCIAL CHECKUP</div>
+  <h1>给自己做一次完整财务体检</h1>
+  <div class="subtitle">把“我大概有多少钱”变成可以持续追踪的个人财务报表：资产、负债、现金流、流动性、关键比率与目标推进。</div>
+  <div class="meta">
+    <span class="pill">预计阅读 60–75 分钟</span>
+    <span class="pill">核心概念 18 个</span>
+    <span class="pill">4 个工具型互动</span>
+    <span class="pill">最终产物：个人财务体检报告 v1</span>
+  </div>
+</header>
+
+<article class="content">
+
+<section id="goal">
+<h2>00｜为什么前三章之后，必须停下来“盘一次账”？</h2>
+<p class="lead">前三章已经回答了三个问题：什么叫财富、为什么我们会形成不同的金钱行为、钱最终应该服务什么目标。第四章第一次把视线彻底拉回今天：<b>你现在究竟站在哪里？</b></p>
+<p>一个目标如果没有起点，就只是愿望；一套投资计划如果不知道当前资产、负债和现金流，就只是猜测。Investor.gov 给普通投资者的基础路径同样强调，在开始储蓄和投资前，要先列出自己拥有的资产、负债、收入与支出，算出净资产，并理解每月现金流。</p>
+
+<div class="callout red"><div class="label">本章最终目标</div>
+你要能够独立回答五个问题：<b>我现在拥有多少净资产？资产能不能快速调用？每个月真实剩下多少钱？债务占用了多少未来现金流？第三章的重要目标，以当前速度能不能按时完成？</b>
+</div>
+
+<div class="kmap">
+  <div><b>位置</b>资产 / 负债</div>
+  <div><b>流量</b>收入 / 支出</div>
+  <div><b>弹性</b>流动性</div>
+  <div><b>压力</b>债务义务</div>
+  <div><b>方向</b>目标推进</div>
+</div>
+</section>
+
+<section id="statements">
+<h2>01｜个人财务不是“一张余额表”，而是四种不同问题</h2>
+<p>CFP Board 的学习目标要求规划者能够编制个人财务状况表、现金流相关报表，并用财务比率与增长率分析个人财务状态。原因在于：任何一张表都只能回答一类问题。</p>
+
+<table class="table">
+<thead><tr><th>报表</th><th>回答什么</th><th>典型时间视角</th></tr></thead>
+<tbody>
+<tr><td>财务状况表 / 资产负债表</td><td>我现在拥有多少资产、承担多少负债？</td><td>某一个时点</td></tr>
+<tr><td>收入支出表</td><td>这一段时间赚了多少、花了多少？</td><td>一个月 / 一年</td></tr>
+<tr><td>现金流表 / 现金流预算</td><td>钱具体什么时候进、什么时候出？</td><td>按日 / 按周 / 按月</td></tr>
+<tr><td>净资产变动表</td><td>净资产为什么增加或减少？</td><td>两个时点之间</td></tr>
+</tbody>
+</table>
+
+<div class="callout blue"><div class="label">最容易混淆的地方</div>
+<b>账户余额、月收入、月度盈余、净资产不是同一个概念。</b>余额只是某个账户此刻有多少钱；收入是流量；盈余是收入减支出；净资产则要把全部资产和负债一起算。
+</div>
+</section>
+
+<section id="balance">
+<h2>02｜第一张表：资产负债表——今天停下来，我到底拥有什么？</h2>
+<p>资产负债表最基础的公式没有变化：</p>
+<div class="formula">净资产 = 总资产 − 总负债</div>
+
+<p>真正困难的不是减法，而是分类与估值。个人财务里的资产通常可以分为高流动资产、金融资产、非流动实物资产和经营性资产；负债则包括短期消费债务、信用卡余额、车贷、房贷等。</p>
+
+<h3>为什么“东西很贵”不自动等于“财务资产很强”？</h3>
+<p>一台昂贵电脑、一辆车、一套自住房都可能拥有市场价值和使用价值，但它们的流动性、价格稳定性和交易成本完全不同。因此在财务体检里，我们不仅记录“值多少钱”，还要知道<b>它以什么形态存在</b>。</p>
+
+<div class="grid4">
+  <div class="card"><b>现金与近现金</b><p>现金、活期、短期存款。最容易调用。</p></div>
+  <div class="card"><b>金融资产</b><p>基金、股票、债券等。可交易，但价格会变化。</p></div>
+  <div class="card"><b>实物 / 长期资产</b><p>房产、车辆等。可能价值高，但变现慢。</p></div>
+  <div class="card"><b>经营性资产</b><p>企业权益、个体经营资产。估值和流动性更复杂。</p></div>
+</div>
+</section>
+
+<section id="liquidity">
+<h2>03｜“100 万资产”和“今天能用 100 万”完全不是一回事</h2>
+<p><b>Liquidity（流动性）</b>描述一项资产在不发生重大价值损失的情况下，能够多快转换为可以支付账单的现金。它是个人财务里经常被忽视，但极其重要的维度。</p>
+
+<div class="case">
+<div class="casehead"><b>两个人都拥有 100 万净资产</b><span>但结构完全不同</span></div>
+<p>甲：70 万现金和货币类资产 + 30 万证券；乙：100 万全部是自住房净值，银行账户只剩 5000 元。两个人的“净资产数字”一样，但面对下周 3 万元医疗支出时，财务能力完全不同。</p>
+</div>
+
+<p>流动性高的资产通常更容易处理短期风险，但它们未必适合承担几十年的长期增长任务；长期资产可能有更高增长或使用价值，却无法立刻支付生活支出。因此后面的应急资金、资产配置和目标期限都会反复使用这个概念。</p>
+
+<div class="callout green"><div class="label">这里先建立一条判断习惯</div>
+看到任何资产数字，都再问一句：<b>如果明天必须用钱，我能以多快、什么代价把它变成现金？</b>
+</div>
+</section>
+
+<section id="debt">
+<h2>04｜负债必须同时看两个数字：总共欠多少，以及每个月被占用多少</h2>
+<p>负债同时存在于“存量”和“流量”两张表里。比如一笔房贷剩余本金 100 万元，每月月供 6000 元，这两个数字解决完全不同的问题。</p>
+
+<div class="grid2">
+  <div class="card"><b>债务余额</b><p>告诉你资产负债表上仍然承担多少偿还义务。</p></div>
+  <div class="card"><b>月度还款</b><p>告诉你未来现金流中，每个月已经有多少被过去的借款提前锁定。</p></div>
+</div>
+
+<p>同样是 100 万负债，如果一个人的月收入 10 万，另一个月收入 1 万，短期偿付压力显然不同；同样每月还款 6000 元，如果一个负债将在一年内结束，另一个还要持续二十年，长期约束也不同。</p>
+
+<div class="callout gold"><div class="label">第四章只负责“测量”</div>
+这一章不会提前讨论什么债务该先还、什么利率算高、房贷是否应该提前还。那些会留给第 7 章。现在先学会把<b>债务余额</b>和<b>月度偿付压力</b>同时看见。
+</div>
+</section>
+
+<section id="networth">
+<h2>05｜净资产是“位置”，不是你的财务成绩</h2>
+<p>一个 23 岁刚工作的人净资产 5 万元，和一个即将退休的人净资产 5 万元，意义完全不同。生命周期、人力资本、家庭责任、未来收入和目标期限都会改变同一个数字的含义。</p>
+
+<h3>因此，单次数字不如趋势重要</h3>
+<p>与其问“我的净资产够不够高”，更值得长期记录：</p>
+<div class="grid3">
+  <div class="card"><b>方向</b><p>净资产是在稳定增加，还是长期下降？</p></div>
+  <div class="card"><b>来源</b><p>增长来自储蓄、偿债，还是资产价格偶然上涨？</p></div>
+  <div class="card"><b>结构</b><p>增长后，流动性是否改善，风险是否更集中？</p></div>
+</div>
+
+<div class="callout blue"><div class="label">净资产趋势比“同龄人排名”更有意义</div>
+个人财务体检首先是和自己的上一期比较：<b>我是不是在更接近目标？财务系统是不是变得更稳？</b>
+</div>
+</section>
+
+<section id="income">
+<h2>06｜第二张表：收入支出表——钱到底流去了哪里？</h2>
+<p>FDIC 的 Money Smart 成人课程会把 spending and saving plan 拆得很具体：住房、水电、食品、交通、医疗、债务、家庭责任，以及为目标、应急和退休准备的储蓄。值得借鉴的一点是：<b>储蓄不是月底剩下来的“残渣”，它本身也可以是计划中的用途。</b></p>
+
+<h3>支出至少要分成三层</h3>
+<table class="table">
+<thead><tr><th>类型</th><th>例子</th><th>为什么要分</th></tr></thead>
+<tbody>
+<tr><td>必要 / 固定支出</td><td>房租、基本食品、通勤、必要医疗</td><td>短期内调整空间较小，是安全垫的基础</td></tr>
+<tr><td>弹性支出</td><td>餐饮升级、娱乐、购物、旅行</td><td>与生活价值相关，但通常更容易调整</td></tr>
+<tr><td>周期性支出</td><td>年费保险、学费、设备更换、节日支出</td><td>如果不摊回月度，会系统性低估真实生活成本</td></tr>
+</tbody>
+</table>
+
+<p>一个常见错误是：平时觉得自己每月只花 6000 元，却忘了每年 1.2 万元保险、6000 元设备、1 万元旅行。真正的平均月度生活成本应该把这些周期性项目折算回来。</p>
+
+<div class="formula">真实平均月支出 ≈ 日常月支出 + 年度 / 周期性支出 ÷ 12</div>
+</section>
+
+<section id="timing">
+<h2>07｜为什么“这个月收入比支出高”，某一周仍然可能没钱？</h2>
+<p>CFPB 的 Cash Flow Budget 特别强调现金流的<b>时间</b>。它会把收入和支出按周甚至按日期排列，因为月度总额为正，并不保证每天的账户余额都为正。</p>
+
+<div class="case">
+<div class="casehead"><b>一个看起来完全健康的月份</b><span>收入 10,000｜支出 9,000</span></div>
+<p>5 日房租 −3000；8 日信用卡 −1800；10 日保险 −800；25 日工资 +10,000。月底看有 1000 元盈余，但如果月初账户只剩 3000 元，第 10 日之前就可能出现现金缺口。</p>
+</div>
+
+<p>这说明个人财务里有两种完全不同的问题：</p>
+<div class="grid2">
+  <div class="card"><b>金额问题</b><p>长期看，收入本身不够覆盖支出。</p></div>
+  <div class="card"><b>时间问题</b><p>总收入足够，但收入和账单发生时间错位。</p></div>
+</div>
+
+<div class="callout red"><div class="label">非常重要</div>
+<b>盈利能力 ≠ 流动性。</b>一个月最终有盈余的人，也可能因为时间错配而需要借高成本短期债务。
+</div>
+</section>
+
+<section id="freecash">
+<h2>08｜真正推动财富系统前进的，是“可自由分配的现金流”</h2>
+<p>企业财务中有严格的 free cash flow 定义；在本课程里，我们会使用一个更适合个人规划的<b>课程工作定义</b>：</p>
+
+<div class="formula">个人自由现金流 ≈ 税后收入 − 必要生活支出 − 债务义务 − 已承诺的固定责任</div>
+
+<p>剩下的部分，才拥有更大的分配自由。它可以流向第三章的目标、应急储备、长期投资，也可以有意识地用于体验和生活质量。</p>
+
+<div class="callout green"><div class="label">课程工作定义，不是会计标准术语</div>
+这个指标最重要的意义是回答：<b>每个月真正能够被重新决定去向的钱，到底有多少？</b>
+</div>
+</section>
+
+<section id="change">
+<h2>09｜净资产增加了 5 万元，为什么？——第一次做“变动归因”</h2>
+<p>如果年初净资产 10 万，年底变成 15 万，只知道“多了 5 万”还远远不够。因为这 5 万可能来自完全不同的机制。</p>
+
+<div class="grid4">
+  <div class="card"><b>储蓄</b><p>收入没有被消费掉，直接增加资产。</p></div>
+  <div class="card"><b>偿还本金</b><p>负债下降，使净资产增加。</p></div>
+  <div class="card"><b>投资涨跌</b><p>市场价格改变金融资产价值。</p></div>
+  <div class="card"><b>其他资产变化</b><p>房产、经营资产、汇率等发生变化。</p></div>
+</div>
+
+<div class="formula">期末净资产 − 期初净资产 ≈ 净储蓄 + 偿债本金 + 资产价格变化 + 其他变动</div>
+
+<p>这条分析非常重要，因为年轻阶段本金较小时，净资产增长往往主要来自工作收入和储蓄，而不是“投资技巧”。如果不做归因，人很容易把资产上涨误认为自己的投资能力，也可能忽视真正稳定的财富增长来源。</p>
+</section>
+
+<section id="ratios">
+<h2>10｜五个基础财务比率：不是打分，而是看结构</h2>
+<p>CFP 的学习目标明确要求使用财务比率与增长率来分析个人财务状况。第一版课程只保留五个最值得长期跟踪的指标。</p>
+
+<h3>① 流动性覆盖月数</h3>
+<div class="formula">流动性覆盖月数 = 高流动资产 ÷ 每月必要支出</div>
+<p>它回答：如果收入今天停止，不变卖长期资产的情况下，现有高流动资金理论上可以支撑多久。第 8 章会进一步讨论安全垫究竟需要多大。</p>
+
+<h3>② 储蓄率</h3>
+<div class="formula">储蓄率 ≈ 本期净储蓄 ÷ 本期税后收入</div>
+<p>它反映收入中有多少真正被保留下来。注意：一次性大额支出、学业阶段、失业期都会让短期储蓄率失真，因此更适合观察长期趋势。</p>
+
+<h3>③ 债务偿付率</h3>
+<div class="formula">债务偿付率 = 月度债务还款 ÷ 月度税后收入</div>
+<p>它回答：每月收入中有多大比例已经被过去的借款决定。</p>
+
+<h3>④ 负债 / 资产比例</h3>
+<div class="formula">资产负债比例 = 总负债 ÷ 总资产</div>
+<p>它反映整体资产结构里，有多少价值同时对应着债权人的索取权。</p>
+
+<h3>⑤ 目标投入率</h3>
+<div class="formula">目标投入率 = 每月投入核心目标的金额 ÷ 月度税后收入</div>
+<p>这是本课程为了连接第三章而使用的工作指标。它直接检验一个问题：<b>你声称重要的目标，现金流里是否真的有它的位置？</b></p>
+</section>
+
+<section id="benchmarks">
+<h2>11｜为什么我不会告诉你：“储蓄率必须 20% 才健康”？</h2>
+<p>个人财务教材和研究经常提出储蓄、负债、流动性等参考比例，但这些 benchmark 都依赖具体假设：年龄、收入、家庭责任、职业稳定性、退休年龄、投资收益、社会保障和目标都可能不同。</p>
+
+<p>因此本课程使用比率的方式只有三个：</p>
+<div class="grid3">
+  <div class="card"><b>看趋势</b><p>同一个指标是否长期改善或恶化？</p></div>
+  <div class="card"><b>找异常</b><p>是否存在明显挤压现金流或流动性的结构？</p></div>
+  <div class="card"><b>提出问题</b><p>这个数字为什么会这样？有没有背景原因？</p></div>
+</div>
+
+<div class="callout gold"><div class="label">拒绝机械评分</div>
+“10% 储蓄率 = 差、20% = 合格、30% = 优秀”这种做法会把个人财务变成考试。<b>比率应该帮助诊断，而不是替代判断。</b>
+</div>
+</section>
+
+<section id="wellbeing">
+<h2>12｜数字看起来很好，为什么人仍然可能觉得财务失控？</h2>
+<p>第一章已经介绍过 CFPB 的 financial well-being：日常是否可控、能否承受冲击、是否正在接近目标、是否拥有选择自由。第四章把它重新放回财务报表旁边，是为了防止一个常见误区：<b>客观数字和主观财务福祉不是同一件事。</b></p>
+
+<div class="grid2">
+  <div class="card"><b>客观报表</b><p>资产、负债、现金流、流动性和目标资金缺口。</p></div>
+  <div class="card"><b>主观福祉</b><p>我是否觉得账单可控？遇到意外是否恐慌？钱是否让我拥有选择？</p></div>
+</div>
+
+<p>一个人可能净资产很高，却全部集中在自住房里，每月现金流非常紧；另一个人净资产暂时不高，但拥有稳定正现金流、足够缓冲和很少的财务焦虑。两者的“财务健康”不能只用一个数字排序。</p>
+</section>
+
+<section id="goalslink">
+<h2>13｜把第三章目标放回报表：计划和现实第一次真正碰面</h2>
+<p>第三章已经建立了“目标金额—已有资源—期限—优先级”。第四章填完真实现金流以后，就可以第一次检验：</p>
+
+<div class="formula">目标每月所需投入 − 当前实际每月可投入 = 目标月度资金缺口</div>
+
+<div class="case">
+<div class="casehead"><b>三年后读研</b><span>目标差 150,000 元｜36 个月</span></div>
+<p>零收益简化倒推每月约需 4167 元。如果你真实可分配给这个目标的现金流只有 3000 元，那么每月存在约 1167 元缺口。</p>
+</div>
+
+<p>这时系统应该给的不是“买一个更高收益产品”，而是先把可调变量摆出来：增加收入、减少其他现金流出、延长目标时间、降低目标成本，或者重新排序其他目标。<b>用更高风险去掩盖预算缺口，不应该是第一反应。</b></p>
+</section>
+
+<section id="cases">
+<h2>14｜三种完全不同的财务状态</h2>
+
+<div class="case">
+<div class="casehead"><b>案例 A：净资产高，但流动性非常弱</b><span>高资产 ≠ 高弹性</span></div>
+<p>自住房净值 300 万元，现金 1 万元；每月必要支出 2 万元。这个家庭账面财富很高，但如果收入突然中断，短期现金压力很大。问题不是“资产少”，而是结构里缺少高流动资产。</p>
+</div>
+
+<div class="case">
+<div class="casehead"><b>案例 B：净资产暂时低，但系统正在变强</b><span>趋势 > 单次数字</span></div>
+<p>刚工作一年，净资产 3 万元，没有高息债务；月收入 1.2 万元，平均每月能稳定结余 5000 元。这个人当前净资产不高，但现金流和人力资本使系统处于明显积累阶段。</p>
+</div>
+
+<div class="case">
+<div class="casehead"><b>案例 C：收入很高，却几乎没有净资产增长</b><span>财富转换效率低</span></div>
+<p>月收入 4 万元，平均月支出 3.9 万元。收入能力很强，但一年下来可积累金额非常有限。问题不在“赚不到钱”，而是收入没有持续转化成资产。</p>
+</div>
+</section>
+
+<section id="errors">
+<h2>15｜第一次做财务表，最容易犯的九个错误</h2>
+<div class="callout red"><div class="label">错误 1</div><b>把信用卡额度算成资产。</b><br>额度是可借款能力，不是你已经拥有的资产。</div>
+<div class="callout red"><div class="label">错误 2</div><b>房产写全价，却忘记剩余房贷。</b><br>必须同时记录资产和对应负债。</div>
+<div class="callout red"><div class="label">错误 3</div><b>把自己账户之间转账算成收入。</b><br>从银行卡转入基金账户没有创造新的财富。</div>
+<div class="callout red"><div class="label">错误 4</div><b>把投资账户 A 转到 B 算支出。</b><br>这是资产形态变化，不是消费。</div>
+<div class="callout red"><div class="label">错误 5</div><b>完全忽略年度支出。</b><br>年费保险、学费、会员、旅行会让月度预算虚假偏低。</div>
+<div class="callout red"><div class="label">错误 6</div><b>把全部偿债都当成“消费”。</b><br>还款中的利息是成本，本金则同时减少现金和负债；净资产影响不同。</div>
+<div class="callout red"><div class="label">错误 7</div><b>资产永远用当年买入价。</b><br>财务体检更关心当前合理价值；但估值要保守，避免虚高。</div>
+<div class="callout red"><div class="label">错误 8</div><b>只记录花掉的钱，不记录存下的钱。</b><br>这样看不到财富到底在哪里形成。</div>
+<div class="callout red"><div class="label">错误 9</div><b>追求“完全精确”而不开始。</b><br>个人财务报表允许合理估算。长期一致地记录，比第一次就精确到个位数更重要。</div>
+</section>
+
+<section id="tool1">
+<div class="tool-title"><h2>16｜工具一：个人资产负债表生成器</h2><span class="tag">数据仅在本页计算</span></div>
+<p>先把资产和负债拆开。对于资产，再标记流动性。这样系统不只知道“有多少钱”，还知道“多少钱可以较快调用”。</p>
+
+<div class="card">
+  <div class="group-title">资产</div>
+  <div id="assetRows"></div>
+  <button class="ghost" onclick="addAsset()">＋ 添加资产</button>
+
+  <div class="group-title">负债</div>
+  <div id="debtRows"></div>
+  <button class="ghost" onclick="addDebt()">＋ 添加负债</button>
+
+  <div style="margin-top:18px"><button class="secondary" onclick="calcBalance()">生成资产负债表</button></div>
+  <div id="balanceOut" class="feedback">填写后会生成总资产、总负债、净资产、高流动资产与资产负债结构。</div>
+</div>
+</section>
+
+<section id="tool2">
+<div class="tool-title"><h2>17｜工具二：月度现金流表</h2><span class="tag">把周期性支出摊回月度</span></div>
+<p>这里不要求你把每一笔小额消费都记下来。目标是建立一个足够真实的“典型月份”。年度支出请填全年金额，系统会自动除以 12。</p>
+
+<div class="card">
+  <div class="group-title">收入</div>
+  <div id="incomeRows"></div>
+  <button class="ghost" onclick="addIncome()">＋ 添加收入</button>
+
+  <div class="group-title">月度支出 / 义务</div>
+  <div id="expenseRows"></div>
+  <button class="ghost" onclick="addExpense()">＋ 添加支出</button>
+
+  <div class="group-title">年度 / 周期性支出</div>
+  <div id="annualRows"></div>
+  <button class="ghost" onclick="addAnnual()">＋ 添加年度支出</button>
+
+  <div class="group-title">每月投入第三章目标</div>
+  <label>目标投入合计（元/月）<input id="goalMonthly" type="number" value="0"></label>
+
+  <div style="margin-top:18px"><button class="secondary" onclick="calcCashflow()">生成月度现金流</button></div>
+  <div id="cashOut" class="feedback">系统会计算税后收入、必要支出、弹性支出、债务还款、周期性支出月均、计划储蓄和自由现金流。</div>
+</div>
+</section>
+
+<section id="tool3">
+<div class="tool-title"><h2>18｜工具三：时间错配模拟——这个月会不会中途断现金？</h2><span class="tag">CFPB Cash Flow Budget 思路</span></div>
+<p>输入月初账户余额，再按日期加入收入和支出。系统会模拟一个 30 天月份的账户余额曲线。</p>
+
+<div class="card">
+  <label>月初高流动账户余额（元）<input id="startBalance" type="number" value="3000"></label>
+  <div class="group-title">本月事件</div>
+  <div id="eventRows"></div>
+  <button class="ghost" onclick="addEvent()">＋ 添加收入 / 支出事件</button>
+  <button class="secondary" onclick="simulateCash()">模拟本月余额</button>
+  <div id="timingOut" class="feedback">即使月底总额为正，也要观察月中有没有跌到 0 以下。</div>
+  <div class="chart-wrap"><canvas id="cashChart" width="820" height="270"></canvas></div>
+</div>
+</section>
+
+<section id="tool4">
+<div class="tool-title"><h2>19｜工具四：生成我的个人财务仪表盘</h2><span class="tag">不做“健康分数”</span></div>
+<p>仪表盘会调用你刚才填写的资产负债表和现金流表，再加入四个财务福祉自评问题。它不会给你一个 78 分，而是分别指出结构优势、脆弱点和需要继续观察的地方。</p>
+
+<div class="card">
+  <h3>财务福祉快速自评</h3>
+  <div class="wb-row"><span>我通常能够控制当月账单与日常支出</span><input id="wb1" type="range" min="1" max="5" value="3"></div>
+  <div class="wb-row"><span>遇到常见意外支出时，我有一定缓冲</span><input id="wb2" type="range" min="1" max="5" value="3"></div>
+  <div class="wb-row"><span>我的钱正在持续支持重要的未来目标</span><input id="wb3" type="range" min="1" max="5" value="3"></div>
+  <div class="wb-row"><span>目前的财务状态给了我一定生活选择空间</span><input id="wb4" type="range" min="1" max="5" value="3"></div>
+
+  <h3>可选：导入第三章导出的目标 JSON</h3>
+  <input id="goalImport" type="file" accept=".json,application/json" onchange="importGoalFile(event)">
+  <div id="goalImportOut" class="small">如果你在第三章导出了《我的财务目标地图 v1》，可以在这里导入；不导入也不影响其他分析。</div>
+
+  <div style="margin-top:18px"><button class="secondary" onclick="buildDashboard()">生成《个人财务体检报告 v1》</button> <button class="ghost" onclick="exportReport()">导出报告 JSON</button></div>
+  <div id="dashboardOut" class="feedback">请先完成资产负债表和现金流表，再生成仪表盘。</div>
+</div>
+</section>
+
+<section id="summary">
+<div class="end">
+<h2>20｜如果这一章真正学会了，你应该多出这八句话</h2>
+<p><b>1. 账户余额不是财富。</b>财务位置必须把全部资产和负债一起看。</p>
+<p><b>2. 净资产是位置，不是成绩。</b>年龄、目标、人力资本和资产结构都会改变它的意义。</p>
+<p><b>3. 流动性决定资产在危机时是否真的可用。</b>价值高不等于随时可调用。</p>
+<p><b>4. 负债同时有“余额”和“月供”两面。</b>一个影响净资产，一个持续占用现金流。</p>
+<p><b>5. 月度盈利不等于每天都有钱。</b>收入与支出的时间错配也可能制造短期风险。</p>
+<p><b>6. 净资产增长需要做归因。</b>储蓄、偿债和资产涨跌不是同一种增长。</p>
+<p><b>7. 财务比率用于发现问题，不用于机械打分。</b>趋势和背景比单一 benchmark 更重要。</p>
+<p><b>8. 第三章的目标必须回到真实现金流接受检验。</b>一个好目标，最终要能在今天的资源约束中找到位置。</p>
+<p><b>下一章：</b>现在我们已经知道钱真实流向哪里。第 5 章会继续追问：<b>为什么有些支出总在不知不觉中扩大？怎样管理现金流，而不是只靠“少花钱”？</b></p>
+</div>
+</section>
+
+<section id="refs">
+<h2>21｜本章资料来源与如何使用它们</h2>
+<ol class="refs">
+  <li><b>CFP Board — Principal Knowledge Topics / Learning Objectives.</b> 用于个人财务报表、现金流、债务管理、时间价值、财务比率和增长率等基础框架。<br><a href="https://www.cfp.net/certification-process/education-requirement/certification-coursework-requirement/what-youll-learn">CFP Board 课程框架</a></li>
+  <li><b>Investor.gov — Figure Out Your Finances.</b> 用于净资产的基础方法：列出拥有的资产与负债并相减，同时追踪收入和支出。<br><a href="https://www.investor.gov/introduction-investing/investing-basics/save-and-invest/figure-out-your-finances">Investor.gov</a></li>
+  <li><b>Consumer Financial Protection Bureau — Your Money, Your Goals / Cash Flow Budget.</b> 用于按时间排列收入与支出、识别收入与账单时间错配的工具思路。<br><a href="https://www.consumerfinance.gov/consumer-tools/educator-tools/your-money-your-goals/toolkit/">CFPB 工具包</a></li>
+  <li><b>Consumer Financial Protection Bureau — Financial Well-Being.</b> 用于日常可控、承受冲击、朝目标前进和拥有选择自由四个主观财务福祉维度。<br><a href="https://www.consumerfinance.gov/consumer-tools/financial-well-being/about/">CFPB Financial Well-Being</a></li>
+  <li><b>FDIC — Money Smart for Adults.</b> 用于 spending and saving plan 的分类思路，以及把储蓄、目标和应急准备纳入计划，而不是只作为月底剩余。<br><a href="https://www.fdic.gov/consumer-resource-center/money-smart-adults">FDIC Money Smart</a></li>
+  <li><b>Financial ratio literature.</b> 个人财务领域长期使用流动性、储蓄、债务等比例辅助诊断；但这些比例依赖人生阶段、收入和规划假设，因此本课程不使用单一阈值做机械评级。</li>
+  <li><b>课程工作定义.</b> “个人自由现金流”“目标投入率”等为本课程为了连接各章而使用的教育性工作概念，并非统一会计准则术语。</li>
+</ol>
+</section>
+
+</article>
+</main>
+</div></div>
+
+<script>
+let state={
+  balance:null,
+  cashflow:null,
+  timing:null,
+  goals:[],
+  report:null
+};
+const done=new Set();
+
+function fmt(x){
+  return new Intl.NumberFormat("zh-CN",{style:"currency",currency:"CNY",maximumFractionDigits:0}).format(Number(x)||0);
+}
+function num(v){return Number(v||0)}
+function mark(k){
+  done.add(k);
+  const pct=Math.round(done.size/4*100);
+  document.getElementById("taskPct").textContent=pct+"%";
+  document.getElementById("taskProg").style.width=pct+"%";
+}
+function readProgress(){
+  const d=document.documentElement,h=d.scrollHeight-d.clientHeight,p=h>0?Math.round((d.scrollTop||0)/h*100):0;
+  document.getElementById("readPct").textContent=p+"%";
+  document.getElementById("readProg").style.width=p+"%";
+}
+window.addEventListener("scroll",readProgress);
+
+function optionHTML(options,selected){
+  return options.map(o=>`<option ${o===selected?"selected":""}>${o}</option>`).join("");
+}
+
+function addAsset(name="现金/存款",value=0,liquidity="高流动"){
+  const row=document.createElement("div");row.className="row-editor";
+  row.innerHTML=`<input class="aName" type="text" value="${name}"><input class="aVal" type="number" value="${value}"><select class="aLiq">${optionHTML(["高流动","中等流动","低流动"],liquidity)}</select><button class="remove" onclick="this.parentElement.remove()">×</button>`;
+  document.getElementById("assetRows").appendChild(row);
+}
+function addDebt(name="信用卡/贷款",value=0){
+  const row=document.createElement("div");row.className="row-editor two";
+  row.innerHTML=`<input class="dName" type="text" value="${name}"><input class="dVal" type="number" value="${value}"><button class="remove" onclick="this.parentElement.remove()">×</button>`;
+  document.getElementById("debtRows").appendChild(row);
+}
+function calcBalance(){
+  let assets=0, liquid=0, mid=0, low=0, debts=0,alist=[],dlist=[];
+  document.querySelectorAll("#assetRows .row-editor").forEach(r=>{
+    const name=r.querySelector(".aName").value.trim(), v=num(r.querySelector(".aVal").value), l=r.querySelector(".aLiq").value;
+    assets+=v;if(l==="高流动")liquid+=v;else if(l==="中等流动")mid+=v;else low+=v;
+    alist.push({name,value:v,liquidity:l});
+  });
+  document.querySelectorAll("#debtRows .row-editor").forEach(r=>{
+    const name=r.querySelector(".dName").value.trim(), v=num(r.querySelector(".dVal").value);debts+=v;dlist.push({name,value:v});
+  });
+  const nw=assets-debts, ratio=assets>0?debts/assets*100:0, liqShare=assets>0?liquid/assets*100:0;
+  state.balance={assets,debts,networth:nw,liquid,mid,low,ratio,liqShare,alist,dlist};
+  document.getElementById("balanceOut").innerHTML=
+    `<div class="grid4">
+      <div class="metric"><span>总资产</span><b>${fmt(assets)}</b></div>
+      <div class="metric"><span>总负债</span><b>${fmt(debts)}</b></div>
+      <div class="metric"><span>净资产</span><b>${fmt(nw)}</b></div>
+      <div class="metric"><span>高流动资产</span><b>${fmt(liquid)}</b></div>
+    </div>
+    <hr>
+    <b>资产负债比例：</b>${ratio.toFixed(1)}% ｜ <b>高流动资产占总资产：</b>${liqShare.toFixed(1)}%<br>
+    <span class="small">这些数字描述结构，不是好坏评分。高净资产但低流动性，与低净资产但高现金流，是两种完全不同的状态。</span>`;
+  mark("balance");
+}
+
+function addIncome(name="工资/主要收入",value=0){
+  const row=document.createElement("div");row.className="row-editor two";
+  row.innerHTML=`<input class="iName" type="text" value="${name}"><input class="iVal" type="number" value="${value}"><button class="remove" onclick="this.parentElement.remove()">×</button>`;
+  document.getElementById("incomeRows").appendChild(row);
+}
+function addExpense(name="房租/基本生活",value=0,type="必要支出"){
+  const row=document.createElement("div");row.className="row-editor flow";
+  row.innerHTML=`<input class="eName" type="text" value="${name}"><input class="eVal" type="number" value="${value}"><select class="eType">${optionHTML(["必要支出","弹性支出","债务还款","其他固定责任"],type)}</select><button class="remove" onclick="this.parentElement.remove()">×</button>`;
+  document.getElementById("expenseRows").appendChild(row);
+}
+function addAnnual(name="保险/学费/旅行等",value=0){
+  const row=document.createElement("div");row.className="row-editor two";
+  row.innerHTML=`<input class="anName" type="text" value="${name}"><input class="anVal" type="number" value="${value}"><button class="remove" onclick="this.parentElement.remove()">×</button>`;
+  document.getElementById("annualRows").appendChild(row);
+}
+function calcCashflow(){
+  let income=0,need=0,flex=0,debtpay=0,fixed=0,annual=0;
+  let ilist=[],elist=[],anlist=[];
+  document.querySelectorAll("#incomeRows .row-editor").forEach(r=>{
+    const name=r.querySelector(".iName").value.trim(),v=num(r.querySelector(".iVal").value);income+=v;ilist.push({name,value:v});
+  });
+  document.querySelectorAll("#expenseRows .row-editor").forEach(r=>{
+    const name=r.querySelector(".eName").value.trim(),v=num(r.querySelector(".eVal").value),t=r.querySelector(".eType").value;
+    if(t==="必要支出")need+=v;else if(t==="弹性支出")flex+=v;else if(t==="债务还款")debtpay+=v;else fixed+=v;
+    elist.push({name,value:v,type:t});
+  });
+  document.querySelectorAll("#annualRows .row-editor").forEach(r=>{
+    const name=r.querySelector(".anName").value.trim(),v=num(r.querySelector(".anVal").value);annual+=v;anlist.push({name,value:v});
+  });
+  const annualMonthly=annual/12, goal=num(document.getElementById("goalMonthly").value);
+  const totalOut=need+flex+debtpay+fixed+annualMonthly+goal;
+  const free=income-totalOut;
+  const saved=Math.max(goal+Math.max(free,0),0);
+  const saveRate=income>0?saved/income*100:0;
+  const debtService=income>0?debtpay/income*100:0;
+  const goalRate=income>0?goal/income*100:0;
+  state.cashflow={income,need,flex,debtpay,fixed,annual,annualMonthly,goal,totalOut,free,saveRate,debtService,goalRate,ilist,elist,anlist};
+  document.getElementById("cashOut").innerHTML=
+    `<div class="grid4">
+      <div class="metric"><span>月度收入</span><b>${fmt(income)}</b></div>
+      <div class="metric"><span>必要 + 固定义务</span><b>${fmt(need+debtpay+fixed+annualMonthly)}</b></div>
+      <div class="metric"><span>第三章目标投入</span><b>${fmt(goal)}</b></div>
+      <div class="metric"><span>剩余自由现金流</span><b>${fmt(free)}</b></div>
+    </div>
+    <hr>
+    <b>周期性支出月均：</b>${fmt(annualMonthly)} ｜ <b>简化储蓄率：</b>${saveRate.toFixed(1)}% ｜ <b>债务偿付率：</b>${debtService.toFixed(1)}% ｜ <b>目标投入率：</b>${goalRate.toFixed(1)}%
+    <p class="small">这里把正的剩余自由现金流视为“可继续储蓄”的潜力，仅作为教育性简化口径。</p>`;
+  mark("cash");
+}
+
+function addEvent(day=5,name="房租",amount=-3000){
+  const row=document.createElement("div");row.className="cash-event";
+  row.innerHTML=`<input class="evDay" type="number" min="1" max="30" value="${day}"><input class="evName" type="text" value="${name}"><input class="evAmt" type="number" value="${amount}"><button class="remove" onclick="this.parentElement.remove()">×</button>`;
+  document.getElementById("eventRows").appendChild(row);
+}
+function simulateCash(){
+  const start=num(document.getElementById("startBalance").value), events=[];
+  document.querySelectorAll("#eventRows .cash-event").forEach(r=>{
+    const day=Math.max(1,Math.min(30,num(r.querySelector(".evDay").value)||1));
+    events.push({day,name:r.querySelector(".evName").value.trim(),amount:num(r.querySelector(".evAmt").value)});
+  });
+  let bal=start,min=start,minDay=1,days=[],byDay={};
+  events.forEach(e=>{(byDay[e.day]??=[]).push(e)});
+  for(let d=1;d<=30;d++){
+    (byDay[d]||[]).forEach(e=>bal+=e.amount);
+    days.push(bal);if(bal<min){min=bal;minDay=d}
+  }
+  state.timing={start,events,days,min,minDay,end:days[29]};
+  drawCashChart(days);
+  document.getElementById("timingOut").innerHTML=
+    `<b>月底余额：</b>${fmt(days[29])} ｜ <b>月内最低余额：</b>${fmt(min)}（约第 ${minDay} 天）<br>`+
+    (min<0?`<span style="color:var(--red)"><b>出现时间错配风险：</b>即使月底可能为正，月中余额曾跌到 0 以下。</span>`:`<span style="color:var(--green)"><b>按当前事件未跌破 0。</b></span>`)+
+    `<p class="small">模拟未考虑临时支出、到账延迟和信用额度，目的是观察时点风险。</p>`;
+  mark("timing");
+}
+function drawCashChart(days){
+  const c=document.getElementById("cashChart"),ctx=c.getContext("2d"),W=c.width,H=c.height,pad=35;
+  ctx.clearRect(0,0,W,H);
+  const vals=[0,...days],max=Math.max(...vals),min=Math.min(...vals),span=Math.max(max-min,1);
+  const y=v=>pad+(max-v)/(span)*(H-pad*2), x=i=>pad+i/(days.length-1)*(W-pad*2);
+  ctx.strokeStyle="#d6c199";ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(pad,y(0));ctx.lineTo(W-pad,y(0));ctx.stroke();
+  ctx.fillStyle="#766858";ctx.font="12px serif";ctx.fillText("0",8,y(0)+4);
+  ctx.strokeStyle="#455f4c";ctx.lineWidth=3;ctx.beginPath();
+  days.forEach((v,i)=>{if(i===0)ctx.moveTo(x(i),y(v));else ctx.lineTo(x(i),y(v))});ctx.stroke();
+  days.forEach((v,i)=>{if(v<0){ctx.fillStyle="#8f342a";ctx.beginPath();ctx.arc(x(i),y(v),3,0,Math.PI*2);ctx.fill()}});
+  ctx.fillStyle="#766858";ctx.fillText("1日",pad,H-9);ctx.fillText("15日",x(14)-10,H-9);ctx.fillText("30日",W-pad-20,H-9);
+}
+
+async function importGoalFile(ev){
+  const file=ev.target.files[0];if(!file)return;
+  try{
+    const text=await file.text(),data=JSON.parse(text);
+    state.goals=Array.isArray(data.goals)?data.goals:[];
+    document.getElementById("goalImportOut").innerHTML=`已导入 <b>${state.goals.length}</b> 个第三章目标。`;
+  }catch(e){
+    document.getElementById("goalImportOut").textContent="读取失败：请确认这是第三章导出的 JSON 文件。";
+  }
+}
+function buildDashboard(){
+  if(!state.balance||!state.cashflow){
+    document.getElementById("dashboardOut").innerHTML="<b>请先完成资产负债表和月度现金流表。</b>";return;
+  }
+  const b=state.balance,c=state.cashflow;
+  const months=c.need>0?b.liquid/c.need:0;
+  const wb=[1,2,3,4].map(i=>num(document.getElementById("wb"+i).value));
+  const wbAvg=wb.reduce((a,x)=>a+x,0)/wb.length;
+  let diags=[];
+  diags.push({type:b.networth>=0?"good":"risk",title:"净资产位置",text:b.networth>=0?`净资产为 ${fmt(b.networth)}。更重要的是后续持续追踪增长来源和结构。`:`净资产为 ${fmt(b.networth)}。后续债务章节需要优先理解负债结构和成本。`});
+  diags.push({type:months>=3?"good":"watch",title:"流动性",text:`高流动资产按当前必要支出估算可覆盖约 ${months.toFixed(1)} 个月。第 8 章会结合职业与家庭情况讨论安全垫是否充分。`});
+  diags.push({type:c.free>=0?"good":"risk",title:"月度现金流",text:c.free>=0?`当前典型月份存在 ${fmt(c.free)} 自由现金流。`:`当前典型月份存在 ${fmt(Math.abs(c.free))} 赤字，需要先理解支出与义务结构。`});
+  diags.push({type:c.debtService<30?"good":"watch",title:"债务现金流占用",text:`月度债务偿付约占税后收入 ${c.debtService.toFixed(1)}%。这里不做统一阈值评级，只提示现金流约束。`});
+
+  let goalHtml="";
+  if(state.goals.length){
+    goalHtml="<hr><b>第三章目标检查：</b>";
+    state.goals.forEach(g=>{
+      const gap=Math.max(num(g.target)-num(g.current),0),need=num(g.months)>0?gap/num(g.months):0;
+      const assigned=state.goals.length?c.goal/state.goals.length:0;
+      goalHtml+=`<div class="goal-item"><b>${g.name}</b> <span class="tag">${g.priority||""}</span><br>零收益简化月需 ${fmt(need)}；如果当前目标投入 ${fmt(c.goal)} 平均分配给 ${state.goals.length} 个目标，每个约 ${fmt(assigned)} / 月。<br><span class="small">${assigned>=need?"当前平均分配可覆盖简化需求。":"当前平均分配低于简化需求，可能需要重新排序、延后、降成本或提高现金流。"}</span></div>`;
+    });
+  }else{
+    goalHtml="<hr><span class='small'>未导入第三章目标，因此本次报告不做目标资金缺口比较。</span>";
+  }
+
+  const wbText=wbAvg>=4?"你对当前财务控制和选择空间的主观感受较强。":wbAvg>=3?"你的财务福祉自评处于中间区域，适合继续结合客观数据找出具体压力来源。":"你的主观财务安全感较弱，即使某些客观数字尚可，也值得进一步识别压力来源与可行动问题。";
+  const axes=`
+    <div class="four-axis">
+      <div class="axis"><small>Solvency</small><b>${fmt(b.networth)}</b><small>净资产位置</small></div>
+      <div class="axis"><small>Liquidity</small><b>${months.toFixed(1)} 个月</b><small>高流动资产覆盖必要支出</small></div>
+      <div class="axis"><small>Cash Flow</small><b>${fmt(c.free)}</b><small>月度自由现金流</small></div>
+      <div class="axis"><small>Goal Progress</small><b>${c.goalRate.toFixed(1)}%</b><small>目标投入 / 税后收入</small></div>
+    </div>`;
+  const diagHtml=diags.map(d=>`<div class="diag ${d.type}"><b>${d.title}</b><br>${d.text}</div>`).join("");
+  document.getElementById("dashboardOut").innerHTML=
+    axes+diagHtml+`<div class="diag"><b>Financial Well-Being 自评</b><br>${wbText}（四项平均 ${wbAvg.toFixed(1)} / 5）</div>`+goalHtml+
+    `<p class="small">本报告是教育性财务体检，不是信贷审核、投资推荐或专业财务规划意见。</p>`;
+  state.report={createdAt:new Date().toISOString(),balance:b,cashflow:c,timing:state.timing,wellbeing:{answers:wb,average:wbAvg},goals:state.goals};
+  mark("dashboard");
+}
+function exportReport(){
+  if(!state.report){buildDashboard();if(!state.report)return}
+  const blob=new Blob([JSON.stringify(state.report,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob),a=document.createElement("a");
+  a.href=url;a.download="个人财务体检报告_v1.json";a.click();URL.revokeObjectURL(url);
+}
+
+addAsset("现金与活期存款",30000,"高流动");
+addAsset("基金 / 股票 / 债券",20000,"中等流动");
+addAsset("房产 / 长期资产",0,"低流动");
+addDebt("信用卡 / 消费贷",0);
+addDebt("房贷 / 长期贷款",0);
+
+addIncome("工资 / 主要收入",12000);
+addExpense("房租 / 基本生活",4500,"必要支出");
+addExpense("娱乐 / 购物",1500,"弹性支出");
+addExpense("贷款月供",0,"债务还款");
+addAnnual("保险 / 年费 / 学费等",6000);
+
+addEvent(5,"房租",-3000);
+addEvent(8,"信用卡",-1800);
+addEvent(10,"保险",-800);
+addEvent(25,"工资",10000);
+
+readProgress();
+drawCashChart(Array(30).fill(3000));
+</script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十四章｜一张图看懂所有主要资产—个人财富系统</title>
+<style>
+:root{
+  --bg:#efe1c3;--paper:#fbf3df;--ink:#332a22;--muted:#766858;--line:#d6c199;
+  --red:#8f342a;--redbg:#f1ddd5;--green:#455f4c;--greenbg:#dfe7dc;
+  --gold:#a77a2b;--goldbg:#f2e4bd;--blue:#445d70;--bluebg:#dce5e9;--deep:#2e2924;
+  --shadow:0 18px 50px rgba(74,52,28,.14)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);line-height:1.9;font-family:ui-serif,"Noto Serif SC","Source Han Serif SC","Songti SC",STSong,serif;background:radial-gradient(circle at 12% 7%,rgba(255,255,255,.45),transparent 25%),radial-gradient(circle at 88% 15%,rgba(100,74,40,.07),transparent 22%),repeating-linear-gradient(0deg,rgba(90,63,34,.022) 0 1px,transparent 1px 5px),var(--bg)}
+a{color:var(--green);text-underline-offset:3px}.wrap{max-width:1340px;margin:auto;padding:24px}.layout{display:grid;grid-template-columns:275px minmax(0,930px);gap:30px;justify-content:center;align-items:start}
+.sidebar{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto}.sidebox{background:rgba(251,243,223,.84);border:1px solid var(--line);border-radius:13px;padding:15px;margin-bottom:12px}.sidebox b{display:block}.sidebox small{color:var(--muted)}
+nav a{display:block;text-decoration:none;color:var(--muted);font-size:12px;padding:5px 7px;border-radius:7px}nav a:hover{background:#efdfbd;color:var(--ink)}
+.progress{height:7px;background:#e3d1aa;border-radius:999px;overflow:hidden;margin-top:8px}.progress i{display:block;height:100%;width:0;background:var(--red);transition:.2s}
+.paper{background:rgba(251,243,223,.97);border:1px solid rgba(170,143,96,.48);box-shadow:var(--shadow);border-radius:7px;overflow:hidden}
+.hero{padding:68px 74px 50px;border-bottom:1px solid var(--line);position:relative}.hero:before{content:"";position:absolute;left:28px;top:30px;bottom:30px;width:1px;background:rgba(143,52,42,.28)}
+.kicker{font-size:12px;letter-spacing:.18em;color:var(--red);font-weight:800}h1{font-size:49px;line-height:1.2;margin:13px 0 17px;letter-spacing:-.035em}.subtitle{font-size:20px;color:var(--muted);max-width:790px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 9px;background:#f7edd4;color:var(--muted)}
+.content{padding:54px 74px 76px}section{margin-bottom:62px}h2{font-size:30px;line-height:1.35;margin:0 0 18px}h3{font-size:21px;margin:30px 0 10px}p{margin:9px 0 16px}.lead{font-size:18px}
+.callout{padding:19px 21px;border-left:5px solid;margin:23px 0;border-radius:4px}.red{background:var(--redbg);border-color:var(--red)}.green{background:var(--greenbg);border-color:var(--green)}.gold{background:var(--goldbg);border-color:var(--gold)}.blue{background:var(--bluebg);border-color:var(--blue)}
+.label{font-size:11px;font-weight:800;letter-spacing:.14em;margin-bottom:4px}.card{padding:20px;border:1px solid var(--line);border-radius:10px;background:#fff9ea;margin:15px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.table th{font-size:11px;color:var(--muted)}
+.formula{background:var(--deep);color:#f8edd6;font:16px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:17px 19px;border-radius:8px;margin:18px 0}
+.case{padding:22px;border:1px solid var(--line);border-radius:10px;background:#faf0db;margin:14px 0}.casehead{display:flex;justify-content:space-between;gap:12px;align-items:baseline}.casehead b{font-size:18px}.casehead span{font-size:12px;color:var(--muted)}
+.quote{padding:23px 27px;background:#eee0c4;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:19px;margin:24px 0}
+.small{font-size:12px;color:var(--muted)}.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 7px;font-size:11px;background:#f6ead0;margin:2px}
+.metric{padding:15px;background:#f8edd4;border:1px solid var(--line);border-radius:9px}.metric b{display:block;font-size:20px;color:var(--green)}.metric span{font-size:12px;color:var(--muted)}
+input[type=text],input[type=number],select{width:100%;border:1px solid #c7ad80;background:#fffaf0;border-radius:7px;padding:10px 11px;color:var(--ink);font:inherit}
+button{border:0;border-radius:8px;padding:10px 15px;background:var(--red);color:#fff;font-weight:800;cursor:pointer}button.secondary{background:var(--green)}button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.feedback{margin-top:14px;padding:15px 17px;border:1px dashed #b69d70;border-radius:8px;background:#f5e9cf}.tool-title{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.asset-card{border:1px solid var(--line);border-radius:10px;padding:16px;background:#fffaf0}.asset-card h3{margin:0 0 6px}.asset-card .tags{margin-top:10px}.axis{position:relative;height:360px;border:1px solid var(--line);background:linear-gradient(90deg,rgba(69,95,76,.08),rgba(143,52,42,.08)),linear-gradient(0deg,rgba(68,93,112,.08),transparent);border-radius:10px;margin-top:15px;overflow:hidden}
+.axis:before{content:"Liquidity →";position:absolute;bottom:8px;right:12px;color:var(--muted);font-size:12px}.axis:after{content:"↑ Outcome uncertainty";position:absolute;left:10px;top:8px;color:var(--muted);font-size:12px}
+.dot{position:absolute;transform:translate(-50%,-50%);padding:4px 8px;border-radius:999px;border:1px solid var(--line);background:#fff9ea;font-size:11px;white-space:nowrap;cursor:default}
+.end{background:var(--deep);color:#f5ebd7;padding:28px;border-radius:9px}.end h2{color:#fff5df}.refs{font-size:13px;color:var(--muted)}.refs li{margin-bottom:10px}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{display:none}.hero,.content{padding-left:36px;padding-right:36px}}
+@media(max-width:780px){.wrap{padding:0}.paper{border-radius:0}.hero,.content{padding:30px 20px}h1{font-size:34px}.grid2,.grid3,.grid4{grid-template-columns:1fr}.axis{height:430px}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="layout">
+<aside class="sidebar">
+<div class="sidebox"><b>个人财富系统</b><small>第十四章 · 资产世界地图</small></div>
+<div class="sidebox"><small>阅读进度 <span id="readPct">0%</span></small><div class="progress"><i id="readProg"></i></div></div>
+<div class="sidebox"><small>互动完成度 <span id="taskPct">0%</span></small><div class="progress"><i id="taskProg"></i></div></div>
+<div class="sidebox"><nav>
+<a href="#goal">00 产品很多，底层资产没那么多</a><a href="#three">01 Asset / Vehicle / Strategy</a><a href="#investable">02 什么算投资资产</a><a href="#xray">03 Asset X-Ray</a><a href="#cash">04 Cash</a><a href="#deposit">05 Deposit</a><a href="#bond">06 Bonds</a><a href="#stock">07 Stocks</a><a href="#capital">08 Creditor vs Owner</a><a href="#realestate">09 Real Estate</a><a href="#home">10 自住房</a><a href="#reit">11 REIT</a><a href="#commodity">12 Commodities</a><a href="#gold">13 Gold</a><a href="#fund">14 Fund</a><a href="#etf">15 ETF</a><a href="#mmf">16 Money Market Fund</a><a href="#alternative">17 Alternatives</a><a href="#private">18 Private Capital</a><a href="#infra">19 Infrastructure</a><a href="#hedge">20 Hedge Fund</a><a href="#digital">21 Digital Assets</a><a href="#derivatives">22 Derivatives</a><a href="#returnengine">23 Return Engines</a><a href="#riskengine">24 Risk Engines</a><a href="#liquidity">25 Liquidity Spectrum</a><a href="#income">26 Income vs Growth</a><a href="#realasset">27 Financial vs Real Assets</a><a href="#publicprivate">28 Public vs Private</a><a href="#direct">29 Direct vs Indirect</a><a href="#leverage">30 Leverage</a><a href="#currency">31 Currency Risk</a><a href="#master">32 Master Asset Map</a><a href="#cases">33 四个案例</a><a href="#mistakes">34 十个误区</a><a href="#tool1">35 Asset X-Ray</a><a href="#tool2">36 Wrapper or Asset?</a><a href="#tool3">37 Return Engine Lab</a><a href="#tool4">38 My Asset World Map</a><a href="#summary">39 总结</a><a href="#refs">40 资料与注释</a>
+</nav></div></aside>
+
+<main class="paper">
+<header class="hero"><div class="kicker">CHAPTER 14 · ASSET WORLD MAP</div><h1>一张图看懂所有主要资产</h1><div class="subtitle">现金、债券、股票、房地产、黄金、商品、基金与另类资产：先看底层经济权利，再看产品包装。</div><div class="meta"><span class="pill">预计阅读 85–100 分钟</span><span class="pill">Stage V 起点</span><span class="pill">4 个分类实验</span><span class="pill">最终产物：资产世界地图 v1</span></div></header>
+
+<article class="content">
+<section id="goal"><h2>00｜金融产品看起来有几千种，底层资产却没有那么多</h2><p class="lead">真正进入投资世界后，最大的认知障碍往往不是“知识太少”，而是名字太多：股票、基金、ETF、REIT、理财、黄金、债券、私募、对冲基金、数字资产……它们看起来像同一层级的十几种东西。</p><p>但只要把“底层资产、持有载体、投资策略”拆开，整个投资世界会突然简单很多。</p><div class="callout red"><div class="label">本章第一原则</div><b>先问“我真正拥有了什么”，再问“它叫什么产品”。产品名不是风险本身。</b></div></section>
+
+<section id="three"><h2>01｜Asset ≠ Vehicle ≠ Strategy</h2><div class="grid3"><div class="card"><b>Asset｜底层资产</b><p>真正承担经济风险、产生现金流或价格变化的对象，例如股票、债券、房地产、黄金。</p></div><div class="card"><b>Vehicle｜持有载体</b><p>让你持有底层资产的结构，例如基金、ETF、REIT 等。</p></div><div class="card"><b>Strategy｜投资策略</b><p>管理资产的规则，例如指数化、主动选股、Long/Short、杠杆、套利。</p></div></div><p>Investor.gov 明确指出，基金和 ETF 会把许多投资者的钱集中起来，再投资到股票、债券、货币市场工具或其他资产中。也就是说，基金首先是一种持有结构，而不是自动成为一种新的底层经济资产。</p></section>
+
+<section id="investable"><h2>02｜什么东西算“投资资产”？</h2><p>第四章做个人资产负债表时，电脑、汽车、自住房都可能是个人资产。但进入投资组合后，我们更关心能够储存财富、产生收入或资本增值、并能被配置和比较的资产。</p><div class="grid2"><div class="card"><b>Net-Worth Asset</b><p>对个人净资产有价值，例如自住房、车辆、收藏品。</p></div><div class="card"><b>Investable Asset</b><p>能够进入投资组合、被用来承担增长、收入、流动性或分散任务的资产。</p></div></div><p>Human Capital 同样可能是年轻人最重要的经济资源，但它不是一种可以像股票一样直接交易的金融资产。</p></section>
+
+<section id="xray"><h2>03｜以后看任何资产，都用同一张 Asset X-Ray</h2><table class="table"><thead><tr><th>问题</th><th>真正想知道什么</th></tr></thead><tbody>
+<tr><td>1. What do I own?</td><td>我真正拥有的法律 / 经济权利是什么？</td></tr>
+<tr><td>2. Who pays me?</td><td>现金流由谁创造或支付？</td></tr>
+<tr><td>3. Where does return come from?</td><td>收益源是利息、利润、租金、价格变化还是其他？</td></tr>
+<tr><td>4. What cash flows exist?</td><td>是否有利息、股息、租金等内部现金流？</td></tr>
+<tr><td>5. What moves the price?</td><td>利率、盈利、供需、估值还是市场预期？</td></tr>
+<tr><td>6. What can go wrong?</td><td>主要风险是什么？</td></tr>
+<tr><td>7. How liquid is it?</td><td>多快能以合理价格变现？</td></tr>
+<tr><td>8. What job does it perform?</td><td>安全、流动性、收入、增长、分散还是其他？</td></tr>
+</tbody></table></section>
+
+<section id="cash"><h2>04｜Cash & Cash Equivalents：任务通常不是最大化收益</h2><p>Investor.gov 仍把 stocks、bonds 和 cash 作为三个主要资产类别。现金类工具通常具有较高流动性和较低名义波动，核心角色是支付、应急和短期稳定。</p><p>但第十二章已经说明：现金的长期主要风险之一是通胀侵蚀购买力，因此“价格不跌”并不等于“真实财富没有风险”。</p></section>
+
+<section id="deposit"><h2>05｜Deposit：账户里的钱，本质上是对银行的请求权</h2><p>银行存款不是银行替你把原来的纸币单独锁在一个柜子里。从经济关系上看，存款是银行的负债，你持有的是对银行的债权请求。</p><div class="callout blue"><div class="label">为什么仍然通常放在 Cash 一侧讨论？</div>因为它的支付功能、流动性、监管保护结构和使用方式，与传统债券不同。经济本质和资产配置分类不一定使用同一套维度。</div></section>
+
+<section id="bond"><h2>06｜Bonds / Fixed Income：你是债权人</h2><p>债券最基本的关系是：你把钱借给政府、公司或其他发行主体，发行人承诺按照合同支付利息并偿还本金。</p><div class="formula">Bond Total Return ≈ Coupon / Interest + Price Change + Reinvestment</div><p>因此“Fixed Income”并不等于“总收益固定”，它主要描述现金流具有更明确的契约结构。第十五章会正式讲面值、票息、到期收益率、利率风险和信用利差。</p></section>
+
+<section id="stock"><h2>07｜Equity / Stocks：你不是债权人，而是所有者</h2><p>股票代表企业的股权和剩余索取权。企业先履行债务、工资、税款等其他义务，剩余经济利益属于股东。</p><div class="formula">Stock Return ≈ Business Growth + Distributions + Repricing</div><p>所以股票价格并不只是“有人愿意出更高价接盘”，它长期仍然和企业创造现金流、盈利能力以及市场给出的估值有关。</p></section>
+
+<section id="capital"><h2>08｜债券和股票最根本的区别：Creditor vs Owner</h2><div class="grid2"><div class="card"><b>Bondholder</b><p>契约债权。现金流优先级通常高于股东，但上行收益通常也更受合同限制。</p></div><div class="card"><b>Shareholder</b><p>剩余所有权。承担更大经营不确定性，同时拥有企业成长带来的剩余上行空间。</p></div></div><p>这不是简单的“一个安全、一个危险”，而是资本结构位置和收益权利不同。</p></section>
+
+<section id="realestate"><h2>09｜Real Estate：真实资产 + 经营现金流</h2><p>房地产总回报可以粗略拆成净租金和资产价格变化。CFA 2026 将房地产与基础设施、自然资源放在 real assets 框架中讨论。</p><div class="formula">Real Estate Return ≈ Net Rental Income + Property Value Change − Costs</div><p>房地产具有位置固定、交易成本高、异质性强等特点，因此不能像一只公开交易股票那样简单处理。</p></section>
+
+<section id="home"><h2>10｜自住房既是资产，也是消费品和生活基础设施</h2><p>自住房当然属于个人净资产，但它同时提供居住服务，所以不能只看“价格涨了多少”。</p><div class="grid3"><div class="card"><b>Asset</b><p>具有市场价值。</p></div><div class="card"><b>Consumption</b><p>提供居住效用。</p></div><div class="card"><b>Concentration</b><p>通常金额巨大、低流动、位置固定。</p></div></div><p>所以自住房和一组流动证券组合不应仅用同一种收益率语言评价。</p></section>
+
+<section id="reit"><h2>11｜REIT：底层是房地产，载体不是“一套房”</h2><p>REIT 让投资者通过公司或基金结构参与收益型房地产相关经济收益，而不用直接购买整栋物业。它在流动性、管理结构、费用和市场定价方式上都与直接持有房产不同。</p><div class="callout green"><div class="label">再次强化</div><b>Real Estate 是底层经济敞口；REIT 是持有这类经济敞口的一种结构。</b></div></section>
+
+<section id="commodity"><h2>12｜Commodities：没有企业利润，也没有债券票息</h2><p>商品包括原油、铜、小麦、大豆、黄金等。CFA 将硬商品区分为采掘类金属和能源，软商品则包括粮食、牲畜、咖啡等农业产品。</p><p>一桶石油、一吨铜本身不会主动向你支付利息或股息，因此商品投资的回报机制更依赖价格变化、供需和持有成本。</p></section>
+
+<section id="gold"><h2>13｜Gold：一种特殊的商品和储值资产</h2><p>黄金具有商品属性，也长期具有储值和货币历史角色。但从现金流角度看，它本身不会产生企业利润、利息或租金。</p><div class="formula">Gold Return ≈ Price Change − Carry / Storage / Vehicle Costs</div><p>所以评价黄金时，不能套用股票“利润增长”的逻辑，也不能套用债券“票息”的逻辑。</p></section>
+
+<section id="fund"><h2>14｜Fund：最常见的错误，是把“盒子”当成“里面的东西”</h2><p>Investor.gov 将共同基金描述为汇集许多投资者资金、再投资于股票、债券、货币市场工具或其他资产的集合投资工具。</p><div class="quote"><b>“我买基金”并不能告诉别人你承担了什么风险。真正的问题是：基金里面装了什么？</b></div></section>
+
+<section id="etf"><h2>15｜ETF 也不是一种统一风险的资产</h2><p>ETF 可以投资股票、债券、短期货币市场工具或其他资产。它们因为交易所交易而具有一种特定持有结构，但底层风险仍由资产决定。</p><table class="table"><thead><tr><th>ETF</th><th>真正主要承担什么</th></tr></thead><tbody><tr><td>宽基股票 ETF</td><td>股票市场风险</td></tr><tr><td>行业股票 ETF</td><td>股票风险 + 行业集中风险</td></tr><tr><td>长期债券 ETF</td><td>利率 / 久期 + 信用风险</td></tr><tr><td>黄金相关 ETF</td><td>黄金价格及具体产品结构风险</td></tr></tbody></table><p>Investor.gov 也提醒，窄行业基金或 ETF 并不因为持仓数量很多就天然实现充分分散。</p></section>
+
+<section id="mmf"><h2>16｜Money Market Fund：像现金，不等于银行存款</h2><p>货币市场基金通常持有短期限、高流动性的债务工具和现金等价物，因此经济表现可能“现金化”，但法律结构仍然是基金，而不是银行存款。</p><p>这就是第八章强调的：</p><div class="formula">Cash-like Exposure ≠ Bank Deposit Structure</div></section>
+
+<section id="alternative"><h2>17｜Alternative Investments：不是“奇怪投资”的同义词</h2><p>CFA 2026 将传统资产概括为公开股权、固定收益和现金；另类投资则包括 private capital、real assets 和 hedge funds 等。它们经常具有更长投资期、更低流动性、更复杂费用和更不充分的市场定价。</p><p>“另类”描述的是其相对于传统公开市场资产的结构特征，不代表天然更高级或更赚钱。</p></section>
+
+<section id="private"><h2>18｜Private Equity / Private Credit：底层经济关系其实很熟悉</h2><div class="grid2"><div class="card"><b>Private Equity</b><p>仍然是 Equity，只是企业没有在公开证券市场交易。</p></div><div class="card"><b>Private Credit</b><p>仍然是 Debt，只是债权通过私人市场形成。</p></div></div><p>Public / Private 改变的是市场结构、流动性、信息透明度和估值方式，而不是把股权和债权变成完全不同的经济物种。</p></section>
+
+<section id="infra"><h2>19｜Infrastructure：长期实体资产与项目现金流</h2><p>收费公路、电网、港口、能源设施、数据中心等基础设施，通常具有资本密集、寿命长和现金流依赖合同或监管安排等特点。CFA 将其归入 real assets。</p><p>它们可能提供长期运营现金流，但往往流动性较低，且项目、监管和工程风险非常重要。</p></section>
+
+<section id="hedge"><h2>20｜Hedge Fund：更像“策略容器”，不是一种统一底层资产</h2><p>CFA 2026 明确指出，现代 hedge fund 可以投资股票、固定收益、衍生品、外汇、私人资本和真实资产，它们主要由投资方法而非单一底层资产来区分。</p><div class="callout blue"><div class="label">所以</div><b>看到“Hedge Fund”这个名字，仍然必须继续问：它到底在持有什么、做什么策略、用了多少杠杆？</b></div></section>
+
+<section id="digital"><h2>21｜Digital Assets：先问权利和现金流，不先问涨幅</h2><p>CFA 2026 已经把 cryptocurrencies、tokens、digital collectables 等纳入另类投资课程，并强调这一领域风险更高、结构和传统资产不同。</p><p>对于个人财富系统，本章只要求建立几个问题：数字资产代表什么权利？有没有现金流？价值依赖什么网络和参与者？流动性和监管结构如何？</p></section>
+
+<section id="derivatives"><h2>22｜Derivatives：更像“改变风险暴露的合同层”</h2><p>期货、期权、掉期等衍生工具的价值来源于某个 underlying asset、价格、利率或指数。它们可以用于对冲、投机和杠杆。</p><div class="formula">Derivative Value ← Underlying Price / Rate / Event</div><p>因此本章不会把衍生品简单塞进“核心长期资产类别”里，而是把它理解为风险转移和暴露设计工具。</p></section>
+
+<section id="returnengine"><h2>23｜Return Engines：所有收益来源其实没有那么多</h2><div class="grid3"><div class="card"><b>Contractual Income</b><p>债券利息等合同现金流。</p></div><div class="card"><b>Operating Cash Flow</b><p>企业利润、租金、基础设施收费。</p></div><div class="card"><b>Capital Appreciation</b><p>企业成长、房产价值增长。</p></div><div class="card"><b>Repricing</b><p>市场愿意支付更高或更低估值。</p></div><div class="card"><b>Scarcity / Supply-Demand</b><p>黄金和大宗商品的供需定价。</p></div></div><p>以后有人说某产品“年化 15%”，第一反应应该是：<b>这 15% 到底来自哪个收益发动机？</b></p></section>
+
+<section id="riskengine"><h2>24｜Risk Engines：所有资产也反复暴露于少数几类风险</h2><div class="grid3"><div class="card"><b>Market</b></div><div class="card"><b>Credit</b></div><div class="card"><b>Interest Rate</b></div><div class="card"><b>Liquidity</b></div><div class="card"><b>Inflation</b></div><div class="card"><b>Business</b></div><div class="card"><b>Concentration</b></div><div class="card"><b>Currency</b></div><div class="card"><b>Leverage</b></div></div><p>第十三章已经讲过这些风险，这一章的任务只是把它们重新贴回每种资产。</p></section>
+
+<section id="liquidity"><h2>25｜Liquidity Spectrum：流动性是一条轴，不是风险总排名</h2><div class="formula">即时现金 → 存款 / 现金类 → 公开证券 / ETF → 部分上市房地产工具 → 直接房地产 → 私人市场资产</div><p>现金流动性高，但有购买力风险；私人资产流动性低，但其全部风险也绝不只来自“卖不掉”。CFA 目前仍把更长投资期和更低流动性列为另类投资的重要结构特征。</p></section>
+
+<section id="income"><h2>26｜Income Asset vs Growth Asset：最好理解成比例，而不是二元标签</h2><p>债券经常偏收入，股票经常偏增长，但现实中高股息股票也产生大量收入，零息债券没有定期票息，房地产既有租金又有资本升值。</p><p>更好的问题是：<b>这个资产的总回报中，当前现金流和未来资本增值分别占多大角色？</b></p></section>
+
+<section id="realasset"><h2>27｜Financial Claims 与 Real Assets</h2><div class="grid2"><div class="card"><b>Financial Claims</b><p>股票、债券、存款等对企业、银行或政府经济价值的金融权利。</p></div><div class="card"><b>Real Assets</b><p>房地产、基础设施、商品、土地等实体经济资源。</p></div></div><p>但不能从“Real Asset”直接推出“一定抗通胀”。不同真实资产的现金流、供需和融资结构差异很大。</p></section>
+
+<section id="publicprivate"><h2>28｜Public vs Private：市场结构也是风险的一部分</h2><p>公开市场通常报价更频繁、透明度更高、交易更容易；私人市场往往报价低频、持有期更长、交易和估值更复杂。</p><div class="callout gold"><div class="label">重要纠偏</div><b>私人资产看起来价格更“平稳”，有时只是因为更少被重新报价，不代表经济风险真的更低。</b></div></section>
+
+<section id="direct"><h2>29｜Direct vs Indirect Ownership：同一底层资产也能有不同持有方式</h2><table class="table"><thead><tr><th>底层</th><th>直接持有</th><th>间接持有</th></tr></thead><tbody><tr><td>股票</td><td>单只股票</td><td>股票基金 / ETF</td></tr><tr><td>房地产</td><td>直接购买物业</td><td>REIT / 房地产基金</td></tr><tr><td>黄金</td><td>实物黄金</td><td>黄金相关基金等结构</td></tr></tbody></table><p>投资者最终承担的是“底层风险 + 载体结构风险”。</p></section>
+
+<section id="leverage"><h2>30｜Leverage：它不是资产，而是融资层</h2><p>同一套房，全款购买和高比例贷款购买，底层房地产完全一样，但投资者的盈亏弹性、现金流压力和被迫出售风险完全不同。</p><div class="formula">Observed Investor Risk = Asset Risk + Financing Structure</div><p>所以第七章的债务知识在这里重新回来：杠杆会放大同一个资产的结果。</p></section>
+
+<section id="currency"><h2>31｜Currency Risk：海外资产收益不等于你的本币收益</h2><p>如果一个海外资产以当地货币上涨 10%，同时该货币相对人民币下跌，人民币计价的最终结果会受到汇率变化影响。</p><div class="formula">Home-Currency Return ≈ Asset Return + Currency Effect + Interaction</div><p>本章只建立概念，不深入外汇定价。</p></section>
+
+<section id="master"><h2>32｜Master Asset Map：把整个投资世界压缩成少数区域</h2>
+<div class="grid4">
+<div class="card"><b>Liquidity / Safety</b><p>现金、存款、现金等价物。</p></div>
+<div class="card"><b>Contractual Claims</b><p>政府债、公司债、Private Credit。</p></div>
+<div class="card"><b>Ownership / Growth</b><p>公开股票、Private Equity、企业所有权。</p></div>
+<div class="card"><b>Real Assets</b><p>房地产、基础设施、黄金、商品、自然资源。</p></div>
+</div>
+<div class="callout blue"><div class="label">外围两层</div><b>Vehicles：Fund / ETF / REIT；Tools & Strategies：Derivatives / Leverage / Hedge-Fund Strategy。</b></div>
+</section>
+
+<section id="cases"><h2>33｜四个现实案例</h2>
+<div class="case"><div class="casehead"><b>A｜“我买了三个 ETF，所以我分散了”</b><span>Vehicle 数量 ≠ 分散质量</span></div><p>如果三个 ETF 都集中在科技股，底层风险可能高度重合。</p></div>
+<div class="case"><div class="casehead"><b>B｜“我有房产又有 REIT，所以是两种完全不同资产”</b><span>Underlying Exposure</span></div><p>它们可能都暴露于房地产经济风险，只是流动性和持有结构不同。</p></div>
+<div class="case"><div class="casehead"><b>C｜“黄金不付利息，所以没有收益”</b><span>Return Engine 不同</span></div><p>黄金没有内部票息和利润，但可以通过价格变化形成投资回报。</p></div>
+<div class="case"><div class="casehead"><b>D｜“基金比股票安全”</b><span>先看底层</span></div><p>一个高度集中的行业股票基金仍然承担股票和集中风险；“基金”这个外壳不能告诉你风险高低。</p></div>
+</section>
+
+<section id="mistakes"><h2>34｜十个最容易学歪的地方</h2>
+<div class="callout red"><div class="label">误区 1</div><b>基金是和股票、债券并列的一种底层资产。</b></div>
+<div class="callout red"><div class="label">误区 2</div><b>ETF 就是低风险投资。</b></div>
+<div class="callout red"><div class="label">误区 3</div><b>债券意味着价格不变、收益固定。</b></div>
+<div class="callout red"><div class="label">误区 4</div><b>股票只有低买高卖这一种收益逻辑。</b></div>
+<div class="callout red"><div class="label">误区 5</div><b>房地产只有房价上涨一种收益来源。</b></div>
+<div class="callout red"><div class="label">误区 6</div><b>黄金没有利息，所以没有投资回报。</b></div>
+<div class="callout red"><div class="label">误区 7</div><b>私人资产波动小，所以经济风险小。</b></div>
+<div class="callout red"><div class="label">误区 8</div><b>买很多基金就自动充分分散。</b></div>
+<div class="callout red"><div class="label">误区 9</div><b>杠杆是一种资产类别。</b></div>
+<div class="callout red"><div class="label">误区 10</div><b>资产名字本身决定风险。</b></div>
+</section>
+
+<section id="tool1"><div class="tool-title"><h2>35｜互动一：Asset X-Ray</h2><span class="badge">一键拆开底层</span></div><div class="card">
+<label>选择一个对象<select id="xAsset">
+<option>银行存款</option><option>公司债</option><option>普通股票</option><option>宽基股票ETF</option><option>长期债券基金</option><option>黄金ETF</option><option>REIT</option><option>自住房</option><option>货币市场基金</option><option>Private Equity Fund</option>
+</select></label>
+<button class="secondary" onclick="xrayLab()">生成 X-Ray</button>
+<div id="xrayOut" class="feedback">会回答：底层资产、你的经济身份、收益来源、主要风险和流动性。</div></div></section>
+
+<section id="tool2"><div class="tool-title"><h2>36｜互动二：Wrapper or Asset?</h2><span class="badge">Asset / Vehicle / Strategy</span></div><div class="card">
+<label>对象<select id="wItem"><option>沪深股票指数ETF</option><option>债券基金</option><option>黄金ETF</option><option>REIT</option><option>Long/Short Fund</option><option>单只上市公司股票</option></select></label>
+<label>你的判断<select id="wGuess"><option>Asset</option><option>Vehicle</option><option>Strategy</option><option>组合：不止一层</option></select></label>
+<button class="secondary" onclick="wrapperLab()">检查</button>
+<div id="wrapperOut" class="feedback">重点不是背答案，而是训练“底层—载体—策略”三层视角。</div></div></section>
+
+<section id="tool3"><div class="tool-title"><h2>37｜互动三：Return Engine Lab</h2><span class="badge">它到底靠什么赚钱？</span></div><div class="card">
+<label>资产<select id="rAsset"><option>股票</option><option>债券</option><option>房地产</option><option>黄金</option><option>现金 / 存款</option><option>基础设施</option></select></label>
+<button class="secondary" onclick="returnLab()">拆解收益发动机</button>
+<div id="returnOut" class="feedback">不会预测未来收益，只解释经济来源。</div></div></section>
+
+<section id="tool4"><div class="tool-title"><h2>38｜互动四：My Asset World Map</h2><span class="badge">二维地图不是全部风险</span></div><div class="card">
+<p>选择资产后，页面会将它放入“流动性 × 结果不确定性”教学地图，同时显示额外风险标签。</p>
+<label>选择资产<select id="mapAsset"><option>现金</option><option>银行存款</option><option>高等级短债</option><option>长期债券</option><option>宽基股票</option><option>黄金</option><option>直接房地产</option><option>Private Equity</option></select></label>
+<button class="secondary" onclick="mapLab()">放到地图上</button>
+<div class="axis" id="assetAxis"></div>
+<div id="mapOut" class="feedback">二维位置只是概念示意，不能替代具体产品风险评估。</div>
+<button class="ghost" onclick="exportMap()">导出《我的资产世界地图 v1》</button>
+</div></section>
+
+<section id="summary"><div class="end"><h2>39｜如果这一章真正学会了，你应该多出这十句话</h2>
+<p><b>1. 我先判断底层资产，再看产品名字。</b></p>
+<p><b>2. Asset、Vehicle 和 Strategy 是不同层级。</b></p>
+<p><b>3. 基金和 ETF 的风险主要来自它们持有的底层资产和产品结构。</b></p>
+<p><b>4. 债券让我成为债权人，股票让我拥有剩余权益。</b></p>
+<p><b>5. 房地产既可以产生租金，也可能产生资本增值。</b></p>
+<p><b>6. 黄金和商品没有股票利润或债券票息那种内部现金流。</b></p>
+<p><b>7. Public / Private 改变市场结构，不改变股权和债权的基本经济性质。</b></p>
+<p><b>8. 杠杆不是资产，而是会放大资产结果的融资层。</b></p>
+<p><b>9. 多个基金不一定意味着真正分散，要看底层相关性。</b></p>
+<p><b>10. 我评价任何投资，都必须能解释收益从哪里来、主要风险是什么、多久能变回现金。</b></p>
+<p><b>下一章：</b>第 15 章将把“Contractual Claims”这一块单独拿出来：<b>债券——为什么借钱给别人能成为资产？</b></p>
+</div></section>
+
+<section id="refs"><h2>40｜本章资料来源与使用边界</h2><ol class="refs">
+<li><b>Investor.gov — Asset Classes / Asset Allocation and Diversification.</b> 用于股票、债券、现金三类主要资产，以及基金和 ETF 可作为分散化载体但不天然保证分散的框架。<br><a href="https://www.investor.gov/introduction-investing/getting-started/asset-allocation">Investor.gov</a></li>
+<li><b>Investor.gov — ETFs / Mutual Funds.</b> 用于基金和 ETF 汇集投资者资金并投资于股票、债券、货币市场工具或其他资产的定义，因此本章将它们主要视为持有载体。<br><a href="https://www.investor.gov/introduction-investing/investing-basics/investment-products/mutual-funds-and-exchange-traded-2">Investor.gov ETF</a></li>
+<li><b>CFA Institute — Alternative Investment Features, Methods, and Structures, 2026 Curriculum.</b> 用于 traditional vs alternative、private capital、real assets、hedge funds、流动性和结构复杂性等框架。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/alternative-investment-features-methods-and-structures">CFA Institute</a></li>
+<li><b>CFA Institute — Real Estate & Infrastructure / Natural Resources.</b> 用于房地产、基础设施和商品作为 real assets / natural resources 的特征，以及商品 hard / soft 分类。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/real-estate-and-infrastructure">CFA Real Estate & Infrastructure</a></li>
+<li><b>CFA Institute — Hedge Funds, 2026 Curriculum.</b> 用于“hedge fund 由投资方法而非单一底层资产定义”的框架。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/hedge-funds-l1">CFA Hedge Funds</a></li>
+<li><b>CFA Institute — Introduction to Digital Assets, 2026 Curriculum.</b> 用于数字资产类别和风险结构的概念边界。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/introduction-to-digital-assets">CFA Digital Assets</a></li>
+<li><b>课程边界说明.</b> 本章中的流动性和不确定性位置均为教学示意，不是资产评级。具体资产的风险取决于发行主体、期限、估值、市场、币种、杠杆、费用和投资者持有结构。</li>
+</ol></section>
+
+</article></main></div></div>
+
+<script>
+const done=new Set(); let worldMap={};
+function mark(k){done.add(k);const p=Math.round(done.size/4*100);taskPct.textContent=p+"%";taskProg.style.width=p+"%"}
+function readProgress(){const d=document.documentElement,h=d.scrollHeight-d.clientHeight,p=h>0?Math.round((d.scrollTop||0)/h*100):0;readPct.textContent=p+"%";readProg.style.width=p+"%"}window.addEventListener("scroll",readProgress);
+
+const xrayData={
+"银行存款":{under:"现金 / 银行负债",role:"银行债权人 / 存款人",ret:"存款利息；主要任务通常是支付、流动性与短期稳定",risk:"银行信用、制度边界、通胀购买力",liq:"高"},
+"公司债":{under:"公司债务",role:"债权人",ret:"票息 / 利息 + 价格变化 + 再投资",risk:"信用、利率、久期、流动性、通胀",liq:"通常中高，视市场与品种"},
+"普通股票":{under:"企业股权",role:"剩余所有者",ret:"企业增长 + 股息 / 分配 + 估值变化",risk:"企业经营、市场、估值、集中",liq:"公开市场通常较高"},
+"宽基股票ETF":{under:"一篮子股票",role:"通过 ETF 间接持有股票组合",ret:"底层企业增长 + 分配 + 市场重估，扣除产品成本",risk:"股票市场风险 + ETF结构 / 跟踪风险",liq:"通常较高，视市场"},
+"长期债券基金":{under:"长期债券组合",role:"通过基金间接持有债权",ret:"债券利息 + 价格变化 + 再投资，扣除费用",risk:"久期 / 利率风险较突出，另有信用与流动性风险",liq:"基金份额通常较高，底层风险仍存在"},
+"黄金ETF":{under:"黄金价格敞口（具体结构视产品）",role:"通过交易所产品持有黄金相关敞口",ret:"黄金价格变化 − 产品成本",risk:"黄金价格、产品结构、市场与可能的跟踪偏差",liq:"通常较高，视产品"},
+"REIT":{under:"收益型房地产 / 房地产经营资产",role:"通过证券化结构间接持有房地产经济权益",ret:"租金 / 经营现金流 + 资产价值变化",risk:"房地产、利率、经营、市场定价",liq:"上市 REIT 通常高于直接房产"},
+"自住房":{under:"直接房地产",role:"产权所有者 + 居住消费者",ret:"隐含居住服务 + 房价变化；可能没有外部租金",risk:"集中、低流动、地理位置、维修、融资",liq:"较低"},
+"货币市场基金":{under:"短期高流动性债务工具 / 现金等价物",role:"基金份额持有人",ret:"短期工具利息 − 基金成本",risk:"并非银行存款；存在底层信用、利率、流动性及产品结构风险",liq:"通常较高"},
+"Private Equity Fund":{under:"非上市企业股权",role:"通过私募基金间接持有私人股权",ret:"企业价值增长 + 退出变现",risk:"企业、估值、低流动性、杠杆、管理人与费用",liq:"低"}
+};
+
+function xrayLab(){
+  const d=xrayData[xAsset.value];
+  xrayOut.innerHTML=`<div class="grid2"><div class="asset-card"><h3>底层资产</h3><p>${d.under}</p></div><div class="asset-card"><h3>你的经济身份</h3><p>${d.role}</p></div><div class="asset-card"><h3>收益来源</h3><p>${d.ret}</p></div><div class="asset-card"><h3>主要风险</h3><p>${d.risk}</p></div></div><div class="callout green"><div class="label">Liquidity</div><b>${d.liq}</b></div>`;
+  worldMap.xray={item:xAsset.value,...d};mark("xray")
+}
+function wrapperLab(){
+  const item=wItem.value,guess=wGuess.value;
+  const ans={
+    "沪深股票指数ETF":{layer:"组合：不止一层",ex:"底层资产 = 股票；ETF = Vehicle；指数跟踪 = Strategy。"},
+    "债券基金":{layer:"组合：不止一层",ex:"底层资产 = 债券；基金 = Vehicle；具体策略视产品而定。"},
+    "黄金ETF":{layer:"组合：不止一层",ex:"底层经济敞口 = 黄金；ETF/交易所产品 = Vehicle；产品结构需继续核验。"},
+    "REIT":{layer:"组合：不止一层",ex:"底层 = 房地产经济权益；REIT = 持有 / 证券化结构。"},
+    "Long/Short Fund":{layer:"组合：不止一层",ex:"Fund = Vehicle；Long/Short = Strategy；底层可能是股票、债券或其他资产。"},
+    "单只上市公司股票":{layer:"Asset",ex:"核心是企业股权本身；证券账户只是持有和交易渠道。"}
+  }[item];
+  wrapperOut.innerHTML=`<p><b>${guess===ans.layer?"判断正确。":"需要调整。"} 正确拆法：</b></p><div class="callout blue">${ans.ex}</div>`;
+  worldMap.wrapper={item,guess,answer:ans};mark("wrapper")
+}
+function returnLab(){
+  const d={
+    "股票":["企业利润 / 现金流增长","股息或其他分配","估值 / 市场重新定价"],
+    "债券":["票息 / 利息","到期偿还与价格变化","再投资收益"],
+    "房地产":["净租金 / 经营现金流","资产价格变化","减去维护、税费、融资等成本"],
+    "黄金":["市场价格变化","供需、储值需求与宏观环境","减去持有 / 产品成本"],
+    "现金 / 存款":["利息收入","支付与流动性价值","长期真实结果受通胀影响"],
+    "基础设施":["项目运营现金流 / 使用费","合同或监管安排","资产价值与融资结构"]
+  }[rAsset.value];
+  returnOut.innerHTML=`<div class="grid3">${d.map((x,i)=>`<div class="metric"><span>Engine ${i+1}</span><b style="font-size:16px">${x}</b></div>`).join("")}</div><p class="small">这里解释“收益从哪里来”，不代表这些收益一定为正，也不预测未来回报。</p>`;
+  worldMap.returnEngine={asset:rAsset.value,engines:d};mark("return")
+}
+const mapData={
+"现金":{x:92,y:12,tags:["高流动性","低名义波动","通胀风险"]},
+"银行存款":{x:86,y:16,tags:["高流动性","银行信用 / 制度结构","通胀风险"]},
+"高等级短债":{x:76,y:25,tags:["信用","利率较低敏感度","现金流"]},
+"长期债券":{x:67,y:42,tags:["久期","利率","信用"]},
+"宽基股票":{x:72,y:72,tags:["企业盈利","市场波动","长期增长"]},
+"黄金":{x:70,y:63,tags:["无内部现金流","供需 / 储值","价格波动"]},
+"直接房地产":{x:28,y:48,tags:["低流动","集中","租金 / 房价"]},
+"Private Equity":{x:15,y:80,tags:["低流动","估值不透明","企业与杠杆风险"]}
+};
+function mapLab(){
+  assetAxis.innerHTML="";
+  Object.entries(mapData).forEach(([name,d])=>{
+    const e=document.createElement("span");e.className="dot";e.textContent=name;e.style.left=d.x+"%";e.style.top=(100-d.y)+"%";
+    if(name===mapAsset.value){e.style.background="#f1ddd5";e.style.borderColor="#8f342a";e.style.fontWeight="800"}
+    assetAxis.appendChild(e)
+  });
+  const d=mapData[mapAsset.value];
+  mapOut.innerHTML=`<p><b>${mapAsset.value}</b>：教学位置 = 流动性 ${d.x}/100；结果不确定性 ${d.y}/100。</p><p>${d.tags.map(x=>`<span class="badge">${x}</span>`).join(" ")}</p><p class="small">这不是评级。比如现金在这张图上波动低、流动性高，但仍有通胀风险；私人资产报价更少也不等于经济风险更低。</p>`;
+  worldMap.assetMap={asset:mapAsset.value,...d};mark("map")
+}
+function exportMap(){
+  const data={chapter:"14 一张图看懂所有主要资产",exported_at:new Date().toISOString(),map:worldMap,principles:["先识别底层资产，再看产品包装","区分Asset、Vehicle与Strategy","评价资产必须解释收益来源、主要风险和流动性","多个基金或ETF不代表自动分散，要检查底层暴露","区分资产风险与杠杆、币种、载体结构造成的额外风险"]};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="我的资产世界地图_v1.json";a.click();URL.revokeObjectURL(u)
+}
+xrayLab();mapLab();readProgress();
+</script>
+</body></html>

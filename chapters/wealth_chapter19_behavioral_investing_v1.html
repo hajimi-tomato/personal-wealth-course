@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十九章｜最大的投资风险可能是你自己—个人财富系统</title>
+<style>
+:root{
+  --bg:#efe1c3;--paper:#fbf3df;--ink:#332a22;--muted:#766858;--line:#d6c199;
+  --red:#8f342a;--redbg:#f1ddd5;--green:#455f4c;--greenbg:#dfe7dc;
+  --gold:#a77a2b;--goldbg:#f2e4bd;--blue:#445d70;--bluebg:#dce5e9;--deep:#2e2924;
+  --shadow:0 18px 50px rgba(74,52,28,.14)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);line-height:1.9;font-family:ui-serif,"Noto Serif SC","Source Han Serif SC","Songti SC",STSong,serif;background:radial-gradient(circle at 12% 7%,rgba(255,255,255,.45),transparent 25%),radial-gradient(circle at 88% 15%,rgba(100,74,40,.07),transparent 22%),repeating-linear-gradient(0deg,rgba(90,63,34,.022) 0 1px,transparent 1px 5px),var(--bg)}
+a{color:var(--green);text-underline-offset:3px}.wrap{max-width:1340px;margin:auto;padding:24px}.layout{display:grid;grid-template-columns:275px minmax(0,930px);gap:30px;justify-content:center;align-items:start}
+.sidebar{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto}.sidebox{background:rgba(251,243,223,.84);border:1px solid var(--line);border-radius:13px;padding:15px;margin-bottom:12px}.sidebox b{display:block}.sidebox small{color:var(--muted)}
+nav a{display:block;text-decoration:none;color:var(--muted);font-size:12px;padding:5px 7px;border-radius:7px}nav a:hover{background:#efdfbd;color:var(--ink)}
+.progress{height:7px;background:#e3d1aa;border-radius:999px;overflow:hidden;margin-top:8px}.progress i{display:block;height:100%;width:0;background:var(--red);transition:.2s}
+.paper{background:rgba(251,243,223,.97);border:1px solid rgba(170,143,96,.48);box-shadow:var(--shadow);border-radius:7px;overflow:hidden}
+.hero{padding:68px 74px 50px;border-bottom:1px solid var(--line);position:relative}.hero:before{content:"";position:absolute;left:28px;top:30px;bottom:30px;width:1px;background:rgba(143,52,42,.28)}
+.kicker{font-size:12px;letter-spacing:.18em;color:var(--red);font-weight:800}h1{font-size:49px;line-height:1.2;margin:13px 0 17px;letter-spacing:-.035em}.subtitle{font-size:20px;color:var(--muted);max-width:820px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 9px;background:#f7edd4;color:var(--muted)}
+.content{padding:54px 74px 76px}section{margin-bottom:62px}h2{font-size:30px;line-height:1.35;margin:0 0 18px}h3{font-size:21px;margin:30px 0 10px}p{margin:9px 0 16px}.lead{font-size:18px}
+.callout{padding:19px 21px;border-left:5px solid;margin:23px 0;border-radius:4px}.red{background:var(--redbg);border-color:var(--red)}.green{background:var(--greenbg);border-color:var(--green)}.gold{background:var(--goldbg);border-color:var(--gold)}.blue{background:var(--bluebg);border-color:var(--blue)}
+.label{font-size:11px;font-weight:800;letter-spacing:.14em;margin-bottom:4px}.card{padding:20px;border:1px solid var(--line);border-radius:10px;background:#fff9ea;margin:15px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.table th{font-size:11px;color:var(--muted)}
+.formula{background:var(--deep);color:#f8edd6;font:16px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:17px 19px;border-radius:8px;margin:18px 0}
+.case{padding:22px;border:1px solid var(--line);border-radius:10px;background:#faf0db;margin:14px 0}.casehead{display:flex;justify-content:space-between;gap:12px;align-items:baseline}.casehead b{font-size:18px}.casehead span{font-size:12px;color:var(--muted)}
+.quote{padding:23px 27px;background:#eee0c4;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:19px;margin:24px 0}
+.small{font-size:12px;color:var(--muted)}.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 7px;font-size:11px;background:#f6ead0;margin:2px}
+.metric{padding:15px;background:#f8edd4;border:1px solid var(--line);border-radius:9px}.metric b{display:block;font-size:20px;color:var(--green)}.metric span{font-size:12px;color:var(--muted)}
+input[type=text],input[type=number],select,textarea{width:100%;border:1px solid #c7ad80;background:#fffaf0;border-radius:7px;padding:10px 11px;color:var(--ink);font:inherit}textarea{min-height:88px;resize:vertical}
+input[type=range]{width:100%;accent-color:var(--red)}input[type=checkbox]{accent-color:var(--red)}
+button{border:0;border-radius:8px;padding:10px 15px;background:var(--red);color:#fff;font-weight:800;cursor:pointer}button.secondary{background:var(--green)}button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.feedback{margin-top:14px;padding:15px 17px;border:1px dashed #b69d70;border-radius:8px;background:#f5e9cf}.tool-title{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.flow{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap}.flowstep{flex:1 1 120px;padding:13px;border:1px solid var(--line);border-radius:9px;background:#fff9ea}.flowstep b{display:block}.arrow{align-self:center;color:var(--red);font-size:21px}
+.stage{padding:16px;border:1px solid var(--line);border-radius:10px;background:#fffaf0;margin:12px 0}.stage h3{margin:0 0 6px}.choice{display:flex;gap:8px;flex-wrap:wrap}.choice button{background:#6f6253}.choice button:hover{background:var(--red)}
+.matrix{display:grid;grid-template-columns:140px 1fr 1fr;border:1px solid var(--line);border-radius:9px;overflow:hidden}.matrix>div{padding:14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff9ea}.matrix .head{font-weight:800;background:#ead9b7}
+.guardrow{padding:13px 0;border-bottom:1px dashed var(--line)}
+.end{background:var(--deep);color:#f5ebd7;padding:28px;border-radius:9px}.end h2{color:#fff5df}.refs{font-size:13px;color:var(--muted)}.refs li{margin-bottom:10px}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{display:none}.hero,.content{padding-left:36px;padding-right:36px}}
+@media(max-width:780px){.wrap{padding:0}.paper{border-radius:0}.hero,.content{padding:30px 20px}h1{font-size:34px}.grid2,.grid3,.grid4{grid-template-columns:1fr}.arrow{transform:rotate(90deg);text-align:center}.matrix{grid-template-columns:90px 1fr 1fr;font-size:12px}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="layout">
+<aside class="sidebar">
+<div class="sidebox"><b>个人财富系统</b><small>第十九章 · 投资行为</small></div>
+<div class="sidebox"><small>阅读进度 <span id="readPct">0%</span></small><div class="progress"><i id="readProg"></i></div></div>
+<div class="sidebox"><small>互动完成度 <span id="taskPct">0%</span></small><div class="progress"><i id="taskProg"></i></div></div>
+<div class="sidebox"><nav>
+<a href="#goal">00 知道正确答案为什么还不够</a><a href="#bf">01 Behavioral Finance</a><a href="#notstupid">02 Bias ≠ Stupidity</a><a href="#types">03 Cognitive vs Emotional</a><a href="#moderate">04 Moderate vs Adapt</a><a href="#loop">05 Behavioral Error Loop</a><a href="#loss">06 Loss Aversion</a><a href="#reference">07 Reference Point</a><a href="#disposition">08 Disposition Effect</a><a href="#sunk">09 回本执念</a><a href="#regret">10 Regret / Status Quo</a><a href="#endowment">11 Endowment</a><a href="#overconfidence">12 Overconfidence</a><a href="#control">13 Illusion of Control</a><a href="#trading">14 Active Trading</a><a href="#confirmation">15 Confirmation</a><a href="#belief">16 Belief Perseverance</a><a href="#hindsight">17 Hindsight</a><a href="#anchoring">18 Anchoring</a><a href="#availability">19 Availability</a><a href="#recency">20 Recency</a><a href="#represent">21 Representativeness</a><a href="#chasing">22 Performance Chasing</a><a href="#familiarity">23 Familiarity</a><a href="#herding">24 Herding / FOMO</a><a href="#panic">25 Panic Selling</a><a href="#framing">26 Framing</a><a href="#mental">27 Mental Accounting</a><a href="#selfcontrol">28 Self-Control</a><a href="#attention">29 Attention / Noise</a><a href="#action">30 Action Bias</a><a href="#outcome">31 Outcome Bias</a><a href="#skillluck">32 Skill vs Luck</a><a href="#behaviorgap">33 Behavior Gap</a><a href="#monitor">34 Monitoring Frequency</a><a href="#guardrails">35 Guardrails</a><a href="#precommit">36 Precommitment</a><a href="#cooling">37 Cooling-Off</a><a href="#checklist">38 Checklist</a><a href="#base">39 Base Rate</a><a href="#disconfirm">40 Disconfirming Evidence</a><a href="#journal">41 Decision Journal</a><a href="#ips">42 IPS as Behavior Tool</a><a href="#automation">43 Automation</a><a href="#change">44 什么时候真正改变计划</a><a href="#cases">45 四个案例</a><a href="#mistakes">46 十个误区</a><a href="#tool1">47 Bias Detective</a><a href="#tool2">48 Market Stress Lab</a><a href="#tool3">49 Trading Friction Lab</a><a href="#tool4">50 Guardrail Builder</a><a href="#summary">51 总结</a><a href="#refs">52 资料与注释</a>
+</nav></div></aside>
+
+<main class="paper">
+<header class="hero"><div class="kicker">CHAPTER 19 · BEHAVIORAL INVESTING</div><h1>最大的投资风险可能是你自己</h1><div class="subtitle">损失厌恶、过度自信、近期偏误、追涨杀跌与决策纪律：真正需要控制的，不只是市场，而是“市场如何进入你的决策”。</div><div class="meta"><span class="pill">预计阅读 100–120 分钟</span><span class="pill">Stage VI 收口章</span><span class="pill">4 个行为实验</span><span class="pill">最终产物：投资行为防错系统 v1</span></div></header>
+
+<article class="content">
+<section id="goal"><h2>00｜为什么“知道应该长期投资”还不够？</h2><p class="lead">第十八章已经把一个理性 Portfolio System 写得很清楚：目标、战略资产配置、容忍区间、再平衡、IPS。但真正危险的测试发生在市场跌 30%、新闻连续报道危机、朋友开始清仓、账户里是真实亏损的时候。</p><div class="callout red"><div class="label">本章边界</div><b>这里不是说市场风险、信用风险或通胀风险不重要，而是说：原本可以承受的风险，可能因为投资者在最坏时点改变计划而变成永久损失。</b></div></section>
+
+<section id="bf"><h2>01｜Behavioral Finance：研究的是现实中的决策，而不是完美理性模型</h2><p>CFA 2026 仍然把行为金融建立在一个很实际的出发点上：复杂决策中，人们会依赖快速、直觉化的判断和偏好简化问题。这些捷径很多时候有效，但也可能系统性地产生次优决策。</p><p>传统理论经常假设人会处理全部信息并稳定追求最优结果；行为金融则研究现实中人和市场究竟怎样行动。</p></section>
+
+<section id="notstupid"><h2>02｜Bias ≠ Stupidity：偏误不是智力测试答错</h2><p>一个非常懂金融、逻辑能力很强的人仍然可能出现 Confirmation Bias、Loss Aversion 和 Overconfidence。因为行为偏误不是简单的“知识缺失”，而是人在不确定性、压力和复杂信息环境里反复出现的决策模式。</p><div class="quote"><b>知识可以降低部分错误，但知识本身不能保证执行纪律。</b></div></section>
+
+<section id="types"><h2>03｜Cognitive Error 与 Emotional Bias</h2><div class="grid2"><div class="card"><b>Cognitive Errors</b><p>更多来自统计、记忆、信息处理和推理偏差，例如 Confirmation、Representativeness、Anchoring、Framing、Availability、Hindsight。</p></div><div class="card"><b>Emotional Biases</b><p>更多来自感觉、冲动和直觉，例如 Loss Aversion、Overconfidence、Self-Control、Status Quo、Endowment、Regret Aversion。</p></div></div><p>CFA 2026 仍然沿用这一分类，并指出认知错误通常更容易通过教育和改进推理流程缓解，而情绪偏误往往更难直接消除。</p></section>
+
+<section id="moderate"><h2>04｜Moderate vs Adapt：不是所有偏误都靠“克服”</h2><div class="grid2"><div class="card"><b>Moderate</b><p>尝试纠正推理，例如强制检查 Base Rate、寻找反证、使用清单。</p></div><div class="card"><b>Adapt</b><p>承认某种情绪很难消失，于是在组合和流程中适应它。</p></div></div><p>如果你知道自己在 30% 回撤时几乎无法执行计划，最现实的解决方案可能不是“训练到完全不害怕”，而是从一开始就不要设计一个必须承受极端回撤才能坚持的组合。</p></section>
+
+<section id="loop"><h2>05｜Behavioral Error Loop：一次投资错误是怎样一步步形成的？</h2>
+<div class="flow"><div class="flowstep"><b>Market Event</b><span>价格、新闻、他人行为</span></div><div class="arrow">→</div><div class="flowstep"><b>Emotion / Attention</b><span>恐惧、兴奋、焦虑</span></div><div class="arrow">→</div><div class="flowstep"><b>Interpretation</b><span>“这次不一样”</span></div><div class="arrow">→</div><div class="flowstep"><b>Bias</b><span>近期、锚定、确认</span></div></div>
+<div class="flow" style="margin-top:9px"><div class="flowstep"><b>Impulse</b><span>马上做点什么</span></div><div class="arrow">→</div><div class="flowstep"><b>Trade / No Trade</b><span>执行</span></div><div class="arrow">→</div><div class="flowstep"><b>Outcome</b><span>赚 / 亏</span></div><div class="arrow">→</div><div class="flowstep"><b>Self-Story</b><span>重新解释过去</span></div></div>
+<p>最危险的是最后一步：一次错误决策如果刚好赚钱，可能反而强化下一次错误。</p></section>
+
+<section id="loss"><h2>06｜Loss Aversion：亏 1000 的痛，通常不等于赚 1000 的快乐</h2><p>损失厌恶不是简单“不喜欢亏钱”，而是收益与损失在心理效用上不对称。于是投资者可能为了避免“承认损失”继续承担一个已经不值得承担的风险。</p><p>CFA 2026 仍将 Loss Aversion 列为典型情绪偏误。</p></section>
+
+<section id="reference"><h2>07｜Reference Point：亏损是相对于什么？</h2><p>100 元买入，现在 70 元。大脑很容易自动把 100 元设置成参考点，于是 70 不再被看成“今天价值 70 的资产”，而被看成“亏了 30”。</p><div class="callout blue"><div class="label">Forward-Looking Test</div><b>如果今天你手里不是这项资产，而是 70 元现金，你还会不会以 70 元主动买入它？</b></div></section>
+
+<section id="disposition"><h2>08｜Disposition Effect：过早卖赢家、过久留输家</h2><p>Investor.gov 的行为投资公告把 disposition effect 描述为：投资者倾向于持有亏损投资过久，同时过早卖出盈利投资。</p><p>Odean 对个人券商账户的经典研究也观察到盈利头寸更容易被实现，而亏损头寸更容易继续持有。</p><div class="callout gold"><div class="label">但不要机械化</div><b>继续持有亏损资产并不自动等于偏误。关键问题是：你继续持有因为未来 thesis 仍然成立，还是只是因为不想承认过去亏了？</b></div></section>
+
+<section id="sunk"><h2>09｜“等回本再卖”不是一个完整投资理由</h2><p>你的成本价不会给未来市场回报施加魔法。真正应该判断的是从今天开始的未来预期收益、风险和机会成本。</p><div class="formula">Decision Today should depend on Future Opportunity Cost, not Historical Purchase Price</div></section>
+
+<section id="regret"><h2>10｜Regret Aversion 与 Status Quo：不行动也可能被情绪驱动</h2><p>投资者可能因为害怕“卖了就涨”“买了就跌”而不做任何决定，也可能因为大家都做同样的事而减少个人后悔感。</p><p>Status Quo Bias 则会让默认配置极其粘滞。几年过去，即使目标、收入和期限已经变化，也可能因为“原来就是这样”而不重新检查。</p></section>
+
+<section id="endowment"><h2>11｜Endowment Effect：进入“我的账户”以后，资产会被额外偏爱</h2><p>“这是我第一只基金”“这是我一直持有的公司”是一种情感归属，不是经济价值。拥有本身可能让人高估资产继续持有的理由。</p></section>
+
+<section id="overconfidence"><h2>12｜Overconfidence：真正危险的不是“我是股神”，而是信心略高于真实能力</h2><p>一个人觉得自己判断有 70% 把握，但真实准确率可能只有 55%。这种不大的 Confidence Gap 足以造成过度集中、过高仓位和过多交易。</p><div class="grid3"><div class="card"><b>低估风险</b></div><div class="card"><b>高估预测能力</b></div><div class="card"><b>把运气当技能</b></div><div class="card"><b>集中持仓</b></div><div class="card"><b>频繁交易</b></div><div class="card"><b>过度使用杠杆</b></div></div></section>
+
+<section id="control"><h2>13｜Illusion of Control：操作更多，不等于控制更多</h2><p>市场不好就换基金、新闻出来就调仓、下跌就加仓、上涨就追买——大量操作会制造“我正在控制风险”的主观感觉，但也会增加成本、时点判断和决策错误的次数。</p><div class="quote"><b>More Actions can create more control feeling without creating more control.</b></div></section>
+
+<section id="trading"><h2>14｜Active Trading：每一次主动交易都要先跨过成本门槛</h2><p>Investor.gov 将 active trading 列为可能削弱投资表现的典型行为之一。经典个人投资者研究也发现，频繁交易者往往承担显著交易拖累。</p><div class="formula">Net Edge = Gross Decision Edge − Fees − Spread − Tax / Friction − Decision Errors</div><p>不是“交易一定错误”，而是每一次额外交易都必须拥有足够真实优势，覆盖额外摩擦和判断错误概率。</p></section>
+
+<section id="confirmation"><h2>15｜Confirmation Bias：买入以后，投资逻辑最容易变成身份防御</h2><p>支持自己判断的新闻被记住；竞争恶化被称为“短期噪音”；财报不及预期被解释成“市场不懂”。当一个 thesis 永远找不到可以证伪它的事实时，它已经不再是可检验的投资判断。</p><div class="callout red"><div class="label">强制问题</div><b>什么证据出现时，我愿意承认原判断可能错了？</b></div></section>
+
+<section id="belief"><h2>16｜Belief Perseverance：新信息来了，但旧观点更新得太慢</h2><p>确认偏误偏向寻找支持信息；信念固着则让原观点在反证已经出现后仍继续维持。解决方式之一是把原 thesis 和失效条件写在交易之前，而不是事后凭记忆重构。</p></section>
+
+<section id="hindsight"><h2>17｜Hindsight Bias：事情发生以后，“我早就知道”特别容易出现</h2><p>市场跌完后，“当时一看就危险”；股票涨完后，“这个趋势其实很明显”。如果当时没有记录这些判断，你可能正在重写自己的历史。</p><div class="formula">Memory after Outcome ≠ Original Decision Record</div></section>
+
+<section id="anchoring"><h2>18｜Anchoring：成本价、历史高点和目标价都可能变成心理锚</h2><p>“它以前 200，现在 100，所以便宜一半”没有完整经济意义。过去价格并不能单独决定今天的价值。</p><p>第十六章的 Price ≠ Value，在这一章变成：<b>Price History ≠ Valuation Framework。</b></p></section>
+
+<section id="availability"><h2>19｜Availability Bias：越容易想起，不代表概率越高</h2><p>连续看三起公司爆雷，很容易产生“股票都危险”的感觉；连续刷到 AI 股票翻倍，又可能感觉“这个行业都在赚钱”。</p><div class="formula">Ease of Recall ≠ Probability</div></section>
+
+<section id="recency"><h2>20｜Recency Bias：最近发生的事情被无限外推</h2><p>CFA 2026 的现实资产配置课程专门把 recency bias 列为会干扰长期配置的重要偏误。</p><p>连续三年上涨后，“以后大概每年都这样”；连续一年大跌后，“股票时代结束了”。这实际上是在用一个很短样本替代长期不确定分布。</p></section>
+
+<section id="represent"><h2>21｜Representativeness：看起来像“下一个赢家”，不代表拥有相同基准率</h2><p>一家新公司拥有年轻创始人、热门行业和高速收入增长，于是被快速归类成“下一个成功者”。问题是：表面相似性替代了更重要的 Base Rate、商业模式和资本回报。</p></section>
+
+<section id="chasing"><h2>22｜Performance Chasing：第十七章的基金排名，在这里变成行为问题</h2><p>过去一年 +60% 的基金看起来比 +5% 的基金更有吸引力，但近期赢家可能已经拥有更高估值、更集中风险或刚好处于风格顺风期。</p><div class="quote"><b>Past Winner ≠ Future Winner。</b></div></section>
+
+<section id="familiarity"><h2>23｜Familiarity Bias：熟悉不等于安全</h2><p>Investor.gov 将 familiarity bias 描述为偏好自己熟悉的国家、地区、公司或热门资产，这可能造成组合集中。</p><p>你使用某公司产品、在某行业工作、每天看到某品牌，都不意味着它天然风险更低。</p></section>
+
+<section id="herding"><h2>24｜Herding 与 FOMO：别人行动正在替你完成判断</h2><p>朋友买、社交媒体买、新闻都在说、价格持续上涨，会形成非常强的 Social Proof。</p><p>FOMO 的关键变化是：“没有参与上涨”开始被心理感受成一种损失，于是风险预算在没有重新规划的情况下临时扩大。</p></section>
+
+<section id="panic"><h2>25｜Panic Selling：上涨时风险感觉消失，下跌时风险突然巨大</h2><p>如果战略配置在高位时可以承受，但价格下跌后突然被认为“无法承受”，需要检查的是：客观风险能力真的改变了吗，还是 Loss Aversion 和 Availability 正在重写原计划？</p></section>
+
+<section id="framing"><h2>26｜Framing：同一个风险，用不同语言表达会产生不同心理感受</h2><div class="grid2"><div class="card"><b>Frame A</b><p>“有 10% 概率亏损 20%。”</p></div><div class="card"><b>Frame B</b><p>“有 90% 概率不会亏损 20%。”</p></div></div><p>逻辑信息接近，心理感受却可能不同。因此风险沟通应尽量同时展示收益、损失、回撤和目标短缺等多个角度。</p></section>
+
+<section id="mental"><h2>27｜Mental Accounting：心理账户既能伤害，也能被利用</h2><p>坏的一面：“这是股票赚来的钱，可以赌一点”；好的一面：Goals-Based Investing 可以有意识地把不同目标分桶，为不同任务设置不同风险预算。</p><div class="callout green"><div class="label">Behavioral Design</div><b>偏误不一定只有“消灭”一种处理方式，有时可以结构化利用人本来就存在的心理倾向。</b></div></section>
+
+<section id="selfcontrol"><h2>28｜Self-Control：有效系统不能只依赖意志力</h2><p>上涨想追、下跌想逃、无聊想操作。真正可靠的投资系统应该尽量降低“每一次都重新做决定”的次数。</p><div class="formula">Better System Design → Fewer High-Stress Decisions → Less Reliance on Willpower</div></section>
+
+<section id="attention"><h2>29｜Attention / Noise：更多信息不一定意味着更好判断</h2><p>更多资讯可能增加 Noise、FOMO 和 Decision Frequency。真正需要的是 Relevant Information，而不是 Maximum Information。</p><p>新闻本身不是交易指令，排行榜也不是交易指令。</p></section>
+
+<section id="action"><h2>30｜Action Bias：市场越剧烈，越容易觉得“必须做点什么”</h2><p>如果目标、期限、风险能力和 IPS 都没有改变，最符合计划的动作有时可能真的是 No Action。</p><div class="quote"><b>不交易也可以是经过规则判断后的主动选择。</b></div></section>
+
+<section id="outcome"><h2>31｜Outcome Bias：赚钱不能自动证明决策正确</h2>
+<div class="matrix">
+<div class="head"></div><div class="head">Good Outcome</div><div class="head">Bad Outcome</div>
+<div class="head">Good Process</div><div>合理分散，市场上涨。</div><div>合理分散，但恰逢市场崩盘。</div>
+<div class="head">Bad Process</div><div>满仓单股，刚好翻倍。</div><div>满仓单股，发生永久损失。</div>
+</div>
+<p>真正值得长期重复的是 Good Process，而不是只挑 Good Outcome。</p></section>
+
+<section id="skillluck"><h2>32｜Skill vs Luck：金融市场的反馈非常嘈杂</h2><p>一次赚钱可能来自分析能力，也可能来自市场 Beta、运气，甚至“错误判断 + 幸运结果”。样本太小的时候，最危险的学习是把随机结果升级成个人能力。</p></section>
+
+<section id="behaviorgap"><h2>33｜Behavior Gap：产品回报和投资者实际体验为什么可能不同？</h2><p>行业里对 Behavior Gap 有不同具体衡量方式。本课程只用它表达一个概念：产品本身提供的长期回报，和投资者因为追涨杀跌、资金进出时点和频繁切换实际获得的结果可能不同。</p><div class="callout gold"><div class="label">边界</div><b>本章不提供“普通投资者每年固定因为行为损失 X%”这种过度概括数字。</b></div></section>
+
+<section id="monitor"><h2>34｜Monitoring Frequency：你多久看一次账户，本身也是行为设计</h2><p>30 年目标每天查看，会接收到大量与目标期限不匹配的短期盈亏反馈。这不是说“永远不要看账户”，而是提醒：观察频率会改变你对风险的主观体验，也会改变行动冲动的频率。</p></section>
+
+<section id="guardrails"><h2>35｜真正的解决方案：从 Understanding Bias 转向 Designing Guardrails</h2><p>知道“我可能损失厌恶”并不会自动解决问题。真正有效的是在 Emotion 与 Execution 之间插入治理结构。</p><div class="flow"><div class="flowstep"><b>Market / Emotion</b></div><div class="arrow">→</div><div class="flowstep"><b>IPS</b></div><div class="arrow">→</div><div class="flowstep"><b>Checklist</b></div><div class="arrow">→</div><div class="flowstep"><b>Cooling-Off</b></div><div class="arrow">→</div><div class="flowstep"><b>Action</b></div></div></section>
+
+<section id="precommit"><h2>36｜Precommitment：在冷静时，替压力中的自己先决定规则</h2><p>例如：战略配置只有在目标、期限、流动性或财务情况实质改变时才重新评估；单日价格变化不能直接触发战略调整；再平衡使用预先定义的容忍区间。</p></section>
+
+<section id="cooling"><h2>37｜Cooling-Off Rule：人为增加一点 Decision Friction</h2><p>非计划内的大额组合调整，先经过 12 / 24 / 48 小时冷静期。这里没有“24 小时科学最优值”，真正目的是让 Impulse 和 Execution 之间出现距离。</p></section>
+
+<section id="checklist"><h2>38｜Checklist：交易前先把冲动翻译成问题</h2><ol>
+<li>为什么要交易？</li><li>哪条原假设真正改变了？</li><li>是目标变化，还是只有价格变化？</li><li>有什么反对证据？</li><li>比较基准是什么？</li><li>交易成本和机会成本是什么？</li><li>如果今天没有持有，我会以当前价格主动买入吗？</li><li>交易以后市场立刻反向，我仍认可这个决策过程吗？</li>
+</ol></section>
+
+<section id="base"><h2>39｜Base Rate / Outside View：先看同类历史，再听故事</h2><p>不要只问“这家公司故事很像下一个成功者吗”，也问类似公司长期成功比例如何；不要只看“基金去年第一”，也看冠军基金持续保持领先有多难。</p><p>Outside View 是对 Representativeness 和 Availability 很有力的结构化纠偏。</p></section>
+
+<section id="disconfirm"><h2>40｜Disconfirming Evidence：主动寻找会让自己不舒服的信息</h2><p>买入前至少写三件事：如果发生，我会认为自己的 thesis 可能错了。之后复盘时主动检查这些反证，而不是只寻找支持故事。</p></section>
+
+<section id="journal"><h2>41｜Decision Journal：记录过程，而不是只记录买入价</h2><table class="table"><thead><tr><th>字段</th><th>记录什么</th></tr></thead><tbody>
+<tr><td>Decision</td><td>准备做什么。</td></tr><tr><td>Information Available</td><td>当时真正知道什么。</td></tr><tr><td>Thesis</td><td>为什么认为值得行动。</td></tr><tr><td>Confidence</td><td>主观把握程度。</td></tr><tr><td>Alternative Explanation</td><td>还有什么可能解释。</td></tr><tr><td>Disconfirming Evidence</td><td>什么会证明自己错。</td></tr><tr><td>Benchmark</td><td>相对什么判断。</td></tr><tr><td>Review Date</td><td>什么时候复盘。</td></tr><tr><td>Outcome / Process</td><td>结果怎样，过程是否合理。</td></tr>
+</tbody></table></section>
+
+<section id="ips"><h2>42｜IPS：第十八章的 Portfolio Constitution，也是这一章的 Behavioral Constitution</h2><p>CFA 2026 在现实资产配置中强调，正式政策、纪律化框架和允许区间有助于降低 loss aversion、illusion of control、mental accounting、recency、framing 和 availability 等偏误对长期配置的干扰。</p><div class="quote"><b>IPS 的价值不是让你预测更准，而是减少每一次市场波动都重新发明决策规则。</b></div></section>
+
+<section id="automation"><h2>43｜Automation：机器不一定比你聪明，但它不会每个月重新犹豫一次</h2><p>自动储蓄、自动投入目标账户、自动投资计划、规则化再平衡都可以减少重复调用意志力。</p><div class="formula">Good Automation = fewer unnecessary discretionary decisions</div></section>
+
+<section id="change"><h2>44｜什么情况下应该真正改变投资计划？</h2><div class="grid2"><div class="card"><b>值得重新评估</b><p>人生目标变化、期限改变、流动性需求变化、收入 / 负债结构变化、关键 thesis 被证伪、产品结构发生变化。</p></div><div class="card"><b>本身不够</b><p>单日大跌、热搜、朋友盈利截图、某基金一年排名第一、资产刚好回到成本价。</p></div></div><p>长期主义不是永远不改变观点；它要求变化由 Evidence 和 Objective Change 驱动，而不是由即时情绪驱动。</p></section>
+
+<section id="cases"><h2>45｜四个现实案例</h2>
+<div class="case"><div class="casehead"><b>A｜牛市三年后把股票目标从 60% 提到 90%</b><span>Recency + FOMO + Overconfidence</span></div><p>如果个人目标、期限和风险能力没有变化，发生变化的主要是近期市场表现和主观信心。</p></div>
+<div class="case"><div class="casehead"><b>B｜100 买入跌到 60，“必须等回 100 再卖”</b><span>Anchoring + Loss Aversion</span></div><p>真正应该问：如果今天手上是 60 元现金，我会不会以 60 元重新买入？</p></div>
+<div class="case"><div class="casehead"><b>C｜连续刷危机新闻三天后清仓</b><span>Availability + Panic</span></div><p>不是说清仓一定错误，而是先检查有没有新的目标、期限或资产事实真正足以改变原 IPS。</p></div>
+<div class="case"><div class="casehead"><b>D｜过去三次选股都赚钱，于是加杠杆集中仓位</b><span>Outcome Bias + Overconfidence</span></div><p>三次结果无法区分技能、Beta 和运气；小样本成功最容易制造危险信心。</p></div>
+</section>
+
+<section id="mistakes"><h2>46｜十个最容易学错的地方</h2>
+<div class="callout red"><div class="label">误区 1</div><b>行为金融就是证明投资者很笨。</b></div>
+<div class="callout red"><div class="label">误区 2</div><b>知道偏误名字以后就不会再犯。</b></div>
+<div class="callout red"><div class="label">误区 3</div><b>继续持有亏损资产一定是 Loss Aversion。</b></div>
+<div class="callout red"><div class="label">误区 4</div><b>频繁交易一定错误。</b></div>
+<div class="callout red"><div class="label">误区 5</div><b>不交易一定理性。</b></div>
+<div class="callout red"><div class="label">误区 6</div><b>长期投资就是永远不改变 thesis。</b></div>
+<div class="callout red"><div class="label">误区 7</div><b>一次赚钱就证明过程正确。</b></div>
+<div class="callout red"><div class="label">误区 8</div><b>专业投资者不会有行为偏误。</b></div>
+<div class="callout red"><div class="label">误区 9</div><b>更多信息一定提高投资质量。</b></div>
+<div class="callout red"><div class="label">误区 10</div><b>行为控制主要靠意志力，而不是制度设计。</b></div>
+</section>
+
+<section id="tool1"><div class="tool-title"><h2>47｜互动一：Bias Detective</h2><span class="badge">一个行为可以同时来自多个偏误</span></div><div class="card">
+<label>选择场景<select id="bScene">
+<option>股票跌30%，我决定等回成本价再卖</option>
+<option>基金去年第一，所以我把大部分钱换进去</option>
+<option>我连续三次选股赚钱，所以决定加杠杆</option>
+<option>新闻连续报道危机，我觉得所有股票都危险</option>
+<option>大家都在买AI资产，我不买就像在亏钱</option>
+<option>这是我持有了十年的公司，所以不想卖</option>
+</select></label>
+<label>你认为最主要的偏误<select id="bGuess">
+<option>Loss Aversion / Anchoring</option><option>Recency / Performance Chasing</option><option>Overconfidence / Outcome Bias</option><option>Availability Bias</option><option>Herding / FOMO</option><option>Endowment / Status Quo</option>
+</select></label>
+<button class="secondary" onclick="biasLab()">检查 Bias Cluster</button>
+<div id="biasOut" class="feedback">很多现实行为不是单一偏误造成的，所以这里会返回“偏误簇 + 行为结果”。</div>
+</div></section>
+
+<section id="tool2"><div class="tool-title"><h2>48｜互动二：Market Stress Lab</h2><span class="badge">测试计划一致性，不预测市场</span></div><div class="card">
+<div class="grid2"><label>战略股票目标（%）<input id="sTarget" type="number" value="60"></label><label>允许容忍带（±百分点）<input id="sBand" type="number" value="5"></label></div>
+<label>什么条件才允许你改变战略配置？<textarea id="sTrigger">目标、期限、流动性或风险承受能力发生实质变化</textarea></label>
+<button class="secondary" onclick="startStress()">开始压力情景</button>
+<div id="stressBox"></div><div id="stressOut" class="feedback">你的选择会和预先填写的政策规则比较，而不是和事后市场涨跌比较。</div>
+</div></section>
+
+<section id="tool3"><div class="tool-title"><h2>49｜互动三：Trading Friction Lab</h2><span class="badge">主动决策需要跨过成本门槛</span></div><div class="card">
+<div class="grid2"><label>初始本金<input id="tPrincipal" type="number" value="100000"></label><label>基础毛收益假设（%/年）<input id="tBase" type="number" value="7" step="0.1"></label><label>持有年数<input id="tYears" type="number" value="20"></label><label>每年主动交易次数<input id="tTrades" type="number" value="24"></label><label>每次综合摩擦（%）<input id="tCost" type="number" value="0.08" step="0.01"></label><label>每年主动交易 Gross Edge（%）<input id="tEdge" type="number" value="1" step="0.1"></label></div>
+<button class="secondary" onclick="frictionLab()">计算交易门槛</button>
+<div id="frictionOut" class="feedback"></div>
+</div></section>
+
+<section id="tool4"><div class="tool-title"><h2>50｜互动四：Behavior Guardrail Builder</h2><span class="badge">把认知变成制度</span></div><div class="card">
+<div class="grid2">
+<label>账户查看频率<select id="gCheck"><option>每天</option><option>每周</option><option selected>每月</option><option>每季度</option></select></label>
+<label>非计划交易冷静期<select id="gCool"><option>立即执行</option><option>12 小时</option><option selected>24 小时</option><option>48 小时</option></select></label>
+<label>再平衡规则<select id="gRebalance"><option>按日历检查</option><option selected>按容忍区间触发</option><option>优先用新增资金</option><option>尚未确定</option></select></label>
+<label>决策日志复盘频率<select id="gReview"><option>每月</option><option selected>每季度</option><option>每半年</option><option>每年</option></select></label>
+</div>
+<label>什么事情允许改变战略配置？<textarea id="gChange">目标、期限、流动性、收入/负债或风险承受能力发生实质变化。</textarea></label>
+<label>哪些东西不能单独成为交易理由？<textarea id="gNoTrade">单日涨跌；社交媒体热搜；朋友盈利截图；单一年份基金排名；资产刚好回到我的成本价。</textarea></label>
+<label>交易前必须检查什么？<textarea id="gChecklist">哪条原假设改变？有什么反证？比较基准是什么？成本是多少？如果今天没有持有，我还会以当前价格主动买入吗？</textarea></label>
+<label>我的信息饮食规则<textarea id="gInfo">长期目标不需要用每日行情管理；新闻用于理解背景，不直接触发战略交易。</textarea></label>
+<button class="secondary" onclick="guardrailLab()">生成行为防错系统</button>
+<div id="guardOut" class="feedback"></div>
+<button class="ghost" onclick="exportSystem()">导出《我的投资行为防错系统 v1》</button>
+</div></section>
+
+<section id="summary"><div class="end"><h2>51｜如果这一章真正学会了，你应该多出这十句话</h2>
+<p><b>1. 行为偏误不是愚蠢，而是复杂和高压力环境中的系统性决策倾向。</b></p>
+<p><b>2. 我的买入成本不是未来价值的决定因素。</b></p>
+<p><b>3. 我会区分 Good Process 和 Good Outcome，不用一次赚钱证明能力。</b></p>
+<p><b>4. 我会主动寻找反对自己 thesis 的证据。</b></p>
+<p><b>5. 最近发生的市场表现不会自动被我无限外推。</b></p>
+<p><b>6. 更多操作不自动等于更多控制，额外交易必须覆盖额外摩擦和错误概率。</b></p>
+<p><b>7. 新闻、热搜、朋友收益截图和排行榜本身不是交易指令。</b></p>
+<p><b>8. 我的再平衡由预定政策触发，而不是由恐惧或兴奋触发。</b></p>
+<p><b>9. 真正改变长期计划需要新的事实：目标、期限、财务情况、风险能力或 thesis 改变。</b></p>
+<p><b>10. 我不只训练意志力，而是用 IPS、清单、冷静期、自动化和决策日志建立 Governance Layer。</b></p>
+<p><b>下一章：</b>第二十章将把前 19 章全部汇总进最终毕业作品：<b>《我的个人财富系统》</b>。</p>
+</div></section>
+
+<section id="refs"><h2>52｜本章资料来源与使用边界</h2><ol class="refs">
+<li><b>CFA Institute — The Behavioral Biases of Individuals, 2026 Curriculum.</b> 用于 cognitive errors / emotional biases、confirmation、representativeness、illusion of control、hindsight、anchoring、mental accounting、framing、availability、loss aversion、overconfidence、self-control、status quo、endowment、regret aversion，以及 moderate / adapt 框架。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/the-behavioral-biases-of-individuals">CFA Institute</a></li>
+<li><b>CFA Institute — Asset Allocation with Real-World Constraints, 2026 Curriculum.</b> 用于 loss aversion、illusion of control、mental accounting、recency、framing、availability 等如何干扰资产配置，以及政策区间 / IPS 作为行为约束的思路。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/asset-allocation-with-real-world-constraints">CFA Asset Allocation</a></li>
+<li><b>Investor.gov — Behavioral Patterns of U.S. Investors.</b> 用于 active trading、disposition effect、past-performance focus、familiarity bias、manias / panics、momentum、naïve diversification、noise trading 和 inadequate diversification 的投资者教育。<br><a href="https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-72">Investor.gov</a></li>
+<li><b>Odean — Are Investors Reluctant to Realize Their Losses?</b> 经典个人投资者账户研究，用于 disposition effect 的经验背景。<br><a href="https://faculty.haas.berkeley.edu/odean/papers/disposition/disposit.pdf">Odean paper</a></li>
+<li><b>Barber & Odean / Individual Investor Research.</b> 用于频繁交易、个体投资者交易行为及技能与成本问题的研究背景。本章不把这些历史样本直接外推成“所有投资者必然如此”。</li>
+<li><b>课程边界说明.</b> 本章中的行为情景不构成心理诊断，也不对用户进行“理性 / 非理性评分”。互动只用于识别投资决策环境中的行为风险，并把规则、流程、摩擦和自动化转化为个人治理工具。</li>
+</ol></section>
+</article></main></div></div>
+
+<script>
+const done=new Set();let behaviorSystem={stress:[],guardrails:{}},stressStep=0,stressChoices=[];
+function mark(k){done.add(k);const p=Math.round(done.size/4*100);taskPct.textContent=p+"%";taskProg.style.width=p+"%";saveLocal()}
+function readProgress(){const d=document.documentElement,h=d.scrollHeight-d.clientHeight,p=h>0?Math.round((d.scrollTop||0)/h*100):0;readPct.textContent=p+"%";readProg.style.width=p+"%"}window.addEventListener("scroll",readProgress)
+function saveLocal(){try{localStorage.setItem("finance_ch19_behavior",JSON.stringify(behaviorSystem))}catch(e){}}
+const scenes={
+"股票跌30%，我决定等回成本价再卖":{main:"Loss Aversion / Anchoring",cluster:["Anchoring","Loss Aversion","可能表现为 Disposition Effect"],result:"历史成本价开始替代未来价值判断。"},
+"基金去年第一，所以我把大部分钱换进去":{main:"Recency / Performance Chasing",cluster:["Recency","Performance Chasing","Representativeness"],result:"近期结果被外推成未来能力。"},
+"我连续三次选股赚钱，所以决定加杠杆":{main:"Overconfidence / Outcome Bias",cluster:["Overconfidence","Outcome Bias","Illusion of Control","Small-Sample Learning"],result:"短期好结果被升级成稳定技能。"},
+"新闻连续报道危机，我觉得所有股票都危险":{main:"Availability Bias",cluster:["Availability","Loss Aversion","Attention Bias"],result:"容易想起的风险被感受成更高概率。"},
+"大家都在买AI资产，我不买就像在亏钱":{main:"Herding / FOMO",cluster:["Herding","FOMO","Regret Aversion","Social Proof"],result:"不参与上涨被心理感受成损失。"},
+"这是我持有了十年的公司，所以不想卖":{main:"Endowment / Status Quo",cluster:["Endowment","Status Quo","Belief Perseverance"],result:"持有历史本身成为继续持有理由。"}
+};
+function biasLab(){
+ const d=scenes[bScene.value],ok=bGuess.value===d.main;
+ biasOut.innerHTML=`<p><b>${ok?"你的主判断和本场景设定一致。":"这个场景更适合从另一组偏误开始拆。"}</b></p><p>${d.cluster.map(x=>`<span class="badge">${x}</span>`).join(" ")}</p><div class="callout blue"><b>行为结果：</b>${d.result}</div><p class="small">现实行为可能同时包含多个偏误；这里不是人格诊断。</p>`;
+ behaviorSystem.biasDetective={scene:bScene.value,guess:bGuess.value,cluster:d.cluster};mark("bias")
+}
+const stressStages=[
+ {drop:-8,news:"经济数据开始放缓，市场一月下跌 8%。",weight:57,opts:["Sell","Add","Rebalance","No Action","Reassess IPS"]},
+ {drop:-12,news:"企业盈利预期继续下调，第二月再跌 12%。",weight:53,opts:["Sell","Add","Rebalance","No Action","Reassess IPS"]},
+ {drop:-7,news:"第三月再跌 7%，社交媒体出现大量“长期熊市”讨论。",weight:50,opts:["Sell","Add","Rebalance","No Action","Reassess IPS"]}
+];
+function startStress(){stressStep=0;stressChoices=[];renderStress()}
+function renderStress(){
+ if(stressStep>=stressStages.length){finishStress();return}
+ const s=stressStages[stressStep];
+ stressBox.innerHTML=`<div class="stage"><h3>Stage ${stressStep+1}</h3><p><b>${s.news}</b></p><p>教学假设下，此时股票权重约 <b>${s.weight}%</b>；你的目标是 ${+sTarget.value}% ± ${+sBand.value} 个百分点。</p><div class="choice">${s.opts.map(x=>`<button onclick="chooseStress('${x}')">${x}</button>`).join("")}</div></div>`
+}
+function chooseStress(x){stressChoices.push(x);stressStep++;renderStress()}
+function finishStress(){
+ const target=+sTarget.value,band=+sBand.value,lo=target-band,hi=target+band;
+ let score=0,notes=[];
+ stressChoices.forEach((c,i)=>{
+   const w=stressStages[i].weight,inBand=w>=lo&&w<=hi;
+   if(c==="Rebalance"&&!inBand){score++;notes.push(`Stage ${i+1}: 超出预设容忍带后选择 Rebalance，与原政策一致。`)}
+   else if((c==="No Action"||c==="Reassess IPS")&&inBand){score++;notes.push(`Stage ${i+1}: 仍在容忍带内，没有因为新闻直接交易。`)}
+   else notes.push(`Stage ${i+1}: 你的选择是 ${c}。请检查它由预先规则触发，还是由当期价格 / 新闻触发。`)
+ });
+ stressOut.innerHTML=`<div class="grid2"><div class="metric"><span>Policy Consistency</span><b>${score} / 3</b></div><div class="metric"><span>战略改变条件</span><b style="font-size:14px">${sTrigger.value||"未填写"}</b></div></div><hr>${notes.map(x=>`<p>${x}</p>`).join("")}<p class="small">这个分数只比较“是否遵循你自己刚刚写下的规则”，不评价事后收益，也不是风险承受评分。</p>`;
+ behaviorSystem.stress={target,band,changeTrigger:sTrigger.value,choices:stressChoices,policyConsistency:score};mark("stress")
+}
+function frictionLab(){
+ const p=+tPrincipal.value,base=+tBase.value/100,years=Math.max(1,+tYears.value),trades=Math.max(0,+tTrades.value),cost=+tCost.value/100,edge=+tEdge.value/100;
+ const annualFriction=trades*cost;
+ const grossRate=base+edge,netRate=grossRate-annualFriction;
+ const passive=p*Math.pow(1+base,years),gross=p*Math.pow(1+grossRate,years),net=p*Math.pow(1+netRate,years),drag=gross-net;
+ const breakEven=annualFriction*100;
+ frictionOut.innerHTML=`<div class="grid4"><div class="metric"><span>基础路径期末财富</span><b>¥${passive.toLocaleString("zh-CN",{maximumFractionDigits:0})}</b></div><div class="metric"><span>主动毛收益路径</span><b>¥${gross.toLocaleString("zh-CN",{maximumFractionDigits:0})}</b></div><div class="metric"><span>扣摩擦后主动路径</span><b>¥${net.toLocaleString("zh-CN",{maximumFractionDigits:0})}</b></div><div class="metric"><span>交易摩擦造成的复合差额</span><b>¥${drag.toLocaleString("zh-CN",{maximumFractionDigits:0})}</b></div></div><p>按你的输入，每年交易摩擦约 ${(annualFriction*100).toFixed(2)}%。仅为了覆盖这部分摩擦，主动决策至少需要约 <b>${breakEven.toFixed(2)}%</b> 的年度 Gross Edge；还没有计算额外判断错误、税务差异和机会成本。</p><p class="small">这是教学模型，把每次摩擦简单线性相加；真实交易成本会随产品、规模、市场和税务变化。</p>`;
+ behaviorSystem.friction={principal:p,baseReturn:base*100,years,tradesPerYear:trades,costPerTrade:cost*100,grossEdge:edge*100,annualFriction:annualFriction*100,passiveWealth:passive,grossActiveWealth:gross,netActiveWealth:net};mark("friction")
+}
+function guardrailLab(){
+ const g={checkFrequency:gCheck.value,coolingOff:gCool.value,rebalancing:gRebalance.value,journalReview:gReview.value,changeTriggers:gChange.value,noTradeTriggers:gNoTrade.value,checklist:gChecklist.value,informationDiet:gInfo.value};
+ guardOut.innerHTML=`<div class="grid2"><div class="metric"><span>账户查看</span><b style="font-size:16px">${g.checkFrequency}</b></div><div class="metric"><span>非计划交易冷静期</span><b style="font-size:16px">${g.coolingOff}</b></div><div class="metric"><span>再平衡</span><b style="font-size:16px">${g.rebalancing}</b></div><div class="metric"><span>决策日志复盘</span><b style="font-size:16px">${g.journalReview}</b></div></div><div class="guardrow"><b>允许改变战略配置：</b><p>${g.changeTriggers}</p></div><div class="guardrow"><b>No-Trade Triggers：</b><p>${g.noTradeTriggers}</p></div><div class="guardrow"><b>交易前 Checklist：</b><p>${g.checklist}</p></div><div class="guardrow"><b>Information Diet：</b><p>${g.informationDiet}</p></div><div class="callout green"><b>你的 Governance Layer 已建立：</b>先观察，再检查规则，再决定是否行动。情绪不需要消失，但情绪不会直接拥有“执行权限”。</div>`;
+ behaviorSystem.guardrails=g;mark("guardrails")
+}
+function exportSystem(){
+ const data={chapter:"19 最大的投资风险可能是你自己",exported_at:new Date().toISOString(),system:behaviorSystem,principles:["评价投资决策先评价过程，不只看一次结果","买入成本不是未来价值的决定因素","主动寻找反证，而不是只寻找支持自己的信息","不把近期市场表现无限外推","新闻、热搜、他人收益和排行榜本身不是交易指令","额外交易必须跨过费用、价差和判断错误门槛","再平衡由规则触发，不由恐惧或兴奋触发","真正改变长期计划需要目标、期限、财务状况、风险能力或投资thesis的实质变化","用IPS、冷静期、清单、决策日志和自动化降低对临场意志力的依赖"]};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="我的投资行为防错系统_v1.json";a.click();URL.revokeObjectURL(u)
+}
+try{const saved=JSON.parse(localStorage.getItem("finance_ch19_behavior")||"null");if(saved)behaviorSystem=saved}catch(e){}
+biasLab();frictionLab();readProgress();
+</script>
+</body></html>

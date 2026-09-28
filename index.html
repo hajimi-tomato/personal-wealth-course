@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="免费阅读个人财富系统 20 章：从财务目标、现金流与风险管理，到资产配置和长期复盘。">
+  <meta name="theme-color" content="#173f37">
+  <title>个人财富系统｜20 章在线课程</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#reader">跳到课程正文</a>
+  <div class="site-shell">
+    <aside class="sidebar" id="sidebar" aria-label="课程导航">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">财</span><div><strong>个人财富系统</strong><small>20 章 · 免费在线学习</small></div></div>
+      <div class="progress-panel">
+        <div class="progress-ring" id="progressRing" aria-hidden="true"><span id="progressNumber">0%</span></div>
+        <div><strong>你的学习进度</strong><p><span id="completedCount">0</span> / 20 章已完成</p><button class="text-button" id="continueButton" type="button">继续学习 →</button></div>
+      </div>
+      <label class="search-label" for="searchInput">查找章节或知识点</label>
+      <input id="searchInput" class="search-input" type="search" placeholder="例如：复利、保险、ETF" autocomplete="off">
+      <div class="search-feedback" id="searchFeedback" aria-live="polite"></div>
+      <nav id="chapterNav" aria-label="20 章目录"></nav>
+      <div class="sidebar-foot">章节中的计算器与练习直接在本页使用。学习进度只保存在当前浏览器。</div>
+    </aside>
+
+    <div class="main-column">
+      <header class="topbar">
+        <button class="menu-button" id="menuButton" type="button" aria-controls="sidebar" aria-expanded="false">☰ <span>目录</span></button>
+        <span class="topbar-label">PERSONAL WEALTH SYSTEM</span>
+        <a class="repo-link" href="https://github.com/hajimi-tomato/personal-wealth-course" target="_blank" rel="noopener noreferrer">GitHub 仓库 ↗</a>
+      </header>
+
+      <main id="reader">
+        <section class="welcome" aria-labelledby="welcomeTitle">
+          <div class="eyebrow">从零开始 · 按自己的节奏学</div>
+          <h1 id="welcomeTitle">让钱有任务，<br><em>让选择更自由。</em></h1>
+          <p>20 章完整课程，从认识财富、管理现金流和风险，到理解投资工具、建立个人财富系统。你可以顺序阅读，也可以搜索知识点直接跳到相关小节。</p>
+          <div class="welcome-actions"><button class="primary-button" id="startButton" type="button">从第一章开始</button><span>无账号 · 无付费 · 进度保存在本地</span></div>
+        </section>
+
+        <section class="lesson" id="lesson" aria-labelledby="chapterTitle">
+          <div class="lesson-head">
+            <div><div class="eyebrow" id="chapterMeta">CHAPTER 01 / 20</div><h2 id="chapterTitle">正在加载课程…</h2><p id="chapterSubtitle"></p></div>
+            <div class="lesson-status" id="lessonStatus" aria-live="polite">未完成</div>
+          </div>
+          <div class="lesson-tools">
+            <label for="sectionSelect">跳转到本章小节</label>
+            <select id="sectionSelect" aria-label="跳转到本章小节"><option value="">章节开头</option></select>
+            <a id="openOriginal" href="#" target="_blank" rel="noopener noreferrer">单独打开本章 ↗</a>
+          </div>
+          <div class="frame-wrap"><iframe id="chapterFrame" title="课程正文" loading="eager"></iframe></div>
+          <div class="lesson-bottom">
+            <button class="outline-button" id="prevButton" type="button">← 上一章</button>
+            <button class="complete-button" id="completeButton" type="button" aria-pressed="false">标记本章已完成</button>
+            <button class="outline-button" id="nextButton" type="button">下一章 →</button>
+          </div>
+          <p class="reader-note">课程用于学习金融知识；章节中的示例和互动计算不构成个性化投资、保险或税务建议。每章末尾列有资料来源与适用边界。</p>
+        </section>
+      </main>
+      <footer class="site-footer">个人财富系统 · 课程原章完整收录，统一阅读入口由 GitHub Pages 提供。</footer>
+    </div>
+  </div>
+  <div class="scrim" id="scrim" hidden></div>
+  <script src="course-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

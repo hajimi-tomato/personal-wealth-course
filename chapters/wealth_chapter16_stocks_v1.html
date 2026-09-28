@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十六章｜股票：你买下的到底是什么？—个人财富系统</title>
+<style>
+:root{
+  --bg:#efe1c3;--paper:#fbf3df;--ink:#332a22;--muted:#766858;--line:#d6c199;
+  --red:#8f342a;--redbg:#f1ddd5;--green:#455f4c;--greenbg:#dfe7dc;
+  --gold:#a77a2b;--goldbg:#f2e4bd;--blue:#445d70;--bluebg:#dce5e9;--deep:#2e2924;
+  --shadow:0 18px 50px rgba(74,52,28,.14)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);line-height:1.9;font-family:ui-serif,"Noto Serif SC","Source Han Serif SC","Songti SC",STSong,serif;background:radial-gradient(circle at 12% 7%,rgba(255,255,255,.45),transparent 25%),radial-gradient(circle at 88% 15%,rgba(100,74,40,.07),transparent 22%),repeating-linear-gradient(0deg,rgba(90,63,34,.022) 0 1px,transparent 1px 5px),var(--bg)}
+a{color:var(--green);text-underline-offset:3px}.wrap{max-width:1340px;margin:auto;padding:24px}.layout{display:grid;grid-template-columns:275px minmax(0,930px);gap:30px;justify-content:center;align-items:start}
+.sidebar{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto}.sidebox{background:rgba(251,243,223,.84);border:1px solid var(--line);border-radius:13px;padding:15px;margin-bottom:12px}.sidebox b{display:block}.sidebox small{color:var(--muted)}
+nav a{display:block;text-decoration:none;color:var(--muted);font-size:12px;padding:5px 7px;border-radius:7px}nav a:hover{background:#efdfbd;color:var(--ink)}
+.progress{height:7px;background:#e3d1aa;border-radius:999px;overflow:hidden;margin-top:8px}.progress i{display:block;height:100%;width:0;background:var(--red);transition:.2s}
+.paper{background:rgba(251,243,223,.97);border:1px solid rgba(170,143,96,.48);box-shadow:var(--shadow);border-radius:7px;overflow:hidden}
+.hero{padding:68px 74px 50px;border-bottom:1px solid var(--line);position:relative}.hero:before{content:"";position:absolute;left:28px;top:30px;bottom:30px;width:1px;background:rgba(143,52,42,.28)}
+.kicker{font-size:12px;letter-spacing:.18em;color:var(--red);font-weight:800}h1{font-size:49px;line-height:1.2;margin:13px 0 17px;letter-spacing:-.035em}.subtitle{font-size:20px;color:var(--muted);max-width:800px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 9px;background:#f7edd4;color:var(--muted)}
+.content{padding:54px 74px 76px}section{margin-bottom:62px}h2{font-size:30px;line-height:1.35;margin:0 0 18px}h3{font-size:21px;margin:30px 0 10px}p{margin:9px 0 16px}.lead{font-size:18px}
+.callout{padding:19px 21px;border-left:5px solid;margin:23px 0;border-radius:4px}.red{background:var(--redbg);border-color:var(--red)}.green{background:var(--greenbg);border-color:var(--green)}.gold{background:var(--goldbg);border-color:var(--gold)}.blue{background:var(--bluebg);border-color:var(--blue)}
+.label{font-size:11px;font-weight:800;letter-spacing:.14em;margin-bottom:4px}.card{padding:20px;border:1px solid var(--line);border-radius:10px;background:#fff9ea;margin:15px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.table th{font-size:11px;color:var(--muted)}
+.formula{background:var(--deep);color:#f8edd6;font:16px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:17px 19px;border-radius:8px;margin:18px 0}
+.case{padding:22px;border:1px solid var(--line);border-radius:10px;background:#faf0db;margin:14px 0}.casehead{display:flex;justify-content:space-between;gap:12px;align-items:baseline}.casehead b{font-size:18px}.casehead span{font-size:12px;color:var(--muted)}
+.quote{padding:23px 27px;background:#eee0c4;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:19px;margin:24px 0}
+.small{font-size:12px;color:var(--muted)}.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 7px;font-size:11px;background:#f6ead0;margin:2px}
+.metric{padding:15px;background:#f8edd4;border:1px solid var(--line);border-radius:9px}.metric b{display:block;font-size:20px;color:var(--green)}.metric span{font-size:12px;color:var(--muted)}
+input[type=text],input[type=number],select{width:100%;border:1px solid #c7ad80;background:#fffaf0;border-radius:7px;padding:10px 11px;color:var(--ink);font:inherit}
+input[type=range]{width:100%;accent-color:var(--red)}
+button{border:0;border-radius:8px;padding:10px 15px;background:var(--red);color:#fff;font-weight:800;cursor:pointer}button.secondary{background:var(--green)}button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.feedback{margin-top:14px;padding:15px 17px;border:1px dashed #b69d70;border-radius:8px;background:#f5e9cf}.tool-title{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.flow{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap}.flowstep{flex:1 1 130px;padding:14px;border:1px solid var(--line);border-radius:9px;background:#fff9ea}.flowstep b{display:block}.arrow{align-self:center;color:var(--red);font-size:22px}
+canvas{width:100%;height:320px;border:1px solid var(--line);border-radius:9px;background:#fffaf0;margin-top:14px}
+.end{background:var(--deep);color:#f5ebd7;padding:28px;border-radius:9px}.end h2{color:#fff5df}.refs{font-size:13px;color:var(--muted)}.refs li{margin-bottom:10px}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{display:none}.hero,.content{padding-left:36px;padding-right:36px}}
+@media(max-width:780px){.wrap{padding:0}.paper{border-radius:0}.hero,.content{padding:30px 20px}h1{font-size:34px}.grid2,.grid3,.grid4{grid-template-columns:1fr}.arrow{transform:rotate(90deg);text-align:center}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="layout">
+<aside class="sidebar">
+<div class="sidebox"><b>个人财富系统</b><small>第十六章 · 股票</small></div>
+<div class="sidebox"><small>阅读进度 <span id="readPct">0%</span></small><div class="progress"><i id="readProg"></i></div></div>
+<div class="sidebox"><small>互动完成度 <span id="taskPct">0%</span></small><div class="progress"><i id="taskProg"></i></div></div>
+<div class="sidebox"><nav>
+<a href="#goal">00 买下一股到底买了什么</a><a href="#equity">01 Equity</a><a href="#residual">02 Residual Claim</a><a href="#bondvsstock">03 股东 vs 债权人</a><a href="#classes">04 Common / Preferred</a><a href="#share">05 一股只是比例</a><a href="#marketcap">06 Market Cap</a><a href="#priceillusion">07 股价幻觉</a><a href="#ev">08 Enterprise Value</a><a href="#revenue">09 Revenue</a><a href="#profit">10 Profit Waterfall</a><a href="#profitcash">11 Profit ≠ Cash</a><a href="#cashflow">12 Cash Flow Statement</a><a href="#fcf">13 Free Cash Flow</a><a href="#eps">14 EPS</a><a href="#epsgrowth">15 EPS 增长来源</a><a href="#dilution">16 Dilution</a><a href="#buyback">17 Buyback</a><a href="#dividend">18 Dividend</a><a href="#retained">19 留存收益</a><a href="#allocation">20 Capital Allocation</a><a href="#reinvestment">21 Reinvestment</a><a href="#growth">22 Growth ≠ Value</a><a href="#returnengine">23 股票回报来源</a><a href="#pricevalue">24 Price ≠ Value</a><a href="#intrinsic">25 Intrinsic Value</a><a href="#ddm">26 DDM</a><a href="#fcfval">27 FCF Valuation</a><a href="#uncertainty">28 估值假设</a><a href="#pe">29 P/E</a><a href="#highpe">30 高 P/E</a><a href="#lowpe">31 低 P/E</a><a href="#pb">32 P/B</a><a href="#ps">33 P/S</a><a href="#evda">34 EV/EBITDA</a><a href="#relative">35 Relative Valuation</a><a href="#expectations">36 价格为什么每天变</a><a href="#goodcompany">37 好公司 ≠ 好股票</a><a href="#surprise">38 Earnings Surprise</a><a href="#risks">39 股票风险</a><a href="#bankruptcy">40 清算顺位</a><a href="#publicprivate">41 Public / Private Equity</a><a href="#index">42 股票指数</a><a href="#reading">43 最小阅读法</a><a href="#cases">44 四个案例</a><a href="#mistakes">45 十个误区</a><a href="#tool1">46 Equity Anatomy Lab</a><a href="#tool2">47 Dilution & Buyback Lab</a><a href="#tool3">48 Business → Stock Return</a><a href="#tool4">49 Valuation Expectations</a><a href="#summary">50 总结</a><a href="#refs">51 资料与注释</a>
+</nav></div></aside>
+
+<main class="paper">
+<header class="hero"><div class="kicker">CHAPTER 16 · EQUITY</div><h1>股票：你买下的到底是什么？</h1><div class="subtitle">所有权、利润、现金流、股息、回购、增长与估值：一家好公司为什么仍然可能是一笔糟糕的股票投资？</div><div class="meta"><span class="pill">预计阅读 95–110 分钟</span><span class="pill">企业所有权核心章</span><span class="pill">4 个估值互动</span><span class="pill">最终产物：股票阅读卡 v1</span></div></header>
+
+<article class="content">
+
+<section id="goal"><h2>00｜买下一股股票，到底买下了什么？</h2><p class="lead">股票不是一张在屏幕上随机变色的数字凭证。它首先代表一家公司的部分所有权。Investor.gov 对股票的基本定义就是：股票给予持有人企业的一部分 ownership；普通股通常还带来投票权，并参与企业利润与资产的剩余权益。</p><div class="callout red"><div class="label">本章第一原则</div><b>先看企业，再看股票；先看每股经济利益，再看价格。</b></div></section>
+
+<section id="equity"><h2>01｜为什么叫 Equity？</h2><p>企业也有自己的资产负债表。最简化地说：</p><div class="formula">Assets − Liabilities = Equity</div><p>企业拥有现金、厂房、设备、存货、知识产权等资产，同时也承担贷款、债券、应付款等负债。扣除负债以后，剩余净资产归股东所有。</p><p>CFA 2026 将 equity securities 定义为对企业净资产的 ownership claims，这也是理解股票最根本的出发点。</p></section>
+
+<section id="residual"><h2>02｜Residual Claim：股东为什么叫“剩余索取人”？</h2><p>企业创造收入以后，要先支付员工、供应商、税款、债务利息以及其他合同义务。处理这些义务以后，剩余经济利益才归股东。</p><div class="quote"><b>债权人拿合同承诺，股东拿剩余。</b></div><p>这也是为什么普通股的未来现金流更加不确定，但上行空间理论上也更大。</p></section>
+
+<section id="bondvsstock"><h2>03｜第十五章和第十六章：Creditor vs Owner</h2><table class="table"><thead><tr><th>维度</th><th>Bondholder</th><th>Shareholder</th></tr></thead><tbody>
+<tr><td>身份</td><td>债权人</td><td>所有者</td></tr>
+<tr><td>主要权利</td><td>合同还本付息</td><td>剩余经济利益</td></tr>
+<tr><td>现金流</td><td>相对明确</td><td>不确定</td></tr>
+<tr><td>企业成功的上行</td><td>通常受合同限制</td><td>理论上更高</td></tr>
+<tr><td>企业失败清算</td><td>通常优先于普通股</td><td>普通股通常最后</td></tr>
+</tbody></table><p>Investor.gov 也明确指出，公司破产清算时债券持有人优先于普通股股东。</p></section>
+
+<section id="classes"><h2>04｜Common Stock 与 Preferred Stock</h2><div class="grid2"><div class="card"><b>Common Stock</b><p>通常拥有股东投票权，分享企业经营成果，并处于剩余索取位置。</p></div><div class="card"><b>Preferred Stock</b><p>通常在股息和清算顺序上优先于普通股，但往往没有相同的投票权。</p></div></div><p>本章主要研究普通股，因为它最典型地体现企业所有权、增长和剩余经济价值。</p></section>
+
+<section id="share"><h2>05｜一股股票不是固定金额，而是“比例”</h2><p>假设公司只有 100 股普通股，你拥有 1 股，最简单的理解就是你拥有约 1% 的普通股权益。现实公司股份可能数以亿计，但逻辑相同：</p><div class="formula">你的所有权比例 ≈ 你持有的股份 ÷ 总股份</div></section>
+
+<section id="marketcap"><h2>06｜Market Capitalization：必须先学会看“公司整体”</h2><div class="formula">Market Cap = Share Price × Shares Outstanding</div><p>Investor.gov 当前也正是这样定义市值。股价只是每一小份股权的价格，乘以全部在外股份以后，才得到整个普通股权益的市场价值。</p></section>
+
+<section id="priceillusion"><h2>07｜为什么 100 元股票不一定比 10 元股票贵？</h2><div class="case"><div class="casehead"><b>公司 A：100 元 × 1 亿股</b><span>市值 100 亿元</span></div><p>公司 B：10 元 × 20 亿股 = 市值 200 亿元。虽然 B 的每股价格只有 A 的十分之一，但整个公司普通股市值反而更高。</p></div><div class="quote"><b>Share Price Alone Means Almost Nothing。</b></div></section>
+
+<section id="ev"><h2>08｜Enterprise Value 为什么又和 Market Cap 不一样？</h2><p>Market Cap 只代表普通股权益价值；如果想更接近整个经营企业的资本价值，还要把债务和现金一起考虑。</p><div class="formula">EV ≈ Equity Market Value + Debt + Preferred Equity − Cash / Investments</div><p>CFA 2026 对 enterprise value multiples 的框架也强调：EV 是企业所有资本来源的总市场价值减去现金与投资，和只站在普通股股东角度的 market cap 不同。</p></section>
+
+<section id="revenue"><h2>09｜进入企业：Revenue 只是第一层</h2><p>股票底层是一家公司，所以至少要知道企业靠什么产生营业收入。游戏公司可能来自游戏销售、道具和广告；制造企业来自产品销售；平台可能来自佣金、订阅和广告。</p><p>Revenue 是 Top Line，但收入规模大不等于股东赚得多。</p></section>
+
+<section id="profit"><h2>10｜Profit Waterfall：100 元收入最后留下多少？</h2><div class="flow"><div class="flowstep"><b>Revenue</b><span>营业收入</span></div><div class="arrow">→</div><div class="flowstep"><b>Gross Profit</b><span>扣直接成本</span></div><div class="arrow">→</div><div class="flowstep"><b>Operating Profit</b><span>扣运营费用</span></div><div class="arrow">→</div><div class="flowstep"><b>Net Income</b><span>再扣利息、税等</span></div></div><p>同样 100 亿元收入，有的企业可以留下 20 亿元净利润，有的企业可能仍然亏损。</p></section>
+
+<section id="profitcash"><h2>11｜Net Income 为什么不是“银行账户里多了同样多的现金”？</h2><p>企业会计采用权责发生制。确认收入时客户可能尚未付款；购买长期设备也可能不会一次性全部计入利润。因此：</p><div class="formula">Accounting Profit ≠ Cash Collected ≠ Cash Available to Shareholders</div><p>这也是为什么研究股票不能只看利润表。</p></section>
+
+<section id="cashflow"><h2>12｜Cash Flow Statement：钱真正从哪里来、去了哪里？</h2><div class="grid3"><div class="card"><b>Operating Cash Flow</b><p>主营经营活动带来的现金。</p></div><div class="card"><b>Investing Cash Flow</b><p>设备、资产、收购等长期投资。</p></div><div class="card"><b>Financing Cash Flow</b><p>借债、还债、增发、回购、分红等融资行为。</p></div></div></section>
+
+<section id="fcf"><h2>13｜Free Cash Flow：企业完成必要投资以后还剩多少经济现金？</h2><p>自由现金流并不是一个只有唯一口径的简单数字，但核心思想很清楚：企业在维持和发展业务所需投资之后，还能产生多少可用于资本提供者的现金。</p><p>CFA 2026 将 FCFF 理解为可供所有资本提供者的自由现金流，FCFE 则是可供普通股股东的自由现金流，并把它们作为股票估值的重要基础。</p></section>
+
+<section id="eps"><h2>14｜EPS：股东真正关心“每一股”分到多少利润</h2><div class="formula">EPS = Net Income Available to Common Shareholders ÷ Weighted Average Shares</div><p>公司利润从 100 亿变成 110 亿，看起来增长 10%；但如果股份数量同时大幅增加，每股利润未必增长。</p></section>
+
+<section id="epsgrowth"><h2>15｜EPS 增长可能来自不同原因</h2><div class="grid3"><div class="card"><b>真正盈利增长</b><p>企业赚更多钱。</p></div><div class="card"><b>回购</b><p>分母股数减少。</p></div><div class="card"><b>会计 / 一次性因素</b><p>利润口径改变。</p></div></div><p>所以看到 EPS 增长以后还要继续问：来自哪里？是否伴随现金流改善？</p></section>
+
+<section id="dilution"><h2>16｜Dilution：企业整体没有变，你的“每股份额”也可能变小</h2><p>如果公司发行更多新股，而企业价值和利润没有同步增长，原有股东的所有权比例和每股经济指标会被摊薄。</p><div class="formula">More Shares + Same Profit → Lower EPS</div></section>
+
+<section id="buyback"><h2>17｜Share Repurchase：回购会让剩余每一股占比提高</h2><p>如果公司回购并注销一部分股份，利润不变时 EPS 会机械性上升。但这并不意味着所有回购都创造价值。</p><div class="callout gold"><div class="label">关键问题</div><b>公司用多少钱回购？买得贵不贵？如果不回购，这笔钱还有没有更好的用途？</b></div></section>
+
+<section id="dividend"><h2>18｜Dividend：股息不是“凭空多出来的钱”</h2><p>企业把一部分现金分配给股东以后，这部分资产已经离开公司。因此分红是价值分配方式，而不是无成本创造财富。</p><p>Investor.gov 将 dividend payments 列为股票投资者可能获得回报的一种来源，但是否分红由公司董事会和具体政策决定，并不存在类似债券票息那样的固定义务。</p></section>
+
+<section id="retained"><h2>19｜不分红的公司为什么仍然可能有价值？</h2><p>如果企业把 1 元利润留在公司，并能够通过研发、扩产或新业务把它长期转化为超过 1 元的经济价值，留存收益可能比分红更有价值。</p><p>真正的问题不是“分不分红”，而是：</p><div class="quote"><b>What happens to retained earnings?</b></div></section>
+
+<section id="allocation"><h2>20｜Capital Allocation：管理层其实一直在替股东决定钱怎么用</h2><div class="grid3"><div class="card"><b>Reinvest</b><p>研发、扩产、新业务。</p></div><div class="card"><b>Acquire</b><p>收购其他公司。</p></div><div class="card"><b>Debt</b><p>还债或调整资本结构。</p></div><div class="card"><b>Dividend</b><p>直接返还现金。</p></div><div class="card"><b>Buyback</b><p>减少股份。</p></div><div class="card"><b>Cash</b><p>保留流动性。</p></div></div><p>所以一家企业“赚很多钱”只是第一步，资本配置决定这些钱是否继续创造股东价值。</p></section>
+
+<section id="reinvestment"><h2>21｜Reinvestment：增长真正需要两样东西</h2><p>企业必须同时拥有：</p><div class="grid2"><div class="card"><b>Reinvestment Rate</b><p>把多少利润继续投入业务。</p></div><div class="card"><b>Return on Reinvestment</b><p>这些新增资本能创造多高回报。</p></div></div><div class="formula">Long-Run Growth ≈ Reinvestment Rate × Return on Reinvestment</div><p>这是简化直觉，而不是适用于所有企业的精确公式。</p></section>
+
+<section id="growth"><h2>22｜Growth ≠ Value Creation</h2><p>收入增长 50% 听起来很好，但如果企业每新增 1 元收入都需要投入大量资本并持续产生亏损，这种增长可能在扩大规模的同时毁灭股东价值。</p><div class="callout red"><div class="label">真正的问题</div><b>增长用了多少资本？新增资本的回报高于投资者要求的回报吗？</b></div></section>
+
+<section id="returnengine"><h2>23｜股票长期回报可以拆成三个 Return Engines</h2><div class="grid3"><div class="card"><b>Business Growth</b><p>利润、现金流和每股经济价值增长。</p></div><div class="card"><b>Shareholder Distribution</b><p>股息、净回购等价值返还。</p></div><div class="card"><b>Repricing</b><p>市场给出更高或更低估值。</p></div></div><div class="formula">Stock Return ≈ Fundamental Growth + Shareholder Yield + Valuation Change</div><p>这不是严格恒等式，而是最重要的投资直觉框架。</p></section>
+
+<section id="pricevalue"><h2>24｜Price 和 Value 为什么不是一回事？</h2><p>Market Price 是今天市场上真正成交的价格；Intrinsic Value 则是分析者根据未来经济利益和要求回报做出的价值估计。</p><p>CFA 2026 Equity Valuation 把现值模型、倍数模型和资产基础模型列为估值的主要框架，并强调分析的核心任务之一就是比较市场价格和价值估计。</p></section>
+
+<section id="intrinsic"><h2>25｜股票为什么也可以用 DCF？</h2><div class="formula">Intrinsic Value = Present Value of Expected Future Cash Flows</div><p>债券的未来现金流写在合同里，股票未来现金流必须预测。底层数学仍然是第十一章的现值与贴现，只是预测不确定性大得多。</p></section>
+
+<section id="ddm"><h2>26｜Dividend Discount Model：如果股东不断收到分红</h2><p>最简单的常增长模型：</p><div class="formula">Value = D₁ ÷ (r − g)</div><p>D₁ 是下一期预期股息，r 是股东要求回报，g 是长期增长率。CFA 2026 仍将 Gordon Growth Model 作为基础股息贴现模型。</p><div class="callout blue"><div class="label">真正难的不是公式</div><b>当 g、r 和未来分红假设稍有变化，估值就可能明显变化。估值首先是一组关于未来的假设。</b></div></section>
+
+<section id="fcfval"><h2>27｜如果企业不分红，为什么仍然可以估值？</h2><p>CFA 的 Free Cash Flow Valuation 明确指出，当企业不分红、或者实际股息和企业支付能力明显不一致时，FCFF / FCFE 往往比单纯股息模型更有用。</p><div class="formula">Equity Value = PV of Expected FCFE<br><br>Firm Value = PV of Expected FCFF</div><p>不分红并不意味着股东没有经济权利；价值来自企业未来可用于资本所有者的现金流。</p></section>
+
+<section id="uncertainty"><h2>28｜DCF 是 Thought Framework，不是 Truth Machine</h2><p>未来收入、利润率、资本支出、竞争格局、长期增长和要求回报都需要估计。输入变量稍变，结果可能显著变化。</p><div class="quote"><b>DCF 最大的价值不是告诉你“正确价格 = 37.82”，而是强迫你把“为什么值钱”写成明确假设。</b></div></section>
+
+<section id="pe"><h2>29｜P/E：市场愿意为每 1 元盈利支付多少钱？</h2><div class="formula">P/E = Share Price ÷ EPS = Market Cap ÷ Net Income</div><p>股票 50 元、EPS 5 元，P/E = 10×。这首先是 valuation multiple，不是“十年一定回本”。</p></section>
+
+<section id="highpe"><h2>30｜高 P/E 为什么不能直接说“贵”？</h2><p>高 P/E 可能反映市场预期更高增长、更持久竞争优势、更低风险或更优秀的资本回报；也可能反映过度乐观。</p><div class="formula">High Multiple = High Expectations, not Automatically Overvaluation</div></section>
+
+<section id="lowpe"><h2>31｜低 P/E 为什么也可能一点都不便宜？</h2><p>如果企业当前利润处于周期高点、业务长期衰退或者盈利质量很差，今天看起来 5× 的 P/E 可能只是市场提前反映未来利润下跌。</p><div class="formula">Cheap Multiple ≠ Cheap Business</div></section>
+
+<section id="pb"><h2>32｜P/B：市场价值相对于账面股东权益</h2><div class="formula">P/B = Market Value of Equity ÷ Book Value of Equity</div><p>对资产负债表十分重要的企业，P/B 可能更有信息；对于主要价值来自品牌、软件、网络效应和人才的公司，账面净资产与真实经济价值可能相差很大。</p></section>
+
+<section id="ps"><h2>33｜P/S：没有利润的时候为什么有人看收入？</h2><p>企业亏损时 P/E 很难正常使用，因此投资者有时用 Price / Sales。但收入并不是利润。</p><div class="case"><div class="casehead"><b>两家公司都收入 100 亿</b><span>但经济价值可能完全不同</span></div><p>A 毛利高、最终净利润 20 亿；B 每年仍亏 30 亿。只比较 P/S 无法回答它们的价值差异。</p></div></section>
+
+<section id="evda"><h2>34｜EV/EBITDA 为什么和 P/E 站在不同层级？</h2><p>P/E 的分子是普通股权益价格，P/E 站在股东层；EV/EBITDA 的分子是整个企业价值，EBITDA 也是更靠近全部资本提供者之前的经营指标。</p><p>CFA 2026 对 market-based valuation 的解释同样把 price multiples 与 enterprise-value multiples 明确区分。</p></section>
+
+<section id="relative"><h2>35｜Relative Valuation：倍数比较真正需要“可比”</h2><p>A 公司 15× P/E，B 公司 20×，不能直接断言 A 更便宜。还需要比较增长、盈利质量、资本回报、风险、杠杆、商业模式和会计口径。</p><div class="callout gold"><div class="label">相对估值的本质</div><b>Comparison Under Similar Fundamentals，而不是简单把倍数从低到高排序。</b></div></section>
+
+<section id="expectations"><h2>36｜股票价格为什么每天变化？市场每天都在改“未来假设”</h2><p>财报、产品、竞争、利率、监管、宏观环境、管理层和行业数据都会改变投资者对未来现金流和要求回报的判断。</p><div class="formula">New Information → New Expectations → New Valuation → New Price</div></section>
+
+<section id="goodcompany"><h2>37｜Good Company ≠ Good Stock at Any Price</h2><p>一家企业可以非常优秀，但如果市场价格已经提前计入极其完美的未来增长，最终只要企业表现“很好但没有完美”，股价仍然可能下跌。</p><div class="quote"><b>经营判断回答“公司好不好”；投资判断还必须回答“这个价格已经包含了多少好消息”。</b></div></section>
+
+<section id="surprise"><h2>38｜为什么利润增长 20%，股价却可能跌？</h2><p>如果市场原先预期利润增长 40%，实际只有 20%，新闻标题虽然是“利润增长”，但相对预期是 Negative Surprise。</p><div class="formula">Price Reaction often depends on: Actual Result − Expected Result</div><p>反过来，经营很差的企业如果实际结果没有市场预期那么糟，也可能上涨。</p></section>
+
+<section id="risks"><h2>39｜股票风险至少来自六个方向</h2><div class="grid3"><div class="card"><b>Business</b><p>经营和竞争。</p></div><div class="card"><b>Leverage</b><p>债务放大结果。</p></div><div class="card"><b>Valuation</b><p>买入价格隐含过高预期。</p></div><div class="card"><b>Governance</b><p>管理层与股东利益。</p></div><div class="card"><b>Dilution</b><p>股份增发摊薄。</p></div><div class="card"><b>Market / Liquidity</b><p>市场价格与交易条件。</p></div></div></section>
+
+<section id="bankruptcy"><h2>40｜为什么企业清算时普通股通常最后拿？</h2><p>普通股是剩余索取权。Investor.gov 当前仍明确说明，公司破产清算时，债权人和债券持有人通常优先，优先股在普通股之前，普通股拿最后剩余，甚至可能什么都没有。</p><div class="callout red"><div class="label">因此</div><b>普通股的高上行潜力与其更靠后的索取顺位，是同一资本结构逻辑的两面。</b></div></section>
+
+<section id="publicprivate"><h2>41｜Public Equity 和 Private Equity：市场结构不同，股权本质相同</h2><p>上市股票具有持续公开报价、较高流动性和标准化信息披露；私人股权交易更少、估值频率低、锁定期更长。但底层关系仍然都是 Equity Ownership。</p></section>
+
+<section id="index"><h2>42｜股票指数：把很多企业压缩成一个市场指标</h2><p>指数按照特定规则把一组股票汇总成一个指标。它可以按市值加权、价格加权或使用其他规则。</p><p>Investor.gov 对 index funds 的教育材料也指出，市场指数常使用公司市值决定权重，而指数基金则通过持有全部或部分指数成分证券来间接提供指数暴露。</p><p>下一章会正式拆开 Index、Fund 和 ETF。</p></section>
+
+<section id="reading"><h2>43｜普通人阅读一家上市公司，至少先问六个问题</h2><div class="grid2">
+<div class="card"><b>1. What does the business do?</b><p>它到底靠什么赚钱？</p></div>
+<div class="card"><b>2. Is the business growing?</b><p>收入、利润、现金流有没有增长？</p></div>
+<div class="card"><b>3. Does growth create value?</b><p>新增资本回报怎么样？</p></div>
+<div class="card"><b>4. Where does the cash go?</b><p>扩张、收购、还债、分红还是回购？</p></div>
+<div class="card"><b>5. What can destroy the thesis?</b><p>竞争、债务、监管、技术替代？</p></div>
+<div class="card"><b>6. What is already priced in?</b><p>当前价格已经假设了多少未来成功？</p></div>
+</div></section>
+
+<section id="cases"><h2>44｜四个现实案例</h2>
+<div class="case"><div class="casehead"><b>A｜“10 元股票比 100 元股票便宜”</b><span>Price Illusion</span></div><p>10 元 × 100 亿股 = 1000 亿市值；100 元 × 5 亿股 = 500 亿市值。每股价格高低不能直接判断公司“贵不贵”。</p></div>
+<div class="case"><div class="casehead"><b>B｜公司利润增长 20%，股价却跌</b><span>Expectations</span></div><p>如果市场原本预期增长 40%，实际 20% 就是负面惊喜。</p></div>
+<div class="case"><div class="casehead"><b>C｜企业利润没增长，EPS 却增长 25%</b><span>Buyback</span></div><p>利润 100 亿、股份从 100 亿股减少到 80 亿股，EPS 从 1 元变成 1.25 元。</p></div>
+<div class="case"><div class="casehead"><b>D｜收入增长 50%，企业价值反而下降</b><span>Growth ≠ Value Creation</span></div><p>如果收入增长依赖持续补贴，而且每新增 1 元收入都带来更大的亏损，增长可能是在消耗股东资本。</p></div>
+</section>
+
+<section id="mistakes"><h2>45｜十个最容易学错的地方</h2>
+<div class="callout red"><div class="label">误区 1</div><b>股价越低，股票越便宜。</b></div>
+<div class="callout red"><div class="label">误区 2</div><b>股票只是用来低买高卖的代码。</b></div>
+<div class="callout red"><div class="label">误区 3</div><b>公司赚钱，股价就一定上涨。</b></div>
+<div class="callout red"><div class="label">误区 4</div><b>净利润就是企业可自由分配现金。</b></div>
+<div class="callout red"><div class="label">误区 5</div><b>EPS 增长一定代表企业利润增长。</b></div>
+<div class="callout red"><div class="label">误区 6</div><b>回购一定创造股东价值。</b></div>
+<div class="callout red"><div class="label">误区 7</div><b>分红越高，公司越好。</b></div>
+<div class="callout red"><div class="label">误区 8</div><b>P/E 低就是便宜，P/E 高就是贵。</b></div>
+<div class="callout red"><div class="label">误区 9</div><b>高速增长自动等于高价值创造。</b></div>
+<div class="callout red"><div class="label">误区 10</div><b>好公司在任何价格下都是好投资。</b></div>
+</section>
+
+<section id="tool1"><div class="tool-title"><h2>46｜互动一：Equity Anatomy Lab</h2><span class="badge">企业整体 ↔ 每股</span></div><div class="card">
+<div class="grid2">
+<label>总资产（亿元）<input id="eAssets" type="number" value="100"></label>
+<label>总负债（亿元）<input id="eDebt" type="number" value="40"></label>
+<label>总股数（亿股）<input id="eShares" type="number" value="10" step="0.1"></label>
+<label>当前股价（元）<input id="ePrice" type="number" value="8" step="0.1"></label>
+<label>净利润（亿元）<input id="eIncome" type="number" value="8" step="0.1"></label>
+</div>
+<button class="secondary" onclick="equityLab()">拆解每股权益</button>
+<div id="equityOut" class="feedback">会计算 Book Equity、BVPS、Market Cap、EPS、P/B 和 P/E。</div>
+</div></section>
+
+<section id="tool2"><div class="tool-title"><h2>47｜互动二：Dilution & Buyback Lab</h2><span class="badge">股份数量改变</span></div><div class="card">
+<div class="grid2">
+<label>公司净利润（亿元）<input id="dbIncome" type="number" value="100"></label>
+<label>原始股数（亿股）<input id="dbShares" type="number" value="100"></label>
+<label>变化后股数（亿股）<input id="dbNewShares" type="number" value="80"></label>
+<label>变化后公司整体价值变化（%）<input id="dbValueChange" type="number" value="0" step="1"></label>
+</div>
+<button class="secondary" onclick="dilutionLab()">比较每股结果</button>
+<div id="dilutionOut" class="feedback">股数变少会机械提高 EPS，但是否创造价值还取决于企业为减少股份付出了什么。</div>
+</div></section>
+
+<section id="tool3"><div class="tool-title"><h2>48｜互动三：Business → Stock Return Lab</h2><span class="badge">盈利 × 股息 × 估值</span></div><div class="card">
+<div class="grid2">
+<label>当前 EPS（元）<input id="rEPS" type="number" value="5"></label>
+<label>未来每年 EPS 增长（%）<input id="rGrowth" type="number" value="8" step="0.5"></label>
+<label>持有年数<input id="rYears" type="number" value="5"></label>
+<label>当前 P/E<input id="rPE0" type="number" value="20"></label>
+<label>未来 P/E<input id="rPE1" type="number" value="20"></label>
+<label>每年股息率（按期初价格简化，%）<input id="rDiv" type="number" value="2" step="0.1"></label>
+</div>
+<button class="secondary" onclick="returnLab()">计算简化股票回报</button>
+<div id="returnOut" class="feedback">同样企业盈利增长，在 Multiple Compression / Stable / Expansion 下，股票回报可能完全不同。</div>
+<canvas id="returnChart" width="800" height="320"></canvas>
+</div></section>
+
+<section id="tool4"><div class="tool-title"><h2>49｜互动四：Valuation Expectations Lab</h2><span class="badge">Price is an assumption about the future</span></div><div class="card">
+<p>这是一个教学用简化 DCF。假设企业当前可分配现金流为 100，前若干年按你设定速度增长，之后进入稳定增长。</p>
+<div class="grid2">
+<label>当前年度现金流<input id="vCF" type="number" value="100"></label>
+<label>高增长率（%）<input id="vGrowth" type="number" value="10" step="0.5"></label>
+<label>高增长持续年数<input id="vYears" type="number" value="5"></label>
+<label>长期稳定增长（%）<input id="vTerminalG" type="number" value="3" step="0.1"></label>
+<label>要求回报率（%）<input id="vDiscount" type="number" value="8" step="0.5"></label>
+<label>当前市场价值<input id="vMarket" type="number" value="1800"></label>
+</div>
+<button class="secondary" onclick="valuationLab()">计算假设价值</button>
+<div id="valuationOut" class="feedback">重点不是得到“正确价格”，而是观察估值对增长和要求回报有多敏感。</div>
+<button class="ghost" onclick="exportCard()">导出《我的股票阅读卡 v1》</button>
+</div></section>
+
+<section id="summary"><div class="end"><h2>50｜如果这一章真正学会了，你应该多出这十句话</h2>
+<p><b>1. 股票代表企业所有权和剩余经济利益，而不只是价格代码。</b></p>
+<p><b>2. 每股价格离开总股数没有可比意义。</b></p>
+<p><b>3. 市值是股东权益市场价值，EV 更接近整个经营企业资本价值。</b></p>
+<p><b>4. Revenue、Net Income、Cash Flow 和 Free Cash Flow 是不同层次。</b></p>
+<p><b>5. 普通股股东真正关心的是 Per Share，而不只是公司整体增长。</b></p>
+<p><b>6. 回购和增发都能改变每股数据，但不自动等于价值创造或毁灭。</b></p>
+<p><b>7. 企业利润可以被分红、回购、再投资、还债、收购或留在账上，资本配置很重要。</b></p>
+<p><b>8. 股票长期回报来自企业基本面、股东分配和估值变化。</b></p>
+<p><b>9. P/E、P/B、P/S、EV/EBITDA 回答不同问题，没有单一万能倍数。</b></p>
+<p><b>10. 好公司是经营判断；好股票还必须加上买入价格和市场预期。</b></p>
+<p><b>下一章：</b>第 17 章将进入 <b>基金、指数和 ETF：为什么普通人不一定需要选股票？</b></p>
+</div></section>
+
+<section id="refs"><h2>51｜本章资料来源与使用边界</h2><ol class="refs">
+<li><b>Investor.gov — Stocks FAQ.</b> 用于股票代表公司部分所有权、普通股 / 优先股基本区别、分红、资本增值以及破产清算顺位的消费者教育。<br><a href="https://www.investor.gov/introduction-investing/investing-basics/investment-products/stocks">Investor.gov</a></li>
+<li><b>Investor.gov — Market Capitalization.</b> 市值 = 当前每股市场价格 × 总 outstanding shares。<br><a href="https://www.investor.gov/introduction-investing/investing-basics/glossary/market-capitalization">Investor.gov Market Cap</a></li>
+<li><b>CFA Institute — Overview of Equity Securities, 2026 Curriculum.</b> 用于 equity securities 作为 ownership claims on net assets、普通股与优先股以及 public / private equity 的基本框架。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/overview-equity-securities">CFA Institute</a></li>
+<li><b>CFA Institute — Equity Valuation: Concepts and Basic Tools, 2026 Curriculum.</b> 用于价格与价值、DDM、股息与回购、P/E / P/B / P/S、企业价值倍数等估值框架。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/equity-valuation-concepts-basic-tools">CFA Equity Valuation</a></li>
+<li><b>CFA Institute — Free Cash Flow Valuation, 2026 Curriculum.</b> 用于 FCFF / FCFE 以及 DCF 将未来预期自由现金流折现为企业 / 股权价值的框架。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/free-cash-flow-valuation">CFA FCF Valuation</a></li>
+<li><b>CFA Institute — Market-Based Valuation: Price and Enterprise Value Multiples, 2026 Curriculum.</b> 用于 price multiples 与 enterprise value multiples 的区别，以及 P/S、EV/EBITDA 等指标的适用边界。<br><a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/market-based-valuation-price-enterprise-value-multiples">CFA Market Multiples</a></li>
+<li><b>课程边界说明.</b> 本章所有企业、收益率、估值和 DCF 数字均为教学示例，不构成证券分析、估值结论或投资建议。真实上市公司分析还需要正式财务报表、会计附注、行业背景、治理结构和当前市场信息。</li>
+</ol></section>
+</article></main></div></div>
+
+<script>
+const done=new Set();let stockCard={};
+function mark(k){done.add(k);const p=Math.round(done.size/4*100);taskPct.textContent=p+"%";taskProg.style.width=p+"%"}
+function readProgress(){const d=document.documentElement,h=d.scrollHeight-d.clientHeight,p=h>0?Math.round((d.scrollTop||0)/h*100):0;readPct.textContent=p+"%";readProg.style.width=p+"%"}window.addEventListener("scroll",readProgress);
+function nfmt(x,d=2){return Number(x||0).toLocaleString("zh-CN",{maximumFractionDigits:d})}
+function money(x){return "¥"+nfmt(x,2)}
+
+function equityLab(){
+  const A=Number(eAssets.value||0),D=Number(eDebt.value||0),S=Math.max(.0001,Number(eShares.value||1)),P=Number(ePrice.value||0),NI=Number(eIncome.value||0);
+  const book=A-D,bvps=book/S,mc=P*S,eps=NI/S,pb=bvps!==0?P/bvps:NaN,pe=eps>0?P/eps:NaN;
+  equityOut.innerHTML=`<div class="grid3"><div class="metric"><span>Book Equity</span><b>${nfmt(book)} 亿元</b></div><div class="metric"><span>Book Value / Share</span><b>${money(bvps)}</b></div><div class="metric"><span>Market Cap</span><b>${nfmt(mc)} 亿元</b></div><div class="metric"><span>EPS</span><b>${money(eps)}</b></div><div class="metric"><span>P/B</span><b>${Number.isFinite(pb)?pb.toFixed(2)+"×":"—"}</b></div><div class="metric"><span>P/E</span><b>${Number.isFinite(pe)?pe.toFixed(2)+"×":"不适用"}</b></div></div><hr><p>股价只是每一小份股权的价格。把股价和股数、利润、净资产放回公司整体以后，才开始有经济意义。</p>`;
+  stockCard.equity={assets:A,debt:D,shares:S,price:P,income:NI,bookEquity:book,bvps,marketCap:mc,eps,pb,pe};mark("equity")
+}
+
+function dilutionLab(){
+  const NI=Number(dbIncome.value||0),S=Math.max(.0001,Number(dbShares.value||1)),NS=Math.max(.0001,Number(dbNewShares.value||1)),vc=Number(dbValueChange.value||0)/100;
+  const eps0=NI/S,eps1=NI/NS;
+  const ownershipChange=(S/NS-1)*100;
+  const baseValue=100, newValue=baseValue*(1+vc), perShareIndex0=baseValue/S, perShareIndex1=newValue/NS;
+  let type=NS<S?"回购 / 股数减少":NS>S?"增发 / 股数增加":"股数不变";
+  dilutionOut.innerHTML=`<div class="grid3"><div class="metric"><span>场景</span><b style="font-size:16px">${type}</b></div><div class="metric"><span>EPS：变化前</span><b>${money(eps0)}</b></div><div class="metric"><span>EPS：变化后</span><b>${money(eps1)}</b></div><div class="metric"><span>单股占比机械变化</span><b>${ownershipChange>=0?"+":""}${ownershipChange.toFixed(2)}%</b></div><div class="metric"><span>简化每股价值指数：前</span><b>${nfmt(perShareIndex0,4)}</b></div><div class="metric"><span>简化每股价值指数：后</span><b>${nfmt(perShareIndex1,4)}</b></div></div><hr><p>${NS<S?"股数减少会机械提高每股占比和 EPS，但如果公司为回购支付过高价格、增加过多债务，实际价值创造可能弱于表面每股增长。":NS>S?"增发会摊薄原股东占比和 EPS，但如果新增资本被投入高回报项目，企业整体价值也可能同时增长。":"没有股份数量变化，EPS 只受利润变化影响。"}</p>`;
+  stockCard.shareCount={income:NI,oldShares:S,newShares:NS,valueChangePct:vc*100,eps0,eps1,ownershipChange};mark("shares")
+}
+
+function drawReturnChart(series){
+  const c=returnChart,ctx=c.getContext("2d"),w=c.width,h=c.height,p=44;
+  ctx.clearRect(0,0,w,h);ctx.strokeStyle="#cdb78b";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(p,15);ctx.lineTo(p,h-p);ctx.lineTo(w-15,h-p);ctx.stroke();
+  const vals=series.map(x=>x.v),min=Math.min(...vals),max=Math.max(...vals),span=Math.max(max-min,1);
+  ctx.strokeStyle="#455f4c";ctx.lineWidth=3;ctx.beginPath();series.forEach((d,i)=>{const x=p+(w-p-20)*(i/(series.length-1||1)),y=(h-p-10)-(h-p-30)*(d.v-min)/span;i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.stroke();
+  ctx.fillStyle="#766858";ctx.font="12px serif";ctx.fillText("Price index",7,24);ctx.fillText("Time →",w-66,h-12)
+}
+
+function returnLab(){
+  const eps0=Number(rEPS.value||0),g=Number(rGrowth.value||0)/100,years=Math.max(1,Math.round(Number(rYears.value||1))),pe0=Math.max(.01,Number(rPE0.value||1)),pe1=Math.max(.01,Number(rPE1.value||1)),div=Number(rDiv.value||0)/100;
+  const price0=eps0*pe0,eps1=eps0*Math.pow(1+g,years),price1=eps1*pe1;
+  let dividends=0,series=[{v:price0}],eps=eps0;
+  for(let i=1;i<=years;i++){dividends+=price0*div;eps*=1+g;const pe=pe0+(pe1-pe0)*(i/years);series.push({v:eps*pe})}
+  const totalValue=price1+dividends,totalRet=(totalValue/price0-1)*100,cagr=(Math.pow(totalValue/price0,1/years)-1)*100;
+  const fundamental=Math.pow(1+g,years)-1,multiple=pe1/pe0-1;
+  returnOut.innerHTML=`<div class="grid3"><div class="metric"><span>起始价格（EPS×P/E）</span><b>${money(price0)}</b></div><div class="metric"><span>期末 EPS</span><b>${money(eps1)}</b></div><div class="metric"><span>期末价格</span><b>${money(price1)}</b></div><div class="metric"><span>累计简化股息</span><b>${money(dividends)}</b></div><div class="metric"><span>总回报</span><b>${totalRet.toFixed(2)}%</b></div><div class="metric"><span>年化复合回报</span><b>${cagr.toFixed(2)}%</b></div></div><hr><p>企业每股盈利累计变化约 ${(fundamental*100).toFixed(1)}%，估值倍数变化约 ${(multiple*100).toFixed(1)}%。同样的盈利增长，如果期末 P/E 从 ${pe0}× 压缩到 ${pe1}×，股票结果会明显不同。</p><p class="small">股息按初始价格的固定比例做教学简化，不代表真实公司派息路径。</p>`;
+  drawReturnChart(series);stockCard.returnEngine={eps0,growth:g*100,years,pe0,pe1,dividendYield:div*100,price0,eps1,price1,dividends,totalRet,cagr};mark("return")
+}
+
+function valuationLab(){
+  const cf0=Number(vCF.value||0),g=Number(vGrowth.value||0)/100,years=Math.max(1,Math.round(Number(vYears.value||1))),tg=Number(vTerminalG.value||0)/100,r=Number(vDiscount.value||0)/100,market=Number(vMarket.value||0);
+  if(r<=tg){valuationOut.innerHTML='<b>要求回报率必须高于长期稳定增长率，否则常增长终值模型无法成立。</b>';return}
+  let pv=0,cf=cf0,rows="";
+  for(let t=1;t<=years;t++){cf*=1+g;const disc=cf/Math.pow(1+r,t);pv+=disc;rows+=`<tr><td>${t}</td><td>${nfmt(cf)}</td><td>${nfmt(disc)}</td></tr>`}
+  const terminalCF=cf*(1+tg),terminal=terminalCF/(r-tg),pvTerminal=terminal/Math.pow(1+r,years),value=pv+pvTerminal,diff=(value/market-1)*100;
+  valuationOut.innerHTML=`<div class="grid3"><div class="metric"><span>高增长期现金流现值</span><b>${nfmt(pv)}</b></div><div class="metric"><span>终值现值</span><b>${nfmt(pvTerminal)}</b></div><div class="metric"><span>教学估值</span><b>${nfmt(value)}</b></div><div class="metric"><span>当前市场价值</span><b>${nfmt(market)}</b></div><div class="metric"><span>模型相对市场</span><b>${diff>=0?"+":""}${diff.toFixed(1)}%</b></div></div><table class="table"><thead><tr><th>年份</th><th>预测现金流</th><th>折现现值</th></tr></thead><tbody>${rows}</tbody></table><p>这个结果并不是“正确价值”，而是你当前增长率、增长持续期、长期增长与要求回报共同产生的结果。稍微改变这些变量，估值可能明显变化。</p>`;
+  stockCard.valuation={cf0,growth:g*100,years,terminalGrowth:tg*100,discountRate:r*100,market,value,pvHighGrowth:pv,pvTerminal,diffPct:diff};mark("valuation")
+}
+
+function exportCard(){
+  const data={chapter:"16 股票：你买下的到底是什么？",exported_at:new Date().toISOString(),card:stockCard,principles:["先看企业经济权利，再看价格代码","每股价格必须和股份数量、利润、现金流一起理解","区分Revenue、Net Income、Cash Flow和Free Cash Flow","评估资本配置：再投资、分红、回购、还债与收购","把股票回报拆成企业基本面、股东分配与估值变化","不把低P/E自动理解为便宜，也不把高P/E自动理解为贵","好公司还需要合理价格和可接受预期才能成为好投资"]};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="我的股票阅读卡_v1.json";a.click();URL.revokeObjectURL(u)
+}
+equityLab();dilutionLab();returnLab();valuationLab();readProgress();
+</script>
+</body></html>

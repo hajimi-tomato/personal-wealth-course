@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第二章｜钱为什么会影响我们的决定？— 个人财富系统</title>
+<style>
+:root{
+  --bg:#efe1c3;--paper:#fbf3df;--paper2:#f7ecd3;--ink:#332a22;--muted:#766858;
+  --line:#d6c199;--red:#8f342a;--redbg:#f1ddd5;--green:#455f4c;--greenbg:#dfe7dc;
+  --gold:#a77a2b;--goldbg:#f2e4bd;--blue:#445d70;--bluebg:#dce5e9;--deep:#2e2924;
+  --shadow:0 18px 50px rgba(74,52,28,.14)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--ink);line-height:1.9;
+  font-family:ui-serif,"Noto Serif SC","Source Han Serif SC","Songti SC",STSong,serif;
+  background:
+    radial-gradient(circle at 12% 7%,rgba(255,255,255,.45),transparent 25%),
+    radial-gradient(circle at 88% 15%,rgba(100,74,40,.07),transparent 22%),
+    repeating-linear-gradient(0deg,rgba(90,63,34,.022) 0 1px,transparent 1px 5px),
+    var(--bg)
+}
+a{color:var(--green);text-underline-offset:3px}
+.wrap{max-width:1320px;margin:auto;padding:24px}
+.layout{display:grid;grid-template-columns:260px minmax(0,900px);gap:30px;justify-content:center;align-items:start}
+.sidebar{position:sticky;top:18px}
+.sidebox{background:rgba(251,243,223,.82);border:1px solid var(--line);border-radius:13px;padding:15px;margin-bottom:12px}
+.sidebox b{display:block}.sidebox small{color:var(--muted)}
+nav a{display:block;text-decoration:none;color:var(--muted);font-size:13px;padding:6px 7px;border-radius:7px}
+nav a:hover{background:#efdfbd;color:var(--ink)}
+.progress{height:7px;background:#e3d1aa;border-radius:999px;overflow:hidden;margin-top:8px}
+.progress i{display:block;height:100%;width:0;background:var(--red);transition:.25s}
+.paper{background:rgba(251,243,223,.97);border:1px solid rgba(170,143,96,.48);box-shadow:var(--shadow);border-radius:7px;overflow:hidden}
+.hero{padding:68px 74px 50px;border-bottom:1px solid var(--line);position:relative}
+.hero:before{content:"";position:absolute;left:28px;top:30px;bottom:30px;width:1px;background:rgba(143,52,42,.28)}
+.kicker{font-size:12px;letter-spacing:.18em;color:var(--red);font-weight:800}
+h1{font-size:49px;line-height:1.2;margin:13px 0 17px;letter-spacing:-.035em}
+.subtitle{font-size:20px;color:var(--muted);max-width:740px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 9px;background:#f7edd4;color:var(--muted)}
+.content{padding:54px 74px 76px}
+section{margin-bottom:62px}
+h2{font-size:30px;line-height:1.35;margin:0 0 18px}
+h3{font-size:21px;margin:30px 0 10px}
+h4{font-size:17px;margin:20px 0 7px}
+p{margin:9px 0 16px}
+.lead{font-size:18px}
+.callout{padding:19px 21px;border-left:5px solid;margin:23px 0;border-radius:4px}
+.red{background:var(--redbg);border-color:var(--red)}
+.green{background:var(--greenbg);border-color:var(--green)}
+.gold{background:var(--goldbg);border-color:var(--gold)}
+.blue{background:var(--bluebg);border-color:var(--blue)}
+.label{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+.card{padding:20px;border:1px solid var(--line);border-radius:10px;background:#fff9ea;margin:15px 0}
+.quote{padding:23px 27px;background:#eee0c4;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:19px;margin:24px 0}
+.quote cite{display:block;font-style:normal;color:var(--muted);font-size:12px;margin-top:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}
+.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.table th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.book{display:grid;grid-template-columns:115px 1fr;gap:20px;padding:21px;border:1px solid var(--line);border-radius:10px;background:#f8edd6;margin:16px 0}
+.cover{height:155px;border-radius:4px;background:linear-gradient(155deg,#5c4031,#a5764b);display:flex;align-items:flex-end;padding:12px;color:#fff5df;font-size:13px;font-weight:800;box-shadow:3px 4px 0 rgba(75,50,30,.15)}
+.book.alt .cover{background:linear-gradient(155deg,#23403d,#6c8577)}
+.book.third .cover{background:linear-gradient(155deg,#783a31,#c38263)}
+.book h4{margin:0 0 5px;font-size:19px}
+.note{color:var(--muted);font-size:13px}
+.kmap{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:18px 0}
+.kmap div{padding:15px 12px;background:#f7ecd2;border:1px solid var(--line);border-radius:8px;text-align:center}
+.kmap b{display:block;color:var(--green);margin-bottom:3px}
+.case{padding:22px;border:1px solid var(--line);border-radius:10px;background:#faf0db;margin:14px 0}
+.casehead{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.casehead b{font-size:18px}.casehead span{font-size:12px;color:var(--muted)}
+.formula{background:var(--deep);color:#f8edd6;font:16px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:17px 19px;border-radius:8px;margin:18px 0}
+.metric{padding:15px;background:#f8edd4;border:1px solid var(--line);border-radius:9px}
+.metric b{display:block;font-size:20px;color:var(--green)}
+.metric span{font-size:12px;color:var(--muted)}
+.likert{display:grid;grid-template-columns:1fr repeat(5,44px);gap:5px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.likert span{font-size:14px}
+.likert label{display:flex;justify-content:center}
+input[type=radio]{accent-color:var(--red);transform:scale(1.05)}
+input[type=number],input[type=text],textarea,select{
+  width:100%;border:1px solid #c7ad80;background:#fffaf0;border-radius:7px;padding:10px 11px;color:var(--ink);font:inherit
+}
+textarea{min-height:80px}
+button{border:0;border-radius:8px;padding:10px 15px;background:var(--red);color:white;font-weight:800;cursor:pointer}
+button.secondary{background:var(--green)}
+button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.feedback{margin-top:14px;padding:14px 16px;border:1px dashed #b69d70;border-radius:8px;background:#f5e9cf}
+.hidden{display:none}
+.scorebar{height:10px;border-radius:999px;background:#e1d0aa;overflow:hidden}
+.scorebar i{display:block;height:100%;background:var(--green)}
+.account-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.alloc{padding:16px;border:1px solid var(--line);background:#fff9ea;border-radius:10px}
+.alloc h4{margin-top:0}
+.range-row{display:grid;grid-template-columns:90px 1fr 72px;gap:10px;align-items:center;margin:10px 0}
+input[type=range]{width:100%;accent-color:var(--red)}
+.trigger-list{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.trigger{border:1px solid var(--line);background:#fff9ea;border-radius:8px;padding:9px 10px;cursor:pointer;font-size:13px}
+.trigger.sel{background:#e7eadf;outline:2px solid var(--green)}
+.log{width:100%;border-collapse:collapse;font-size:13px;margin-top:14px}
+.log th,.log td{border-bottom:1px solid var(--line);padding:9px 6px;text-align:left;vertical-align:top}
+.end{background:var(--deep);color:#f5ebd7;padding:28px;border-radius:9px}
+.end h2{color:#fff5df}
+.refs{font-size:13px;color:var(--muted)}
+.refs li{margin-bottom:9px}
+hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+@media(max-width:1030px){.layout{grid-template-columns:1fr}.sidebar{display:none}.hero,.content{padding-left:36px;padding-right:36px}}
+@media(max-width:680px){
+  .wrap{padding:0}.paper{border-radius:0}.hero,.content{padding:30px 20px}h1{font-size:34px}
+  .grid2,.grid3,.grid4,.kmap,.book,.account-grid,.trigger-list{grid-template-columns:1fr}
+  .cover{height:100px;width:80px}
+  .likert{grid-template-columns:1fr repeat(5,34px);font-size:12px}
+}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="layout">
+
+<aside class="sidebar">
+  <div class="sidebox"><b>个人财富系统</b><small>第二章 · 金钱观与行为</small></div>
+  <div class="sidebox"><small>本章互动完成度 <span id="pct">0%</span></small><div class="progress"><i id="prog"></i></div></div>
+  <div class="sidebox"><nav>
+    <a href="#goal">00 今天要解决什么</a>
+    <a href="#capability">01 知道 ≠ 做到</a>
+    <a href="#meaning">02 钱为什么不只是钱</a>
+    <a href="#socialization">03 金钱观从哪里来</a>
+    <a href="#scripts">04 Money Scripts</a>
+    <a href="#status">05 钱、身份与比较</a>
+    <a href="#mental">06 心理账户</a>
+    <a href="#present">07 当下偏好</a>
+    <a href="#systems">08 为什么系统比意志力可靠</a>
+    <a href="#emotion">09 情绪、压力与回避</a>
+    <a href="#cases">10 四个现实案例</a>
+    <a href="#mistakes">11 容易学歪的地方</a>
+    <a href="#profile">12 金钱决策画像</a>
+    <a href="#experiment">13 心理账户实验</a>
+    <a href="#diary">14 一周消费触发记录</a>
+    <a href="#summary">15 本章总结</a>
+    <a href="#refs">16 资料与注释</a>
+  </nav></div>
+</aside>
+
+<main class="paper">
+<header class="hero">
+  <div class="kicker">CHAPTER 02 · MONEY VALUES & BEHAVIOR</div>
+  <h1>钱为什么会影响我们的决定？</h1>
+  <div class="subtitle">从“我知道应该怎么做”到“我为什么还是没有那样做”：金钱价值观、金融社会化、心理账户、当下偏好与行为设计。</div>
+  <div class="meta">
+    <span class="pill">预计阅读 50–65 分钟</span>
+    <span class="pill">核心概念 14 个</span>
+    <span class="pill">专业来源 9 组</span>
+    <span class="pill">3 个互动练习</span>
+  </div>
+</header>
+
+<article class="content">
+
+<section id="goal">
+<h2>00｜今天到底要解决什么问题？</h2>
+<p class="lead">第一章回答了“财富是什么”。第二章开始处理一个更麻烦的问题：<b>既然很多道理并不难，为什么成年人仍然会反复做出与长期目标冲突的金钱决定？</b></p>
+<p>绝大多数人并不是因为完全不知道“应该存钱”“信用卡利息很贵”“冲动消费会影响预算”才遇到财务问题。更多时候，真正起作用的是价值观、习惯、情绪、比较环境、对未来的想象，以及我们对不同来源的钱赋予的不同心理意义。</p>
+<p>这也是为什么成熟的金融教育体系不会把金融素养等同于“答对多少道知识题”。OECD/INFE 的成人金融素养框架同时衡量<b>金融知识、金融行为和金融态度</b>；CFPB 也把财务能力拆成执行功能、金融习惯与规范、金融知识与决策能力等相互关联的组成部分。</p>
+
+<div class="callout red"><div class="label">这一章结束时，你应该能够</div>
+<b>看到自己的金钱行为背后的结构。</b>你会开始区分：哪些决定来自真实需要，哪些来自家庭规则，哪些来自身份表达，哪些来自短期诱惑，哪些来自压力与回避。真正的目标不是“把自己改造成绝对理性的人”，而是让财务系统逐渐减少不必要的冲动和内耗。
+</div>
+
+<div class="kmap">
+  <div><b>第一层</b>价值观</div>
+  <div><b>第二层</b>成长经历</div>
+  <div><b>第三层</b>心理偏差</div>
+  <div><b>第四层</b>社会环境</div>
+  <div><b>第五层</b>行为系统</div>
+</div>
+</section>
+
+<section id="capability">
+<h2>01｜“知道”为什么不等于“做到”？</h2>
+<p>如果理财只是知识考试，那么知道得最多的人应该总是做得最好。但现实并非如此。一个人可以准确解释复利，却一直没有储蓄；可以知道高利率债务昂贵，却仍然持续滚动信用卡余额；也可以很清楚自己在比较消费，却仍然因为周围人的生活方式提高支出。</p>
+
+<h3>金融能力至少包含三层</h3>
+<div class="grid3">
+  <div class="card"><b>知识</b><p>我是否理解利息、通胀、风险、账户、信用、投资等基本原理？</p></div>
+  <div class="card"><b>态度</b><p>我是否真的重视长期规划、储蓄、风险准备和自主判断？</p></div>
+  <div class="card"><b>行为</b><p>我是否真正记录、储蓄、按时还款、比较产品、执行计划并复盘？</p></div>
+</div>
+
+<p>OECD/INFE 2023 成人金融素养调查延续了这种结构，并指出基本金融知识仍存在明显缺口，尤其是单利、复利和通胀；但报告同时强调，只有知识是不够的，支持财务韧性与福祉还需要更好的金融行为和态度。</p>
+
+<div class="callout blue"><div class="label">课程里的一个重要假设</div>
+以后遇到一个财务问题，我们不会只问“你知不知道正确答案”，还要问：<b>你是否愿意执行？执行成本高不高？环境是否支持？有没有一个简单机制帮助你坚持？</b>
+</div>
+
+<h3>CFPB 为什么把“习惯与规范”单独拿出来？</h3>
+<p>CFPB 把 financial habits and norms 定义为人们在日常金融生活中依赖的价值、标准、惯例和“生活规则”。这些东西会影响从一笔小额犒赏，到退休储蓄比例这样的决定。换句话说，很多决定不是每一次都重新计算，而是由已经形成的默认规则驱动。</p>
+
+<div class="formula">实际行为 ≠ 纯知识输出<br>实际行为 ≈ 知识 × 价值判断 × 情境 × 习惯 × 执行能力</div>
+</section>
+
+<section id="meaning">
+<h2>02｜钱为什么从来不只是“钱”？</h2>
+<p>在经济学模型里，一元钱通常就是一元钱；但在心理层面，金钱常常被赋予额外意义。对不同的人来说，它可能代表安全、自由、身份、能力、被认可、控制、享受，甚至羞耻或冲突。</p>
+
+<table class="table">
+<thead><tr><th>钱可能代表什么</th><th>常见内在语言</th><th>可能带来的行为</th></tr></thead>
+<tbody>
+<tr><td>安全</td><td>“账户里必须留很多钱，我才能安心。”</td><td>储蓄积极，但也可能过度害怕消费或投资。</td></tr>
+<tr><td>自由</td><td>“我想有一天可以拒绝不喜欢的工作。”</td><td>愿意长期储蓄和规划，更关注选择权。</td></tr>
+<tr><td>地位</td><td>“别人看到什么，才知道我过得好不好。”</td><td>更容易增加可见性强的消费。</td></tr>
+<tr><td>享受</td><td>“钱不花掉就没有意义。”</td><td>重视当下体验，但可能低估未来需求。</td></tr>
+<tr><td>控制</td><td>“只有每一笔钱都在掌握中，我才不会失控。”</td><td>财务管理细致，也可能产生持续焦虑。</td></tr>
+</tbody>
+</table>
+
+<p>这些意义本身并没有“对错”。问题在于：<b>当一个潜在信念开始替你自动做决定，而你本人却没有意识到它存在时，它就会变成一个盲点。</b></p>
+
+<div class="callout gold"><div class="label">自我观察</div>
+当你说“这个钱不能花”“这个东西我一定要有”“我不想看银行卡”“我至少要赚到某个数字才算成功”时，先不要急着评价。问一句：<b>这句话背后，我究竟在保护什么？安全、身份、自由，还是某种过去形成的规则？</b>
+</div>
+</section>
+
+<section id="socialization">
+<h2>03｜你的金钱观从哪里来？——金融社会化</h2>
+<p><b>Financial socialization（金融社会化）</b>指一个人如何在成长过程中逐渐获得关于金钱的知识、价值观、态度和行为模式。CFPB 指出，金融习惯与规范从童年开始形成，并持续发展到青春期和成年早期；家庭成员、同伴、学校、媒体和真实金融经验都会参与这个过程。</p>
+
+<h3>家庭通常是第一套“默认规则”的来源</h3>
+<p>你未必接受过正式理财教育，但你很可能听过大量关于钱的句子：</p>
+<div class="grid2">
+  <div class="card">“钱要存着，花掉就没了。”</div>
+  <div class="card">“人不能欠别人钱。”</div>
+  <div class="card">“有钱就应该让自己过得好一点。”</div>
+  <div class="card">“不买房就不算稳定。”</div>
+  <div class="card">“谈钱很伤感情。”</div>
+  <div class="card">“别人有的，我们也不能差太多。”</div>
+</div>
+
+<p>这些句子会慢慢变成“常识”。但所谓常识，经常只是特定家庭、年代和环境里的适应性规则。家庭金融社会化研究也发现，家庭中的沟通与示范与后来的金融知识、行为和财务福祉存在关联；但这种关联并不意味着家庭决定一切，后续教育和真实经验仍然会持续改变行为。</p>
+
+<h3>不同年代的人，可能在回答完全不同的财务问题</h3>
+<p>《金钱心理学》第一章 <i>No One's Crazy</i> 的重要启发就是：每个人都用自己有限的人生经验理解钱。经历过高通胀的人，可能天然重视现金购买力；经历长期房价上涨的人，可能更信任房产；成长于就业稳定时期的人，与经历频繁裁员的人，对“安全”的定义很可能不同。</p>
+
+<div class="callout green"><div class="label">专业理解</div>
+金融社会化不是为了把所有问题归因于父母。它的价值是让你看到：<b>有些财务习惯并不是“天生性格”，而是历史形成的规则。既然是形成的，也就有机会被重新观察和修改。</b>
+</div>
+</section>
+
+<section id="scripts">
+<h2>04｜Money Scripts：我们脑中会不会存在“金钱剧本”？</h2>
+<p>2011 年，Klontz、Britt、Mentzer 和 Klontz 在《Journal of Financial Therapy》发表研究，使用 422 名参与者对 72 条金钱相关信念的回答，识别出四类主要 money belief patterns：<b>money avoidance、money worship、money status、money vigilance</b>。研究发现其中三类与收入和净资产存在统计关联。</p>
+
+<div class="grid4">
+<div class="card"><b>Money Avoidance｜金钱回避</b><p>更容易把钱与负面价值联系在一起，例如觉得金钱肮脏、谈钱令人不适，或有意避开财务问题。</p></div>
+<div class="card"><b>Money Worship｜金钱崇拜</b><p>容易把“更多钱”想象成许多问题的最终答案，持续相信下一笔收入会带来满足。</p></div>
+<div class="card"><b>Money Status｜金钱地位</b><p>更容易把财务成功与社会身份、自我价值和他人评价连接起来。</p></div>
+<div class="card"><b>Money Vigilance｜金钱警觉</b><p>更强调储蓄、谨慎、保密、规划和对财务风险的关注。</p></div>
+</div>
+
+<p>2016 年对修订版 KMSI-R 的研究进一步检验了这一测量工具的可靠性和收敛效度。但在本课程中，我们不会直接把标准化量表搬进来，也不会给你下“你就是某一型”的结论。原因有两个：</p>
+<p>第一，这些类别描述的是<b>倾向</b>，同一个人可以同时在多个维度上得分较高；第二，金钱信念会随情境和人生阶段变化，它不是人格诊断。</p>
+
+<div class="callout red"><div class="label">非常重要的边界</div>
+Money Scripts 的作用是提供观察语言，不是给人贴标签。真正有用的问题不是“我是哪个类型”，而是：<b>在什么情境下，哪一种信念最容易替我做决定？</b>
+</div>
+</section>
+
+<section id="status">
+<h2>05｜钱、身份与比较：为什么“正常生活”的标准会不断移动？</h2>
+<p>消费除了满足使用需求，还可能承担社会信号功能。经济学对 status goods / positional goods 的研究表明，当人们在意自己相对他人的消费位置时，消费决策会发生变化。Hopkins 与 Kornienko 的模型甚至指出，在地位竞争下，人们可能在可见消费上投入过多资源。</p>
+
+<h3>参照点不是固定的</h3>
+<p>你可能在学生时期觉得一顿 80 元的饭很贵，工作几年后却把它当作日常；也可能在进入一个收入更高的圈层后，突然觉得原来满意的住房、衣服和旅行“不够体面”。变化的不一定是实际需求，而是<b>参照群体和比较标准</b>。</p>
+
+<p>2023 年《American Economic Journal: Microeconomics》的一项理论研究继续讨论“keeping up with the Joneses”：当社会比较更强时，消费可能上升，整体福利反而下降。对个人理财的启发不是“永远不要比较”，而是要知道：<b>比较会悄悄改变你心中“多少钱才够”“什么才算正常”的标准。</b></p>
+
+<div class="callout gold"><div class="label">和第一章连接起来</div>
+第一章讲“消费展示不等于财富”。这一章再往前一步：<b>既然展示不能证明财富，为什么我们仍然这么容易被展示影响？</b>答案之一，就是身份与参照群体在决策中起作用。
+</div>
+</section>
+
+<section id="mental">
+<h2>06｜心理账户：为什么同样的 1000 元，我们会用不同方式对待？</h2>
+<p><b>Mental accounting（心理账户）</b>描述人们会按资金来源或用途给钱贴标签，并给不同“账户”不同优先级。CFPB 在有效金融教育材料中直接把它列为影响消费者行为的重要偏差之一。</p>
+
+<h3>经济意义上的钱是可替代的，心理意义上的钱却不是</h3>
+<p>假设你得到 1000 元：</p>
+<ul>
+<li>工资里的 1000 元，你可能觉得“应该存起来”；</li>
+<li>生日红包 1000 元，你可能觉得“可以随便花”；</li>
+<li>投资赚到的 1000 元，你可能觉得“这是利润，不花白不花”。</li>
+</ul>
+
+<p>但从净资产角度看，这三笔钱对你的资产负债表贡献完全一样。心理账户的好处是，它能帮助人们分配预算，例如把应急金单独隔离，减少误用；问题在于，当账户之间被心理上视为“绝对不能互通”，就可能产生低效行为。</p>
+
+<div class="case">
+<div class="casehead"><b>典型矛盾</b><span>CFPB 举例的行为模式</span></div>
+<p>一个人可能在低利率储蓄账户中保留很多钱，同时长期承担高利率信用卡债务。因为“储蓄”被标成不能动的钱，而“信用卡”被归到另一个心理账户。经济上两者应该被一起比较，心理上却被隔离了。</p>
+</div>
+
+<div class="callout blue"><div class="label">关键不是消灭心理账户</div>
+真正成熟的做法是：<b>利用有帮助的心理账户，警惕让你忽略整体成本的心理账户。</b>例如“旅行基金”可以帮助你有计划地消费；但“奖金反正是额外的，所以全部花掉”就可能破坏长期目标。
+</div>
+</section>
+
+<section id="present">
+<h2>07｜为什么“现在的我”经常打败“未来的我”？——当下偏好</h2>
+<p><b>Present bias（当下偏好）</b>指人们往往会过度看重眼前的收益或成本，相对低估未来结果。CFPB 举的一个例子是：额外偿还债务可以降低未来利息，但“今天手里少了可花的钱”可能让人放弃这么做。</p>
+
+<h3>问题并不是“人太懒”</h3>
+<p>未来的收益往往抽象、遥远、不确定，而眼前的消费体验非常具体。于是我们很容易做出这样的计划：</p>
+<div class="grid2">
+  <div class="card"><b>现在</b><p>“这个月先轻松一点，下个月开始存钱。”</p></div>
+  <div class="card"><b>未来</b><p>“等收入高一点，我一定认真理财。”</p></div>
+</div>
+<p>可问题在于，下个月到来时，它又会变成新的“现在”。这就是为什么单靠“以后一定会更自律”非常不可靠。</p>
+
+<h3>承诺机制的意义</h3>
+<p>行为设计中的一个重要方法，是在冷静时提前替未来的自己设定规则。例如发薪日自动转入储蓄账户、自动还款、自动投资、设置消费上限或把长期资金放到不那么容易随手动用的账户中。</p>
+
+<div class="formula">好的财务系统 ≠ 每天都做出完美决定<br>好的财务系统 = 尽量减少每天必须重新做决定的次数</div>
+</section>
+
+<section id="systems">
+<h2>08｜为什么系统通常比意志力可靠？</h2>
+<p>CFPB 的“financial rules to live by”思路很值得借鉴：一些简单、明确、适合自身情况的个人规则，可以像道路标线一样，让人更容易持续朝目标移动。关键不是照抄“必须存 10%”这样的通用数字，而是根据自己的现金流和目标设计一个能够长期执行的规则。</p>
+
+<h3>有效规则通常有三个特征</h3>
+<div class="grid3">
+  <div class="card"><b>简单</b><p>不需要每次重新计算。例如“发薪日先转出固定金额”。</p></div>
+  <div class="card"><b>可执行</b><p>和当前收入、支出结构相匹配，而不是理想化要求。</p></div>
+  <div class="card"><b>能复盘</b><p>有明确检查周期，例如每月底、每季度或收入发生变化时。</p></div>
+</div>
+
+<h3>系统不是为了把生活变成表格</h3>
+<p>理财系统的目的不是让你每天盯着每一笔小额消费，而是把最重要的事情提前安排好：必要账单能付、应急金持续积累、债务按计划下降、长期目标有固定资金来源。系统一旦稳定，反而可以减少日常焦虑。</p>
+</section>
+
+<section id="emotion">
+<h2>09｜情绪、压力与财务回避：为什么“越焦虑越不想看”？</h2>
+<p>钱是许多人生活中的重要压力来源。压力状态下，人可能出现两种相反反应：一种是过度控制，例如反复检查账户、不敢消费；另一种是回避，例如不看账单、不打开银行 App、不想计算负债。</p>
+
+<p>金融回避尤其危险，因为“不看”并不会让利息停止，也不会让账单消失。回避暂时降低了心理不适，却可能让现实成本继续增加。</p>
+
+<div class="callout green"><div class="label">课程里的处理原则</div>
+我们不会把财务焦虑当作“性格缺陷”。更实用的做法是降低任务摩擦：<b>把复杂问题拆成一个下一步、把检查时间固定下来、自动化能自动化的部分、需要专业帮助时及时求助。</b>
+</div>
+
+<h3>一个很实用的问题</h3>
+<p>当你不想面对某个财务问题时，不要先问“我怎么这么拖延”，而是问：</p>
+<div class="quote">“我现在具体不想看到什么？”<cite>课程自我观察提示，不是标准心理量表题目</cite></div>
+<p>可能是余额下降、债务数字、自己过去的消费，也可能是对未来的不确定。把模糊焦虑翻译成具体问题，才有可能形成下一步行动。</p>
+</section>
+
+<section id="cases">
+<h2>10｜四个现实案例：同一个财务问题，背后机制可能完全不同</h2>
+
+<div class="case">
+<div class="casehead"><b>案例 A：收入越来越高，却永远觉得“不够”</b><span>Money Worship + 参照点移动</span></div>
+<p>某人的工资从 8000 元提高到 2 万元，但每次进入更高收入圈层后，住房、餐饮、旅行和电子产品标准也同步上升。问题不一定是“不会赚钱”，而可能是“够”的标准不断被重写。此时真正需要建立的是内部目标，而不是继续追逐外部参照。</p>
+</div>
+
+<div class="case">
+<div class="casehead"><b>案例 B：账户里有钱，却什么都舍不得花</b><span>Money Vigilance 的另一面</span></div>
+<p>一个人储蓄率很高，但任何非必要支出都会引发明显内疚。谨慎帮助他积累财富，但如果所有消费都被理解成失败，它也可能损害生活质量。理财不是最大化储蓄率，而是让资源更贴近真实价值。</p>
+</div>
+
+<div class="case">
+<div class="casehead"><b>案例 C：年终奖一到账就想全部花掉</b><span>心理账户</span></div>
+<p>工资被视为“正式的钱”，奖金则被视为“意外之财”。如果这种标签导致完全不同的决策，可以尝试在奖金到账前预先设定分配比例，而不是等钱到账后再临场决定。</p>
+</div>
+
+<div class="case">
+<div class="casehead"><b>案例 D：知道信用卡利息很高，但一直不想处理</b><span>当下偏好 + 回避</span></div>
+<p>立即偿债意味着今天可花的钱减少，而未来节省的利息不够“有感觉”；同时查看债务余额又让人焦虑。解决方法往往不是再读一遍“信用卡利率很高”，而是把偿债自动化、拆成阶段目标，并固定查看周期。</p>
+</div>
+</section>
+
+<section id="mistakes">
+<h2>11｜这一章最容易学歪的六个地方</h2>
+
+<div class="callout red"><div class="label">误区 1</div><b>“所有消费都是心理问题。”</b><br>不对。大量消费只是满足真实需要和正常生活。心理框架用于理解部分行为，不是把一切都病理化。</div>
+<div class="callout red"><div class="label">误区 2</div><b>“家庭决定了我以后一定怎么花钱。”</b><br>金融社会化会影响行为，但不是命运。教育、工作环境、伴侣、朋友和真实经历都会继续重塑金钱观。</div>
+<div class="callout red"><div class="label">误区 3</div><b>“Money Scripts 就是四种人格。”</b><br>不对。它们是金钱信念维度，不是固定人格类型，也不适合脱离标准量表随意做诊断。</div>
+<div class="callout red"><div class="label">误区 4</div><b>“越谨慎越好。”</b><br>过度警觉可能让人无法进行合理消费、承担必要风险或享受已经规划好的生活。</div>
+<div class="callout red"><div class="label">误区 5</div><b>“自动化以后就不用思考。”</b><br>自动化只负责重复执行，规则本身仍需要定期复盘，特别是收入、家庭责任和目标变化时。</div>
+<div class="callout red"><div class="label">误区 6</div><b>“理解偏差以后就不会再犯。”</b><br>知道偏差存在，并不会让人自动免疫。真正有效的改变通常来自环境设计、规则和反复实践。</div>
+</section>
+
+<section id="profile">
+<h2>12｜互动：生成你的“金钱决策画像”</h2>
+<p>下面不是标准心理测验，也不是 KMSI-R 的复制版，而是基于本章知识设计的教育性自我观察工具。请按“1=非常不同意，5=非常同意”回答。它的用途是告诉你：以后学习预算、储蓄和投资时，哪些行为机制值得你特别留意。</p>
+
+<div class="card" id="profileForm">
+  <div class="likert"><span></span><b>1</b><b>2</b><b>3</b><b>4</b><b>5</b></div>
+</div>
+<button class="secondary" onclick="calcProfile()">生成我的金钱决策画像</button>
+<div id="profileResult" class="feedback">完成后，这里会出现五个维度：安全需求、外部比较、当下偏好、财务回避、系统倾向。</div>
+</section>
+
+<section id="experiment">
+<h2>13｜互动实验：同样 10,000 元，你真的会一样分吗？</h2>
+<p>先假设你突然获得 10,000 元“意外奖金”，再假设这 10,000 元是你连续三个月加班换来的额外工资。分别分配，看看你的心理账户是否改变了决策。</p>
+
+<div class="account-grid">
+  <div class="alloc">
+    <h4>A｜意外奖金 ¥10,000</h4>
+    <div class="range-row"><span>消费</span><input type="range" min="0" max="100" value="30" id="a1" oninput="syncAlloc('a')"><b id="a1v">30%</b></div>
+    <div class="range-row"><span>旅行/体验</span><input type="range" min="0" max="100" value="20" id="a2" oninput="syncAlloc('a')"><b id="a2v">20%</b></div>
+    <div class="range-row"><span>储蓄</span><input type="range" min="0" max="100" value="25" id="a3" oninput="syncAlloc('a')"><b id="a3v">25%</b></div>
+    <div class="range-row"><span>投资/还债</span><input type="range" min="0" max="100" value="25" id="a4" oninput="syncAlloc('a')"><b id="a4v">25%</b></div>
+    <p class="note">总计 <b id="atotal">100%</b></p>
+  </div>
+
+  <div class="alloc">
+    <h4>B｜三个月加班收入 ¥10,000</h4>
+    <div class="range-row"><span>消费</span><input type="range" min="0" max="100" value="15" id="b1" oninput="syncAlloc('b')"><b id="b1v">15%</b></div>
+    <div class="range-row"><span>旅行/体验</span><input type="range" min="0" max="100" value="15" id="b2" oninput="syncAlloc('b')"><b id="b2v">15%</b></div>
+    <div class="range-row"><span>储蓄</span><input type="range" min="0" max="100" value="35" id="b3" oninput="syncAlloc('b')"><b id="b3v">35%</b></div>
+    <div class="range-row"><span>投资/还债</span><input type="range" min="0" max="100" value="35" id="b4" oninput="syncAlloc('b')"><b id="b4v">35%</b></div>
+    <p class="note">总计 <b id="btotal">100%</b></p>
+  </div>
+</div>
+
+<button onclick="compareAccounts()">比较两次决定</button>
+<div id="accountFeedback" class="feedback">如果两组分配明显不同，不代表你“做错了”，而是说明资金来源已经影响了你对同样金额的心理分类。</div>
+</section>
+
+<section id="diary">
+<h2>14｜实践：做一周“消费触发记录”</h2>
+<p>从今天开始，不要求你记下每一杯水和每一顿饭。只记录那些你自己觉得“值得观察”的非必要消费。重点不是金额，而是<b>购买前发生了什么</b>。</p>
+
+<div class="card">
+  <div class="grid2">
+    <label>买了什么<input id="logItem" type="text" placeholder="例如：新耳机、外卖、游戏充值"></label>
+    <label>金额（元）<input id="logAmount" type="number" placeholder="例如 299"></label>
+  </div>
+  <p><b>这次消费最主要的触发因素：</b></p>
+  <div class="trigger-list" id="triggers">
+    <div class="trigger" onclick="pickTrigger(this)">实际需要</div>
+    <div class="trigger" onclick="pickTrigger(this)">提高便利</div>
+    <div class="trigger" onclick="pickTrigger(this)">快乐体验</div>
+    <div class="trigger" onclick="pickTrigger(this)">奖励自己</div>
+    <div class="trigger" onclick="pickTrigger(this)">压力释放</div>
+    <div class="trigger" onclick="pickTrigger(this)">无聊</div>
+    <div class="trigger" onclick="pickTrigger(this)">社会比较</div>
+    <div class="trigger" onclick="pickTrigger(this)">身份表达</div>
+    <div class="trigger" onclick="pickTrigger(this)">打折诱导</div>
+    <div class="trigger" onclick="pickTrigger(this)">害怕错过</div>
+    <div class="trigger" onclick="pickTrigger(this)">习惯性购买</div>
+    <div class="trigger" onclick="pickTrigger(this)">其他</div>
+  </div>
+  <p><label>当时脑中最明显的一句话<textarea id="logThought" placeholder="例如：反正今天很累；大家都有；现在打折以后可能没有；我确实需要……"></textarea></label></p>
+  <button class="secondary" onclick="addLog()">保存一条记录</button>
+  <button class="ghost" onclick="clearLogs()">清空本章记录</button>
+  <div id="logSummary" class="feedback">数据会保存在当前浏览器的本地存储中，不会上传。</div>
+  <table class="log" id="logTable">
+    <thead><tr><th>时间</th><th>项目</th><th>金额</th><th>触发因素</th><th>当时想法</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<p>一周之后，不要先问“我花多了没有”，而是先看：<b>哪个触发因素出现得最多？哪类消费金额最高？哪些购买在第二天回看时仍然觉得值得？</b>这些数据会在后面的现金流和预算章节继续使用。</p>
+</section>
+
+<section id="summary">
+<div class="end">
+<h2>15｜如果这一章真正学会了，你应该多出这七句话</h2>
+<p><b>1. 金融知识不等于金融能力。</b>态度、习惯、执行和环境同样决定结果。</p>
+<p><b>2. 钱在心理上经常承载额外意义。</b>安全、自由、地位、享受和控制都会影响选择。</p>
+<p><b>3. 很多金钱规则是被社会化出来的。</b>家庭、同伴、时代和媒体都会参与塑造它们。</p>
+<p><b>4. Money Scripts 是观察语言，不是人格标签。</b>重要的是识别什么时候某种信念开始替你做决定。</p>
+<p><b>5. 心理账户会让相同的钱被不同对待。</b>它有时帮助管理预算，有时也会让人忽略整体成本。</p>
+<p><b>6. 当下偏好解释了为什么“以后再开始”如此危险。</b>成熟系统要减少对未来意志力的依赖。</p>
+<p><b>7. 真正有效的理财改变，往往来自规则和环境设计。</b>不是要求自己永远理性，而是让正确行动更容易发生。</p>
+<p><b>下一章：</b>既然我们已经知道“自己为什么会这样用钱”，接下来要回答：<b>钱究竟应该服务什么？怎样把金钱重新连接到人生目标、时间与选择？</b></p>
+</div>
+</section>
+
+<section id="refs">
+<h2>16｜本章资料来源与如何使用它们</h2>
+<ol class="refs">
+  <li><b>FDIC — Money Smart for Adults, Module 1: Your Money Values and Influences.</b> 本章“价值观、外部影响、财务决策”的主教学框架来源之一。<br><a href="https://www.fdic.gov/consumer-resource-center/money-smart-adults">官方课程入口</a></li>
+  <li><b>OECD/INFE 2023 International Survey of Adult Financial Literacy.</b> 用于“金融素养 = 知识 + 行为 + 态度”及金融韧性、财务福祉的教育背景。<br><a href="https://www.oecd.org/en/publications/oecd-infe-2023-international-survey-of-adult-financial-literacy_56003a32-en.html">OECD 页面</a></li>
+  <li><b>Consumer Financial Protection Bureau — Financial habits and norms.</b> 用于金融习惯、价值、社会规范与 financial socialization 的框架。<br><a href="https://www.consumerfinance.gov/consumer-tools/educator-tools/youth-financial-education/learn/financial-habits-norms/">CFPB 页面</a></li>
+  <li><b>CFPB — Effective financial education: Five principles and how to use them.</b> 用于心理账户、当下偏好、承诺机制和行为设计。<br><a href="https://www.consumerfinance.gov/data-research/research-reports/effective-financial-education-five-principles-and-how-use-them/">CFPB 页面</a></li>
+  <li><b>Klontz, B., Britt, S. L., Mentzer, J., & Klontz, T. (2011).</b> “Money Beliefs and Financial Behaviors: Development of the Klontz Money Script Inventory.” 用于四类 money scripts 的研究基础；原研究样本为 422 人、72 条信念项目。<br><a href="https://journals.newprairiepress.org/jft/article/id/5669/">Journal of Financial Therapy</a></li>
+  <li><b>Taylor, C. D., Klontz, B., & Britt, S. L. (2016).</b> “Reliability and Convergent Validity of the Klontz Money Script Inventory-Revised.” 用于说明修订量表的后续可靠性研究。<br><a href="https://journals.newprairiepress.org/jft/article/id/5721/">Journal of Financial Therapy</a></li>
+  <li><b>LeBaron-Black et al. / 家庭金融社会化相关研究.</b> 本章只采用“家庭沟通与示范与后续金融知识、行为和福祉相关”的结论，不把它解释为决定论。可参见基于 2016 US National Financial Well-Being Survey 的家庭金融社会化研究。</li>
+  <li><b>Hopkins, E. & Kornienko, T. (2004).</b> “Running to Keep in the Same Place: Consumer Choice as a Game of Status.” 用于地位消费与参照群体的经济学视角。<br><a href="https://www.aeaweb.org/articles?id=10.1257/0002828042002705">American Economic Review</a></li>
+  <li><b>Langtry, A. (2023).</b> “Keeping Up with ‘The Joneses’: Reference-Dependent Choice with Social Comparisons.” 用于现代社会比较模型。<br><a href="https://www.aeaweb.org/articles?id=10.1257/mic.20220088">American Economic Journal: Microeconomics</a></li>
+  <li><b>Morgan Housel — The Psychology of Money.</b> 本章参考第 1 章 <i>No One's Crazy</i>、第 3 章 <i>Never Enough</i>、第 8 章 <i>Man in the Car Paradox</i> 与第 11 章 <i>Reasonable &gt; Rational</i> 的思想，但没有复制书中长段原文。<br><a href="https://www.harriman-house.com/psychologyofmoney">出版方目录</a></li>
+</ol>
+</section>
+
+</article>
+</main>
+</div></div>
+
+<script>
+const questions=[
+  ["q1","当账户余额很低时，我会明显缺乏安全感。","security"],
+  ["q2","只要身边人的生活水平提高，我也容易觉得自己应该升级消费。","comparison"],
+  ["q3","我经常告诉自己：下个月再开始存钱或处理财务问题。","present"],
+  ["q4","看到债务、账单或复杂财务数字时，我有时宁愿先不看。","avoidance"],
+  ["q5","我更喜欢提前设定自动转账或固定规则，而不是每次临时决定。","system"],
+  ["q6","为了安心，我倾向于保留比一般建议更多的现金。","security"],
+  ["q7","有些东西即使并不急需，只要周围人都有，我也会重新考虑购买。","comparison"],
+  ["q8","眼前的消费满足，经常比几个月后的财务目标更有吸引力。","present"],
+  ["q9","如果某笔消费让我后悔，我可能会拖着不去复盘它。","avoidance"],
+  ["q10","一旦建立了简单规则，我通常比只靠‘记得做’执行得更好。","system"]
+];
+const dims={security:[],comparison:[],present:[],avoidance:[],system:[]};
+const form=document.getElementById("profileForm");
+questions.forEach(([id,text,dim])=>{
+  const row=document.createElement("div"); row.className="likert";
+  const s=document.createElement("span"); s.textContent=text; row.appendChild(s);
+  for(let i=1;i<=5;i++){
+    const lab=document.createElement("label");
+    const r=document.createElement("input"); r.type="radio"; r.name=id; r.value=i; r.dataset.dim=dim;
+    lab.appendChild(r); row.appendChild(lab);
+  }
+  form.appendChild(row);
+});
+
+function calcProfile(){
+  let totals={security:0,comparison:0,present:0,avoidance:0,system:0}, counts={security:0,comparison:0,present:0,avoidance:0,system:0};
+  for(const [id,,dim] of questions){
+    const el=document.querySelector('input[name="'+id+'"]:checked');
+    if(!el){document.getElementById("profileResult").innerHTML="<b>还没填完。</b> 请先回答全部 10 题。"; return;}
+    totals[dim]+=Number(el.value); counts[dim]++;
+  }
+  const labels={security:"安全需求",comparison:"外部比较敏感度",present:"当下偏好",avoidance:"财务回避",system:"系统化执行倾向"};
+  let html="<div class='grid2'>";
+  Object.keys(totals).forEach(k=>{
+    const avg=totals[k]/counts[k];
+    const pct=Math.round((avg-1)/4*100);
+    html+="<div class='metric'><span>"+labels[k]+"</span><b>"+avg.toFixed(1)+" / 5</b><div class='scorebar'><i style='width:"+pct+"%'></i></div></div>";
+  });
+  html+="</div><hr>";
+  const a=totals.security/counts.security,b=totals.comparison/counts.comparison,c=totals.present/counts.present,d=totals.avoidance/counts.avoidance,e=totals.system/counts.system;
+  let tips=[];
+  if(a>=4) tips.push("你对财务安全感的需求较强。后续做资产配置时，要把现金缓冲和可承受波动放在真实情绪范围内考虑，而不是只追求理论最优。");
+  if(b>=4) tips.push("外部比较对你的消费标准可能影响较明显。第三章建立个人目标时，尤其需要区分‘我真正想要’和‘环境让我觉得应该要’。");
+  if(c>=4) tips.push("你存在较明显的当下偏好。对你来说，自动储蓄、自动还款和预先承诺规则会比‘靠自律’更重要。");
+  if(d>=4) tips.push("你在压力情境下可能更容易回避财务问题。建议把复杂任务拆成固定、低压力的小步骤，例如每周只检查一次账户与账单。");
+  if(e>=4) tips.push("你对规则和自动化的接受度较高。后续课程可以更积极地使用固定分配、自动执行和定期复盘。");
+  if(!tips.length) tips.push("你的五个维度暂时没有特别突出的高值。继续关注真实行为记录，比单次问卷更有价值。");
+  html+="<b>从后续学习角度看：</b><br>"+tips.map(x=>"• "+x).join("<br><br>")+"<p class='note'>这是课程自我观察工具，不是标准化心理测评或诊断。</p>";
+  document.getElementById("profileResult").innerHTML=html;
+  markDone("profile");
+}
+
+function syncAlloc(g){
+  let total=0;
+  for(let i=1;i<=4;i++){
+    const el=document.getElementById(g+i); total+=Number(el.value);
+    document.getElementById(g+i+"v").textContent=el.value+"%";
+  }
+  const t=document.getElementById(g+"total"); t.textContent=total+"%"; t.style.color=total===100?"var(--green)":"var(--red)";
+}
+function compareAccounts(){
+  const A=[1,2,3,4].map(i=>Number(document.getElementById("a"+i).value));
+  const B=[1,2,3,4].map(i=>Number(document.getElementById("b"+i).value));
+  const ta=A.reduce((x,y)=>x+y,0), tb=B.reduce((x,y)=>x+y,0);
+  if(ta!==100||tb!==100){document.getElementById("accountFeedback").innerHTML="<b>先把两组都调到 100%。</b>";return}
+  const diff=A.reduce((s,x,i)=>s+Math.abs(x-B[i]),0)/2;
+  let text=diff<10?"两次分配很接近。你对资金来源的敏感度在这个实验里不明显。":
+           diff<25?"两次分配存在一定差异。资金来源已经开始影响你的心理分类。":
+           "两次分配差异很明显。你很可能对‘意外所得’和‘辛苦赚到的钱’使用了不同心理账户。";
+  document.getElementById("accountFeedback").innerHTML="<b>分配差异指数："+diff+" 个百分点。</b><br>"+text+"<br><span class='note'>这不是好坏评分。下一步只需要问：这种差异是否符合你的长期目标？</span>";
+  markDone("account");
+}
+
+let chosenTrigger="";
+function pickTrigger(el){
+  document.querySelectorAll(".trigger").forEach(x=>x.classList.remove("sel"));
+  el.classList.add("sel"); chosenTrigger=el.textContent;
+}
+function loadLogs(){return JSON.parse(localStorage.getItem("finance_ch2_logs")||"[]")}
+function saveLogs(x){localStorage.setItem("finance_ch2_logs",JSON.stringify(x))}
+function addLog(){
+  const item=document.getElementById("logItem").value.trim(), amt=Number(document.getElementById("logAmount").value||0), thought=document.getElementById("logThought").value.trim();
+  if(!item||!chosenTrigger){document.getElementById("logSummary").innerHTML="<b>请至少填写项目并选择一个触发因素。</b>";return}
+  const logs=loadLogs(); logs.push({time:new Date().toLocaleString("zh-CN"),item,amt,trigger:chosenTrigger,thought}); saveLogs(logs);
+  document.getElementById("logItem").value="";document.getElementById("logAmount").value="";document.getElementById("logThought").value="";
+  document.querySelectorAll(".trigger").forEach(x=>x.classList.remove("sel"));chosenTrigger="";
+  renderLogs(); markDone("diary");
+}
+function clearLogs(){localStorage.removeItem("finance_ch2_logs");renderLogs()}
+function renderLogs(){
+  const logs=loadLogs(), tbody=document.querySelector("#logTable tbody"); tbody.innerHTML="";
+  let sum=0, count={};
+  logs.forEach(x=>{sum+=x.amt;count[x.trigger]=(count[x.trigger]||0)+1;const tr=document.createElement("tr");tr.innerHTML="<td>"+x.time+"</td><td>"+x.item+"</td><td>¥"+x.amt.toLocaleString("zh-CN")+"</td><td>"+x.trigger+"</td><td>"+(x.thought||"—")+"</td>";tbody.appendChild(tr)});
+  const top=Object.entries(count).sort((a,b)=>b[1]-a[1])[0];
+  document.getElementById("logSummary").innerHTML=logs.length?("已经记录 <b>"+logs.length+"</b> 笔，合计 <b>¥"+sum.toLocaleString("zh-CN")+"</b>"+(top?"；最常见触发因素：<b>"+top[0]+"</b>。":"")):"数据会保存在当前浏览器的本地存储中，不会上传。";
+}
+
+const done=new Set();
+function markDone(k){done.add(k);const pct=Math.round(done.size/3*100);document.getElementById("pct").textContent=pct+"%";document.getElementById("prog").style.width=pct+"%"}
+syncAlloc("a");syncAlloc("b");renderLogs();
+</script>
+</body>
+</html>
