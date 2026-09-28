@@ -24,6 +24,31 @@ GitHub 的 README 用来介绍和进入课程；可交互的网页由仓库根�
 
 建议从第一章开始；需要查某个知识点时，可以在网页左侧搜索。
 
+## 20 章目录
+
+| 章节 | 点击进入在线阅读 |
+| --- | --- |
+| 01 | [财富是什么？](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=1) |
+| 02 | [钱为什么会影响我们的决定？](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=2) |
+| 03 | [钱究竟应该服务什么？](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=3) |
+| 04 | [给自己做一次完整财务体检](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=4) |
+| 05 | [钱为什么总是在不知不觉中消失？](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=5) |
+| 06 | [银行、账户、支付和信用到底是什么系统？](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=6) |
+| 07 | [借钱为什么会改变未来？](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=7) |
+| 08 | [为什么有一部分钱永远不应该拿去投资？](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=8) |
+| 09 | [保险究竟在买什么？](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=9) |
+| 10 | [金融世界如何保护自己？](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=10) |
+| 11 | [时间为什么可以让钱增长？](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=11) |
+| 12 | [通胀、费用和税为什么会悄悄吃掉收益？](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=12) |
+| 13 | [风险和收益到底是什么关系？](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=13) |
+| 14 | [一张图看懂所有主要资产](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=14) |
+| 15 | [债券：为什么“借钱给别人”能成为资产？](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=15) |
+| 16 | [股票：你买下的到底是什么？](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=16) |
+| 17 | [基金、指数和 ETF：为什么普通人不一定需要选股票？](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=17) |
+| 18 | [为什么资产配置比寻找“神基”更重要？](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=18) |
+| 19 | [最大的投资风险可能是你自己](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=19) |
+| 20 | [把所有东西变成你的个人财富系统](https://hajimi-tomato.github.io/personal-wealth-course/#chapter=20) |
+
 ## 仓库结构
 
 - `chapters/`：20 个原始章节 HTML。正文和章节内互动保持原样。
