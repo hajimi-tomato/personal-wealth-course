@@ -154,7 +154,7 @@
       if (!doc) return;
       const link = doc.createElement("link");
       link.rel = "stylesheet";
-      link.href = new URL("reader-mode.css", document.baseURI).href;
+      link.href = new URL("reader-mode.css?v=book-20260929", document.baseURI).href;
       link.addEventListener("load", () => {
         doc.documentElement.style.setProperty("--book-font-size", `${fontSize}px`);
         fitChapter();
