@@ -1,0 +1,41 @@
+/* Applied only inside a chapter when it is read as part of the book. */
+html, body { height: auto !important; overflow: visible !important; }
+body {
+  margin: 0 !important;
+  background: transparent !important;
+  color: #332b22 !important;
+  font-family: ui-serif, "Noto Serif SC", "Source Han Serif SC", "Songti SC", STSong, serif !important;
+  font-size: var(--book-font-size, 17px) !important;
+  line-height: 1.95 !important;
+}
+.wrap { max-width: none !important; margin: 0 !important; padding: 0 !important; }
+.layout { display: block !important; max-width: none !important; margin: 0 !important; }
+.sidebar { display: none !important; }
+.paper {
+  overflow: visible !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.hero { display: none !important; }
+.content { max-width: none !important; margin: 0 !important; padding: 0 !important; }
+.content > section { margin: 0 0 62px !important; scroll-margin-top: 75px; }
+.content h2 { margin: 0 0 19px !important; font-size: 1.65em !important; line-height: 1.4 !important; }
+.content h3 { font-size: 1.22em !important; line-height: 1.5 !important; }
+.content h4 { font-size: 1.06em !important; }
+.content p, .content li { line-height: 1.95; }
+.content p { margin: 10px 0 17px; }
+.content .lead { font-size: 1.08em; }
+.content .callout, .content .card, .content .case { box-shadow: none; }
+.content .table { display: block; max-width: 100%; overflow-x: auto; }
+.content .formula { overflow-x: auto; }
+
+@media (max-width: 650px) {
+  body { font-size: var(--book-font-size, 16px) !important; }
+  .content > section { margin-bottom: 48px !important; }
+  .content h2 { font-size: 1.45em !important; }
+  .content .grid2, .content .grid3, .content .grid4, .content .kmap { grid-template-columns: 1fr !important; }
+  .content .book { grid-template-columns: 1fr !important; }
+}

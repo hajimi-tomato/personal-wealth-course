@@ -19,17 +19,22 @@
   let completed = new Set();
   let current = 1;
   let last = 1;
+  let fontSize = 17;
+  let frameObserver;
+  let pendingSection = "";
+  let pendingStartScroll = false;
 
   try {
     const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
     completed = new Set((saved.completed || []).filter((n) => Number.isInteger(n) && n >= 1 && n <= 20));
     if (Number.isInteger(saved.last) && saved.last >= 1 && saved.last <= 20) last = saved.last;
+    if (Number.isInteger(saved.fontSize) && saved.fontSize >= 15 && saved.fontSize <= 21) fontSize = saved.fontSize;
   } catch (_) {
     // The reader remains usable when storage is blocked or old data is invalid.
   }
 
   function save() {
-    try { localStorage.setItem(storageKey, JSON.stringify({ completed: [...completed].sort((a, b) => a - b), last })); }
+    try { localStorage.setItem(storageKey, JSON.stringify({ completed: [...completed].sort((a, b) => a - b), last, fontSize })); }
     catch (_) { /* Private browsing can block storage; navigation still works. */ }
   }
 
@@ -54,7 +59,7 @@
     const pct = Math.round(count / 20 * 100);
     $("completedCount").textContent = count;
     $("progressNumber").textContent = `${pct}%`;
-    $("progressRing").style.background = `conic-gradient(var(--accent) ${pct}%, #dce8d8 ${pct}%)`;
+    $("progressRing").style.background = `conic-gradient(var(--accent) ${pct}%, #e7dcc5 ${pct}%)`;
     const done = completed.has(current);
     $("lessonStatus").textContent = done ? "已完成" : "未完成";
     $("lessonStatus").classList.toggle("done", done);
@@ -73,6 +78,7 @@
 
   function renderNav() {
     const query = $("searchInput").value.trim().toLocaleLowerCase("zh-CN");
+    nav.classList.toggle("searching", Boolean(query));
     nav.replaceChildren();
     let total = 0;
     for (const unit of units) {
@@ -115,6 +121,60 @@
     $("scrim").hidden = true;
   }
 
+  function fitChapter() {
+    try {
+      const wrap = frame.contentDocument?.querySelector(".wrap");
+      if (!wrap) return;
+      const height = Math.ceil(Math.max(wrap.scrollHeight, wrap.getBoundingClientRect().height)) + 4;
+      if (Math.abs(frame.offsetHeight - height) > 1) frame.style.height = `${height}px`;
+    } catch (_) {
+      // The original chapter can still be opened directly if its frame is unavailable.
+    }
+  }
+
+  function scrollToSection(section) {
+    if (!section) return;
+    try {
+      const target = frame.contentDocument?.getElementById(section);
+      if (!target) return;
+      const top = window.scrollY + frame.getBoundingClientRect().top + target.getBoundingClientRect().top - 75;
+      window.scrollTo({ top, behavior: "smooth" });
+    } catch (_) { /* Direct chapter link remains available. */ }
+  }
+
+  function scrollToChapterStart() {
+    const top = window.scrollY + $("lesson").getBoundingClientRect().top - 70;
+    window.scrollTo({ top: Math.max(0, top), behavior: "instant" });
+  }
+
+  frame.addEventListener("load", () => {
+    if (frameObserver) frameObserver.disconnect();
+    try {
+      const doc = frame.contentDocument;
+      if (!doc) return;
+      const link = doc.createElement("link");
+      link.rel = "stylesheet";
+      link.href = new URL("reader-mode.css", document.baseURI).href;
+      link.addEventListener("load", () => {
+        doc.documentElement.style.setProperty("--book-font-size", `${fontSize}px`);
+        fitChapter();
+        const wrap = doc.querySelector(".wrap");
+        if (wrap) {
+          frameObserver = new ResizeObserver(fitChapter);
+          frameObserver.observe(wrap);
+        }
+        if (pendingSection) requestAnimationFrame(() => scrollToSection(pendingSection));
+        else if (pendingStartScroll) {
+          requestAnimationFrame(() => {
+            scrollToChapterStart();
+            pendingStartScroll = false;
+          });
+        }
+      }, { once: true });
+      doc.head.append(link);
+    } catch (_) { /* A chapter remains readable even without the book styling. */ }
+  });
+
   function selectChapter(number, section = "", options = {}) {
     if (!Number.isInteger(number) || number < 1 || number > 20) return;
     const chapter = chapters[number - 1];
@@ -123,26 +183,37 @@
     current = number;
     last = number;
     save();
-    $("chapterMeta").textContent = `CHAPTER ${String(number).padStart(2, "0")} / 20`;
+    $("chapterMeta").textContent = `第 ${String(number).padStart(2, "0")} 章 · 全 20 章`;
     $("chapterTitle").textContent = chapter.title;
     $("chapterSubtitle").textContent = chapter.subtitle;
     $("openOriginal").href = chapter.file;
     sectionSelect.replaceChildren(new Option("章节开头", ""));
     for (const item of chapter.sections) sectionSelect.add(new Option(item.title, item.id));
     sectionSelect.value = section;
-    const source = chapter.file + (section ? `#${encodeURIComponent(section)}` : "");
-    if (changed || frame.getAttribute("src") !== source) frame.src = source;
+    pendingSection = section;
+    pendingStartScroll = !options.noScroll && !section && changed;
+    if (changed || frame.getAttribute("src") !== chapter.file) frame.src = chapter.file;
+    else if (section) scrollToSection(section);
     $("prevButton").disabled = number === 1;
     $("nextButton").disabled = number === 20;
     updateProgress();
     renderNav();
     if (!options.fromHistory) setUrl(number, section, options.replaceUrl);
-    if (!options.noScroll) $("lesson").scrollIntoView({ behavior: "smooth", block: "start" });
+    if (!options.noScroll && !section) scrollToChapterStart();
     closeMenu();
   }
 
   sectionSelect.addEventListener("change", () => selectChapter(current, sectionSelect.value, { noScroll: true }));
   $("searchInput").addEventListener("input", renderNav);
+  for (const [id, delta] of [["fontDecrease", -1], ["fontIncrease", 1]]) {
+    $(id).addEventListener("click", () => {
+      fontSize = Math.max(15, Math.min(21, fontSize + delta));
+      save();
+      try { frame.contentDocument?.documentElement.style.setProperty("--book-font-size", `${fontSize}px`); }
+      catch (_) { /* The next chapter will use the saved size. */ }
+      requestAnimationFrame(fitChapter);
+    });
+  }
   $("completeButton").addEventListener("click", () => {
     if (completed.has(current)) completed.delete(current); else completed.add(current);
     save();
@@ -164,7 +235,7 @@
   document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeMenu(); });
   window.addEventListener("popstate", () => {
     const state = urlState();
-    selectChapter(state.number || 1, state.section, { fromHistory: true, noScroll: true });
+    selectChapter(state.number || 1, state.section, { fromHistory: true });
   });
 
   const initial = urlState();

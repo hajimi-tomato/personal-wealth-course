@@ -4,15 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="免费阅读个人财富系统 20 章：从财务目标、现金流与风险管理，到资产配置和长期复盘。">
-  <meta name="theme-color" content="#173f37">
-  <title>个人财富系统｜20 章在线课程</title>
+  <meta name="theme-color" content="#e7dfcf">
+  <title>个人财富系统｜在线阅读</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a class="skip-link" href="#reader">跳到课程正文</a>
   <div class="site-shell">
     <aside class="sidebar" id="sidebar" aria-label="课程导航">
-      <div class="brand"><span class="brand-mark" aria-hidden="true">财</span><div><strong>个人财富系统</strong><small>20 章 · 免费在线学习</small></div></div>
+      <div class="brand"><span class="brand-mark" aria-hidden="true">书</span><div><strong>个人财富系统</strong><small>一本循序渐进的金融读本</small></div></div>
+      <div class="toc-heading"><span>目录</span><small>CONTENTS · 20 CHAPTERS</small></div>
       <div class="progress-panel">
         <div class="progress-ring" id="progressRing" aria-hidden="true"><span id="progressNumber">0%</span></div>
         <div><strong>你的学习进度</strong><p><span id="completedCount">0</span> / 20 章已完成</p><button class="text-button" id="continueButton" type="button">继续学习 →</button></div>
@@ -21,22 +22,25 @@
       <input id="searchInput" class="search-input" type="search" placeholder="例如：复利、保险、ETF" autocomplete="off">
       <div class="search-feedback" id="searchFeedback" aria-live="polite"></div>
       <nav id="chapterNav" aria-label="20 章目录"></nav>
-      <div class="sidebar-foot">章节中的计算器与练习直接在本页使用。学习进度只保存在当前浏览器。</div>
+      <div class="sidebar-foot">随时从目录翻到下一章。完成记录与字号设置只保存在当前浏览器。</div>
     </aside>
 
     <div class="main-column">
       <header class="topbar">
         <button class="menu-button" id="menuButton" type="button" aria-controls="sidebar" aria-expanded="false">☰ <span>目录</span></button>
-        <span class="topbar-label">PERSONAL WEALTH SYSTEM</span>
+        <span class="topbar-label">个人财富系统 <span aria-hidden="true">／</span> 在线阅读</span>
+        <div class="type-controls" aria-label="调整正文字号"><button id="fontDecrease" type="button" aria-label="缩小正文字号">A−</button><button id="fontIncrease" type="button" aria-label="放大正文字号">A+</button></div>
         <a class="repo-link" href="https://github.com/hajimi-tomato/personal-wealth-course" target="_blank" rel="noopener noreferrer">GitHub 仓库 ↗</a>
       </header>
 
       <main id="reader">
         <section class="welcome" aria-labelledby="welcomeTitle">
-          <div class="eyebrow">从零开始 · 按自己的节奏学</div>
-          <h1 id="welcomeTitle">让钱有任务，<br><em>让选择更自由。</em></h1>
-          <p>20 章完整课程，从认识财富、管理现金流和风险，到理解投资工具、建立个人财富系统。你可以顺序阅读，也可以搜索知识点直接跳到相关小节。</p>
-          <div class="welcome-actions"><button class="primary-button" id="startButton" type="button">从第一章开始</button><span>无账号 · 无付费 · 进度保存在本地</span></div>
+          <div class="cover-emblem" aria-hidden="true">✦</div>
+          <div class="eyebrow">一本写给普通人的金融入门书 · 全二十章</div>
+          <h1 id="welcomeTitle">个人财富系统</h1>
+          <p>从认识钱开始，读懂现金流与风险，再走向投资工具和长期选择。把知识一页页读完，也把自己的财务生活慢慢理清。</p>
+          <div class="cover-rule" aria-hidden="true"></div>
+          <div class="welcome-actions"><button class="primary-button" id="startButton" type="button">开始阅读第一章 <span aria-hidden="true">→</span></button><span>20 章完整收录 · 免费在线阅读</span></div>
         </section>
 
         <section class="lesson" id="lesson" aria-labelledby="chapterTitle">
@@ -45,11 +49,11 @@
             <div class="lesson-status" id="lessonStatus" aria-live="polite">未完成</div>
           </div>
           <div class="lesson-tools">
-            <label for="sectionSelect">跳转到本章小节</label>
+            <label for="sectionSelect">本章书签</label>
             <select id="sectionSelect" aria-label="跳转到本章小节"><option value="">章节开头</option></select>
-            <a id="openOriginal" href="#" target="_blank" rel="noopener noreferrer">单独打开本章 ↗</a>
+            <a id="openOriginal" href="#" target="_blank" rel="noopener noreferrer">查看原始章节 ↗</a>
           </div>
-          <div class="frame-wrap"><iframe id="chapterFrame" title="课程正文" loading="eager"></iframe></div>
+          <div class="frame-wrap"><iframe id="chapterFrame" title="课程正文" loading="eager" scrolling="no"></iframe></div>
           <div class="lesson-bottom">
             <button class="outline-button" id="prevButton" type="button">← 上一章</button>
             <button class="complete-button" id="completeButton" type="button" aria-pressed="false">标记本章已完成</button>
