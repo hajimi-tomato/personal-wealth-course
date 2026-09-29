@@ -65,4 +65,5 @@ function returnTrap(){const vals=rSeries.value.split(/[,，\s]+/).map(Number).fi
 function exportMap(){const data={chapter:'11 时间为什么可以让钱增长？',exported_at:new Date().toISOString(),map:tvmMap,principles:['用复利公式做规划，不把固定收益率假设当成市场承诺','不要为了让目标算得出来而随意提高收益率假设','持续投入和开始时间往往比预测高收益率更可控','历史CAGR描述过去，不等于未来回报','比较多期收益时区分算术平均和复合增长']};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='我的时间价值地图_v1.json';a.click();URL.revokeObjectURL(u)}
 compoundLab();readProgress();
 </script>
+<script src="../citation-links.js?v=references-20260929" defer></script>
 </body></html>

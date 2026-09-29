@@ -45,4 +45,5 @@ async function importReport(e){const f=e.target.files[0];if(!f)return;try{const 
 function futureMap(){const i=+fIncome.value,n=+fNeed.value,d=+fDebt.value,g=+fGoal.value,left=i-n-d-g,pct=i?d/i*100:0,adj=Math.max(i-n,0),share=adj?d/adj*100:0;futureOut.innerHTML=`<div class="grid4"><div class="metric"><span>税后收入</span><b>${fmt(i)}</b></div><div class="metric"><span>债务月供</span><b>${fmt(d)}</b><small>占收入 ${pct.toFixed(1)}%</small></div><div class="metric"><span>债务占扣除必要生活后的资金</span><b>${share.toFixed(1)}%</b></div><div class="metric"><span>当前剩余</span><b>${fmt(left)}</b></div></div><p><b>如果债务全部结束：</b>理论上每月可重新释放约 <b>${fmt(d)}</b> 的现金流。</p>`;lastDebtExport.future={i,n,d,g,left,pct,share};mark('future')}
 function exportDebtRules(){const data={chapter:'07 借钱为什么会改变未来？',exported_at:new Date().toISOString(),analysis:lastDebtExport,personal_rules:['新借款先看年化综合成本，不只看月供','比较本金、APR、期限、总还款和费用','存在高息债务时谨慎新增同类消费债','债务管理同时检查对重要目标和未来现金流的影响']};const b=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='我的债务管理规则_v1.json';a.click();URL.revokeObjectURL(u)}
 addDebt('信用卡A',20000,18,800);addDebt('消费贷B',30000,10,1200);addDebt('分期C',8000,6,500);rp();
-</script></body></html>
+</script><script src="../citation-links.js?v=references-20260929" defer></script>
+</body></html>

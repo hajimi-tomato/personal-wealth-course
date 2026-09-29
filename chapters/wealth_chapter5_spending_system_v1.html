@@ -79,4 +79,5 @@ function loadRules(){return JSON.parse(localStorage.getItem("finance_ch5_rules")
 function exportSystem(){const data={chapter:"05 钱为什么总是在不知不觉中消失？",exported_at:new Date().toISOString(),spending_xray:currentXray,planned_reserve:currentReserve,conscious_spending_plan:currentCsp,personal_rules:loadRules()};const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="个人支出系统_v1.json";a.click();URL.revokeObjectURL(url)}
 addXRow("房租 / 住房",3500,"固定结构");addXRow("基础食品 / 通勤",2500,"必要弹性");addXRow("餐饮 / 娱乐 / 购物",1500,"生活方式");addXRow("保险等月度化",500,"周期性");addXRow("目标储蓄",1500,"未来资金");addReserve("保险年费",6000,12);addReserve("年度旅行",12000,12);addReserve("三年后电脑更新",9000,36);updateCsp();renderRules();readProgress();
 </script>
+<script src="../citation-links.js?v=references-20260929" defer></script>
 </body></html>

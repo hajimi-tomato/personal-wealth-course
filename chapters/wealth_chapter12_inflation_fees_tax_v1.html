@@ -195,4 +195,5 @@ function calcBasket(){const rows=[...document.querySelectorAll(".basket-row")].m
 function exportMap(){const data={chapter:"12 通胀、费用和税为什么会悄悄吃掉收益？",exported_at:new Date().toISOString(),map:realMap,principles:["区分毛收益、净收益、税后收益和实际收益","个人通胀估计是规划工具，不替代官方CPI","长期费用用终值差而不是单年费率理解","具体金融资产税务处理按当前官方规则核验，不套统一税率","财务目标同时记录今天购买力和未来名义金额"]};const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="我的真实收益地图_v1.json";a.click();URL.revokeObjectURL(u)}
 addBasket("住房",35,3);addBasket("食品",25,4);addBasket("交通通信",10,1);addBasket("教育娱乐",15,2);addBasket("医疗",5,5);addBasket("其他",10,2);readProgress();
 </script>
+<script src="../citation-links.js?v=references-20260929" defer></script>
 </body></html>

@@ -12,6 +12,7 @@
     { title: "建立个人财富系统", from: 20, to: 20 },
   ];
   const storageKey = "personal-wealth-course-progress-v1";
+  const chapterVersion = "references-20260929";
   const $ = (id) => document.getElementById(id);
   const nav = $("chapterNav");
   const frame = $("chapterFrame");
@@ -186,13 +187,14 @@
     $("chapterMeta").textContent = `第 ${String(number).padStart(2, "0")} 章 · 全 20 章`;
     $("chapterTitle").textContent = chapter.title;
     $("chapterSubtitle").textContent = chapter.subtitle;
-    $("openOriginal").href = chapter.file;
+    const chapterUrl = `${chapter.file}?v=${chapterVersion}`;
+    $("openOriginal").href = chapterUrl;
     sectionSelect.replaceChildren(new Option("章节开头", ""));
     for (const item of chapter.sections) sectionSelect.add(new Option(item.title, item.id));
     sectionSelect.value = section;
     pendingSection = section;
     pendingStartScroll = !options.noScroll && !section && changed;
-    if (changed || frame.getAttribute("src") !== chapter.file) frame.src = chapter.file;
+    if (changed || frame.getAttribute("src") !== chapterUrl) frame.src = chapterUrl;
     else if (section) scrollToSection(section);
     $("prevButton").disabled = number === 1;
     $("nextButton").disabled = number === 20;

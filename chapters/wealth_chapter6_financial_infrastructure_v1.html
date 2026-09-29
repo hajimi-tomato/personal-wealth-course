@@ -98,4 +98,5 @@ function buildSecurity(){const c=sec.filter(x=>document.getElementById(x.id).che
 function exportInfra(){if(!accountData.length)accountData=JSON.parse(localStorage.getItem("finance_ch6_accounts")||"[]");const data={chapter:"06 银行、账户、支付和信用到底是什么系统？",exported_at:new Date().toISOString(),accounts:accountData,security_check:securityData,notes:"不包含卡号、账号、密码等敏感凭证。"};const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="我的金融基础设施地图_v1.json";a.click();URL.revokeObjectURL(u)}
 addAccount("工资银行卡","银行存款账户","收入中枢","有自动转出");addAccount("日常支付账户","支付账户","日常消费","有自动扣款");addAccount("信用卡","信用卡/信贷账户","固定账单","有自动扣款");addAccount("长期投资账户","证券/投资账户","长期资产","有自动转入");initSec();readProgress();
 </script>
+<script src="../citation-links.js?v=references-20260929" defer></script>
 </body></html>
